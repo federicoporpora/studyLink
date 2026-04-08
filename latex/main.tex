@@ -1,0 +1,155 @@
+\documentclass[12pt,a4paper]{report}
+
+% --- Packages ---
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[italian]{babel}
+\usepackage{graphicx}
+\usepackage{geometry}
+\geometry{a4paper, margin=2.5cm}
+\usepackage{hyperref}
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage{float}
+\usepackage{titlesec}
+\usepackage{enumitem}
+
+% --- Settings ---
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={studyLink Project},
+}
+
+\titleformat{\chapter}[display]
+  {\normalfont\bfseries\huge}
+  {\chaptertitlename\ \thechapter}{20pt}{\Huge}
+
+% --- Document ---
+\begin{document}
+
+% --- Cover Page ---
+\begin{titlepage}
+    \pagenumbering{gobble}
+    \centering
+    \vspace*{1cm}
+    \includegraphics[width=0.6\textwidth]{images/logo.png}\par
+    \vspace{2cm}
+    {\Huge\bfseries studyLink \par}
+    \vfill
+    \begin{flushright}
+        {\large \textbf{Gruppo 31} \quad A.A. 2025/2026 \par}
+        \vspace{0.5cm}
+        Matteo Gattobigio \quad 0001117104 \\
+        Lucilla Lucchi \quad 0001116767 \\
+        Federico Porpora \quad 0001114450 \par
+    \end{flushright}
+\end{titlepage}
+
+% --- Abstract ---
+\newpage
+\pagenumbering{roman}
+\chapter*{Abstract}
+\addcontentsline{toc}{chapter}{Abstract}
+Il progetto \textbf{studyLink} è un'applicazione nata per aiutare gli studenti universitari a trovare e formare gruppi di studio dal vivo, rendendo semplicissimo l'incontro tra colleghi.
+
+La piattaforma punta tutto sulla trasparenza: ogni studente ha un profilo personale chiaro e visibile.
+L'applicazione gestisce le sessioni di studio in modo flessibile, permettendo agli utenti di alternarsi in due ruoli chiave:
+\begin{itemize}
+    \item \textbf{L'Organizzatore}, che prende l'iniziativa e crea l'evento scegliendo la data, l'orario, il luogo d'incontro e i posti disponibili;
+    \item \textbf{Il Partecipante}, che sfoglia la bacheca e si prenota per i gruppi già avviati occupando i posti liberi.
+\end{itemize}
+
+Inoltre, per facilitare l'organizzazione, tutti gli iscritti a un evento hanno a disposizione una chat di gruppo dedicata. È uno spazio comodo e privato per scambiarsi appunti, materiali di studio o mettersi d'accordo sui dettagli prima di vedersi di persona.
+
+% --- Table of Contents ---
+\newpage
+\tableofcontents
+
+% --- Requirements Analysis ---
+\newpage
+\pagenumbering{arabic}
+\chapter{Analisi dei Requisiti}
+
+\section{Raccolta dei requisiti}
+Il sistema deve permettere all'utente di registrarsi fornendo le proprie credenziali (Email, Username e Password). Il sistema deve permettere la registrazione esclusivamente ad utenti aventi una email istituzionale universitaria (es. @studio.unibo.it).
+
+Ogni utente può gestire il proprio profilo personale, contenente nome, cognome, corso di studi, una breve biografia e opzionalmente un'immagine.
+
+Qualsiasi utente autenticato può creare un nuovo evento. Per la creazione è necessario specificare materia o argomento di studio, data e orario dell'incontro, luogo fisico (indirizzo o aula) e numero massimo di posti disponibili.
+
+L'organizzatore può creare un evento specificando argomento di studio o esame in preparazione, data e orario dell’incontro e luogo. Deve inoltre definire:
+\begin{itemize}
+    \item \textbf{Materia:} l'evento può essere ``Specifico per Esame'' (materia indicata) o ``Generale'' (senza materia specifica).
+    \item \textbf{Accesso:} scegliere tra luogo ``Pubblico'' o ``Privato''.
+    \item \textbf{Numero di posti:} può essere ``Limitato'' o ``Illimitato''.
+\end{itemize}
+
+Il sistema deve offrire una bacheca globale dove l'utente può sfogliare gli eventi di studio creati da altri utenti. Gli eventi scompaiono dalla bacheca una volta pieni.
+
+L'utente deve poter filtrare gli eventi in bacheca in base alla categoria (Specifico per Esame o Generale), accesso (Pubblico o Privato), numero di posti (Limitato o Illimitato), data e luogo.
+
+Un utente può prenotarsi per un evento esistente se sono presenti posti disponibili. Se l'evento è ``Generale'', chiunque sia autenticato può unirsi. Se l'evento è ``Specifico per Esame'', la partecipazione è riservata a chi sta preparando lo stesso esame o dichiara l'interesse per la materia indicata.
+
+Un partecipante può annullare la propria prenotazione fino ad un’ora prima, liberando il posto per altri utenti. Nel caso di 3 prenotazioni annullate negli ultimi 30 giorni, al partecipante viene vietata la possibilità di iscriversi o creare eventi per i 7 giorni successivi.
+
+L'organizzatore può modificare i dettagli dell'evento o cancellarlo fino all’ora precedente. In caso di cancellazione, tutti i partecipanti ricevono una notifica (o un avviso nella chat dedicata). Come per i partecipanti, nel caso di 3 eventi annullati negli ultimi 30 giorni, all’organizzatore viene vietata la possibilità di iscriversi o creare eventi per i 7 giorni successivi.
+
+L’organizzatore può rimuovere gli utenti partecipanti a sua discrezione.
+
+Alla pubblicazione di un evento, il sistema deve generare automaticamente una chat di gruppo privata, accessibile esclusivamente all'Organizzatore e ai Partecipanti di quello specifico evento.
+
+Al termine dell’evento i partecipanti possono lasciare in forma anonima dei commenti positivi o negativi.
+
+L'interfaccia utente deve essere intuitiva e ottimizzata per l'uso in mobilità (mobile-friendly), facilitando la navigazione rapida tra bacheca e chat.
+
+Le informazioni del profilo devono essere facilmente consultabili prima di unirsi a un gruppo per favorire un clima di fiducia tra colleghi.
+
+I messaggi scambiati nella chat devono essere visibili solo ai membri del gruppo di studio corrente. I dati personali devono essere trattati in conformità con le normative vigenti (GDPR).
+
+\section{Requisiti di Sistema}
+
+\subsection{Requisiti funzionali}
+\begin{table}[H]
+    \centering
+    \begin{tabularx}{\textwidth}{|l|X|l|}
+        \hline
+        \textbf{ID} & \textbf{Requisito} & \textbf{Tipo} \\ \hline
+        R01F & Prova & Funzionale \\ \hline
+    \end{tabularx}
+    \caption{Requisiti Funzionali}
+\end{table}
+
+\subsection{Requisiti non funzionali}
+\begin{table}[H]
+    \centering
+    \begin{tabularx}{\textwidth}{|l|X|l|}
+        \hline
+        \textbf{ID} & \textbf{Requisito} & \textbf{Tipo} \\ \hline
+        R01N & Prova & Non funzionale \\ \hline
+    \end{tabularx}
+    \caption{Requisiti Non Funzionali}
+\end{table}
+
+\section{Analisi del dominio}
+
+\subsection{Vocabolario}
+\begin{table}[H]
+    \centering
+    \begin{tabularx}{\textwidth}{|l|X|l|}
+        \hline
+        \textbf{Voce} & \textbf{Definizione} & \textbf{Sinonimi} \\ \hline
+        Voce & Definizione & Sinonimo \\ \hline
+    \end{tabularx}
+    \caption{Vocabolario del dominio}
+\end{table}
+
+\section{Modello dei casi d'uso}
+\textit{In questa sezione verranno inseriti i diagrammi dei casi d'uso.}
+
+\section{Scenari}
+\textit{In questa sezione verranno descritti gli scenari principali d'uso dell'applicazione.}
+
+\end{document}
