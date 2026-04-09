@@ -13,19 +13,35 @@
 \usepackage{float}
 \usepackage{titlesec}
 \usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{lmodern}
+
+% Definizione Colori
+\definecolor{studyColor}{HTML}{f78a88}
+\definecolor{linkColor}{HTML}{4f7ca7}
 
 % Impostazioni
-\hypersetup{
-    colorlinks=true,
-    linkcolor=black,
-    filecolor=magenta,      
-    urlcolor=cyan,
-    pdftitle={studyLink Project},
-}
 
-\titleformat{\chapter}[display]
-  {\normalfont\bfseries\huge}
-  {\chaptertitlename\ \thechapter}{20pt}{\Huge}
+% Capitoli
+\titleformat{\chapter}
+    {\normalfont\Large\bfseries\color{linkColor}}{\thechapter.\ }{0pt}{\Large}
+\titlespacing*{\chapter}{0pt}{-20pt}{15pt}
+
+% Sezioni
+\titleformat{\section}
+    {\normalfont\large\bfseries\color{studyColor}}{\thesection.\ }{0pt}{\large}
+\titlespacing*{\section}{0pt}{10pt}{10pt}
+
+% Testi
+\titleformat{\subsection}
+    {\normalfont\normalsize\bfseries\color{linkColor}}{\thesubsection.\ }{0pt}{\normalsize} 
+\titlespacing*{\subsection}{0pt}{8pt}{8pt}
+
+% Tabelle
+\renewcommand{\arraystretch}{1.5}
+\setlength{\tabcolsep}{10pt}
+\setlength{\intextsep}{8pt}
+
 
 % Inizio documento
 \begin{document}
@@ -35,9 +51,9 @@
     \pagenumbering{gobble}
     \centering
     \vspace*{1cm}
-    \includegraphics[width=0.6\textwidth]{images/logo.png}\par
+    \includegraphics[width=0.45\textwidth]{images/logo.png}\par
     \vspace{2cm}
-    {\Huge\bfseries studyLink \par}
+    {\fontsize{45}{54}\selectfont\bfseries \textcolor{studyColor}{study}\textcolor{linkColor}{Link} \par}
     \vfill
     \begin{flushright}
         {\large \textbf{Gruppo 31} \quad A.A. 2025/2026 \par}
@@ -50,7 +66,7 @@
 
 % Abstract
 \newpage
-\pagenumbering{roman}
+\pagenumbering{arabic}
 \chapter*{Abstract}
 \addcontentsline{toc}{chapter}{Abstract}
 Il progetto \textbf{studyLink} è un'applicazione nata per aiutare gli studenti universitari a trovare e formare gruppi di studio dal vivo, rendendo semplicissimo l'incontro tra colleghi.
@@ -70,45 +86,33 @@ Inoltre, per facilitare l'organizzazione, tutti gli iscritti a un evento hanno a
 
 % Analisi dei requisiti
 \newpage
-\pagenumbering{arabic}
 \chapter{Analisi dei Requisiti}
 
 \section{Raccolta dei requisiti}
-Il sistema deve permettere all'utente di registrarsi fornendo le proprie credenziali (Email, Username e Password). Il sistema deve permettere la registrazione esclusivamente ad utenti aventi una email istituzionale universitaria (es. @studio.unibo.it).
-
-Ogni utente può gestire il proprio profilo personale, contenente nome, cognome, corso di studi, una breve biografia e opzionalmente un'immagine.
-
-Qualsiasi utente autenticato può creare un nuovo evento. Per la creazione è necessario specificare materia o argomento di studio, data e orario dell'incontro, luogo fisico (indirizzo o aula) e numero massimo di posti disponibili.
-
-L'organizzatore può creare un evento specificando argomento di studio o esame in preparazione, data e orario dell’incontro e luogo. Deve inoltre definire:
-\begin{itemize}
-    \item \textbf{Materia:} l'evento può essere ``Specifico per Esame'' (materia indicata) o ``Generale'' (senza materia specifica).
-    \item \textbf{Accesso:} scegliere tra luogo ``Pubblico'' o ``Privato''.
-    \item \textbf{Numero di posti:} può essere ``Limitato'' o ``Illimitato''.
+\begin{itemize}[leftmargin=*]
+    \item Il sistema deve permettere all'utente di registrarsi fornendo le proprie credenziali (Email, Username e Password). La registrazione è permessa esclusivamente ad utenti aventi una email istituzionale universitaria (es. @studio.unibo.it).
+    \item Ogni utente può gestire il proprio profilo personale, contenente nome, cognome, corso di studi, una breve biografia e opzionalmente un'immagine.
+    \item Qualsiasi utente autenticato può creare un nuovo evento, specificando materia o argomento di studio, data e orario dell'incontro, luogo fisico (indirizzo o aula) e numero massimo di posti disponibili.
+    \item L'organizzatore, nella creazione di un evento, deve definire:
+    \begin{itemize}
+        \item \textbf{Materia:} l'evento può essere ``Specifico per Esame'' (materia indicata) o ``Generale'' (senza materia specifica);
+        \item \textbf{Accesso:} scegliere tra luogo ``Pubblico'' o ``Privato'';
+        \item \textbf{Numero di posti:} può essere ``Limitato'' o ``Illimitato''.
+    \end{itemize}
+    \item Il sistema deve offrire una bacheca globale dove l'utente può sfogliare gli eventi di studio creati da altri utenti. Gli eventi scompaiono dalla bacheca una volta pieni.
+    \item L'utente deve poter filtrare gli eventi in bacheca in base alla categoria (Specifico per Esame o Generale), accesso (Pubblico o Privato), numero di posti (Limitato o Illimitato), data e luogo.
+    \item Un utente può prenotarsi per un evento esistente se sono presenti posti disponibili. Se l'evento è ``Generale'', chiunque sia autenticato può unirsi. Se l'evento è ``Specifico per Esame'', la partecipazione è riservata a chi sta preparando lo stesso esame o dichiara l'interesse per la materia indicata.
+    \item Un partecipante può annullare la propria prenotazione fino ad un’ora prima, liberando il posto per altri utenti. Nel caso di 3 prenotazioni annullate negli ultimi 30 giorni, al partecipante viene vietata la possibilità di iscriversi o creare eventi per i 7 giorni successivi.
+    \item L'organizzatore può modificare i dettagli dell'evento o cancellarlo fino all’ora precedente. In caso di cancellazione, tutti i partecipanti ricevono una notifica automatica. Nel caso di 3 eventi annullati negli ultimi 30 giorni, all’organizzatore viene vietata la possibilità di iscriversi o creare eventi per i 7 giorni successivi.
+    \item L’organizzatore può rimuovere gli utenti partecipanti a sua discrezione.
+    \item Alla pubblicazione di un evento, il sistema deve generare automaticamente una chat di gruppo privata, accessibile esclusivamente all'Organizzatore e ai Partecipanti di quello specifico evento.
+    \item Al termine dell’evento i partecipanti possono lasciare in forma anonima dei commenti positivi o negativi.
+    \item L'interfaccia utente deve essere intuitiva e ottimizzata per l'uso in mobilità (mobile-friendly), facilitando la navigazione rapida tra bacheca e chat.
+    \item Le informazioni del profilo devono essere facilmente consultabili prima di unirsi a un gruppo per favorire un clima di fiducia tra colleghi.
+    \item I messaggi scambiati nella chat devono essere visibili solo ai membri del gruppo di studio corrente. I dati personali devono essere trattati in conformità con le normative vigenti (GDPR).
 \end{itemize}
 
-Il sistema deve offrire una bacheca globale dove l'utente può sfogliare gli eventi di studio creati da altri utenti. Gli eventi scompaiono dalla bacheca una volta pieni.
-
-L'utente deve poter filtrare gli eventi in bacheca in base alla categoria (Specifico per Esame o Generale), accesso (Pubblico o Privato), numero di posti (Limitato o Illimitato), data e luogo.
-
-Un utente può prenotarsi per un evento esistente se sono presenti posti disponibili. Se l'evento è ``Generale'', chiunque sia autenticato può unirsi. Se l'evento è ``Specifico per Esame'', la partecipazione è riservata a chi sta preparando lo stesso esame o dichiara l'interesse per la materia indicata.
-
-Un partecipante può annullare la propria prenotazione fino ad un’ora prima, liberando il posto per altri utenti. Nel caso di 3 prenotazioni annullate negli ultimi 30 giorni, al partecipante viene vietata la possibilità di iscriversi o creare eventi per i 7 giorni successivi.
-
-L'organizzatore può modificare i dettagli dell'evento o cancellarlo fino all’ora precedente. In caso di cancellazione, tutti i partecipanti ricevono una notifica (o un avviso nella chat dedicata). Come per i partecipanti, nel caso di 3 eventi annullati negli ultimi 30 giorni, all’organizzatore viene vietata la possibilità di iscriversi o creare eventi per i 7 giorni successivi.
-
-L’organizzatore può rimuovere gli utenti partecipanti a sua discrezione.
-
-Alla pubblicazione di un evento, il sistema deve generare automaticamente una chat di gruppo privata, accessibile esclusivamente all'Organizzatore e ai Partecipanti di quello specifico evento.
-
-Al termine dell’evento i partecipanti possono lasciare in forma anonima dei commenti positivi o negativi.
-
-L'interfaccia utente deve essere intuitiva e ottimizzata per l'uso in mobilità (mobile-friendly), facilitando la navigazione rapida tra bacheca e chat.
-
-Le informazioni del profilo devono essere facilmente consultabili prima di unirsi a un gruppo per favorire un clima di fiducia tra colleghi.
-
-I messaggi scambiati nella chat devono essere visibili solo ai membri del gruppo di studio corrente. I dati personali devono essere trattati in conformità con le normative vigenti (GDPR).
-
+\newpage
 \section{Requisiti di Sistema}
 
 \subsection{Requisiti funzionali}
@@ -119,7 +123,6 @@ I messaggi scambiati nella chat devono essere visibili solo ai membri del gruppo
         \textbf{ID} & \textbf{Requisito} & \textbf{Tipo} \\ \hline
         R01F & Prova & Funzionale \\ \hline
     \end{tabularx}
-    \caption{Requisiti Funzionali}
 \end{table}
 
 \subsection{Requisiti non funzionali}
@@ -130,7 +133,6 @@ I messaggi scambiati nella chat devono essere visibili solo ai membri del gruppo
         \textbf{ID} & \textbf{Requisito} & \textbf{Tipo} \\ \hline
         R01N & Prova & Non funzionale \\ \hline
     \end{tabularx}
-    \caption{Requisiti Non Funzionali}
 \end{table}
 
 \section{Analisi del dominio}
@@ -143,7 +145,6 @@ I messaggi scambiati nella chat devono essere visibili solo ai membri del gruppo
         \textbf{Voce} & \textbf{Definizione} & \textbf{Sinonimi} \\ \hline
         Voce & Definizione & Sinonimo \\ \hline
     \end{tabularx}
-    \caption{Vocabolario del dominio}
 \end{table}
 
 \section{Modello dei casi d'uso}
