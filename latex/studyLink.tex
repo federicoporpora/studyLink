@@ -8,7 +8,7 @@
 \usepackage{geometry}
 \geometry{a4paper, margin=2.5cm}
 \usepackage{hyperref}
-\usepackage{tabularx}
+\usepackage{ltablex}
 \usepackage{booktabs}
 \usepackage{float}
 \usepackage{titlesec}
@@ -21,6 +21,7 @@
 \definecolor{linkColor}{HTML}{4f7ca7}
 
 % Impostazioni
+\keepXColumns % ltablex default is to behave like tabular, this keeps the X column behavior
 
 % Capitoli
 \titleformat{\chapter}
@@ -71,14 +72,14 @@
 \addcontentsline{toc}{chapter}{Abstract}
 Il progetto \textbf{studyLink} è un'applicazione nata per aiutare gli studenti universitari a trovare e formare gruppi di studio dal vivo, rendendo semplicissimo l'incontro tra colleghi.
 
-La piattaforma punta tutto sulla trasparenza: ogni studente ha un profilo personale chiaro e visibile.
-L'applicazione gestisce le sessioni di studio in modo flessibile, permettendo agli utenti di alternarsi in due ruoli chiave:
+La piattaforma punta tutto sulla trasparenza: ogni studente ha un Profilo personale chiaro e visibile.
+L'applicazione gestisce le sessioni di studio in modo flessibile, permettendo agli Utenti di alternarsi in due ruoli chiave:
 \begin{itemize}
-    \item \textbf{L'Organizzatore}, che prende l'iniziativa e crea l'evento scegliendo la data, l'orario, il luogo d'incontro e i posti disponibili;
-    \item \textbf{Il Partecipante}, che sfoglia la bacheca e si prenota per i gruppi già avviati occupando i posti liberi.
+    \item \textbf{L'Organizzatore}, che prende l'iniziativa e crea l'Evento scegliendo la data, l'orario, il luogo d'incontro e i posti disponibili;
+    \item \textbf{Il Partecipante}, che sfoglia la Bacheca e si prenota per i gruppi già avviati occupando i posti liberi.
 \end{itemize}
 
-Inoltre, per facilitare l'organizzazione, tutti gli iscritti a un evento hanno a disposizione una chat di gruppo dedicata. È uno spazio comodo e privato per scambiarsi appunti, materiali di studio o mettersi d'accordo sui dettagli prima di vedersi di persona.
+Inoltre, per facilitare l'organizzazione, tutti gli iscritti a un Evento hanno a disposizione una Chat di gruppo dedicata. È uno spazio comodo e privato per scambiarsi appunti, materiali di studio o mettersi d'accordo sui dettagli prima di vedersi di persona.
 
 % Indice
 \newpage
@@ -90,50 +91,46 @@ Inoltre, per facilitare l'organizzazione, tutti gli iscritti a un evento hanno a
 
 \section{Raccolta dei requisiti}
 \begin{itemize}[leftmargin=*]
-    \item Il sistema deve permettere all'utente di registrarsi fornendo le proprie credenziali (Email, Username e Password). La registrazione è permessa esclusivamente ad utenti aventi una email istituzionale universitaria (es. @studio.unibo.it).
-    \item Ogni utente può gestire il proprio profilo personale, contenente nome, cognome, corso di studi, una breve biografia e opzionalmente un'immagine.
-    \item Qualsiasi utente autenticato può creare un nuovo evento, specificando materia o argomento di studio, data e orario dell'incontro, luogo fisico (indirizzo o aula) e numero massimo di posti disponibili.
-    \item L'organizzatore, nella creazione di un evento, deve definire:
+    \item Il sistema deve permettere all'Utente di registrarsi fornendo le proprie credenziali (Email, Username e Password). La registrazione è permessa esclusivamente a Utenti aventi un'email istituzionale universitaria (es. @studio.unibo.it).
+    \item Ogni Utente può gestire il proprio Profilo personale, contenente nome, cognome, corso di studi, una breve biografia e opzionalmente un'immagine.
+    \item Qualsiasi Utente autenticato può creare un nuovo Evento, specificando materia o argomento di studio, data e orario dell'incontro, luogo fisico (indirizzo o aula) e numero massimo di posti disponibili.
+    \item L'Organizzatore, nella creazione di un Evento, deve definire:
     \begin{itemize}
-        \item \textbf{Materia:} l'evento può essere ``Specifico per Esame'' (materia indicata) o ``Generale'' (senza materia specifica);
+        \item \textbf{Materia:} l'Evento può essere ``Specifico per Esame'' (materia indicata) o ``Generale'' (senza materia specifica);
         \item \textbf{Accesso:} scegliere tra luogo ``Pubblico'' o ``Privato'';
-        \item \textbf{Numero di posti:} può essere ``Limitato'' o ``Illimitato''.
+        \item \textbf{Numero di posti:} può essere a posti ``Limitati'' o ``Illimitati''.
     \end{itemize}
-    \item Il sistema deve offrire una bacheca globale dove l'utente può sfogliare gli eventi di studio creati da altri utenti. Gli eventi scompaiono dalla bacheca una volta pieni.
-    \item L'utente deve poter filtrare gli eventi in bacheca in base alla categoria (Specifico per Esame o Generale), accesso (Pubblico o Privato), numero di posti (Limitato o Illimitato), data e luogo.
-    \item Un utente può prenotarsi per un evento esistente se sono presenti posti disponibili. Se l'evento è ``Generale'', chiunque sia autenticato può unirsi. Se l'evento è ``Specifico per Esame'', la partecipazione è riservata a chi sta preparando lo stesso esame o dichiara l'interesse per la materia indicata.
-    \item Un partecipante può annullare la propria prenotazione fino ad un’ora prima, liberando il posto per altri utenti. Nel caso di 3 prenotazioni annullate negli ultimi 30 giorni, al partecipante viene vietata la possibilità di iscriversi o creare eventi per i 7 giorni successivi.
-    \item L'organizzatore può modificare i dettagli dell'evento o cancellarlo fino all’ora precedente. In caso di cancellazione, tutti i partecipanti ricevono una notifica automatica. Nel caso di 3 eventi annullati negli ultimi 30 giorni, all’organizzatore viene vietata la possibilità di iscriversi o creare eventi per i 7 giorni successivi.
-    \item L’organizzatore può rimuovere gli utenti partecipanti a sua discrezione.
-    \item Alla pubblicazione di un evento, il sistema deve generare automaticamente una chat di gruppo privata, accessibile esclusivamente all'Organizzatore e ai Partecipanti di quello specifico evento.
-    \item Al termine dell’evento i partecipanti possono lasciare in forma anonima dei commenti positivi o negativi.
-    \item L'interfaccia utente deve essere intuitiva e ottimizzata per l'uso in mobilità (mobile-friendly), facilitando la navigazione rapida tra bacheca e chat.
-    \item Le informazioni del profilo devono essere facilmente consultabili prima di unirsi a un gruppo per favorire un clima di fiducia tra colleghi.
-    \item I messaggi scambiati nella chat devono essere visibili solo ai membri del gruppo di studio corrente. I dati personali devono essere trattati in conformità con le normative vigenti (GDPR).
+    \item Il sistema deve offrire una Bacheca globale dove l'Utente può sfogliare gli Eventi di studio creati da altri Utenti. Gli Eventi scompaiono dalla Bacheca una volta pieni.
+    \item L'Utente deve poter filtrare gli Eventi in Bacheca in base alla categoria (Specifico per Esame o Generale), accesso (Pubblico o Privato), numero di posti (Limitato o Illimitato), data e luogo.
+    \item Un Utente può prenotarsi per un Evento esistente se sono presenti posti disponibili. Se l'Evento è ``Generale'', chiunque sia autenticato può unirsi. Se l'Evento è ``Specifico per Esame'', la partecipazione è riservata a chi sta preparando lo stesso esame o dichiara l'interesse per la materia indicata.
+    \item Un Partecipante può annullare la propria prenotazione fino a un'ora prima, liberando il posto per altri Utenti. Nel caso di 3 prenotazioni annullate negli ultimi 30 giorni, al Partecipante viene vietata la possibilità di iscriversi o creare Eventi per i 7 giorni successivi.
+    \item L'Organizzatore può modificare i dettagli dell'Evento o cancellarlo fino all'ora precedente. In caso di cancellazione, tutti i Partecipanti ricevono una notifica automatica. Nel caso di 3 Eventi annullati negli ultimi 30 giorni, all'Organizzatore viene vietata la possibilità di iscriversi o creare Eventi per i 7 giorni successivi.
+    \item L'Organizzatore può rimuovere gli Utenti Partecipanti a sua discrezione.
+    \item Alla pubblicazione di un Evento, il sistema deve generare automaticamente una Chat di gruppo privata, accessibile esclusivamente all'Organizzatore e ai Partecipanti di quello specifico Evento.
+    \item Al termine dell'Evento i Partecipanti possono lasciare in forma anonima dei commenti positivi o negativi *su chi? l'Evento in generale o la singola persona?*.
+    \item L'interfaccia Utente deve essere intuitiva e ottimizzata per l'uso in mobilità (mobile-friendly), facilitando la navigazione rapida tra Bacheca e Chat.
+    \item Le informazioni del Profilo devono essere facilmente consultabili prima di unirsi a un gruppo per favorire un clima di fiducia tra colleghi.
+    \item I messaggi scambiati nella Chat devono essere visibili solo ai membri del gruppo di studio corrente. I dati personali devono essere trattati in conformità con le normative vigenti (GDPR).
 \end{itemize}
 
 \newpage
 \section{Requisiti di Sistema}
 
 \subsection{Requisiti funzionali}
-\begin{table}[H]
-    \centering
-    \begin{tabularx}{\textwidth}{|l|X|l|}
-        \hline
-        \textbf{ID} & \textbf{Requisito} & \textbf{Tipo} \\ \hline
-        R01F & Prova & Funzionale \\ \hline
-    \end{tabularx}
-\end{table}
+\begin{tabularx}{\textwidth}{|l|X|l|}
+    \hline
+    \textbf{ID} & \textbf{Requisito} & \textbf{Tipo} \\ \hline
+    \endhead
+    R01F & Prova & Funzionale \\ \hline
+\end{tabularx}
 
 \subsection{Requisiti non funzionali}
-\begin{table}[H]
-    \centering
-    \begin{tabularx}{\textwidth}{|l|X|l|}
-        \hline
-        \textbf{ID} & \textbf{Requisito} & \textbf{Tipo} \\ \hline
-        R01N & Prova & Non funzionale \\ \hline
-    \end{tabularx}
-\end{table}
+\begin{tabularx}{\textwidth}{|l|X|l|}
+    \hline
+    \textbf{ID} & \textbf{Requisito} & \textbf{Tipo} \\ \hline
+    \endhead
+    R01N & Prova & Non funzionale \\ \hline
+\end{tabularx}
 
 \section{Analisi del dominio}
 
@@ -141,38 +138,40 @@ Inoltre, per facilitare l'organizzazione, tutti gli iscritti a un evento hanno a
 \begin{tabularx}{\textwidth}{|p{3cm}|X|p{3.5cm}|}
     \hline
     \textbf{Voce} & \textbf{Definizione} & \textbf{Sinonimi} \\ \hline
-    Registrazione & Creazione di un account da parte di uno studente & \\ \hline
-    Utente & Studente che ha eseguito la registrazione & \\ \hline
-    Autenticazione & Processo tramite il quale uno studente si identifica e si associa al proprio account & Accesso, Login \\ \hline
-    Profilo & Creazione & Account \\ \hline
-    Informazioni del profilo & Definizione & \\ \hline
-    Nome utente (?) & Sequenza di caratteri alfanumerici che identifica univocamente un utente & \\ \hline
+    \endhead
+    Profilo & Insieme delle informazioni personali e accademiche che rappresentano l'identità di un Utente all'interno della piattaforma & Account \\ \hline
+    Registrazione & Creazione di un Profilo da parte di uno studente & \\ \hline
+    Utente & Studente che ha eseguito la Registrazione & \\ \hline
+    Autenticazione & Processo tramite il quale uno studente si identifica e si associa al proprio Profilo & Accesso, Login \\ \hline
+    Informazioni del Profilo & Dati inseriti dall'Utente, quali nome, cognome, email, (nome utente) corso di studi, biografia ed eventualmente un'immagine & \\ \hline
+    Nome Utente (?) & Sequenza di caratteri alfanumerici che identifica univocamente un Utente & Username \\ \hline
     Password & Sequenza di caratteri segreta & \\ \hline
     Credenziali & Coppia di email e password & \\ \hline
-    Evento & Definizione & Sessione di studio, sessione di studio condivisa \\ \hline
-    Tipo di evento 1 (da aggiungere gli altri sotto) & Definizione & \\ \hline
-    Voce & Definizione & \\ \hline
-    Voce & Definizione & \\ \hline
-    Voce & Definizione & \\ \hline
-    Voce & Definizione & \\ \hline
-    Voce & Definizione & \\ \hline
-    Bacheca & Definizione & \\ \hline
-    Organizzatore & Definizione & \\ \hline
-    Partecipante & Definizione & \\ \hline
-    Prenotazione & Iscrizione ad un Evento & Partecipazione, iscrizione \\ \hline
-    Filtro & Definizione & \\ \hline
-    Commento & Definizione & Recensione \\ \hline
-    Chat & Definizione & \\ \hline
-    Messaggio & Definizione & \\ \hline
+    Evento & Sessione di studio programmata da un Utente, caratterizzata un luogo, una data e un orario & Sessione di studio \\ \hline
+    Evento Specifico per Esame & Tipologia di Evento focalizzata sulla preparazione di una specifica materia universitaria & \\ \hline
+    Evento Generale & Tipologia di Evento in cui la materia non è specificata & \\ \hline
+    Evento Pubblico & Tipologia di Evento che si svolge in un luogo accessibile a tutti (es. biblioteca, aula studio) & \\ \hline
+    Evento Privato & Tipologia di Evento che si svolge in un luogo privato & \\ \hline
+    Evento a posti Limitati & Tipologia di Evento che prevede un numero massimo di partecipanti & \\ \hline
+    Evento a posti Illimitati & Tipologia di Evento che non prevede un numero massimo di partecipanti & \\ \hline
+    Bacheca & Sezione in cui è possibile visualizzare l'elenco degli Eventi disponibili & \\ \hline
+    Organizzatore & Utente che crea, gestisce e coordina un Evento & \\ \hline
+    Partecipante & Utente che sceglie di unirsi a un Evento organizzato da un altro studente & \\ \hline
+    Prenotazione & Iscrizione a un Evento & Partecipazione, iscrizione \\ \hline
+    Filtro & Funzionalità di ricerca che permette di restringere la visualizzazione degli Eventi in Bacheca secondo criteri specifici & \\ \hline
+    Commento & Valutazione anonima espressa dai Partecipanti su (su chi?) & Recensione \\ \hline
+    Chat & Canale di comunicazione testuale privato, creato automaticamente per ogni Evento e riservato ai suoi membri & \\ \hline
+    Messaggio & Singola comunicazione testuale inviata da un Utente all'interno di una Chat di gruppo & \\ \hline
 \end{tabularx}
 
 \subsection{Di cosa parlare}
 \begin{itemize}[leftmargin=*]
-    \item Vogliamo dare un username agli utenti o obbligatoriamente nome e cognome? (identificazione tramite mail)
+    \item Vogliamo dare un username agli Utenti o obbligatoriamente nome e cognome? (identificazione tramite mail)
     \item Non abbiamo parlato di filtro all'interno della raccolta dei requisiti?
-    \item Dobbiamo scrivere del fatto che quando arriva un messaggio nella chat deve essere notificato l'utente?
+    \item Dobbiamo scrivere del fatto che quando arriva un messaggio nella Chat deve essere notificato l'Utente?
     \item Controllare la tabella del vocabolario se vi piace
     \item Aggiungere la definizione di "notifica" se c'è bisogno
+    \item Su chi viene lasciato il commento, sull'Evento o sulla singola persona?
 \end{itemize}
 
 \section{Modello dei casi d'uso}
