@@ -91,18 +91,18 @@ Inoltre, per facilitare l'organizzazione, tutti gli iscritti a un Evento hanno a
 
 \section{Raccolta dei requisiti}
 \begin{itemize}[leftmargin=*]
-    \item Il sistema deve permettere all'Utente di registrarsi fornendo le proprie credenziali (Email, Username e Password). La registrazione è permessa esclusivamente a Utenti aventi un'email istituzionale universitaria (es. @studio.unibo.it).
+    \item Il sistema deve permettere all'Utente di registrarsi fornendo le proprie credenziali (Email e Password). La registrazione è permessa esclusivamente a Utenti aventi un'email istituzionale universitaria (es. @studio.unibo.it).
     \item Ogni Utente può gestire il proprio Profilo personale, contenente nome, cognome, corso di studi, una breve biografia e opzionalmente un'immagine.
     \item Qualsiasi Utente autenticato può creare un nuovo Evento, specificando materia o argomento di studio, data e orario dell'incontro, luogo fisico (indirizzo o aula) e numero massimo di posti disponibili.
     \item L'Organizzatore, nella creazione di un Evento, deve definire:
     \begin{itemize}
-        \item \textbf{Materia:} l'Evento può essere ``Specifico per Esame'' (materia indicata) o ``Generale'' (senza materia specifica);
-        \item \textbf{Accesso:} scegliere tra luogo ``Pubblico'' o ``Privato'';
-        \item \textbf{Numero di posti:} può essere a posti ``Limitati'' o ``Illimitati''.
+        \item \textbf{Materia:} l'Evento può essere ``Specifico per Esame`` (materia indicata) o ``Generale`` (senza materia specifica);
+        \item \textbf{Accesso:} scegliere tra luogo ``Pubblico`` o ``Privato``;
+        \item \textbf{Numero di posti:} può essere a posti ``Limitati`` o ``Illimitati``.
     \end{itemize}
     \item Il sistema deve offrire una Bacheca globale dove l'Utente può sfogliare gli Eventi di studio creati da altri Utenti. Gli Eventi scompaiono dalla Bacheca una volta pieni.
     \item L'Utente deve poter filtrare gli Eventi in Bacheca in base alla categoria (Specifico per Esame o Generale), accesso (Pubblico o Privato), numero di posti (Limitato o Illimitato), data e luogo.
-    \item Un Utente può prenotarsi per un Evento esistente se sono presenti posti disponibili. Se l'Evento è ``Generale'', chiunque sia autenticato può unirsi. Se l'Evento è ``Specifico per Esame'', la partecipazione è riservata a chi sta preparando lo stesso esame o dichiara l'interesse per la materia indicata.
+    \item Un Utente può prenotarsi per un Evento esistente se sono presenti posti disponibili. Se l'Evento è ``Generale``, chiunque sia autenticato può unirsi. Se l'Evento è ``Specifico per Esame``, la partecipazione è riservata a chi sta preparando lo stesso esame o dichiara l'interesse per la materia indicata.
     \item Un Partecipante può annullare la propria prenotazione fino a un'ora prima, liberando il posto per altri Utenti. Nel caso di 3 prenotazioni annullate negli ultimi 30 giorni, al Partecipante viene vietata la possibilità di iscriversi o creare Eventi per i 7 giorni successivi.
     \item L'Organizzatore può modificare i dettagli dell'Evento o cancellarlo fino all'ora precedente. In caso di cancellazione, tutti i Partecipanti ricevono una notifica automatica. Nel caso di 3 Eventi annullati negli ultimi 30 giorni, all'Organizzatore viene vietata la possibilità di iscriversi o creare Eventi per i 7 giorni successivi.
     \item L'Organizzatore può rimuovere gli Utenti Partecipanti a sua discrezione.
@@ -121,7 +121,28 @@ Inoltre, per facilitare l'organizzazione, tutti gli iscritti a un Evento hanno a
     \hline
     \textbf{ID} & \textbf{Requisito} & \textbf{Tipo} \\ \hline
     \endhead
-    R01F & Prova & Funzionale \\ \hline
+    R01F & La registrazione è ammessa solo tramite mail istituzionale & Funzionale \\ \hline
+    R02F & Una persona può registrarsi, creando un profilo utente & Funzionale \\ \hline
+    R03F & Un profilo utente è accessibile tramite mail istituzionale e password & Funzionale \\ \hline
+    R04F & Un profilo utente ha le seguenti informazioni: nome, cognome, username, corso di studi, bio, immagine opzionale e commenti ricevuti & Funzionale \\ \hline
+    R05F & Ogni utente può creare fino a un massimo di tre eventi, specificandone le caratteristiche e diventandone l’organizzatore & Funzionale \\ \hline
+    R06F & Le caratteristiche di un evento sono: materia, tipo di accesso, data, orario, luogo, posti disponibili & Funzionale \\ \hline
+    R07F & La materia di un evento può essere specificata o generica & Funzionale \\ \hline
+    R08F & Il tipo di accesso all’evento può essere pubblico o tramite invito & Funzionale \\ \hline
+    R09F & Il numero di posti disponibili può essere limitato o illimitato & Funzionale \\ \hline
+    R10F & Gli eventi hanno due fasi: programmato e concluso & Funzionale \\ \hline
+    R11F & Gli utenti visualizzano una bacheca globale di eventi programmati con almeno un posto disponibile & Funzionale \\ \hline
+    R12F & Gli utenti possono filtrare gli eventi dalla bacheca per: tipo di accesso, luogo, materia, data, numero posti & Funzionale \\ \hline
+    R13F & Un utente può prenotarsi ad un evento, diventandone partecipante & Funzionale \\ \hline
+    R14F & Un utente prima di prenotarsi ad un evento può visualizzare il profilo utente dei partecipanti & Funzionale \\ \hline
+    R15F & Un partecipante può annullare la prenotazione all’evento fino ad un’ora prima dell’inizio & Funzionale \\ \hline
+    R16F & Se un utente annulla la sua prenotazione per 3 volte entro 30 giorni, gli viene sospesa la possibilità di prenotarsi ad altri eventi per 7 giorni & Funzionale \\ \hline
+    R17F & L'organizzatore può modificare i dettagli dell'evento o cancellarlo fino all’ora precedente & Funzionale \\ \hline
+    R18F & Ogni modifica di un evento invia una notifica a tutti i partecipanti & Funzionale \\ \hline
+    R19F & Se l'organizzatore annulla un evento creato per 3 volte entro 30 giorni, gli viene sospesa la possibilità di creare altri eventi per 7 giorni & Funzionale \\ \hline
+    R20F & L’organizzatore può rimuovere i partecipanti all’evento a sua discrezione & Funzionale \\ \hline
+    R21F & Per ogni evento è prevista una chat di gruppo accessibile solo ai partecipanti & Funzionale \\ \hline
+    R22F & Dopo la conclusione di un evento ogni partecipante può lasciare un commento nella sezione commenti eventi passati su ognuno degli altri partecipanti, compreso l'organizzatore & Funzionale \\ \hline
 \end{tabularx}
 
 \subsection{Requisiti non funzionali}
@@ -129,7 +150,16 @@ Inoltre, per facilitare l'organizzazione, tutti gli iscritti a un Evento hanno a
     \hline
     \textbf{ID} & \textbf{Requisito} & \textbf{Tipo} \\ \hline
     \endhead
-    R01N & Prova & Non funzionale \\ \hline
+    R01N & La piattaforma deve essere accessibile online & Non funzionale \\ \hline
+    R02N & Le credenziali di un utente sono univoche & Non funzionale \\ \hline
+    R03N & L’username deve essere univoco & Non funzionale \\ \hline
+    R04N & L’interfaccia della bacheca deve essere essenziale ed intuitiva & Non funzionale \\ \hline
+    R05N & Il fuso orario usato dall’applicazione è GMT+1 & Non funzionale \\ \hline
+    R06N & Il formato di data e orario è gg/mm/aa e hh:mm 24h & Non funzionale \\ \hline
+    R07N & L’applicazione deve rispettare le norme definite nel GDPR & Non funzionale \\ \hline
+    R08N & La bacheca globale deve essere costantemente aggiornata & Non funzionale \\ \hline
+    R09N & La password scelta dall'utente deve essere di almeno 8 caratteri e contenere almeno un numero e un carattere speciale (\#@?!\_-) & Non funzionale \\ \hline
+    R10N & La ricezione ed invio dei messaggi deve essere istantanea & Non funzionale \\ \hline
 \end{tabularx}
 
 \section{Analisi del dominio}
@@ -143,8 +173,7 @@ Inoltre, per facilitare l'organizzazione, tutti gli iscritti a un Evento hanno a
     Registrazione & Creazione di un Profilo da parte di uno studente & \\ \hline
     Utente & Studente che ha eseguito la Registrazione & \\ \hline
     Autenticazione & Processo tramite il quale uno studente si identifica e si associa al proprio Profilo & Accesso, Login \\ \hline
-    Informazioni del Profilo & Dati inseriti dall'Utente, quali nome, cognome, email, (nome utente) corso di studi, biografia ed eventualmente un'immagine & \\ \hline
-    Nome Utente (?) & Sequenza di caratteri alfanumerici che identifica univocamente un Utente & Username \\ \hline
+    Informazioni del Profilo & Dati inseriti dall'Utente, quali nome, cognome, email, corso di studi, biografia ed eventualmente un'immagine & \\ \hline
     Password & Sequenza di caratteri segreta & \\ \hline
     Credenziali & Coppia di email e password & \\ \hline
     Evento & Sessione di studio programmata da un Utente, caratterizzata un luogo, una data e un orario & Sessione di studio \\ \hline
@@ -160,13 +189,13 @@ Inoltre, per facilitare l'organizzazione, tutti gli iscritti a un Evento hanno a
     Prenotazione & Iscrizione a un Evento & Partecipazione, iscrizione \\ \hline
     Filtro & Funzionalità di ricerca che permette di restringere la visualizzazione degli Eventi in Bacheca secondo criteri specifici & \\ \hline
     Commento & Valutazione anonima espressa dai Partecipanti su (su chi?) & Recensione \\ \hline
-    Chat & Canale di comunicazione testuale privato, creato automaticamente per ogni Evento e riservato ai suoi membri & \\ \hline
+    Chat & Canale di comunicazione testuale privato, creato automaticamente per ogni Evento e riservato ai suoi membri & Chat condivisa \\ \hline
     Messaggio & Singola comunicazione testuale inviata da un Utente all'interno di una Chat di gruppo & \\ \hline
+    Notifica & Comunicazione istantanea diretta all'Utente dall'applicazione all'arrivo di un Messaggio nella chat condivisa & \\ \hline
 \end{tabularx}
 
 \subsection{Di cosa parlare}
 \begin{itemize}[leftmargin=*]
-    \item Vogliamo dare un username agli Utenti o obbligatoriamente nome e cognome? (identificazione tramite mail)
     \item Non abbiamo parlato di filtro all'interno della raccolta dei requisiti?
     \item Dobbiamo scrivere del fatto che quando arriva un messaggio nella Chat deve essere notificato l'Utente?
     \item Controllare la tabella del vocabolario se vi piace
