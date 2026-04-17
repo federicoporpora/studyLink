@@ -14,7 +14,13 @@
 \usepackage{titlesec}
 \usepackage{enumitem}
 \usepackage{xcolor}
-\usepackage{lmodern}
+
+% --- SCELTA DEL FONT ---
+\usepackage{lmodern} % Latin Modern (versione migliorata del default LaTeX)
+% \usepackage{newtxtext,newtxmath} % Times New Roman (Serif classico, molto formale)
+% \usepackage{newpxtext,newpxmath} % Palatino (Serif elegante, ottimo per tesi e report)
+% \usepackage[scaled]{helvet} \renewcommand{\familydefault}{\sfdefault} % Helvetica/Arial (Senza grazie)
+% \usepackage[sfdefault]{roboto} % Roboto (Moderno, lineare). Se non compila, va installato 'texlive-fonts-extra'.
 
 % Definizione Colori
 \definecolor{studyColor}{HTML}{f78a88}
@@ -360,6 +366,7 @@ In questa sezione verranno descritti gli scenari principali d'uso dell'applicazi
     \item Pensare a se serve un amministratore
     \item nel requisito e R03N c'è scritto ancora "Username" (da aggiungere Username come sinonimo di Email o cambiare il requisito)
     \item per la creazione del log il prof dice di non metterlo da nessuna parte, guardare i best project. parla di 3 possibilità: 1) log viene analizzato manualmente da una persona al di fuori dell'applicazione (omino con scritto AS (l'attore) che si collega con freccia senza testa a cerchio con visualizzaLog in un'altra app) 2) uguale a quella di prima ma nell'applicazione stessa 3) algoritmo che in automatico si guarda il log e cerca cose strane. non c'è più visualizzaLog ma c'è analizzaLog (non la suggerisce, se vogliamo usare un algoritmo vuole che si faccia in un'altra applicazione)
+    \item font da scegliere
 \end{itemize}
 
 % Errori
