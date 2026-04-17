@@ -15,7 +15,7 @@
 \usepackage{enumitem}
 \usepackage{xcolor}
 
-% --- SCELTA DEL FONT ---
+% SCELTA DEL FONT
 \usepackage{lmodern} % Latin Modern (versione migliorata del default LaTeX)
 % \usepackage{newtxtext,newtxmath} % Times New Roman (Serif classico, molto formale)
 % \usepackage{newpxtext,newpxmath} % Palatino (Serif elegante, ottimo per tesi e report)
@@ -28,6 +28,8 @@
 
 % Impostazioni
 \keepXColumns % ltablex default is to behave like tabular, this keeps the X column behavior
+\setcounter{secnumdepth}{3}
+\setcounter{tocdepth}{3}
 
 % Capitoli
 \titleformat{\chapter}
@@ -39,15 +41,22 @@
     {\normalfont\large\bfseries\color{studyColor}}{\thesection.\ }{0pt}{\large}
 \titlespacing*{\section}{0pt}{10pt}{10pt}
 
-% Testi
+% Sottosezioni
 \titleformat{\subsection}
     {\normalfont\normalsize\bfseries\color{linkColor}}{\thesubsection.\ }{0pt}{\normalsize} 
 \titlespacing*{\subsection}{0pt}{8pt}{8pt}
 
+% Sottosottosezioni
+\titleformat{\subsubsection}
+    {\normalfont\normalsize\bfseries\color{studyColor}}{\thesubsubsection.\ }{0pt}{\normalsize} 
+\titlespacing*{\subsubsection}{0pt}{4pt}{4pt}
+
 % Tabelle
 \renewcommand{\arraystretch}{1.5}
 \setlength{\tabcolsep}{10pt}
-\setlength{\intextsep}{8pt}
+\setlength{\intextsep}{5pt}
+\setlength{\LTpre}{0pt}
+\setlength{\LTpost}{0pt}
 
 
 % Inizio documento
@@ -120,8 +129,8 @@ Inoltre, per facilitare l'organizzazione, tutti gli iscritti a un Evento hanno a
     \item I messaggi scambiati nella Chat devono essere visibili solo ai membri del gruppo di studio corrente. I dati personali devono essere trattati in conformità con le normative vigenti (GDPR).
 \end{itemize}
 
-\newpage
 % Requisiti di sistema
+\newpage
 \section{Requisiti di sistema}
 
 \subsection{Requisiti funzionali}
@@ -171,6 +180,7 @@ Inoltre, per facilitare l'organizzazione, tutti gli iscritti a un Evento hanno a
 \end{tabularx}
 
 % Analisi del dominio
+\newpage
 \section{Analisi del dominio}
 
 \subsection{Vocabolario}
@@ -205,36 +215,127 @@ Inoltre, per facilitare l'organizzazione, tutti gli iscritti a un Evento hanno a
 \end{tabularx}
 
 % Analisi dei requisiti
+\newpage
 \section{Analisi dei requisiti}
 
 \subsection{Modello dei casi d'uso}
-In questa sezione verranno inseriti i diagrammi dei casi d'uso.
+L'analisi dei requisiti e del dominio hanno portato ai seguenti casi d'uso che interagiscono fra di loro come descritto nel seguente schema.
 
 \subsection{Scenari}
-In questa sezione verranno descritti gli scenari principali d'uso dell'applicazione.
+Di seguito sono presentati tutti gli scenari nel loro dettaglio.
+
+\subsubsection{Registrazione}
+\begin{tabularx}{\textwidth}{|X|X|}
+    \hline
+    \textbf{Titolo} & \textbf{Registrazione} \\ \hline
+    \endhead
+    \textbf{Descrizione} & Descrizione \\ \hline
+    \textbf{Attori} & Attori \\ \hline
+    \textbf{Relazioni} & Relazioni \\ \hline
+    \textbf{Precondizioni} & Precondizioni \\ \hline
+    \textbf{Postcondizioni} & Postcondizioni \\ \hline
+    \textbf{Scenario principale} & Elenco puntato ravvicinato come sotto \\ \hline
+    \textbf{Scenari alternativi} & Scenari alternativi \\ \hline
+    \textbf{Requisiti non funzionali} & R00N \\ \hline
+    \textbf{Punti aperti} & Punti aperti \\ \hline
+\end{tabularx}
 
 % Analisi del Rischio
+\newpage
 \section{Analisi del Rischio}
 
 \subsection{Tabella valutazione dei beni}
+\begin{tabularx}{\textwidth}{|X|X|X|}
+    \hline
+    \textbf{Bene} & \textbf{Valore} & \textbf{Esposizione} \\ \hline
+    \endhead
+    Bene & \textbf{Molto alto.} Molto alto & \textbf{Alta.} Alta \\ \hline
+\end{tabularx}
 
 \subsection{Tabella minacce e controlli}
+\begin{tabularx}{\textwidth}{|X|X|X|X|}
+    \hline
+    \textbf{Minaccia} & \textbf{Probabilità} & \textbf{Controllo} & \textbf{Rischio} \\ \hline
+    \endhead
+    Minaccia & \textbf{Alta.} Alta & Controllo & \textbf{Costo basso.} Costo basso \\ \hline
+\end{tabularx}
 
 \subsection{Analisi tecnologica della sicurezza}
+\begin{tabularx}{\textwidth}{|X|X|}
+    \hline
+    \textbf{Tecnologia} & \textbf{Vulnerabilità} \\ \hline
+    \endhead
+    Tecnologia & \begin{itemize}[nosep, leftmargin=*]
+                    \item Punto 1;
+                    \item Punto 2
+                \end{itemize} \\ \hline
+\end{tabularx}
 
 \subsection{Security use case e misuse case}
+% Immagine da inserire, poi tabella
+\begin{tabularx}{\textwidth}{|X|X|}
+    \hline
+    \textbf{Titolo} & \textbf{Controllo accesso} \\ \hline
+    \endhead
+    \textbf{Descrizione} & Descrizione \\ \hline
+    \textbf{Misuse case} & Misuse case \\ \hline
+    \textbf{Relazioni} & Relazioni \\ \hline
+    \textbf{Precondizione} & Precondizione \\ \hline
+    \textbf{Postcondizione} & Postcondizione \\ \hline
+    \textbf{Scenario Principale} & Qui le tabelle impazziscono, da fare con gemini \\ \hline
+    \textbf{Scenario di attacco avvenuto con successo} & Altro disastro \\ \hline
+\end{tabularx}
+Non viene presentato lo \textbf{Scenario di attacco avvenuto con successo} dato che la versione distribuita del DoS è quasi impossibile da distinguere rispetto al normale traffico, perciò non si può contrastare.
 
 \subsection{Requisiti di sicurezza}
+Dall'analisi del rischio si possono evincere i seguenti ulteriori requisiti:
+\begin{enumerate}
+    \item Creazione di un log per tracciare alcune azioni sensibili come:
+    \begin{itemize}
+        \item Accessi e modifiche dati di un account;
+        \item Modifica di elementi del sistema condivisi come \textbf{la dipensa comune};
+        \item Operazioni che riguardano gli amministratori.
+    \end{itemize}
+\end{enumerate}
 
 \subsection{Aggiornamento requisiti di sistema}
+\begin{tabularx}{\textwidth}{|X|X|X|}
+    \hline
+    \textbf{ID} & \textbf{Requisito} & \textbf{Tipo} \\ \hline
+    \endhead
+    R00F & Nuovo requisito & Funzionale \\ \hline
+\end{tabularx}
 
 \subsection{Aggiornamento vocabolario}
+\begin{tabularx}{\textwidth}{|X|X|X|}
+    \hline
+    \textbf{Voce} & \textbf{Definizione} & \textbf{Sinonimi} \\ \hline
+    \endhead
+    Voce & Definizione & Sinonimo \\ \hline
+\end{tabularx}
 
 \subsection{Casi d'uso aggiornati}
+\begin{tabularx}{\textwidth}{|X|X|}
+    \hline
+    \textbf{Titolo} & \textbf{Registrazione} \\ \hline
+    \endhead
+    \textbf{Descrizione} & Descrizione \\ \hline
+    \textbf{Attori} & Attori \\ \hline
+    \textbf{Relazioni} & Relazioni \\ \hline
+    \textbf{Precondizioni} & Precondizioni \\ \hline
+    \textbf{Postcondizioni} & Postcondizioni \\ \hline
+    \textbf{Scenario principale} & Elenco puntato ravvicinato come sotto \\ \hline
+    \textbf{Scenari alternativi} & Scenari alternativi \\ \hline
+    \textbf{Requisiti non funzionali} & R00N \\ \hline
+    \textbf{Punti aperti} & Punti aperti \\ \hline
+\end{tabularx}
 
 \subsection{Diagramma dei casi d'uso aggiornato}
+% Immagine
 
 \subsection{Integrazione con sistemi esterni}
+Data la complessità e la presenza sul mercato di software specializzati nell'analisi dei log, si concorda con il cliente di utilizzare un sistema esterno per l'analisi dei log, il cui servizio potrà essere fornito anche da soluzioni di terzi.
+Il file di log sarà generato da un componente interno al sistema chiamato \textbf{GestoreDeiLog} che si occuperà di collezionare i log prodotti e di serializzarli su file.
 
 % Analisi del problema
 \newpage
@@ -244,15 +345,19 @@ In questa sezione verranno descritti gli scenari principali d'uso dell'applicazi
 \section{Analisi documento dei requisiti: Analisi delle funzionalità}
 
 \subsection{Tabella delle funzionalità}
+In questa tabella è stata già effettuata una scomposizione delle funzionalità in sotto funzionalità.
+Per indicare ciò sono stati utilizzati colori di sfondo più scuri per indicare la funzionalità complessa e colori di sfondo più chiari per indicare la sottofunzionalità semplice.
 
 \subsection{Tabelle informazioni/flusso}
 
 % Analisi documento dei requisiti: Analisi dei vincoli
+\newpage
 \section{Analisi documento dei requisiti: Analisi dei vincoli}
 
 \subsection{Tabella dei vincoli}
 
 % Analisi documento dei requisiti: Analisi delle interazioni
+\newpage
 \section{Analisi documento dei requisiti: Analisi delle interazioni}
 
 \subsection{Tabella delle maschere}
@@ -260,6 +365,7 @@ In questa sezione verranno descritti gli scenari principali d'uso dell'applicazi
 \subsection{Tabella dei sistemi esterni}
 
 % Analisi dei ruoli e responsabilità
+\newpage
 \section{Analisi dei ruoli e responsabilità}
 
 \subsection{Tabella dei ruoli}
@@ -271,6 +377,7 @@ In questa sezione verranno descritti gli scenari principali d'uso dell'applicazi
 \subsection{Tabella ruolo/informazioni: Ruolo3 (in JustBit era "Amministratore")}
 
 % Scomposizione del problema
+\newpage
 \section{Scomposizione del problema}
 
 \subsection{Tabella scomposizione delle funzionalità}
@@ -278,6 +385,7 @@ In questa sezione verranno descritti gli scenari principali d'uso dell'applicazi
 \subsection{Tabelle delle sottofunzionalità: Sottofunzionalità1 (in JustBit era "Gestione piano alimentare")}
 
 % Modello del dominio
+\newpage
 \section{Modello del dominio}
 
 \subsection{Modello del dominio: Dominio1 (in JustBit era "Utente")}
@@ -295,6 +403,7 @@ In questa sezione verranno descritti gli scenari principali d'uso dell'applicazi
 \subsection{Modello del dominio: Dominio7 (in JustBit era "Log")}
 
 % Architettura logica
+\newpage
 \section{Architettura logica}
 
 \subsection{Struttura}
@@ -304,6 +413,7 @@ In questa sezione verranno descritti gli scenari principali d'uso dell'applicazi
 \subsection{Comportamento}
 
 % Piano di lavoro
+\newpage
 \section{Piano di lavoro}
 
 \subsection{Caratteristiche primo prototipo (Giugno 2025)}
@@ -311,6 +421,7 @@ In questa sezione verranno descritti gli scenari principali d'uso dell'applicazi
 \subsection{Sviluppi futuri}
 
 % Piano del collaudo
+\newpage
 \section{Piano del collaudo}
 
 \subsection{Collaudo: Elemento1 (in JustBit era "Alimento")}
@@ -335,6 +446,7 @@ In questa sezione verranno descritti gli scenari principali d'uso dell'applicazi
 \subsection{Diagramma dei componenti}
 
 % Progettazione di dettaglio
+\newpage
 \section{Progettazione di dettaglio}
 
 \subsection{Struttura}
@@ -344,9 +456,11 @@ In questa sezione verranno descritti gli scenari principali d'uso dell'applicazi
 \subsection{Interfacce utente}
 
 % Progettazione della persistenza
+\newpage
 \section{Progettazione della persistenza}
 
 % Progettazione del collaudo
+\newpage
 \section{Progettazione del collaudo}
 
 \subsection{Test di unità: Elemento1 (in JustBit era "Piatto")}
@@ -354,6 +468,7 @@ In questa sezione verranno descritti gli scenari principali d'uso dell'applicazi
 \subsection{Test di unità: Elemento2 (in JustBit era "Alimento")}
 
 % Progettazione del deployment
+\newpage
 \section{Progettazione del deployment}
 
 \subsection{Artefatti}
@@ -361,6 +476,7 @@ In questa sezione verranno descritti gli scenari principali d'uso dell'applicazi
 \subsection{Target di deploy}
 
 % Di cosa parlare
+\newpage
 \section{Di cosa parlare}
 \begin{itemize}[leftmargin=*]
     \item Pensare a se serve un amministratore
