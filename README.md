@@ -19,5 +19,5 @@ Inoltre, per facilitare l'organizzazione, tutti gli iscritti a un evento hanno a
 
 ## Gruppo 👥
 - **Matteo Gattobigio** ([@Meogat](https://github.com/Meogat))
-- **Lucilla Lucchi**
+- **Lucilla Lucchi** ([@LuLucchi](https://github.com/LuLucchi))
 - **Federico Porpora** ([@federicoporpora](https://github.com/federicoporpora))
