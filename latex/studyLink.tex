@@ -36,8 +36,13 @@
 \renewcommand{\hyperref}[2][]{\oldhyperref[#1]{\dotuline{#2}}}
 
 % Contatore per i requisiti (permette link precisi nelle tabelle)
+\makeatletter
 \newcounter{reqcount}
-\newcommand{\reqlabel}[1]{\refstepcounter{reqcount}\label{#1}}
+\newcommand{\reqlabel}[1]{%
+    \leavevmode\Hy@raisedlink{\refstepcounter{reqcount}\label{#1}}%
+    \ignorespaces
+}
+\makeatother
 
 % SCELTA DEL FONT
 \usepackage{lmodern} % Latin Modern (versione migliorata del default LaTeX)
@@ -259,7 +264,7 @@ Di seguito sono presentati tutti gli scenari nel loro dettaglio.
 \subsubsection{Registrazione}
 \begin{tabularx}{\textwidth}{|X|X|}
     \hline
-    \textbf{Titolo} & \textbf{Registrazione} \\ \hline
+    \textbf{Titolo} & \reqlabel{tab:Registrazione}\textbf{Registrazione} \\ \hline
     \endhead
     \textbf{Descrizione} & Procedura di creazione di un account Utente \\ \hline
     \textbf{Attori} & Studente \\ \hline
@@ -305,7 +310,7 @@ Di seguito sono presentati tutti gli scenari nel loro dettaglio.
 \subsubsection{Autenticazione}
 \begin{tabularx}{\textwidth}{|X|X|}
     \hline
-    \textbf{Titolo} & \textbf{Autenticazione} \\ \hline
+    \textbf{Titolo} & \reqlabel{tab:Autenticazione}\textbf{Autenticazione} \\ \hline
     \endhead
     \textbf{Descrizione} & L'attore inserisce le proprie Credenziali e si autentica sulla piattaforma \\ \hline
     \textbf{Attori} & Utente \\ \hline
@@ -325,21 +330,93 @@ Di seguito sono presentati tutti gli scenari nel loro dettaglio.
             \begin{enumerate}[nosep, leftmargin=*]
                 \setcounter{enumi}{3}
                 \item Viene mostrato un messaggio di errore
-                \item Lo studente può reinserire le Credenziali
+                \item L'Utente può reinserire le Credenziali
             \end{enumerate}
         \end{itemize} \\ \hline
     \textbf{Requisiti non funzionali} & \hyperref[R03N]{R03N}, \hyperref[R07N]{R07N}, \hyperref[R09N]{R09N} \\ \hline
     \textbf{Punti aperti} & \\ \hline
 \end{tabularx}
 
+\subsubsection{Gestione profilo}
+\begin{tabularx}{\textwidth}{|X|X|}
+    \hline
+    \textbf{Titolo} & \reqlabel{tab:GestioneProfilo}\textbf{Gestione profilo} \\ \hline
+    \endhead
+    \textbf{Descrizione} & Inserimento, modifica o eliminazione di dati specifici dell'Utente \\ \hline
+    \textbf{Attori} & Utente \\ \hline
+    \textbf{Relazioni} &
+        \begin{itemize}[nosep, leftmargin=*, before=\vspace{-0.5\baselineskip}, after=\vspace{-0.8\baselineskip}]
+            \item \hyperref[tab:Autenticazione]{Autenticazione}
+        \end{itemize} \\ \hline
+    \textbf{Precondizioni} & \\ \hline
+    \textbf{Postcondizioni} & Le modifiche del profilo sono memorizzate nel sistema \\ \hline
+    \textbf{Scenario principale} &
+        \begin{enumerate}[nosep, leftmargin=*, before=\vspace{-0.5\baselineskip}, after=\vspace{-0.8\baselineskip}]
+            \item \hyperref[tab:Autenticazione]{Autenticazione}
+            \item Il sistema mostra le funzionalità disponibili:
+            \begin{enumerate}[nosep, leftmargin=*]
+                \item Inserire e modificare i propri dati come:
+                \begin{itemize}[nosep, leftmargin=*]
+                    \item Nome
+                    \item Cognome
+                    \item Email
+                    \item Password
+                    \item Corso di studi
+                    \item Biografia
+                    \item Immagine
+                \end{itemize}
+                \item Eliminare l'account dal sistema
+            \end{enumerate}
+            \item Il sistema memorizza le modifiche
+        \end{enumerate} \\ \hline
+    \textbf{Scenari alternativi} & 
+        \begin{itemize}[nosep, leftmargin=*, before=\vspace{-0.5\baselineskip}, after=\vspace{-0.8\baselineskip}]
+            \item La Email è già presente
+            \begin{enumerate}[nosep, leftmargin=*]
+                \setcounter{enumi}{2}
+                \item Viene mostrato un messaggio di errore
+                \item L'Utente può inserire una nuova Email
+            \end{enumerate}
+            \item La Email non è istituzionale
+            \begin{enumerate}[nosep, leftmargin=*]
+                \setcounter{enumi}{2}
+                \item Viene mostrato un messaggio di errore
+                \item L'Utente può inserire una nuova Email
+            \end{enumerate}
+            \item La Password non è sicura
+            \begin{enumerate}[nosep, leftmargin=*]
+                \setcounter{enumi}{2}
+                \item Viene mostrato un messaggio di errore
+                \item L'Utente può inserire una nuova Password
+            \end{enumerate}
+            \item La Biografia è troppo lunga
+            \begin{enumerate}[nosep, leftmargin=*]
+                \setcounter{enumi}{2}
+                \item Viene mostrato un messaggio di errore
+                \item L'Utente può inserire una nuova Biografia
+            \end{enumerate}
+            \item La Immagine è troppo grande
+            \begin{enumerate}[nosep, leftmargin=*]
+                \setcounter{enumi}{2}
+                \item Viene mostrato un messaggio di errore
+                \item L'Utente può inserire una nuova Immagine
+            \end{enumerate}
+        \end{itemize} \\ \hline
+    \textbf{Requisiti non funzionali} & \hyperref[R02N]{R02N}, \hyperref[R07N]{R07N}, \hyperref[R09N]{R09N} \\ \hline
+    \textbf{Punti aperti} & \\ \hline
+\end{tabularx}
+
 \subsubsection{TEMPLATE}
 \begin{tabularx}{\textwidth}{|X|X|}
     \hline
-    \textbf{Titolo} & \textbf{TEMPLATE} \\ \hline
+    \textbf{Titolo} & \reqlabel{tab:TEMPLATE}\textbf{TEMPLATE} \\ \hline
     \endhead
     \textbf{Descrizione} & DESCRIZIONE \\ \hline
     \textbf{Attori} & ATTORE \\ \hline
-    \textbf{Relazioni} & RELAZIONE \\ \hline %hyperref[etichetta]{testo visibile}
+    \textbf{Relazioni} & RELAZIONE
+        \begin{itemize}[nosep, leftmargin=*, before=\vspace{-0.5\baselineskip}, after=\vspace{-0.8\baselineskip}]
+            \item % \hyperref[tab:etichetta]{testo visibile}
+        \end{itemize} \\ \hline
     \textbf{Precondizioni} & PRECONDIZIONI \\ \hline
     \textbf{Postcondizioni} & POSTCONDIZIONI \\ \hline
     \textbf{Scenario principale} &
@@ -611,6 +688,7 @@ Per indicare ciò sono stati utilizzati colori di sfondo più scuri per indicare
     \item il requisito R05F indica un limite di tre eventi non menzionato nella raccolta testuale
     \item il requisito R22F ha una formulazione ridondante (``Commento nella sezione dei commenti``)
     \item R03N parla ancora di Username
+    \item R02N parla di Credenziali univoche, ma le Credenziali sono una coppia di Email e Password
 \end{itemize}
 
 % TODO
