@@ -7,13 +7,37 @@
 \usepackage{graphicx}
 \usepackage{geometry}
 \geometry{a4paper, margin=2.5cm}
-\usepackage{hyperref}
 \usepackage{ltablex}
 \usepackage{booktabs}
 \usepackage{float}
 \usepackage{titlesec}
 \usepackage{enumitem}
 \usepackage{xcolor}
+
+% CARICAMENTO HYPERREF (SEMPRE PER ULTIMO)
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=false,
+    pdfborder={0 0 0},
+}
+
+\usepackage[normalem]{ulem}
+
+% Stile per i link esterni (sottolineatura continua)
+\let\oldhref\href
+\renewcommand{\href}[2]{\oldhref{#1}{\uline{#2}}}
+\let\oldurl\url
+\renewcommand{\url}[1]{\uline{\oldurl{#1}}}
+
+% Stile per i riferimenti interni (sottolineatura a puntini)
+\let\oldref\ref
+\renewcommand{\ref}[1]{\dotuline{\oldref{#1}}}
+\let\oldhyperref\hyperref
+\renewcommand{\hyperref}[2][]{\oldhyperref[#1]{\dotuline{#2}}}
+
+% Contatore per i requisiti (permette link precisi nelle tabelle)
+\newcounter{reqcount}
+\newcommand{\reqlabel}[1]{\refstepcounter{reqcount}\label{#1}}
 
 % SCELTA DEL FONT
 \usepackage{lmodern} % Latin Modern (versione migliorata del default LaTeX)
@@ -129,7 +153,7 @@ Inoltre, per facilitare l'organizzazione, tutti gli iscritti a un Evento hanno a
     \item Al termine dell'Evento i Partecipanti possono lasciare dei Commenti positivi o negativi.
     \item L'interfaccia Utente deve essere intuitiva e ottimizzata per l'uso in mobilità (mobile-friendly), facilitando la navigazione rapida tra Bacheca e Chat.
     \item Le informazioni del Profilo devono essere facilmente consultabili prima di unirsi a un gruppo per favorire un clima di fiducia tra colleghi.
-    \item I messaggi scambiati nella Chat devono essere visibili solo ai membri del gruppo di studio corrente. I dati personali devono essere trattati in conformità con le normative vigenti (GDPR).
+    \item I messaggi scambiati nella Chat devono essere visibili solo ai membri del gruppo di studio corrente. I dati personali devono essere trattati in conformità con le normative vigenti (\href{https://gdpr-info.eu/}{GDPR}).
 \end{itemize}
 
 % Requisiti di sistema
@@ -170,16 +194,16 @@ Inoltre, per facilitare l'organizzazione, tutti gli iscritti a un Evento hanno a
     \hline
     \textbf{ID} & \textbf{Requisito} & \textbf{Tipo} \\ \hline
     \endhead
-    R01N & La piattaforma deve essere accessibile online & Non funzionale \\ \hline
-    R02N & Le Credenziali di un Utente sono univoche & Non funzionale \\ \hline
-    R03N & L'Username deve essere univoco & Non funzionale \\ \hline
-    R04N & L'interfaccia della Bacheca deve essere essenziale ed intuitiva & Non funzionale \\ \hline
-    R05N & Il fuso orario usato dall'applicazione è GMT+1 & Non funzionale \\ \hline
-    R06N & Il formato di data e orario è gg/mm/aa e hh:mm 24h & Non funzionale \\ \hline
-    R07N & L'applicazione deve rispettare le norme definite nel GDPR & Non funzionale \\ \hline
-    R08N & La Bacheca globale deve essere costantemente aggiornata & Non funzionale \\ \hline
-    R09N & La Password scelta dall'Utente deve essere di almeno 8 caratteri e contenere almeno un numero e un carattere speciale (\#@?!\_-) & Non funzionale \\ \hline
-    R10N & La ricezione ed invio dei Messaggi deve essere istantanea & Non funzionale \\ \hline
+    \reqlabel{R01N}R01N & La piattaforma deve essere accessibile online & Non funzionale \\ \hline
+    \reqlabel{R02N}R02N & Le Credenziali di un Utente sono univoche & Non funzionale \\ \hline
+    \reqlabel{R03N}R03N & L'Username deve essere univoco & Non funzionale \\ \hline
+    \reqlabel{R04N}R04N & L'interfaccia della Bacheca deve essere essenziale ed intuitiva & Non funzionale \\ \hline
+    \reqlabel{R05N}R05N & Il fuso orario usato dall'applicazione è GMT+1 & Non funzionale \\ \hline
+    \reqlabel{R06N}R06N & Il formato di data e orario è gg/mm/aa e hh:mm 24h & Non funzionale \\ \hline
+    \reqlabel{R07N}R07N & L'applicazione deve rispettare le norme definite nel \href{https://gdpr-info.eu/}{GDPR} & Non funzionale \\ \hline
+    \reqlabel{R08N}R08N & La Bacheca globale deve essere costantemente aggiornata & Non funzionale \\ \hline
+    \reqlabel{R09N}R09N & La Password scelta dall'Utente deve essere di almeno 8 caratteri e contenere almeno un numero e un carattere speciale (\#@?!\_-) & Non funzionale \\ \hline
+    \reqlabel{R10N}R10N & La ricezione ed invio dei Messaggi deve essere istantanea & Non funzionale \\ \hline
 \end{tabularx}
 
 % Analisi del dominio
@@ -237,15 +261,103 @@ Di seguito sono presentati tutti gli scenari nel loro dettaglio.
     \hline
     \textbf{Titolo} & \textbf{Registrazione} \\ \hline
     \endhead
-    \textbf{Descrizione} & Descrizione \\ \hline
-    \textbf{Attori} & Attori \\ \hline
-    \textbf{Relazioni} & Relazioni \\ \hline
-    \textbf{Precondizioni} & Precondizioni \\ \hline
-    \textbf{Postcondizioni} & Postcondizioni \\ \hline
-    \textbf{Scenario principale} & Elenco puntato ravvicinato come sotto \\ \hline
-    \textbf{Scenari alternativi} & Scenari alternativi \\ \hline
-    \textbf{Requisiti non funzionali} & R00N \\ \hline
-    \textbf{Punti aperti} & Punti aperti \\ \hline
+    \textbf{Descrizione} & Procedura di creazione di un account Utente \\ \hline
+    \textbf{Attori} & Studente \\ \hline
+    \textbf{Relazioni} & \\ \hline
+    \textbf{Precondizioni} & \\ \hline
+    \textbf{Postcondizioni} & Il sistema memorizza il nuovo Utente \\ \hline
+    \textbf{Scenario principale} &
+        \begin{enumerate}[nosep, leftmargin=*, before=\vspace{-0.5\baselineskip}, after=\vspace{-0.8\baselineskip}]
+            \item Il sistema richiede i dati per la registrazione
+            \begin{itemize}[nosep, leftmargin=*]
+                \item Email
+                \item Password
+            \end{itemize}
+            \item L'attore inserisce i dati richiesti
+            \item Il sistema verifica la validità delle credenziali
+            \item Il sistema crea il nuovo Utente
+        \end{enumerate} \\ \hline
+    \textbf{Scenari alternativi} & 
+        \begin{itemize}[nosep, leftmargin=*, before=\vspace{-0.5\baselineskip}, after=\vspace{-0.8\baselineskip}]
+            \item L'Email fornita è già in uso
+            \begin{enumerate}[nosep, leftmargin=*]
+                \setcounter{enumi}{3}
+                \item Il sistema informa l'Utente che la Email è già registrata
+                \item Viene mostrata la schermata di autenticazione
+            \end{enumerate}
+            \item La Password non è sicura
+            \begin{enumerate}[nosep, leftmargin=*]
+                \setcounter{enumi}{3}
+                \item Viene mostrato un messaggio di errore
+                \item Lo studente può inserire una nuova Password
+            \end{enumerate}
+            \item La Email non è istituzionale
+            \begin{enumerate}[nosep, leftmargin=*]
+                \setcounter{enumi}{3}
+                \item Viene mostrato un messaggio di errore
+                \item Lo studente può inserire una nuova Email
+            \end{enumerate}
+        \end{itemize} \\ \hline
+    \textbf{Requisiti non funzionali} & \hyperref[R03N]{R03N}, \hyperref[R07N]{R07N}, \hyperref[R09N]{R09N} \\ \hline
+    \textbf{Punti aperti} & \\ \hline
+\end{tabularx}
+
+\subsubsection{Autenticazione}
+\begin{tabularx}{\textwidth}{|X|X|}
+    \hline
+    \textbf{Titolo} & \textbf{Autenticazione} \\ \hline
+    \endhead
+    \textbf{Descrizione} & L'attore inserisce le proprie Credenziali e si autentica sulla piattaforma \\ \hline
+    \textbf{Attori} & Utente \\ \hline
+    \textbf{Relazioni} & Da aggiungere \\ \hline
+    \textbf{Precondizioni} & L'attore è registrato nel sistema \\ \hline
+    \textbf{Postcondizioni} & L'attore è autenticato nel sistema \\ \hline
+    \textbf{Scenario principale} &
+        \begin{enumerate}[nosep, leftmargin=*, before=\vspace{-0.5\baselineskip}, after=\vspace{-0.8\baselineskip}]
+            \item Il sistema richiede l'inserimento delle Credenziali di accesso
+            \item L'attore inserisce le proprie credenziali
+            \item Il sistema verifica che le credenziali appartengano a un attore
+            \item L'attore è autenticato nel sistema
+        \end{enumerate} \\ \hline
+    \textbf{Scenari alternativi} & 
+        \begin{itemize}[nosep, leftmargin=*, before=\vspace{-0.5\baselineskip}, after=\vspace{-0.8\baselineskip}]
+            \item Le Credenziali sono errate
+            \begin{enumerate}[nosep, leftmargin=*]
+                \setcounter{enumi}{3}
+                \item Viene mostrato un messaggio di errore
+                \item Lo studente può reinserire le Credenziali
+            \end{enumerate}
+        \end{itemize} \\ \hline
+    \textbf{Requisiti non funzionali} & \hyperref[R03N]{R03N}, \hyperref[R07N]{R07N}, \hyperref[R09N]{R09N} \\ \hline
+    \textbf{Punti aperti} & \\ \hline
+\end{tabularx}
+
+\subsubsection{TEMPLATE}
+\begin{tabularx}{\textwidth}{|X|X|}
+    \hline
+    \textbf{Titolo} & \textbf{TEMPLATE} \\ \hline
+    \endhead
+    \textbf{Descrizione} & DESCRIZIONE \\ \hline
+    \textbf{Attori} & ATTORE \\ \hline
+    \textbf{Relazioni} & RELAZIONE \\ \hline %hyperref[etichetta]{testo visibile}
+    \textbf{Precondizioni} & PRECONDIZIONI \\ \hline
+    \textbf{Postcondizioni} & POSTCONDIZIONI \\ \hline
+    \textbf{Scenario principale} &
+        \begin{enumerate}[nosep, leftmargin=*, before=\vspace{-0.5\baselineskip}, after=\vspace{-0.8\baselineskip}]
+            \item FASE 1
+            \item FASE 2
+        \end{enumerate} \\ \hline
+    \textbf{Scenari alternativi} & 
+        \begin{itemize}[nosep, leftmargin=*, before=\vspace{-0.5\baselineskip}, after=\vspace{-0.8\baselineskip}]
+            \item ALT 1
+            \begin{enumerate}[nosep, leftmargin=*]
+                \setcounter{enumi}{1}
+                \item FASE 2
+                \item FASE 3
+            \end{enumerate}
+        \end{itemize} \\ \hline
+    \textbf{Requisiti non funzionali} & \hyperref[R03N]{R03N}, \hyperref[R07N]{R07N}, \hyperref[R09N]{R09N} \\ \hline
+    \textbf{Punti aperti} & \\ \hline
 \end{tabularx}
 
 % Analisi del Rischio
@@ -273,7 +385,7 @@ Di seguito sono presentati tutti gli scenari nel loro dettaglio.
     \hline
     \textbf{Tecnologia} & \textbf{Vulnerabilità} \\ \hline
     \endhead
-    Tecnologia & \begin{itemize}[nosep, leftmargin=*]
+    Tecnologia & \begin{itemize}[nosep, leftmargin=*, before=\vspace{-0.5\baselineskip}, after=\vspace{-0.8\baselineskip}]
                     \item Punto 1;
                     \item Punto 2
                 \end{itemize} \\ \hline
@@ -334,7 +446,7 @@ Dall'analisi del rischio si possono evincere i seguenti ulteriori requisiti:
     \textbf{Postcondizioni} & Postcondizioni \\ \hline
     \textbf{Scenario principale} & Elenco puntato ravvicinato come sotto \\ \hline
     \textbf{Scenari alternativi} & Scenari alternativi \\ \hline
-    \textbf{Requisiti non funzionali} & R00N \\ \hline
+    \textbf{Requisiti non funzionali} & \hyperref[R01N]{R01N} \\ \hline
     \textbf{Punti aperti} & Punti aperti \\ \hline
 \end{tabularx}
 
@@ -445,7 +557,7 @@ Per indicare ciò sono stati utilizzati colori di sfondo più scuri per indicare
 
 \subsection{Requisiti non funzionali}
 
-\subsection{Scelta dell’architettura}
+\subsection{Scelta dell'architettura}
 
 \subsection{Scelte tecnologiche}
 
@@ -498,6 +610,7 @@ Per indicare ciò sono stati utilizzati colori di sfondo più scuri per indicare
 \begin{itemize}[leftmargin=*]
     \item il requisito R05F indica un limite di tre eventi non menzionato nella raccolta testuale
     \item il requisito R22F ha una formulazione ridondante (``Commento nella sezione dei commenti``)
+    \item R03N parla ancora di Username
 \end{itemize}
 
 % TODO
