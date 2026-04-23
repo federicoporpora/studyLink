@@ -109,18 +109,21 @@ Inoltre, per facilitare l'organizzazione, tutti gli iscritti a un Evento hanno a
 \begin{itemize}[leftmargin=*]
     \item Il sistema deve permettere all'Utente di registrarsi fornendo le proprie Credenziali (Email e Password). La Registrazione è permessa esclusivamente a Utenti aventi un'Email istituzionale universitaria (es. @studio.unibo.it).
     \item Ogni Utente può gestire il proprio Profilo personale, contenente nome, cognome, Corso di studi, una breve Biografia e opzionalmente un'immagine.
-    \item Qualsiasi Utente autenticato può creare un nuovo Evento, specificando Materia o argomento di studio, data e orario dell'incontro, luogo fisico (indirizzo o aula) e numero massimo di posti disponibili.
+    \item Qualsiasi Utente autenticato può creare un nuovo Evento.
     \item L'Organizzatore, nella creazione di un Evento, deve definire:
     \begin{itemize}
-        \item \textbf{Materia:} l'Evento può essere ``Specifico per Esame`` (Materia indicata) o ``Generale`` (senza Materia specifica);
+        \item \textbf{Titolo:} il titolo dell'Evento deve essere chiaro e descrittivo, nel caso anche della materia che si intende studiare nell'incontro;
+        \item \textbf{Data e orario:} l'Evento deve avere una data e un orario di inizio e fine ben definiti;
+        \item \textbf{Posizione:} indicazione fisica specifica (indirizzo, nome della struttura o aula) in cui si terrà l'incontro;
         \item \textbf{Luogo:} scegliere tra Luogo ``Pubblico`` o ``Privato``;
         \item \textbf{Numero di posti:} può essere a posti ``Limitati`` o ``Illimitati``.
     \end{itemize}
     \item Il sistema deve offrire una Bacheca globale dove l'Utente può sfogliare gli Eventi di studio creati da altri Utenti. Gli Eventi scompaiono dalla Bacheca una volta pieni.
     \item L'Utente deve poter filtrare gli Eventi in Bacheca in base alla categoria (Specifico per Esame o Generale), Luogo (Pubblico o Privato), numero di posti (Limitato o Illimitato), data e Posizione.
+    \item Gli utenti scelgono l'evento in base al titolo dato dall'organizzatore
     \item Un Utente può prenotarsi per un Evento esistente se sono presenti posti disponibili.
     \item Un Partecipante può annullare la propria Prenotazione fino a un'ora prima, liberando il posto per altri Utenti. Nel caso di 3 Prenotazioni annullate negli ultimi 30 giorni, al Partecipante viene vietata la possibilità di iscriversi o creare Eventi per i 7 giorni successivi.
-    \item L'Organizzatore può modificare i dettagli dell'Evento o cancellarlo fino all'ora precedente. In caso di cancellazione, tutti i Partecipanti ricevono una Notifica automatica. Nel caso di 3 Eventi annullati negli ultimi 30 giorni, all'Organizzatore viene vietata la possibilità di iscriversi o creare Eventi per i 7 giorni successivi.
+    \item L'Organizzatore può modificare i dettagli dell'Evento o cancellarlo fino all'ora precedente. In caso di modifica o cancellazione, tutti i Partecipanti ricevono una Notifica automatica. Nel caso di 3 Eventi annullati negli ultimi 30 giorni, all'Organizzatore viene vietata la possibilità di iscriversi o creare Eventi per i 7 giorni successivi.
     \item L'Organizzatore può rimuovere gli Utenti Partecipanti a sua discrezione.
     \item Alla pubblicazione di un Evento, il sistema deve generare automaticamente una Chat di gruppo privata, accessibile esclusivamente all'Organizzatore e ai Partecipanti di quello specifico Evento.
     \item Al termine dell'Evento i Partecipanti possono lasciare dei Commenti positivi o negativi.
@@ -143,13 +146,13 @@ Inoltre, per facilitare l'organizzazione, tutti gli iscritti a un Evento hanno a
     R03F & Un Profilo Utente è accessibile tramite Mail istituzionale e Password & Funzionale \\ \hline
     R04F & Un Profilo Utente ha le seguenti informazioni: nome, cognome, Corso di studi, Bio, immagine opzionale e Commenti ricevuti & Funzionale \\ \hline
     R05F & Ogni Utente può creare fino a un massimo di tre Eventi, specificandone le caratteristiche e diventandone l'Organizzatore & Funzionale \\ \hline
-    R06F & Le caratteristiche di un Evento sono: titolo, Materia, tipo di Luogo, data, orario, Posizione, posti disponibili & Funzionale \\ \hline
+    R06F & Le caratteristiche di un Evento sono: titolo, Luogo, data, orario, Posizione, posti disponibili & Funzionale \\ \hline
     R07F & La Materia di un Evento può essere specificata o generica & Funzionale \\ \hline
-    R08F & Il tipo di accesso agli Eventi è aperto a tutti, chiunque può scegliere di aggiungersi, posti permettendo & Funzionale \\ \hline
+    R08F & Il tipo di accesso all'Evento è aperto a tutti, chiunque può scegliere di aggiungersi, posti permettendo & Funzionale \\ \hline
     R09F & Il numero di posti disponibili può essere limitato o illimitato & Funzionale \\ \hline
     R10F & Gli Eventi hanno due fasi: programmato e concluso & Funzionale \\ \hline
     R11F & Gli Utenti visualizzano una Bacheca globale di Eventi programmati con almeno un posto disponibile & Funzionale \\ \hline
-    R12F & Gli Utenti possono filtrare gli Eventi dalla Bacheca per: tipo di Luogo, Posizione, Materia, data, numero posti & Funzionale \\ \hline
+    R12F & Gli Utenti possono filtrare gli Eventi dalla Bacheca per: Luogo, Posizione, data, numero posti & Funzionale \\ \hline
     R13F & Un Utente può prenotarsi a un Evento, diventandone Partecipante & Funzionale \\ \hline
     R14F & Un Utente prima di prenotarsi a un Evento può visualizzare il Profilo Utente dei Partecipanti & Funzionale \\ \hline
     R15F & Un Partecipante può annullare la Prenotazione all'Evento fino a un'ora prima dell'inizio & Funzionale \\ \hline
@@ -195,9 +198,8 @@ Inoltre, per facilitare l'organizzazione, tutti gli iscritti a un Evento hanno a
     Informazioni del Profilo & Dati inseriti dall'Utente, quali nome, cognome, Email, Corso di studi, Biografia ed eventualmente un'immagine & \\ \hline
     Password & Sequenza di caratteri segreta & \\ \hline
     Credenziali & Coppia di Email e Password & \\ \hline
-    Evento & Sessione di studio programmata da un Utente, caratterizzata da un titolo, una Posizione, una data e un orario & Sessione di studio \\ \hline
-    Evento Specifico per Esame & Tipologia di Evento focalizzata sulla preparazione di una specifica Materia universitaria & \\ \hline
-    Evento Generale & Tipologia di Evento in cui la Materia non è specificata & \\ \hline
+    Evento & Sessione di studio programmata da un Utente, caratterizzata da un titolo, una Posizione, un Luogo, una data e un orario & Sessione di studio \\ \hline
+    Titolo & Nome dell'Evento & \\ \hline
     Luogo Pubblico & Luogo fisico accessibile a tutti in cui si svolge un Evento (es. biblioteca, aula studio) & \\ \hline
     Luogo Privato & Luogo fisico privato in cui si svolge un Evento & \\ \hline
     Posizione & Indicazione fisica specifica (indirizzo, nome della struttura o aula) in cui si terrà l'incontro & Indirizzo \\ \hline
