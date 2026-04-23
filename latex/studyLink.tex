@@ -27,7 +27,7 @@
 \definecolor{linkColor}{HTML}{4f7ca7}
 
 % Impostazioni
-\keepXColumns % ltablex default is to behave like tabular, this keeps the X column behavior
+\keepXColumns
 \setcounter{secnumdepth}{3}
 \setcounter{tocdepth}{3}
 
@@ -199,7 +199,7 @@ Inoltre, per facilitare l'organizzazione, tutti gli iscritti a un Evento hanno a
     Password & Sequenza di caratteri segreta & \\ \hline
     Credenziali & Coppia di Email e Password & \\ \hline
     Evento & Sessione di studio programmata da un Utente, caratterizzata da un titolo, una Posizione, un Luogo, una data e un orario & Sessione di studio \\ \hline
-    Titolo & Nome dell'Evento & \\ \hline
+    Titolo & Nome descrittivo dell'Evento & Nome \\ \hline
     Luogo Pubblico & Luogo fisico accessibile a tutti in cui si svolge un Evento (es. biblioteca, aula studio) & \\ \hline
     Luogo Privato & Luogo fisico privato in cui si svolge un Evento & \\ \hline
     Posizione & Indicazione fisica specifica (indirizzo, nome della struttura o aula) in cui si terrà l'incontro & Indirizzo \\ \hline
@@ -223,6 +223,11 @@ Inoltre, per facilitare l'organizzazione, tutti gli iscritti a un Evento hanno a
 
 \subsection{Modello dei casi d'uso}
 L'analisi dei requisiti e del dominio hanno portato ai seguenti casi d'uso che interagiscono fra di loro come descritto nel seguente schema.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{images/modello-dei-casi-d-uso.png}
+\end{figure}
 
 \subsection{Scenari}
 Di seguito sono presentati tutti gli scenari nel loro dettaglio.
@@ -483,23 +488,21 @@ Per indicare ciò sono stati utilizzati colori di sfondo più scuri per indicare
 \section{Di cosa parlare}
 \begin{itemize}[leftmargin=*]
     \item Pensare a se serve un amministratore
-    \item nel requisito e R03N c'è scritto ancora "Username" (da aggiungere Username come sinonimo di Email o cambiare il requisito)
     \item per la creazione del log il prof dice di non metterlo da nessuna parte, guardare i best project. parla di 3 possibilità: 1) log viene analizzato manualmente da una persona al di fuori dell'applicazione (omino con scritto AS (l'attore) che si collega con freccia senza testa a cerchio con visualizzaLog in un'altra app) 2) uguale a quella di prima ma nell'applicazione stessa 3) algoritmo che in automatico si guarda il log e cerca cose strane. non c'è più visualizzaLog ma c'è analizzaLog (non la suggerisce, se vogliamo usare un algoritmo vuole che si faccia in un'altra applicazione)
     \item font da scegliere
+    \item scegliere come chiamare Luogo e Posizione (Luogo/Posizione - Tipo di Luogo/Luogo - Accesso/Luogo)
 \end{itemize}
 
 % Errori
 \section{Errori}
 \begin{itemize}[leftmargin=*]
     \item il requisito R05F indica un limite di tre eventi non menzionato nella raccolta testuale
-    \item la capitalizzazione dei termini tecnici (Materia, Accesso, Evento, ecc.) non è uniforme nel documento.
     \item il requisito R22F ha una formulazione ridondante (``Commento nella sezione dei commenti``)
 \end{itemize}
 
 % TODO
 \section{TODO}
 \begin{itemize}[leftmargin=*]
-    \item togliere la specifica ``per esame``, viene scritto tutto nel titolo
     \item il titolo non può essere vuoto nella raccolta dei requisiti
     \item (per fede) mettere tutte le tabelle già costruite con gli attributi giusti
 \end{itemize}
