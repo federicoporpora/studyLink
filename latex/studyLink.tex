@@ -78,7 +78,7 @@
 % Sottosottosezioni
 \titleformat{\subsubsection}
     {\normalfont\normalsize\bfseries\color{studyColor}}{\thesubsubsection.\ }{0pt}{\normalsize} 
-\titlespacing*{\subsubsection}{0pt}{4pt}{4pt}
+\titlespacing*{\subsubsection}{0pt}{6pt}{0pt}
 
 % Tabelle
 \renewcommand{\arraystretch}{1.5}
@@ -258,13 +258,15 @@ L'analisi dei requisiti e del dominio hanno portato ai seguenti casi d'uso che i
     \includegraphics[width=\textwidth]{images/modello-dei-casi-d-uso.png}
 \end{figure}
 
+\newpage
 \subsection{Scenari}
 Di seguito sono presentati tutti gli scenari nel loro dettaglio.
 
 \subsubsection{Registrazione}
+\reqlabel{tab:Registrazione}
 \begin{tabularx}{\textwidth}{|X|X|}
     \hline
-    \textbf{Titolo} & \reqlabel{tab:Registrazione}\textbf{Registrazione} \\ \hline
+    \textbf{Titolo} & \textbf{Registrazione} \\ \hline
     \endhead
     \textbf{Descrizione} & Procedura di creazione di un account Utente \\ \hline
     \textbf{Attori} & Studente \\ \hline
@@ -307,10 +309,12 @@ Di seguito sono presentati tutti gli scenari nel loro dettaglio.
     \textbf{Punti aperti} & \\ \hline
 \end{tabularx}
 
+\newpage
 \subsubsection{Autenticazione}
+\reqlabel{tab:Autenticazione}
 \begin{tabularx}{\textwidth}{|X|X|}
     \hline
-    \textbf{Titolo} & \reqlabel{tab:Autenticazione}\textbf{Autenticazione} \\ \hline
+    \textbf{Titolo} & \textbf{Autenticazione} \\ \hline
     \endhead
     \textbf{Descrizione} & L'attore inserisce le proprie Credenziali e si autentica sulla piattaforma \\ \hline
     \textbf{Attori} & Utente \\ \hline
@@ -337,10 +341,12 @@ Di seguito sono presentati tutti gli scenari nel loro dettaglio.
     \textbf{Punti aperti} & \\ \hline
 \end{tabularx}
 
+\newpage
 \subsubsection{Gestione profilo}
+\reqlabel{tab:GestioneProfilo}
 \begin{tabularx}{\textwidth}{|X|X|}
     \hline
-    \textbf{Titolo} & \reqlabel{tab:GestioneProfilo}\textbf{Gestione profilo} \\ \hline
+    \textbf{Titolo} & \textbf{Gestione profilo} \\ \hline
     \endhead
     \textbf{Descrizione} & Inserimento, modifica o eliminazione di dati specifici dell'Utente \\ \hline
     \textbf{Attori} & Utente \\ \hline
@@ -406,10 +412,74 @@ Di seguito sono presentati tutti gli scenari nel loro dettaglio.
     \textbf{Punti aperti} & \\ \hline
 \end{tabularx}
 
-\subsubsection{TEMPLATE}
+\newpage
+\subsubsection{Creazione di un Evento}
+\reqlabel{tab:Creazione di un Evento}
 \begin{tabularx}{\textwidth}{|X|X|}
     \hline
-    \textbf{Titolo} & \reqlabel{tab:TEMPLATE}\textbf{TEMPLATE} \\ \hline
+    \textbf{Titolo} & \textbf{Creazione di un Evento} \\ \hline
+    \endhead
+    \textbf{Descrizione} & L'Organizzatore inserisce i dettagli necessari per programmare una nuova sessione di studio \\ \hline
+    \textbf{Attori} & Utente \\ \hline
+    \textbf{Relazioni} &
+        \begin{itemize}[nosep, leftmargin=*, before=\vspace{-0.5\baselineskip}, after=\vspace{-0.8\baselineskip}]
+            \item \hyperref[tab:Autenticazione]{Autenticazione}
+        \end{itemize} \\ \hline
+    \textbf{Precondizioni} & \\ \hline
+    \textbf{Postcondizioni} & Il sistema memorizza le modifiche effettuate \\ \hline
+    \textbf{Scenario principale} &
+        \begin{enumerate}[nosep, leftmargin=*, before=\vspace{-0.5\baselineskip}, after=\vspace{-0.8\baselineskip}]
+            \item \hyperref[tab:Autenticazione]{Autenticazione}
+            \item Il sistema mostra la possibilità di creare un Evento
+            \item Il sistema mostra i dati relativi all'Evento:
+                \begin{itemize}[nosep, leftmargin=*]
+                    \item Titolo dell'Evento
+                    \item Numero di partecipanti (posti limitati o Illimitati)
+                    \item Luogo
+                    \item Data
+                    \item Orario
+                    \item Posizione
+                \end{itemize}
+            \item Il sistema verifica la presenza e validità dei dati
+            \item Il sistema apporta le modifiche effettuate
+        \end{enumerate} \\ \hline
+    \textbf{Scenari alternativi} & 
+        \begin{itemize}[nosep, leftmargin=*, before=\vspace{-0.5\baselineskip}, after=\vspace{-0.8\baselineskip}]
+            \item Dei campi sono stati omessi
+            \begin{enumerate}[nosep, leftmargin=*]
+                \setcounter{enumi}{4}
+                \item Viene mostrato un messaggio che indica i campi mancanti
+                \item L'Utente può inserire nuovamente i dati mancanti
+            \end{enumerate}
+            \item La data scelta è antecedente alla data corrente
+            \begin{enumerate}[nosep, leftmargin=*]
+                \setcounter{enumi}{4}
+                \item Viene mostrato un messaggio di errore
+                \item L'Utente può inserire una nuova data
+            \end{enumerate}
+            \item Il numero di posti inserito è pari a 0 (potremmo fare che 0 equivale a dire che è libero ma secondo me non è molto intuitivo)
+            \begin{enumerate}[nosep, leftmargin=*]
+                \setcounter{enumi}{4}
+                \item Viene mostrato un messaggio di errore
+                \item L'Utente può inserire un numero di partecipanti valido
+            \end{enumerate}
+            \item La Posizione o il Luogo non sono validi o non esistenti
+            \begin{enumerate}[nosep, leftmargin=*]
+                \setcounter{enumi}{4}
+                \item Viene mostrato un messaggio di errore
+                \item L'Utente può inserire una nuova posizione
+            \end{enumerate}
+        \end{itemize} \\ \hline
+    \textbf{Requisiti non funzionali} & \hyperref[R05N]{R05N}, \hyperref[R06N]{R06N}, \hyperref[R07N]{R07N}, \hyperref[R08N]{R08N} (fatti a caso) \\ \hline
+    \textbf{Punti aperti} & \\ \hline
+\end{tabularx}
+
+\newpage
+\subsubsection{TEMPLATE}
+\reqlabel{tab:TEMPLATE}
+\begin{tabularx}{\textwidth}{|X|X|}
+    \hline
+    \textbf{Titolo} & \textbf{TEMPLATE} \\ \hline
     \endhead
     \textbf{Descrizione} & DESCRIZIONE \\ \hline
     \textbf{Attori} & ATTORE \\ \hline
