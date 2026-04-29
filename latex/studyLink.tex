@@ -174,25 +174,23 @@ Inoltre, per facilitare l'organizzazione, tutti gli iscritti a un Evento hanno a
     R02F & Una persona può registrarsi, creando un Profilo Utente & Funzionale \\ \hline
     R03F & Un Profilo Utente è accessibile tramite Mail istituzionale e Password & Funzionale \\ \hline
     R04F & Un Profilo Utente ha le seguenti informazioni: nome, cognome, Corso di studi, Bio, immagine opzionale e Commenti ricevuti & Funzionale \\ \hline
-    R05F & Ogni Utente può creare fino a un massimo di tre Eventi, specificandone le caratteristiche e diventandone l'Organizzatore & Funzionale \\ \hline
-    R06F & Le caratteristiche di un Evento sono: titolo, Tipo di Luogo, data, orario, Indirizzo, posti disponibili & Funzionale \\ \hline
-    R07F & La Materia di un Evento può essere specificata o generica & Funzionale \\ \hline
-    R08F & Il tipo di accesso all'Evento è aperto a tutti, chiunque può scegliere di aggiungersi, posti permettendo & Funzionale \\ \hline
-    R09F & Il numero di posti disponibili può essere limitato o illimitato & Funzionale \\ \hline
-    R10F & Gli Eventi hanno due fasi: programmato e concluso & Funzionale \\ \hline
-    R11F & Gli Utenti visualizzano una Bacheca globale di Eventi programmati con almeno un posto disponibile & Funzionale \\ \hline
-    R12F & Gli Utenti possono filtrare gli Eventi dalla Bacheca per: Tipo di Luogo, Indirizzo, data, numero posti & Funzionale \\ \hline
-    R13F & Un Utente può prenotarsi a un Evento, diventandone Partecipante & Funzionale \\ \hline
-    R14F & Un Utente prima di prenotarsi a un Evento può visualizzare il Profilo Utente dei Partecipanti & Funzionale \\ \hline
-    R15F & Un Partecipante può annullare la Prenotazione all'Evento fino a un'ora prima dell'inizio & Funzionale \\ \hline
-    R16F & Se un Utente annulla la sua Prenotazione per 3 volte entro 30 giorni, gli viene sospesa la possibilità di iscriversi o creare altri Eventi per 7 giorni & Funzionale \\ \hline
-    R17F & L'Organizzatore può modificare i dettagli dell'Evento o cancellarlo fino all'ora precedente & Funzionale \\ \hline
-    R18F & Ogni modifica di un Evento invia una Notifica a tutti i Partecipanti & Funzionale \\ \hline
-    R19F & Se l'Organizzatore annulla per 3 volte un Evento da lui creato entro 30 giorni, gli viene sospesa la possibilità di iscriversi o creare altri Eventi per 7 giorni & Funzionale \\ \hline
-    R20F & L'Organizzatore può rimuovere i Partecipanti all'Evento a sua discrezione & Funzionale \\ \hline
-    R21F & Per ogni Evento è prevista una Chat di gruppo accessibile solo ai Partecipanti & Funzionale \\ \hline
-    R22F & Dopo la conclusione di un Evento ogni Partecipante può lasciare un Commento nella sezione dei commenti sugli Eventi passati su ognuno degli altri Partecipanti, compreso l'Organizzatore & Funzionale \\ \hline
-    R23F & Un Utente può richiedere l'eliminazione del proprio Profilo & Funzionale \\ \hline
+    R05F & Le caratteristiche di un Evento sono: titolo, Tipo di Luogo, data, orario, Indirizzo, posti disponibili & Funzionale \\ \hline
+    R06F & La Materia di un Evento può essere specificata o generica & Funzionale \\ \hline
+    R07F & Il tipo di accesso all'Evento è aperto a tutti, chiunque può scegliere di aggiungersi, posti permettendo & Funzionale \\ \hline
+    R08F & Il numero di posti disponibili può essere limitato o illimitato & Funzionale \\ \hline
+    R09F & Gli Eventi hanno due fasi: programmato e concluso & Funzionale \\ \hline
+    R10F & Gli Utenti visualizzano una Bacheca globale di Eventi programmati con almeno un posto disponibile & Funzionale \\ \hline
+    R11F & Gli Utenti possono filtrare gli Eventi dalla Bacheca per: Tipo di Luogo, Indirizzo, data, numero posti & Funzionale \\ \hline
+    R12F & Un Utente può prenotarsi a un Evento, diventandone Partecipante & Funzionale \\ \hline
+    R13F & Un Utente prima di prenotarsi a un Evento può visualizzare il Profilo Utente dei Partecipanti & Funzionale \\ \hline
+    R14F & Un Partecipante può annullare la Prenotazione all'Evento fino a un'ora prima dell'inizio & Funzionale \\ \hline
+    R15F & Se un Utente annulla la sua Prenotazione per 3 volte entro 30 giorni, gli viene sospesa la possibilità di iscriversi o creare altri Eventi per 7 giorni & Funzionale \\ \hline
+    R16F & L'Organizzatore può modificare i dettagli dell'Evento o cancellarlo fino all'ora precedente & Funzionale \\ \hline
+    R17F & Ogni modifica di un Evento invia una Notifica a tutti i Partecipanti & Funzionale \\ \hline
+    R18F & L'Organizzatore può rimuovere i Partecipanti all'Evento a sua discrezione & Funzionale \\ \hline
+    R19F & Per ogni Evento è prevista una Chat di gruppo accessibile solo ai Partecipanti & Funzionale \\ \hline
+    R20F & Al termine dell'Evento, ciascun Partecipante può lasciare un Commento a ognuno degli altri presenti & Funzionale \\ \hline
+    R21F & Un Utente può richiedere l'eliminazione del proprio Profilo & Funzionale \\ \hline
 \end{tabularx}
 
 \subsection{Requisiti non funzionali}
@@ -384,7 +382,7 @@ Di seguito sono presentati tutti gli scenari nel loro dettaglio.
                 \end{itemize}
                 \item Eliminare l'account dal sistema
             \end{enumerate}
-            \item Il sistema memorizza le modifiche
+            \item Il sistema apporta le modifiche effettuate
         \end{enumerate} \\ \hline
     \textbf{Scenari alternativi} & 
         \begin{itemize}[nosep, leftmargin=*]
@@ -505,7 +503,7 @@ Di seguito sono presentati tutti gli scenari nel loro dettaglio.
                 \item Eliminare l'Evento
             \end{enumerate}
             \item Il sistema notifica i Partecipanti delle modifiche
-            \item Il sistema memorizza le modifiche
+            \item Il sistema apporta le modifiche effettuate
         \end{enumerate} \\ \hline
     \textbf{Scenari alternativi} & 
         \begin{itemize}[nosep, leftmargin=*]
@@ -567,9 +565,100 @@ Di seguito sono presentati tutti gli scenari nel loro dettaglio.
             \item L'Organizzatore seleziona il Partecipante da rimuovere
             \item Il sistema aggiorna l'Evento rimuovendo il Partecipante
             \item Il sistema notifica il Partecipante della rimozione dall'Evento
-            \item Il sistema memorizza le modifiche
+            \item Il sistema apporta le modifiche effettuate
         \end{enumerate} \\ \hline
     \textbf{Scenari alternativi} \\ \hline
+    \textbf{Requisiti non funzionali} & \hyperref[R03N]{R03N}, \hyperref[R07N]{R07N}, \hyperref[R09N]{R09N} \\ \hline
+    \textbf{Punti aperti} & \\ \hline
+\end{tabularx}
+
+\newpage
+\subsubsection{Visualizzazione Bacheca}
+\reqlabel{tab:Visualizzazione Bacheca}
+\begin{tabularx}{\textwidth}{|X|X|}
+    \hline
+    \textbf{Titolo} & \textbf{Visualizzazione Bacheca} \\ \hline
+    \endhead
+    \textbf{Descrizione} & L'Utente visualizza tutti gli Eventi disponibili con la possibilità di applicare Filtri \\ \hline
+    \textbf{Attori} & Utente \\ \hline
+    \textbf{Relazioni} & 
+        \begin{itemize}[nosep, leftmargin=*]
+            \item \hyperref[tab:Autenticazione]{Autenticazione}
+        \end{itemize} \\ \hline
+    \textbf{Precondizioni} & \\ \hline
+    \textbf{Postcondizioni} & \\ \hline
+    \textbf{Scenario principale} &
+        \begin{enumerate}[nosep, leftmargin=*]
+            \item \hyperref[tab:Autenticazione]{Autenticazione}
+            \item Il sistema mostra all'Utente la Bacheca degli Eventi
+            \item Il sistema mostra la possibilità di applicare i seguenti Filtri:
+                \begin{itemize}[nosep, leftmargin=*]
+                    \item Data
+                    \item Indirizzo
+                    \item Tipo di Luogo
+                    \item Numero di Partecipanti
+                \end{itemize}
+                \item L'Utente inserisce le condizioni del Filtro
+                \item Il sistema mostra gli Eventi che rispettano le condizioni applicate
+        \end{enumerate} \\ \hline
+    \textbf{Scenari alternativi} & \\ \hline
+    \textbf{Requisiti non funzionali} & \hyperref[R03N]{R03N}, \hyperref[R07N]{R07N}, \hyperref[R09N]{R09N} \\ \hline
+    \textbf{Punti aperti} & \\ \hline
+\end{tabularx}
+
+\newpage
+\subsubsection{Prenotazione Evento}
+\reqlabel{tab:Prenotazione Evento}
+\begin{tabularx}{\textwidth}{|X|X|}
+    \hline
+    \textbf{Titolo} & \textbf{Prenotazione Evento} \\ \hline
+    \endhead
+    \textbf{Descrizione} & Permette all'Utente di prenotare un Evento dalla Bacheca \\ \hline
+    \textbf{Attori} & Utente \\ \hline
+    \textbf{Relazioni} &
+        \begin{itemize}[nosep, leftmargin=*]
+            \item \hyperref[tab:Autenticazione]{Autenticazione}
+            \item \hyperref[tab:Visualizzazione Bacheca]{Visualizzazione Bacheca}
+        \end{itemize} \\ \hline
+    \textbf{Precondizioni} & \\ \hline
+    \textbf{Postcondizioni} & L'Utente diventa Partecipante dell'Evento \\ \hline
+    \textbf{Scenario principale} &
+        \begin{enumerate}[nosep, leftmargin=*]
+            \item \hyperref[tab:Autenticazione]{Autenticazione}
+            \item L'Utente seleziona un Evento dalla Bacheca
+            \item Il sistema mostra i dettagli dell'Evento e i suoi Partecipanti
+            \item L'Utente conferma la sua prenotazione all'Evento
+            \item Il sistema apporta le modifiche effettuate
+        \end{enumerate} \\ \hline
+    \textbf{Scenari alternativi} & \\ \hline
+    \textbf{Requisiti non funzionali} & \hyperref[R03N]{R03N}, \hyperref[R07N]{R07N}, \hyperref[R09N]{R09N} \\ \hline
+    \textbf{Punti aperti} & \\ \hline
+\end{tabularx}
+
+\newpage
+\subsubsection{Visualizzazione Partecipante}
+\reqlabel{tab:Visualizzazione Partecipante}
+\begin{tabularx}{\textwidth}{|X|X|}
+    \hline
+    \textbf{Titolo} & \textbf{Visualizzazione Partecipante} \\ \hline
+    \endhead
+    \textbf{Descrizione} & Permette agli Utenti di visualizzare i dettagli e i commenti dei Partecipanti ad un Evento \\ \hline
+    \textbf{Attori} & Utente \\ \hline
+    \textbf{Relazioni} & 
+        \begin{itemize}[nosep, leftmargin=*]
+            \item \hyperref[tab:Autenticazione]{Autenticazione}
+            \item \hyperref[tab:Visualizzazione Bacheca]{Visualizzazione Bacheca}
+        \end{itemize} \\ \hline
+    \textbf{Precondizioni} & \\ \hline
+    \textbf{Postcondizioni} & \\ \hline
+    \textbf{Scenario principale} &
+        \begin{enumerate}[nosep, leftmargin=*]
+            \item \hyperref[tab:Autenticazione]{Autenticazione}
+            \item L'Utente seleziona un Evento dalla Bacheca
+            \item Il sistema mostra i dettagli dell'Evento e i suoi Partecipanti
+            \item Il sistema mostra all'Utente la possibilità di visualizzare i dettagli ed i commenti dei Partecipanti
+        \end{enumerate} \\ \hline
+    \textbf{Scenari alternativi} & \\ \hline
     \textbf{Requisiti non funzionali} & \hyperref[R03N]{R03N}, \hyperref[R07N]{R07N}, \hyperref[R09N]{R09N} \\ \hline
     \textbf{Punti aperti} & \\ \hline
 \end{tabularx}
@@ -581,61 +670,104 @@ Di seguito sono presentati tutti gli scenari nel loro dettaglio.
     \hline
     \textbf{Titolo} & \textbf{Visualizzazione Commenti} \\ \hline
     \endhead
-    \textbf{Descrizione} & Permette all'Organizzatore di visualizzare i commenti dei Partecipanti sull'Evento \\ \hline
-    \textbf{Attori} & Organizzatore \\ \hline
+    \textbf{Descrizione} & Permette all'Utente di visualizzare i commenti presenti sul suo Profilo \\ \hline
+    \textbf{Attori} & Utente \\ \hline
     \textbf{Relazioni} & 
         \begin{itemize}[nosep, leftmargin=*]
-            \item % \hyperref[tab:etichetta]{testo visibile}
+            \item \hyperref[tab:Autenticazione]{Autenticazione}
         \end{itemize} \\ \hline
-    \textbf{Precondizioni} & PRECONDIZIONI \\ \hline
-    \textbf{Postcondizioni} & POSTCONDIZIONI \\ \hline
+    \textbf{Precondizioni} & \\ \hline
+    \textbf{Postcondizioni} & \\ \hline
     \textbf{Scenario principale} &
         \begin{enumerate}[nosep, leftmargin=*]
-            \item FASE 1
-            \item FASE 2
+            \item \hyperref[tab:Autenticazione]{Autenticazione}
+            \item Il sistema mostra all'Utente la possibilità di visualizzare i commenti che gli altri Utenti hanno lasciato su di lui
         \end{enumerate} \\ \hline
-    \textbf{Scenari alternativi} & 
-        \begin{itemize}[nosep, leftmargin=*]
-            \item ALT 1
-            \begin{enumerate}[nosep, leftmargin=*]
-                \setcounter{enumi}{1}
-                \item FASE 2
-                \item FASE 3
-            \end{enumerate}
-        \end{itemize} \\ \hline
+    \textbf{Scenari alternativi} & \\ \hline
     \textbf{Requisiti non funzionali} & \hyperref[R03N]{R03N}, \hyperref[R07N]{R07N}, \hyperref[R09N]{R09N} \\ \hline
     \textbf{Punti aperti} & \\ \hline
 \end{tabularx}
 
 \newpage
-\subsubsection{TEMPLATE}
-\reqlabel{tab:TEMPLATE}
+\subsubsection{Annullamento Prenotazione}
+\reqlabel{tab:Annullamento Prenotazione}
 \begin{tabularx}{\textwidth}{|X|X|}
     \hline
-    \textbf{Titolo} & \textbf{TEMPLATE} \\ \hline
+    \textbf{Titolo} & \textbf{Annullamento Prenotazione} \\ \hline
     \endhead
-    \textbf{Descrizione} & DESCRIZIONE \\ \hline
-    \textbf{Attori} & ATTORE \\ \hline
-    \textbf{Relazioni} & RELAZIONE
+    \textbf{Descrizione} & L'Utente annulla una prenotazione effettuata in precedenza \\ \hline
+    \textbf{Attori} & Utente \\ \hline
+    \textbf{Relazioni} & 
         \begin{itemize}[nosep, leftmargin=*]
-            \item % \hyperref[tab:etichetta]{testo visibile}
+            \item \hyperref[tab:Autenticazione]{Autenticazione}
         \end{itemize} \\ \hline
-    \textbf{Precondizioni} & PRECONDIZIONI \\ \hline
-    \textbf{Postcondizioni} & POSTCONDIZIONI \\ \hline
+    \textbf{Precondizioni} & L'Utente deve essere iscritto ad un Evento \\ \hline
+    \textbf{Postcondizioni} & La Prenotazione all'Evento viene annullata \\ \hline
     \textbf{Scenario principale} &
         \begin{enumerate}[nosep, leftmargin=*]
-            \item FASE 1
-            \item FASE 2
+            \item \hyperref[tab:Autenticazione]{Autenticazione}
+            \item Il sistema mostra all'Utente la lista delle Prenotazioni attive
+            \item L'Utente seleziona la Prenotazione da annullare
+            \item Il sistema apporta le modifiche effettuate
         \end{enumerate} \\ \hline
-    \textbf{Scenari alternativi} & 
+    \textbf{Scenari alternativi} & \\ \hline
+    \textbf{Requisiti non funzionali} & \hyperref[R03N]{R03N}, \hyperref[R07N]{R07N}, \hyperref[R09N]{R09N} \\ \hline
+    \textbf{Punti aperti} & \\ \hline
+\end{tabularx}
+
+\newpage
+\subsubsection{Utilizzo Chat}
+\reqlabel{tab:Utilizzo Chat}
+\begin{tabularx}{\textwidth}{|X|X|}
+    \hline
+    \textbf{Titolo} & \textbf{Utilizzo Chat} \\ \hline
+    \endhead
+    \textbf{Descrizione} & Permette al Partecipante di comunicare con gli altri Partecipanti ad un Evento tramite messaggi \\ \hline
+    \textbf{Attori} & Partecipante \\ \hline
+    \textbf{Relazioni} & 
         \begin{itemize}[nosep, leftmargin=*]
-            \item ALT 1
-            \begin{enumerate}[nosep, leftmargin=*]
-                \setcounter{enumi}{1}
-                \item FASE 2
-                \item FASE 3
-            \end{enumerate}
+            \item \hyperref[tab:Autenticazione]{Autenticazione}
+            \item \hyperref[tab:Prenotazione Evento]{Prenotazione Evento}
         \end{itemize} \\ \hline
+    \textbf{Precondizioni} & Il Partecipante deve essere iscritto all'Evento \\ \hline
+    \textbf{Postcondizioni} & La comunicazione avviene con successo tra tutti i Partecipanti \\ \hline
+    \textbf{Scenario principale} &
+        \begin{enumerate}[nosep, leftmargin=*]
+            \item \hyperref[tab:Autenticazione]{Autenticazione}
+            \item Il Partecipante seleziona l'Evento
+            \item Il sistema mostra la chat dell'Evento
+            \item Avviene uno scambio di messaggi tra i Partecipanti
+        \end{enumerate} \\ \hline
+    \textbf{Scenari alternativi} & \\ \hline
+    \textbf{Requisiti non funzionali} & \hyperref[R03N]{R03N}, \hyperref[R07N]{R07N}, \hyperref[R09N]{R09N} \\ \hline
+    \textbf{Punti aperti} & \\ \hline
+\end{tabularx}
+
+\newpage
+\subsubsection{Inserimento Commento}
+\reqlabel{tab:Inserimento Commento}
+\begin{tabularx}{\textwidth}{|X|X|}
+    \hline
+    \textbf{Titolo} & \textbf{Inserimento Commento} \\ \hline
+    \endhead
+    \textbf{Descrizione} & Alla chiusura di un Evento, un Partecipante inserisce un commento nel profilo di un altro Partecipante \\ \hline
+    \textbf{Attori} & Partecipante \\ \hline
+    \textbf{Relazioni} & 
+        \begin{itemize}[nosep, leftmargin=*]
+            \item \hyperref[tab:Autenticazione]{Autenticazione}
+            \item \hyperref[tab:Prenotazione Evento]{Prenotazione Evento}
+        \end{itemize} \\ \hline
+    \textbf{Precondizioni} & Il Partecipante deve essere iscritto all'Evento \\ \hline
+    \textbf{Postcondizioni} & Il commento viene salvato nel profilo del Partecipante destinatario \\ \hline
+    \textbf{Scenario principale} &
+        \begin{enumerate}[nosep, leftmargin=*]
+            \item \hyperref[tab:Autenticazione]{Autenticazione}
+            \item Il Partecipante seleziona l'Evento passato
+            \item Il sistema mostra la lista dei Partecipanti all'Evento
+            \item Il Partecipante seleziona il Partecipante destinatario
+            \item Il Partecipante aggiunge un commento per il Partecipante selezionato
+        \end{enumerate} \\ \hline
+    \textbf{Scenari alternativi} & \\ \hline
     \textbf{Requisiti non funzionali} & \hyperref[R03N]{R03N}, \hyperref[R07N]{R07N}, \hyperref[R09N]{R09N} \\ \hline
     \textbf{Punti aperti} & \\ \hline
 \end{tabularx}
@@ -887,16 +1019,13 @@ Per indicare ciò sono stati utilizzati colori di sfondo più scuri per indicare
 % Errori
 \section{Errori}
 \begin{itemize}[leftmargin=*]
-    \item il requisito R05F indica un limite di tre eventi non menzionato nella raccolta testuale
-    \item il requisito R22F ha una formulazione ridondante (``Commento nella sezione dei commenti``)
-    \item R02N parla di Credenziali univoche, ma le Credenziali sono una coppia di Email e Password
+    \item 
 \end{itemize}
 
 % TODO
 \section{TODO}
 \begin{itemize}[leftmargin=*]
-    \item il titolo non può essere vuoto nella raccolta dei requisiti
-    \item (per fede) mettere tutte le tabelle già costruite con gli attributi giusti
+    \item 
 \end{itemize}
 
 \end{document}
