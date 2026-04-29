@@ -475,14 +475,14 @@ Di seguito sono presentati tutti gli scenari nel loro dettaglio.
 
 \newpage
 \subsubsection{Gestione Evento}
-\reqlabel{tab:TEMPLATE}
+\reqlabel{tab:Gestione Evento}
 \begin{tabularx}{\textwidth}{|X|X|}
     \hline
     \textbf{Titolo} & \textbf{Gestione Evento} \\ \hline
     \endhead
     \textbf{Descrizione} & L'Organizzatore modifica i dettagli dell'Evento \\ \hline
     \textbf{Attori} & Organizzatore \\ \hline
-    \textbf{Relazioni} & RELAZIONE
+    \textbf{Relazioni} &
         \begin{itemize}[nosep, leftmargin=*]
             \item \hyperref[tab:Autenticazione]{Autenticazione}
         \end{itemize} \\ \hline
@@ -540,6 +540,36 @@ Di seguito sono presentati tutti gli scenari nel loro dettaglio.
                 \item L'Utente può inserire un nuovo Indirizzo
             \end{enumerate}
         \end{itemize} \\ \hline
+    \textbf{Requisiti non funzionali} & \hyperref[R03N]{R03N}, \hyperref[R07N]{R07N}, \hyperref[R09N]{R09N} \\ \hline
+    \textbf{Punti aperti} & \\ \hline
+\end{tabularx}
+
+\newpage
+\subsubsection{Rimozione Partecipante}
+\reqlabel{tab:Rimozione Partecipante}
+\begin{tabularx}{\textwidth}{|X|X|}
+    \hline
+    \textbf{Titolo} & \textbf{Rimozione Partecipante} \\ \hline
+    \endhead
+    \textbf{Descrizione} & L'Organizzatore rimuove un Partecipante dall'Evento \\ \hline
+    \textbf{Attori} & Organizzatore \\ \hline
+    \textbf{Relazioni} &
+        \begin{itemize}[nosep, leftmargin=*]
+            \item \hyperref[tab:Autenticazione]{Autenticazione}
+            \item \hyperref[tab:Gestione Evento]{Gestione Evento}
+        \end{itemize} \\ \hline
+    \textbf{Precondizioni} & L'Evento deve esistere \\ \hline
+    \textbf{Postcondizioni} & Le modifiche dell'Evento sono memorizzate nel sistema \\ \hline
+    \textbf{Scenario principale} &
+        \begin{enumerate}[nosep, leftmargin=*]
+            \item \hyperref[tab:Autenticazione]{Autenticazione}
+            \item Il sistema mostra all'Organizzatore la possibilità di rimuovere un Partecipante
+            \item L'Organizzatore seleziona il Partecipante da rimuovere
+            \item Il sistema aggiorna l'Evento rimuovendo il Partecipante
+            \item Il sistema notifica il Partecipante della rimozione dall'Evento
+            \item Il sistema memorizza le modifiche
+        \end{enumerate} \\ \hline
+    \textbf{Scenari alternativi} &
     \textbf{Requisiti non funzionali} & \hyperref[R03N]{R03N}, \hyperref[R07N]{R07N}, \hyperref[R09N]{R09N} \\ \hline
     \textbf{Punti aperti} & \\ \hline
 \end{tabularx}
