@@ -198,15 +198,15 @@ Inoltre, per facilitare l'organizzazione, tutti gli iscritti a un Evento hanno a
     \hline
     \textbf{ID} & \textbf{Requisito} & \textbf{Tipo} \\ \hline
     \endhead
-    \reqlabel{R01N}R01N & La piattaforma deve essere accessibile online & Non funzionale \\ \hline
-    \reqlabel{R02N}R02N & Le Credenziali di un Utente sono univoche & Non funzionale \\ \hline
-    \reqlabel{R03N}R03N & L'interfaccia della Bacheca deve essere essenziale ed intuitiva & Non funzionale \\ \hline
-    \reqlabel{R04N}R04N & Il fuso orario usato dall'applicazione è GMT+1 & Non funzionale \\ \hline
-    \reqlabel{R05N}R05N & Il formato di data e orario è gg/mm/aa e hh:mm 24h & Non funzionale \\ \hline
-    \reqlabel{R06N}R06N & L'applicazione deve rispettare le norme definite nel \href{https://gdpr-info.eu/}{GDPR} & Non funzionale \\ \hline
-    \reqlabel{R07N}R07N & La Bacheca globale deve essere costantemente aggiornata & Non funzionale \\ \hline
-    \reqlabel{R08N}R08N & La Password scelta dall'Utente deve essere di almeno 8 caratteri e contenere almeno un numero e un carattere speciale (\#@?!\_-) & Non funzionale \\ \hline
-    \reqlabel{R09N}R09N & La ricezione ed invio dei Messaggi deve essere istantanea & Non funzionale \\ \hline
+        {R01N}R01N & La piattaforma deve essere accessibile online & Non funzionale \\ \hline
+        {R02N}R02N & Le Credenziali di un Utente sono univoche & Non funzionale \\ \hline
+        {R03N}R03N & L'interfaccia della Bacheca deve essere essenziale ed intuitiva & Non funzionale \\ \hline
+        {R04N}R04N & Il fuso orario usato dall'applicazione è GMT+1 & Non funzionale \\ \hline
+        {R05N}R05N & Il formato di data e orario è gg/mm/aa e hh:mm 24h & Non funzionale \\ \hline
+        {R06N}R06N & L'applicazione deve rispettare le norme definite nel \href{https://gdpr-info.eu/}{GDPR} & Non funzionale \\ \hline
+        {R07N}R07N & La Bacheca globale deve essere costantemente aggiornata & Non funzionale \\ \hline
+        {R08N}R08N & La Password scelta dall'Utente deve essere di almeno 8 caratteri e contenere almeno un numero e un carattere speciale (\#@?!\_-) & Non funzionale \\ \hline
+        {R09N}R09N & La ricezione ed invio dei Messaggi deve essere istantanea & Non funzionale \\ \hline
 \end{tabularx}
 
 % Analisi del dominio
@@ -781,7 +781,14 @@ Di seguito sono presentati tutti gli scenari nel loro dettaglio.
     \hline
     \textbf{Bene} & \textbf{Valore} & \textbf{Esposizione} \\ \hline
     \endhead
-    Bene & \textbf{Molto alto.} Molto alto & \textbf{Alta.} Alta \\ \hline
+    Sistema Informativo & \textbf{Alto.} L'infrastruttura è fondamentale per garantire l'accesso alla Bacheca, la gestione delle Prenotazioni e le Chat in tempo
+        & \textbf{Alta.} L'indisponibilità di un sistema causerebbe l'interruzione del servizio e l'impossibilità per gli studenti di incontrarsi \\ \hline
+    Dati Profilo Utente e Credenziali & \textbf{Alto.} Contine dati strettamente personali tutelati dal (\href{https://gdpr-info.eu/}{GDPR}): Credenziali e informazioni fornite dall'Utente 
+        & \textbf{Alta.} In caso di furto c'è il rischio di gravi violazioni della privacy \\ \hline
+    Dati Eventi e Prenotazioni & \textbf{Molto Alto.} Questi dati rivalano l'indirizzo fisico esatto, la data e l'orario in cui un gruppo specifico di studenti si troverà
+        & \textbf{Molto Alta.} L'espoizione non autorizzata di questi dati comporta rischi per la sicurezza degli studenti \\ \hline
+    Contenuto Chat di Gruppo & \textbf{Medio.} Le chat sono canali privati accessibili esclusivamente dai Partecipanti all'Evento 
+        & \textbf{Media.} L'intercettazione dei messaggi comprometterebbe la riservatezza dell'incontro\\ \hline
 \end{tabularx}
 
 \subsection{Tabella minacce e controlli}
@@ -789,7 +796,17 @@ Di seguito sono presentati tutti gli scenari nel loro dettaglio.
     \hline
     \textbf{Minaccia} & \textbf{Probabilità} & \textbf{Controllo} & \textbf{Rischio} \\ \hline
     \endhead
-    Minaccia & \textbf{Alta.} Alta & Controllo & \textbf{Costo basso.} Costo basso \\ \hline
+    Furto Credenziali Utente & \textbf{Media.} La Mail istituzionale è nota, le passoword devono essere indovinate & Imposizione di requisiti di sicurezza sulle Password \textcolor{red}{limitazioni di tentativi di accesso}
+        & \textbf{Costo Medio-basso.} L'Utente è obbligato a memorizzare una password più difficile \\ \hline
+    Intercettazione delle comunicazioni & \textbf{Alta.} L'app viene usata in mobilità spesso su reti wi-fi universitarie o pubbliche non sempre sicure & Cifratura delle comunicazioni
+        & \textbf{Costo basso.} Le tecnologie per la cifratura del traffico web sono gratuite e facilmente integrabili \\ \hline
+    Denial of Service & \textbf{Alta.} Essendo un servizio esposto su rete pubblica, chiunque può tentare un attacco DoS & Progettazione infrastruttura adeguata 
+        & \textbf{Costo basso.} Prevenzione effettuabile attraverso la limitazione di richieste per uno stesso Utente \\ \hline
+    Accesso non autorizzato alle Chat private e Dati Evento & \textbf{Media.} Un Utente potrebbe tentare di leggere le Chat di Gruppi a cui non è iscritto manipolando le chiamate al Server 
+        & Severo controllo degli accessi, verifica che l'Utente richiedente della Chat partecipi effettivamente all'evento 
+        & \textbf{Costo basso.} Richiede attenzione nella scrittura del codice, verificare sempre il ruolo dell'Utente  \\ \hline
+    Manomissione del Database & \textbf{Bassa.} Difficile a meno di gravi falle nel codice & Mantenimento di un file di Log inalterabile e separato per le operazioni sensibili
+        & \textbf{Costo medio.} Richiede un'infrastruttura ben progettata e la creazione del componente di Log \\ \hline
 \end{tabularx}
 
 \subsection{Analisi tecnologica della sicurezza}
@@ -797,7 +814,26 @@ Di seguito sono presentati tutti gli scenari nel loro dettaglio.
     \hline
     \textbf{Tecnologia} & \textbf{Vulnerabilità} \\ \hline
     \endhead
-    Tecnologia & \begin{itemize}[nosep, leftmargin=*]
+    Autenticazione tramite Credenziali & \begin{itemize}[nosep, leftmargin=*]
+                    \item Password banali;
+                    \item Password cracking;
+                    \item Social Engineering;
+                    \item Negligenza
+                \end{itemize} \\ \hline
+    Registrazione vincolata & \begin{itemize}[nosep, leftmargin=*]
+                    \item Creazione di account fake (gli indirizzi universitari sono facilmente reperibili);
+                \end{itemize} \\ \hline
+    Sitema di Chat integrato & \begin{itemize}[nosep, leftmargin=*]
+                    \item Cross-Site Scripting (XSS);
+                    \item Iniezione di link malevoli/Phishing
+                \end{itemize} \\ \hline
+    Architettura Client/Server & \begin{itemize}[nosep, leftmargin=*]
+                    \item Attacco DoS;
+                    \item Attacco Man in the Middle;
+                    \item Sniffing della comunicazione
+                \end{itemize} \\ \hline
+
+    \textcolor{red}{Cifratura dell Comunicazioni} & \begin{itemize}[nosep, leftmargin=*]
                     \item Punto 1;
                     \item Punto 2
                 \end{itemize} \\ \hline
@@ -808,16 +844,79 @@ Di seguito sono presentati tutti gli scenari nel loro dettaglio.
 \begin{tabularx}{\textwidth}{|X|X|}
     \hline
     \textbf{Titolo} & \textbf{Controllo accesso} \\ \hline
-    \endhead
-    \textbf{Descrizione} & Descrizione \\ \hline
-    \textbf{Misuse case} & Misuse case \\ \hline
-    \textbf{Relazioni} & Relazioni \\ \hline
-    \textbf{Precondizione} & Precondizione \\ \hline
-    \textbf{Postcondizione} & Postcondizione \\ \hline
-    \textbf{Scenario Principale} & Qui le tabelle impazziscono, da fare con gemini \\ \hline
-    \textbf{Scenario di attacco avvenuto con successo} & Altro disastro \\ \hline
+    \endhead 
+    \textbf{Descrizione} & Gli accessi al sistema \\ \hline
+    \textbf{Misuse case} & Furto credenziali, sniffing \\ \hline
+    \textbf{Relazioni} & Autenticazione \\ \hline
+    \textbf{Precondizione} & L'attaccante conosce l'Email Istituzionale di un Utente \\ \hline
+    \textbf{Postcondizione} & L'accesso viene temporaneamente bloccato all'Attaccante \\ \hline
+    \textbf{Scenario Principale} & 
+    \begin{tabular}{@{}p{0.45\linewidth}|p{0.45\linewidth}@{}}
+        \textbf{Sistema} & \textbf{Attaccante} \\ \hline
+        & Dopo aver ottenuto una Email Istituzionale tenta di accedere al sistema inserendo delle password errate \\ \hline
+        Il sistema controlla le credenziali immesse e blocca temporaneamente l'accesso per quell'Account & \\ \hline
+    \end{tabular} \\ \hline
+    \textbf{Scenario di attacco avvenuto con successo} & \begin{tabular}{@{}p{0.45\linewidth}|p{0.45\linewidth}@{}}
+        \textbf{Sistema} & \textbf{Attaccante} \\ \hline
+        & Accede al sistema inserendo le credenziali corrette \\ \hline
+        Controlla le credenziali immesse e consente l'accesso & \\ \hline
+        & Naviga nel sistema come fosse l'Utente stesso \\ \hline
+        registra i Log delle operazioni dell'Utente & \\ \hline
+    \end{tabular} \\ \hline
 \end{tabularx}
-Non viene presentato lo \textbf{Scenario di attacco avvenuto con successo} dato che la versione distribuita del DoS è quasi impossibile da distinguere rispetto al normale traffico, perciò non si può contrastare.
+\vspace{1cm}
+\begin{tabularx}{\textwidth}{|X|X|}
+    \hline
+    \textbf{Titolo} & \textbf{Confidenzialità e Protezione Dati} \\ \hline
+    \endhead
+    \textbf{Descrizione} & Riservatezza dei Dati durante il trasferimento tra Client e Server \\ \hline
+    \textbf{Misuse case} & Sniffing dati, Man in the Middle \\ \hline
+    \textbf{Relazioni} & Utilizzo Chat, Visualizzazione Bacheca e Partecipante \\ \hline
+    \textbf{Precondizione} & L'attaccante ha i mezzi per intercettare il traffico di rete \\ \hline
+    \textbf{Postcondizione} & L'attaccante non ottiene nessun informazione sensibile \\ \hline
+    \textbf{Scenario Principale} & \begin{tabular}{@{}p{0.45\linewidth}|p{0.45\linewidth}@{}}
+        \textbf{Sistema} & \textbf{Attaccante} \\ \hline
+        Invia messaggi \textcolor{red}{crittografati} sulla rete per fornire i suoi servizi & \\ \hline
+        & Intercetta i pacchetti di rete in transito \\ \hline
+        & Non riesce a decifrare il contenuto dei pacchetti di rete \textcolor{red}{grazie alla cifratura} \\ \hline
+        Se il pacchetto è stato modificato viene scartato & \\ \hline 
+    \end{tabular} \\ \hline
+    \textbf{Scenario di attacco avvenuto con successo} & \begin{tabular}{@{}p{0.45\linewidth}|p{0.45\linewidth}@{}}
+        \textbf{Sistema} & \textbf{Attaccante} \\ \hline
+        Invia messaggi \textcolor{red}{crittografati} sulla rete per fornire i suoi servizi & \\ \hline
+        & Intercetta i pacchetti di rete in transito \\ \hline
+        & Riesce a decifrare i dati trasmessi e ottine la possibilita di leggere e alterare le informazioni \\ \hline
+        Riconosce i dati intercettati come validi e ne trascrive nel Log & \\ \hline
+    \end{tabular} \\ \hline
+\end{tabularx}
+\vspace{1cm}
+\begin{tabularx}{\textwidth}{|X|X|}
+    \hline
+    \textbf{Titolo} & \textbf{Integrità dei Dati} \\ \hline
+    \endhead
+    \textbf{Descrizione} & I dati persistenti devono rimanere validi per tutta la vita dell'Applicazione \\ \hline
+    \textbf{Misuse case} & Furto Credenziali, Man in the Middle \\ \hline
+    \textbf{Relazioni} & Gestione Evento, Rimozione Partecipante, Annullamento Prenotazione \\ \hline
+    \textbf{Precondizione} & L'attaccante:
+                                    \begin{itemize}[leftmargin=*]
+                                        \item ha i mezzi per intercettare e modificare i dati scambiati;
+                                        \item predispone delle credenziali di accesso di un Utente
+                                    \end{itemize} \\ \hline
+    \textbf{Postcondizione} & Il sistema rileva la non validità dei dati e preserva la sicurezza dell'applicazione \\ \hline
+    \textbf{Scenario Principale} & \begin{tabular}{@{}p{0.45\linewidth}|p{0.45\linewidth}@{}}
+        \textbf{Sistema} & \textbf{Attaccante} \\ \hline
+        & Esegue operazioni come Utente che comportano modifiche indesiderate \\ \hline
+        Memorizza le modifiche apportate in un sistema di logging & \\ \hline
+        Legge i Log ed identifica le operazioni illecite annullandole & \\ \hline
+    \end{tabular} \\ \hline
+    \textbf{Scenario di attacco avvenuto con successo} & \begin{tabular}{@{}p{0.45\linewidth}|p{0.45\linewidth}@{}}
+        \textbf{Sistema} & \textbf{Attaccante} \\ \hline
+        & Esegue operazioni come Utente che comportano modifiche indesiderate \\ \hline
+        Memorizza le modifiche apportate in un sistema di logging & \\ \hline
+        Non si accorge delle modifiche che quindi rimangono nel sistema & \\ \hline
+    \end{tabular} \\ \hline
+\end{tabularx}
+%\textcolor{red}{non viene presentato lo \textbf{Scenario di attacco avvenuto con successo} dato che la versione distribuita del DoS è quasi impossibile da distinguere rispetto al normale traffico, perciò non si può contrastare.}
 
 \subsection{Requisiti di sicurezza}
 Dall'analisi del rischio si possono evincere i seguenti ulteriori requisiti:
