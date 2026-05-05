@@ -840,45 +840,83 @@ Di seguito sono presentati tutti gli scenari nel loro dettaglio.
 \end{tabularx}
 
 \subsection{Security use case e misuse case}
-
-Per evitare problemi di impaginazione dovuti alla verbosità degli scenari, i casi d'uso di sicurezza sono presentati in formato testuale strutturato.
-
-\subsubsection*{Controllo Accessi}
-\begin{itemize}[leftmargin=*]
-    \item \textbf{Descrizione:} Gli accessi al sistema e alle funzioni sensibili devono essere controllati.
-    \item \textbf{Misuse case:} Furto credenziali, Violazione dei permessi.
-    \item \textbf{Relazioni:} Autenticazione, Gestione Evento.
-    \item \textbf{Precondizione:} L'attaccante conosce l'Email Istituzionale di un Utente e tenta di forzarne la password.
-    \item \textbf{Postcondizione:} Il sistema blocca l'accesso e traccia il tentativo anomalo nel Log.
-    \item \textbf{Scenario Principale (L'app si difende):} L'attaccante tenta di accedere inserendo password errate. Il sistema controlla le credenziali. Al terzo tentativo errato consecutivo, il sistema blocca temporaneamente l'accesso per quell'Account e registra il tentativo nel Log di sicurezza. L'attaccante non entra.
-    \item \textbf{Scenario di attacco avvenuto con successo:} L'attaccante accede al sistema con credenziali corrette (ottenute tramite phishing). Il sistema consente l'accesso. L'attaccante naviga nel sistema in modo fraudolento. Il sistema registra in modo inalterabile tutte le operazioni dell'utente nel Log, permettendo la successiva indagine.
-\end{itemize}
-
-\vspace{0.5cm}
-
-\subsubsection*{Confidenzialità e Protezione Dati}
-\begin{itemize}[leftmargin=*]
-    \item \textbf{Descrizione:} Riservatezza dei dati durante il trasferimento tra Client e Server.
-    \item \textbf{Misuse case:} Sniffing dati, Man in the Middle.
-    \item \textbf{Relazioni:} Utilizzo Chat, Visualizzazione Bacheca e Partecipante.
-    \item \textbf{Precondizione:} L'attaccante ha i mezzi per intercettare il traffico di rete (es. connesso alla stessa Wi-Fi pubblica/universitaria).
-    \item \textbf{Postcondizione:} L'attaccante non ottiene nessuna informazione sensibile.
-    \item \textbf{Scenario Principale (L'app si difende):} Il sistema invia messaggi crittografati sulla rete per fornire i suoi servizi (es. messaggi della Chat). L'attaccante intercetta i pacchetti ma non riesce a decifrarne il contenuto grazie alla cifratura HTTPS/TLS. Se il pacchetto viene manipolato, la firma non corrisponde e viene scartato dal sistema.
-    \item \textbf{Scenario di attacco avvenuto con successo:} L'attaccante riesce a forzare la decifratura e altera le informazioni in transito. Il sistema riceve i dati alterati e li elabora, ma ne trascrive il contenuto, il mittente e l'orario nel Log di sistema per permettere la rilevazione dell'anomalia.
-\end{itemize}
-
-\vspace{0.5cm}
-
-\subsubsection*{Integrità dei Dati}
-\begin{itemize}[leftmargin=*]
-    \item \textbf{Descrizione:} I dati persistenti e le regole del sistema non devono poter essere modificati da utenti non autorizzati.
-    \item \textbf{Misuse case:} Furto Credenziali, Escalation dei privilegi.
-    \item \textbf{Relazioni:} Gestione Evento, Rimozione Partecipante, Annullamento Prenotazione.
-    \item \textbf{Precondizione:} L'attaccante invia richieste API alterate al server per manipolare un Evento di cui non è Organizzatore.
-    \item \textbf{Postcondizione:} Il sistema rileva l'azione non autorizzata e preserva l'integrità del database.
-    \item \textbf{Scenario Principale (L'app si difende):} L'attaccante tenta di modificare o cancellare un Evento altrui. Il sistema verifica i permessi a livello server, rileva che l'utente non è autorizzato (non è l'Organizzatore), respinge la richiesta e logga il tentativo di manipolazione.
-    \item \textbf{Scenario di attacco avvenuto con successo:} L'attaccante, agendo con le credenziali rubate dell'Organizzatore, cancella l'Evento in modo illegittimo. Il sistema esegue l'azione credendola legittima, invia le notifiche automatiche ai Partecipanti (che si accorgeranno dell'anomalia) e memorizza le modifiche nel Log inalterabile, permettendo all'amministratore di risalire all'azione illecita.
-\end{itemize}
+% Immagine da inserire, poi tabella
+\begin{tabularx}{\textwidth}{|X|X|}
+    \hline
+    \textbf{Titolo} & \textbf{Controllo accesso} \\ \hline
+    \endhead 
+    \textbf{Descrizione} & Gli accessi al sistema \\ \hline
+    \textbf{Misuse case} & Furto credenziali, sniffing \\ \hline
+    \textbf{Relazioni} & Autenticazione \\ \hline
+    \textbf{Precondizione} & L'attaccante conosce l'Email Istituzionale di un Utente \\ \hline
+    \textbf{Postcondizione} & L'accesso viene temporaneamente bloccato all'Attaccante \\ \hline
+    \textbf{Scenario Principale} & 
+    \begin{tabular}{@{}p{0.45\linewidth}|p{0.45\linewidth}@{}}
+        \textbf{Sistema} & \textbf{Attaccante} \\ \hline
+        & Dopo aver ottenuto una Email Istituzionale tenta di accedere al sistema inserendo delle password errate \\ \hline
+        Il sistema controlla le credenziali immesse e blocca temporaneamente l'accesso per quell'Account & \\ \hline
+    \end{tabular} \\ \hline
+    \textbf{Scenario di attacco avvenuto con successo} & \begin{tabular}{@{}p{0.45\linewidth}|p{0.45\linewidth}@{}}
+        \textbf{Sistema} & \textbf{Attaccante} \\ \hline
+        & Accede al sistema inserendo le credenziali corrette \\ \hline
+        Controlla le credenziali immesse e consente l'accesso & \\ \hline
+        & Naviga nel sistema come fosse l'Utente stesso \\ \hline
+        registra i Log delle operazioni dell'Utente & \\ \hline
+    \end{tabular} \\ \hline
+\end{tabularx}
+\vspace{1cm}
+\begin{tabularx}{\textwidth}{|X|X|}
+    \hline
+    \textbf{Titolo} & \textbf{Confidenzialità e Protezione Dati} \\ \hline
+    \endhead
+    \textbf{Descrizione} & Riservatezza dei Dati durante il trasferimento tra Client e Server \\ \hline
+    \textbf{Misuse case} & Sniffing dati, Man in the Middle \\ \hline
+    \textbf{Relazioni} & Utilizzo Chat, Visualizzazione Bacheca e Partecipante \\ \hline
+    \textbf{Precondizione} & L'attaccante ha i mezzi per intercettare il traffico di rete \\ \hline
+    \textbf{Postcondizione} & L'attaccante non ottiene nessun informazione sensibile \\ \hline
+    \textbf{Scenario Principale} & \begin{tabular}{@{}p{0.45\linewidth}|p{0.45\linewidth}@{}}
+        \textbf{Sistema} & \textbf{Attaccante} \\ \hline
+        Invia messaggi \textcolor{red}{crittografati} sulla rete per fornire i suoi servizi & \\ \hline
+        & Intercetta i pacchetti di rete in transito \\ \hline
+        & Non riesce a decifrare il contenuto dei pacchetti di rete \textcolor{red}{grazie alla cifratura} \\ \hline
+        Se il pacchetto è stato modificato viene scartato & \\ \hline 
+    \end{tabular} \\ \hline
+    \textbf{Scenario di attacco avvenuto con successo} & \begin{tabular}{@{}p{0.45\linewidth}|p{0.45\linewidth}@{}}
+        \textbf{Sistema} & \textbf{Attaccante} \\ \hline
+        Invia messaggi \textcolor{red}{crittografati} sulla rete per fornire i suoi servizi & \\ \hline
+        & Intercetta i pacchetti di rete in transito \\ \hline
+        & Riesce a decifrare i dati trasmessi e ottine la possibilita di leggere e alterare le informazioni \\ \hline
+        Riconosce i dati intercettati come validi e ne trascrive nel Log & \\ \hline
+    \end{tabular} \\ \hline
+\end{tabularx}
+\vspace{1cm}
+\begin{tabularx}{\textwidth}{|X|X|}
+    \hline
+    \textbf{Titolo} & \textbf{Integrità dei Dati} \\ \hline
+    \endhead
+    \textbf{Descrizione} & I dati persistenti devono rimanere validi per tutta la vita dell'Applicazione \\ \hline
+    \textbf{Misuse case} & Furto Credenziali, Man in the Middle \\ \hline
+    \textbf{Relazioni} & Gestione Evento, Rimozione Partecipante, Annullamento Prenotazione \\ \hline
+    \textbf{Precondizione} & L'attaccante:
+                                    \begin{itemize}[leftmargin=*]
+                                        \item ha i mezzi per intercettare e modificare i dati scambiati;
+                                        \item predispone delle credenziali di accesso di un Utente
+                                    \end{itemize} \\ \hline
+    \textbf{Postcondizione} & Il sistema rileva la non validità dei dati e preserva la sicurezza dell'applicazione \\ \hline
+    \textbf{Scenario Principale} & \begin{tabular}{@{}p{0.45\linewidth}|p{0.45\linewidth}@{}}
+        \textbf{Sistema} & \textbf{Attaccante} \\ \hline
+        & Esegue operazioni come Utente che comportano modifiche indesiderate \\ \hline
+        Memorizza le modifiche apportate in un sistema di logging & \\ \hline
+        Legge i Log ed identifica le operazioni illecite annullandole & \\ \hline
+    \end{tabular} \\ \hline
+    \textbf{Scenario di attacco avvenuto con successo} & \begin{tabular}{@{}p{0.45\linewidth}|p{0.45\linewidth}@{}}
+        \textbf{Sistema} & \textbf{Attaccante} \\ \hline
+        & Esegue operazioni come Utente che comportano modifiche indesiderate \\ \hline
+        Memorizza le modifiche apportate in un sistema di logging & \\ \hline
+        Non si accorge delle modifiche che quindi rimangono nel sistema & \\ \hline
+    \end{tabular} \\ \hline
+\end{tabularx}
+%\textcolor{red}{non viene presentato lo \textbf{Scenario di attacco avvenuto con successo} dato che la versione distribuita del DoS è quasi impossibile da distinguere rispetto al normale traffico, perciò non si può contrastare.}
 
 
 \subsection{Requisiti di sicurezza}
