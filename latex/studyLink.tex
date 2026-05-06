@@ -198,15 +198,15 @@ Inoltre, per facilitare l'organizzazione, tutti gli iscritti a un Evento hanno a
     \hline
     \textbf{ID} & \textbf{Requisito} & \textbf{Tipo} \\ \hline
     \endhead
-        {R01N}R01N & La piattaforma deve essere accessibile online & Non funzionale \\ \hline
-        {R02N}R02N & Le Credenziali di un Utente sono univoche & Non funzionale \\ \hline
-        {R03N}R03N & L'interfaccia della Bacheca deve essere essenziale ed intuitiva & Non funzionale \\ \hline
-        {R04N}R04N & Il fuso orario usato dall'applicazione è GMT+1 & Non funzionale \\ \hline
-        {R05N}R05N & Il formato di data e orario è gg/mm/aa e hh:mm 24h & Non funzionale \\ \hline
-        {R06N}R06N & L'applicazione deve rispettare le norme definite nel \href{https://gdpr-info.eu/}{GDPR} & Non funzionale \\ \hline
-        {R07N}R07N & La Bacheca globale deve essere costantemente aggiornata & Non funzionale \\ \hline
-        {R08N}R08N & La Password scelta dall'Utente deve essere di almeno 8 caratteri e contenere almeno un numero e un carattere speciale (\#@?!\_-) & Non funzionale \\ \hline
-        {R09N}R09N & La ricezione ed invio dei Messaggi deve essere istantanea & Non funzionale \\ \hline
+        \reqlabel{R01N}R01N & La piattaforma deve essere accessibile online & Non funzionale \\ \hline
+        \reqlabel{R02N}R02N & Le Credenziali di un Utente sono univoche & Non funzionale \\ \hline
+        \reqlabel{R03N}R03N & L'interfaccia della Bacheca deve essere essenziale ed intuitiva & Non funzionale \\ \hline
+        \reqlabel{R04N}R04N & Il fuso orario usato dall'applicazione è GMT+1 & Non funzionale \\ \hline
+        \reqlabel{R05N}R05N & Il formato di data e orario è gg/mm/aa e hh:mm 24h & Non funzionale \\ \hline
+        \reqlabel{R06N}R06N & L'applicazione deve rispettare le norme definite nel \href{https://gdpr-info.eu/}{GDPR} & Non funzionale \\ \hline
+        \reqlabel{R07N}R07N & La Bacheca globale deve essere costantemente aggiornata & Non funzionale \\ \hline
+        \reqlabel{R08N}R08N & La Password scelta dall'Utente deve essere di almeno 8 caratteri e contenere almeno un numero e un carattere speciale (\#@?!\_-) & Non funzionale \\ \hline
+        \reqlabel{R09N}R09N & La ricezione ed invio dei Messaggi deve essere istantanea & Non funzionale \\ \hline
 \end{tabularx}
 
 % Analisi del dominio
@@ -833,10 +833,22 @@ Di seguito sono presentati tutti gli scenari nel loro dettaglio.
                     \item Sniffing della comunicazione
                 \end{itemize} \\ \hline
 
-    \textcolor{red}{Cifratura dell Comunicazioni} & \begin{itemize}[nosep, leftmargin=*]
-                    \item Punto 1;
-                    \item Punto 2
-                \end{itemize} \\ \hline
+    Cifratura delle Comunicazioni & 
+                La siurezza dipende dal tipo di cifratura:
+                \begin{enumerate}[nosep, leftmargin=*]
+                    \item Cifratura simmetrica;
+                    \begin{itemize}
+                        \item tempo di vita della chiave;
+                        \item lunghezza della chiave;
+                        \item memorizzazione della chiave;
+                        \item Più informazioni cifrate con la stessa chiave, più materiale per l'analisi del testo di un attaccante;
+                    \end{itemize}
+                    \item Punto asimmetrica;
+                    \begin{itemize}
+                        \item lunghezza della chiave;
+                        \item memorizzazione della chiave privata;
+                    \end{itemize}
+                \end{enumerate} \\ \hline
 \end{tabularx}
 
 \subsection{Security use case e misuse case}
@@ -876,9 +888,9 @@ Di seguito sono presentati tutti gli scenari nel loro dettaglio.
     \textbf{Postcondizione} & L'attaccante non ottiene nessun informazione sensibile \\ \hline
     \textbf{Scenario Principale} & \begin{tabular}{@{}p{0.45\linewidth}|p{0.45\linewidth}@{}}
         \textbf{Sistema} & \textbf{Attaccante} \\ \hline
-        Invia messaggi \textcolor{red}{crittografati} sulla rete per fornire i suoi servizi & \\ \hline
+        Invia messaggi crittografati sulla rete per fornire i suoi servizi & \\ \hline
         & Intercetta i pacchetti di rete in transito \\ \hline
-        & Non riesce a decifrare il contenuto dei pacchetti di rete \textcolor{red}{grazie alla cifratura} \\ \hline
+        & Non riesce a decifrare il contenuto dei pacchetti di rete grazie alla cifratura \\ \hline
         Se il pacchetto è stato modificato viene scartato & \\ \hline 
     \end{tabular} \\ \hline
     \textbf{Scenario di attacco avvenuto con successo} & \begin{tabular}{@{}p{0.45\linewidth}|p{0.45\linewidth}@{}}
@@ -922,23 +934,27 @@ Di seguito sono presentati tutti gli scenari nel loro dettaglio.
 \subsection{Requisiti di sicurezza}
 Dall'analisi del rischio si possono evincere i seguenti ulteriori requisiti:
 \begin{enumerate}
-    \item Creazione di un log inalterabile per tracciare alcune azioni sensibili come:
+    \item Creazione di un log inalterabile per tracciare azioni sensibili come:
     \begin{itemize}
         \item Accessi effettuati e tentativi di accesso falliti di un account;
         \item Modifica o cancellazione di Eventi da parte dell'Organizzatore;
-        \item Operazioni amministrative e critiche relative al backend.
+    \end{itemize}
+    \item Protezione da accessi indesiderati:
+    \begin{itemize}
+        \item Dopo 5 tentativi di accesso con credenziali errate, il sistema blocca temporaneamente l'accesso all'account;
     \end{itemize}
 \end{enumerate}
+\vspace{1cm}
 
 \subsection{Aggiornamento requisiti di sistema}
 \begin{tabularx}{\textwidth}{|p{2cm}|X|p{3cm}|}
     \hline
     \textbf{ID} & \textbf{Requisito} & \textbf{Tipo} \\ \hline
     \endhead
-    R22F & Il sistema registra le operazioni sensibili e i tentativi di accesso in un file di log. & Funzionale \\ \hline
-    R23F & I log di sistema possono essere inviati a un sistema esterno per l'analisi e conservazione. & Funzionale \\ \hline
-    R10N & La comunicazione tra client e server deve essere obbligatoriamente cifrata tramite protocollo HTTPS/TLS. & Non funzionale \\ \hline
-    R11N & Dopo 3 tentativi di Autenticazione falliti consecutivi, il sistema blocca l'accesso a quell'account per 15 minuti. & Non funzionale \\ \hline
+    \reqlabel{R22F}R22F & Il sistema registra le operazioni sensibili e i tentativi di accesso in un file di log. & Funzionale \\ \hline
+    \reqlabel{R23F}R23F & I log di sistema possono essere inviati a un sistema esterno per l'analisi e conservazione. & Funzionale \\ \hline
+    \reqlabel{R10N}R10N & La comunicazione tra client e server deve essere obbligatoriamente cifrata tramite protocollo HTTPS/TLS. & Non funzionale \\ \hline
+    \reqlabel{R11N}R11N & Dopo 5 tentativi di Autenticazione falliti consecutivi, il sistema blocca l'accesso a quell'account per 15 minuti. & Non funzionale \\ \hline
 \end{tabularx}
 
 \subsection{Aggiornamento vocabolario}
@@ -970,15 +986,13 @@ A seguito dell'introduzione dei controlli di sicurezza, il caso d'uso \textbf{Au
             \item L'attore è autenticato nel sistema
         \end{enumerate} \\ \hline
     \textbf{Scenari alternativi} & 
-        \begin{itemize}[nosep, leftmargin=*]
-            \item Le Credenziali sono errate
-            \begin{enumerate}[nosep, leftmargin=*]
-                \setcounter{enumi}{3}
-                \item Viene mostrato un messaggio di errore e l'Utente può reinserire le Credenziali
-                \item \textcolor{red}{[NUOVO]} Se il numero di tentativi errati supera i 3 consecutivi, il sistema blocca temporaneamente l'accesso per 15 minuti e registra l'evento nel Log.
-            \end{enumerate}
-        \end{itemize} \\ \hline
-    \textbf{Requisiti non funzionali} & \hyperref[R03N]{R03N}, \hyperref[R07N]{R07N}, \hyperref[R09N]{R09N}, \textcolor{red}{[NUOVO] R10N, R11N} \\ \hline
+        Le Credenziali sono errate
+        \begin{enumerate}[nosep, leftmargin=*]
+            \setcounter{enumi}{3}
+            \item Viene mostrato un messaggio di errore e l'Utente può reinserire le Credenzialis
+            \item Se il numero di tentativi errati supera i 5 consecutivi, il sistema blocca temporaneamente l'accesso per 15 minuti e registra l'evento nel Log.
+        \end{enumerate} \\ \hline
+    \textbf{Requisiti non funzionali} & \hyperref[R03N]{R03N}, \hyperref[R07N]{R07N}, \hyperref[R09N]{R09N}, \hyperref[R10N]{R10N}, \hyperref[R11N]{R11N} \\ \hline
     \textbf{Punti aperti} & \\ \hline
 \end{tabularx}
 
