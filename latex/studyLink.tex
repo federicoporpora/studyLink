@@ -12,7 +12,7 @@
 \usepackage{float}
 \usepackage{titlesec}
 \usepackage{enumitem}
-\usepackage{xcolor}
+\usepackage[table]{xcolor}
 
 % CARICAMENTO HYPERREF (SEMPRE PER ULTIMO)
 \usepackage{hyperref}
@@ -168,7 +168,7 @@ Inoltre, per facilitare l'organizzazione, tutti gli iscritti a un Evento hanno a
 \subsection{Requisiti funzionali}
 \begin{tabularx}{\textwidth}{|p{2cm}|X|p{3cm}|}
     \hline
-    \textbf{ID} & \textbf{Requisito} & \textbf{Tipo} \\ \hline
+    \rowcolor{studyColor} \textbf{ID} & \textbf{Requisito} & \textbf{Tipo} \\ \hline
     \endhead
     R01F & La Registrazione è ammessa solo tramite Email istituzionale & Funzionale \\ \hline
     R02F & Una persona può registrarsi, creando un Profilo Utente & Funzionale \\ \hline
@@ -196,7 +196,7 @@ Inoltre, per facilitare l'organizzazione, tutti gli iscritti a un Evento hanno a
 \subsection{Requisiti non funzionali}
 \begin{tabularx}{\textwidth}{|p{2cm}|X|p{3cm}|}
     \hline
-    \textbf{ID} & \textbf{Requisito} & \textbf{Tipo} \\ \hline
+    \rowcolor{studyColor} \textbf{ID} & \textbf{Requisito} & \textbf{Tipo} \\ \hline
     \endhead
         \reqlabel{R01N}R01N & La piattaforma deve essere accessibile online & Non funzionale \\ \hline
         \reqlabel{R02N}R02N & Le Credenziali di un Utente sono univoche & Non funzionale \\ \hline
@@ -216,7 +216,7 @@ Inoltre, per facilitare l'organizzazione, tutti gli iscritti a un Evento hanno a
 \subsection{Vocabolario}
 \begin{tabularx}{\textwidth}{|p{3cm}|X|p{3.5cm}|}
     \hline
-    \textbf{Voce} & \textbf{Definizione} & \textbf{Sinonimi} \\ \hline
+    \rowcolor{studyColor} \textbf{Voce} & \textbf{Definizione} & \textbf{Sinonimi} \\ \hline
     \endhead
     Profilo & Insieme delle informazioni personali e accademiche che rappresentano l'identità di un Utente all'interno della piattaforma & Account \\ \hline
     Registrazione & Creazione di un Profilo da parte di uno studente & \\ \hline
@@ -264,7 +264,7 @@ Di seguito sono presentati tutti gli scenari nel loro dettaglio.
 \reqlabel{tab:Registrazione}
 \begin{tabularx}{\textwidth}{|X|X|}
     \hline
-    \textbf{Titolo} & \textbf{Registrazione} \\ \hline
+    \rowcolor{studyColor} \textbf{Titolo} & \textbf{Registrazione} \\ \hline
     \endhead
     \textbf{Descrizione} & Procedura di creazione di un account Utente \\ \hline
     \textbf{Attori} & Studente \\ \hline
@@ -312,7 +312,7 @@ Di seguito sono presentati tutti gli scenari nel loro dettaglio.
 \reqlabel{tab:Autenticazione}
 \begin{tabularx}{\textwidth}{|X|X|}
     \hline
-    \textbf{Titolo} & \textbf{Autenticazione} \\ \hline
+    \rowcolor{studyColor} \textbf{Titolo} & \textbf{Autenticazione} \\ \hline
     \endhead
     \textbf{Descrizione} & L'attore inserisce le proprie Credenziali e si autentica sulla piattaforma \\ \hline
     \textbf{Attori} & Utente \\ \hline
@@ -356,7 +356,7 @@ Di seguito sono presentati tutti gli scenari nel loro dettaglio.
 \reqlabel{tab:GestioneProfilo}
 \begin{tabularx}{\textwidth}{|X|X|}
     \hline
-    \textbf{Titolo} & \textbf{Gestione profilo} \\ \hline
+    \rowcolor{studyColor} \textbf{Titolo} & \textbf{Gestione profilo} \\ \hline
     \endhead
     \textbf{Descrizione} & Inserimento, modifica o eliminazione di dati specifici dell'Utente \\ \hline
     \textbf{Attori} & Utente \\ \hline
@@ -414,7 +414,7 @@ Di seguito sono presentati tutti gli scenari nel loro dettaglio.
 \reqlabel{tab:Creazione Evento}
 \begin{tabularx}{\textwidth}{|X|X|}
     \hline
-    \textbf{Titolo} & \textbf{Creazione Evento} \\ \hline
+    \rowcolor{studyColor} \textbf{Titolo} & \textbf{Creazione Evento} \\ \hline
     \endhead
     \textbf{Descrizione} & L'Organizzatore inserisce i dettagli necessari per programmare una nuova sessione di studio \\ \hline
     \textbf{Attori} & Utente \\ \hline
@@ -476,7 +476,7 @@ Di seguito sono presentati tutti gli scenari nel loro dettaglio.
 \reqlabel{tab:Gestione Evento}
 \begin{tabularx}{\textwidth}{|X|X|}
     \hline
-    \textbf{Titolo} & \textbf{Gestione Evento} \\ \hline
+    \rowcolor{studyColor} \textbf{Titolo} & \textbf{Gestione Evento} \\ \hline
     \endhead
     \textbf{Descrizione} & L'Organizzatore modifica i dettagli dell'Evento \\ \hline
     \textbf{Attori} & Organizzatore \\ \hline
@@ -547,7 +547,7 @@ Di seguito sono presentati tutti gli scenari nel loro dettaglio.
 \reqlabel{tab:Rimozione Partecipante}
 \begin{tabularx}{\textwidth}{|X|X|}
     \hline
-    \textbf{Titolo} & \textbf{Rimozione Partecipante} \\ \hline
+    \rowcolor{studyColor} \textbf{Titolo} & \textbf{Rimozione Partecipante} \\ \hline
     \endhead
     \textbf{Descrizione} & L'Organizzatore rimuove un Partecipante dall'Evento \\ \hline
     \textbf{Attori} & Organizzatore \\ \hline
@@ -577,7 +577,7 @@ Di seguito sono presentati tutti gli scenari nel loro dettaglio.
 \reqlabel{tab:Visualizzazione Bacheca}
 \begin{tabularx}{\textwidth}{|X|X|}
     \hline
-    \textbf{Titolo} & \textbf{Visualizzazione Bacheca} \\ \hline
+    \rowcolor{studyColor} \textbf{Titolo} & \textbf{Visualizzazione Bacheca} \\ \hline
     \endhead
     \textbf{Descrizione} & L'Utente visualizza tutti gli Eventi disponibili con la possibilità di applicare Filtri \\ \hline
     \textbf{Attori} & Utente \\ \hline
@@ -611,7 +611,7 @@ Di seguito sono presentati tutti gli scenari nel loro dettaglio.
 \reqlabel{tab:Prenotazione Evento}
 \begin{tabularx}{\textwidth}{|X|X|}
     \hline
-    \textbf{Titolo} & \textbf{Prenotazione Evento} \\ \hline
+    \rowcolor{studyColor} \textbf{Titolo} & \textbf{Prenotazione Evento} \\ \hline
     \endhead
     \textbf{Descrizione} & Permette all'Utente di prenotare un Evento dalla Bacheca \\ \hline
     \textbf{Attori} & Utente \\ \hline
@@ -640,7 +640,7 @@ Di seguito sono presentati tutti gli scenari nel loro dettaglio.
 \reqlabel{tab:Visualizzazione Partecipante}
 \begin{tabularx}{\textwidth}{|X|X|}
     \hline
-    \textbf{Titolo} & \textbf{Visualizzazione Partecipante} \\ \hline
+    \rowcolor{studyColor} \textbf{Titolo} & \textbf{Visualizzazione Partecipante} \\ \hline
     \endhead
     \textbf{Descrizione} & Permette agli Utenti di visualizzare i dettagli e i commenti dei Partecipanti ad un Evento \\ \hline
     \textbf{Attori} & Utente \\ \hline
@@ -668,7 +668,7 @@ Di seguito sono presentati tutti gli scenari nel loro dettaglio.
 \reqlabel{tab:Visualizzazione Commenti}
 \begin{tabularx}{\textwidth}{|X|X|}
     \hline
-    \textbf{Titolo} & \textbf{Visualizzazione Commenti} \\ \hline
+    \rowcolor{studyColor} \textbf{Titolo} & \textbf{Visualizzazione Commenti} \\ \hline
     \endhead
     \textbf{Descrizione} & Permette all'Utente di visualizzare i commenti presenti sul suo Profilo \\ \hline
     \textbf{Attori} & Utente \\ \hline
@@ -693,7 +693,7 @@ Di seguito sono presentati tutti gli scenari nel loro dettaglio.
 \reqlabel{tab:Annullamento Prenotazione}
 \begin{tabularx}{\textwidth}{|X|X|}
     \hline
-    \textbf{Titolo} & \textbf{Annullamento Prenotazione} \\ \hline
+    \rowcolor{studyColor} \textbf{Titolo} & \textbf{Annullamento Prenotazione} \\ \hline
     \endhead
     \textbf{Descrizione} & L'Utente annulla una prenotazione effettuata in precedenza \\ \hline
     \textbf{Attori} & Utente \\ \hline
@@ -720,7 +720,7 @@ Di seguito sono presentati tutti gli scenari nel loro dettaglio.
 \reqlabel{tab:Utilizzo Chat}
 \begin{tabularx}{\textwidth}{|X|X|}
     \hline
-    \textbf{Titolo} & \textbf{Utilizzo Chat} \\ \hline
+    \rowcolor{studyColor} \textbf{Titolo} & \textbf{Utilizzo Chat} \\ \hline
     \endhead
     \textbf{Descrizione} & Permette al Partecipante di comunicare con gli altri Partecipanti ad un Evento tramite messaggi \\ \hline
     \textbf{Attori} & Partecipante \\ \hline
@@ -748,7 +748,7 @@ Di seguito sono presentati tutti gli scenari nel loro dettaglio.
 \reqlabel{tab:Inserimento Commento}
 \begin{tabularx}{\textwidth}{|X|X|}
     \hline
-    \textbf{Titolo} & \textbf{Inserimento Commento} \\ \hline
+    \rowcolor{studyColor} \textbf{Titolo} & \textbf{Inserimento Commento} \\ \hline
     \endhead
     \textbf{Descrizione} & Alla chiusura di un Evento, un Partecipante inserisce un commento nel profilo di un altro Partecipante \\ \hline
     \textbf{Attori} & Partecipante \\ \hline
@@ -779,7 +779,7 @@ Di seguito sono presentati tutti gli scenari nel loro dettaglio.
 \subsection{Tabella valutazione dei beni}
 \begin{tabularx}{\textwidth}{|X|X|X|}
     \hline
-    \textbf{Bene} & \textbf{Valore} & \textbf{Esposizione} \\ \hline
+    \rowcolor{studyColor} \textbf{Bene} & \textbf{Valore} & \textbf{Esposizione} \\ \hline
     \endhead
     Sistema Informativo & \textbf{Alto.} L'infrastruttura è fondamentale per garantire l'accesso alla Bacheca, la gestione delle Prenotazioni e le Chat in tempo
         & \textbf{Alta.} L'indisponibilità di un sistema causerebbe l'interruzione del servizio e l'impossibilità per gli studenti di incontrarsi \\ \hline
@@ -794,17 +794,17 @@ Di seguito sono presentati tutti gli scenari nel loro dettaglio.
 \subsection{Tabella minacce e controlli}
 \begin{tabularx}{\textwidth}{|X|X|X|X|}
     \hline
-    \textbf{Minaccia} & \textbf{Probabilità} & \textbf{Controllo} & \textbf{Rischio} \\ \hline
+    \rowcolor{studyColor} \textbf{Minaccia} & \textbf{Probabilità} & \textbf{Controllo} & \textbf{Rischio} \\ \hline
     \endhead
-    Furto Credenziali Utente & \textbf{Media.} La Mail istituzionale è nota, le passoword devono essere indovinate & Imposizione di requisiti di sicurezza sulle Password \textcolor{red}{limitazioni di tentativi di accesso}
+    Furto Credenziali Utente & \textbf{Media.} La Mail istituzionale è nota, le passoword devono essere indovinate & Imposizione di requisiti di sicurezza sulle Password limitazioni di tentativi di accesso
         & \textbf{Costo Medio-basso.} L'Utente è obbligato a memorizzare una password più difficile \\ \hline
     Intercettazione delle comunicazioni & \textbf{Alta.} L'app viene usata in mobilità spesso su reti wi-fi universitarie o pubbliche non sempre sicure & Cifratura delle comunicazioni
         & \textbf{Costo basso.} Le tecnologie per la cifratura del traffico web sono gratuite e facilmente integrabili \\ \hline
     Denial of Service & \textbf{Alta.} Essendo un servizio esposto su rete pubblica, chiunque può tentare un attacco DoS & Progettazione infrastruttura adeguata 
         & \textbf{Costo basso.} Prevenzione effettuabile attraverso la limitazione di richieste per uno stesso Utente \\ \hline
-    Accesso non autorizzato alle Chat private e Dati Evento & \textbf{Media.} Un Utente potrebbe tentare di leggere le Chat di Gruppi a cui non è iscritto manipolando le chiamate al Server 
-        & Severo controllo degli accessi, verifica che l'Utente richiedente della Chat partecipi effettivamente all'evento 
-        & \textbf{Costo basso.} Richiede attenzione nella scrittura del codice, verificare sempre il ruolo dell'Utente  \\ \hline
+    Accesso non autorizzato alle Chat private e Dati Evento & \textbf{Media.} Un Utente potrebbe tentare di leggere le Chat di Gruppi a cui non è iscritto manipolando le chiamate al Server
+        & Severo controllo degli accessi, verifica che l'Utente richiedente della Chat partecipi effettivamente all'evento
+        & \textbf{Costo basso.} Richiede attenzione nella scrittura del codice, verificare sempre il ruolo dell'Utente \\ \hline
     Manomissione del Database & \textbf{Bassa.} Difficile a meno di gravi falle nel codice & Mantenimento di un file di Log inalterabile e separato per le operazioni sensibili
         & \textbf{Costo medio.} Richiede un'infrastruttura ben progettata e la creazione del componente di Log \\ \hline
 \end{tabularx}
@@ -812,7 +812,7 @@ Di seguito sono presentati tutti gli scenari nel loro dettaglio.
 \subsection{Analisi tecnologica della sicurezza}
 \begin{tabularx}{\textwidth}{|X|X|}
     \hline
-    \textbf{Tecnologia} & \textbf{Vulnerabilità} \\ \hline
+    \rowcolor{studyColor} \textbf{Tecnologia} & \textbf{Vulnerabilità} \\ \hline
     \endhead
     Autenticazione tramite Credenziali & \begin{itemize}[nosep, leftmargin=*]
                     \item Password banali;
@@ -855,7 +855,7 @@ Di seguito sono presentati tutti gli scenari nel loro dettaglio.
 % Immagine da inserire, poi tabella
 \begin{tabularx}{\textwidth}{|X|X|}
     \hline
-    \textbf{Titolo} & \textbf{Controllo accesso} \\ \hline
+    \rowcolor{studyColor} \textbf{Titolo} & \textbf{Controllo accesso} \\ \hline
     \endhead 
     \textbf{Descrizione} & Gli accessi al sistema \\ \hline
     \textbf{Misuse case} & Furto credenziali, sniffing \\ \hline
@@ -879,7 +879,7 @@ Di seguito sono presentati tutti gli scenari nel loro dettaglio.
 \vspace{1cm}
 \begin{tabularx}{\textwidth}{|X|X|}
     \hline
-    \textbf{Titolo} & \textbf{Confidenzialità e Protezione Dati} \\ \hline
+    \rowcolor{studyColor} \textbf{Titolo} & \textbf{Confidenzialità e Protezione Dati} \\ \hline
     \endhead
     \textbf{Descrizione} & Riservatezza dei Dati durante il trasferimento tra Client e Server \\ \hline
     \textbf{Misuse case} & Sniffing dati, Man in the Middle \\ \hline
@@ -895,7 +895,7 @@ Di seguito sono presentati tutti gli scenari nel loro dettaglio.
     \end{tabular} \\ \hline
     \textbf{Scenario di attacco avvenuto con successo} & \begin{tabular}{@{}p{0.45\linewidth}|p{0.45\linewidth}@{}}
         \textbf{Sistema} & \textbf{Attaccante} \\ \hline
-        Invia messaggi \textcolor{red}{crittografati} sulla rete per fornire i suoi servizi & \\ \hline
+        Invia messaggi crittografati sulla rete per fornire i suoi servizi & \\ \hline
         & Intercetta i pacchetti di rete in transito \\ \hline
         & Riesce a decifrare i dati trasmessi e ottine la possibilita di leggere e alterare le informazioni \\ \hline
         Riconosce i dati intercettati come validi e ne trascrive nel Log & \\ \hline
@@ -904,7 +904,7 @@ Di seguito sono presentati tutti gli scenari nel loro dettaglio.
 \vspace{1cm}
 \begin{tabularx}{\textwidth}{|X|X|}
     \hline
-    \textbf{Titolo} & \textbf{Integrità dei Dati} \\ \hline
+    \rowcolor{studyColor} \textbf{Titolo} & \textbf{Integrità dei Dati} \\ \hline
     \endhead
     \textbf{Descrizione} & I dati persistenti devono rimanere validi per tutta la vita dell'Applicazione \\ \hline
     \textbf{Misuse case} & Furto Credenziali, Man in the Middle \\ \hline
@@ -928,7 +928,7 @@ Di seguito sono presentati tutti gli scenari nel loro dettaglio.
         Non si accorge delle modifiche che quindi rimangono nel sistema & \\ \hline
     \end{tabular} \\ \hline
 \end{tabularx}
-%\textcolor{red}{non viene presentato lo \textbf{Scenario di attacco avvenuto con successo} dato che la versione distribuita del DoS è quasi impossibile da distinguere rispetto al normale traffico, perciò non si può contrastare.}
+Non viene presentato lo \textbf{Scenario di attacco avvenuto con successo} dato che la versione distribuita del DoS è quasi impossibile da distinguere rispetto al normale traffico, perciò non si può contrastare.
 
 
 \subsection{Requisiti di sicurezza}
@@ -949,7 +949,7 @@ Dall'analisi del rischio si possono evincere i seguenti ulteriori requisiti:
 \subsection{Aggiornamento requisiti di sistema}
 \begin{tabularx}{\textwidth}{|p{2cm}|X|p{3cm}|}
     \hline
-    \textbf{ID} & \textbf{Requisito} & \textbf{Tipo} \\ \hline
+    \rowcolor{studyColor} \textbf{ID} & \textbf{Requisito} & \textbf{Tipo} \\ \hline
     \endhead
     \reqlabel{R22F}R22F & Il sistema registra le operazioni sensibili e i tentativi di accesso in un file di log. & Funzionale \\ \hline
     \reqlabel{R23F}R23F & I log di sistema possono essere inviati a un sistema esterno per l'analisi e conservazione. & Funzionale \\ \hline
@@ -960,7 +960,7 @@ Dall'analisi del rischio si possono evincere i seguenti ulteriori requisiti:
 \subsection{Aggiornamento vocabolario}
 \begin{tabularx}{\textwidth}{|p{3cm}|X|p{3.5cm}|}
     \hline
-    \textbf{Voce} & \textbf{Definizione} & \textbf{Sinonimi} \\ \hline
+    \rowcolor{studyColor} \textbf{Voce} & \textbf{Definizione} & \textbf{Sinonimi} \\ \hline
     \endhead
     Log di sistema & Registro inalterabile in cui vengono tracciate le operazioni sensibili (es. login, modifiche agli Eventi) & Registro, File di Log \\ \hline
     Voce di log & Singola riga registrata nel log di sistema, contenente data, ora, utente e azione eseguita & Entry \\ \hline
@@ -971,7 +971,7 @@ A seguito dell'introduzione dei controlli di sicurezza, il caso d'uso \textbf{Au
 
 \begin{tabularx}{\textwidth}{|X|X|}
     \hline
-    \textbf{Titolo} & \textbf{Autenticazione} \\ \hline
+    \rowcolor{studyColor} \textbf{Titolo} & \textbf{Autenticazione} \\ \hline
     \endhead
     \textbf{Descrizione} & L'attore inserisce le proprie Credenziali e si autentica sulla piattaforma \\ \hline
     \textbf{Attori} & Utente \\ \hline
