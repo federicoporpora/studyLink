@@ -13,6 +13,7 @@
 \usepackage{titlesec}
 \usepackage{enumitem}
 \usepackage[table]{xcolor}
+\usepackage{array}
 
 % CARICAMENTO HYPERREF (SEMPRE PER ULTIMO)
 \usepackage{hyperref}
@@ -1011,11 +1012,74 @@ Il file di log sarà generato da un componente interno al sistema chiamato \text
 \section{Analisi documento dei requisiti: Analisi delle funzionalità}
 
 \subsection{Tabella delle funzionalità}
+\textcolor{red}{fede metti a posto te i problemi di impaginazione con il tuo gemini linuxiano che il mio è ritardato non ce la fa; 
+                non so se vanno messi anche i non funzionali in questa tabella;
+                mancano cose dei Log, guarda doVado}
+\vspace{1cm}
 \begin{tabularx}{\textwidth}{|X|X|X|X|}
     \hline
     \textbf{Funzionalità} & \textbf{Tipo} & \textbf{Grado Complessità} & \textbf{Requisiti Collegati} \\ \hline
     \endhead
-    Funzionalita & Tipo & Grado Complessità & Requisiti Collegati \\ \hline
+    Registrazione & \begin{itemize}[nosep, leftmargin=*]
+                        \item Memoriziazione dati
+                        \item Interazione esterno
+                    \end{itemize} & Semplice & R01F, R02F \\ \hline
+    Autenticazione & \begin{itemize}[nosep, leftmargin=*]
+                        \item Gestione dati
+                        \item Interazione esterno
+                    \end{itemize} & Semplice & R03F \\ \hline
+    Creazione evento & \begin{itemize}[nosep, leftmargin=*]
+                        \item Memorizzazione dati
+                        \item Interazione esterno
+                    \end{itemize} & Semplice & R05F, R06F, R07F, R08F, R15F \\ \hline
+    Gestione evento & \begin{itemize}[nosep, leftmargin=*]
+                        \item Gestione e memorizzazione dati
+                        \item Interazione esterno
+                    \end{itemize} & Complesso & R05F, R06F, R07F, R08F, R09F, R16F, R17F, R18F \\ \hline
+    Cancellazione evento & \begin{itemize}[nosep, leftmargin=*]
+                        \item Gestione dati
+                        \item Interazione esterno
+                    \end{itemize} & Semplice & R16F, R17F \\ \hline
+    Modifica evento & \begin{itemize}[nosep, leftmargin=*]
+                        \item Gestione dati
+                        \item Interazione esterno
+                    \end{itemize} & Semplice & R05F, R06F, R08F, R16F \\ \hline
+    Rimozione partecipante & \begin{itemize}[nosep, leftmargin=*]
+                        \item Gestione dati
+                        \item Interazione esterno
+                    \end{itemize} & Semplice & R12F, R18F \\ \hline
+    Invio notifica & \begin{itemize}[nosep, leftmargin=*]
+                        \item Interazione esterno
+                    \end{itemize} & Semplice & R12F, R16F, R17F, R18F \\ \hline
+    Gestione profilo & \begin{itemize}[nosep, leftmargin=*]
+                        \item Gestione e memorizzazione dati
+                        \item Interazione esterno
+                    \end{itemize} & Complesso & R04F, R13F, R20F, R21F \\ \hline
+    Visualizzazione commenti & \begin{itemize}[nosep, leftmargin=*]
+                        \item Interazione esterno
+                    \end{itemize} & Semplice & R04F, R13F, R20F \\ \hline
+    Visualizzazione bacheca & \begin{itemize}[nosep, leftmargin=*]
+                        \item Interazione esterno
+                    \end{itemize} & Semplice & R07F, R08F, R09F, R11F, R12F \\ \hline
+    Visualizzazione partecipante & \begin{itemize}[nosep, leftmargin=*]
+                        \item Interazione esterno
+                    \end{itemize} & Semplice & R04F, R13F, R20F \\ \hline
+    Prenotazione evento & \begin{itemize}[nosep, leftmargin=*]
+                        \item Gestione dati
+                        \item Interazione esterno
+                    \end{itemize} & Semplice & R12F, R14F, R15F \\ \hline
+    Annullamento prenotazione & \begin{itemize}[nosep, leftmargin=*]
+                        \item Gestione dati
+                        \item Interazione esterno
+                    \end{itemize} & Semplice & R14F, R15F \\ \hline
+    Utilizzo chat & \begin{itemize}[nosep, leftmargin=*]
+                        \item Gestione e memorizzazione dati
+                        \item Interazione esterno
+                    \end{itemize} & Complesso & R19F \\ \hline
+    Inserimento commento & \begin{itemize}[nosep, leftmargin=*]
+                        \item Memorizzazione dati
+                        \item Interazione esterno
+                    \end{itemize} & Semplice & R04F, R20F \\ \hline
 \end{tabularx}
 
 \subsection{Tabelle informazioni/flusso}
