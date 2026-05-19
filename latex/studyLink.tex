@@ -468,7 +468,7 @@ Di seguito sono presentati tutti gli scenari nel loro dettaglio.
                 \item L'Utente può inserire un nuovo Indirizzo
             \end{enumerate}
         \end{itemize} \\ \hline
-    \textbf{Requisiti non funzionali} & \hyperref[R05N]{R05N}, \hyperref[R06N]{R06N}, \hyperref[R07N]{R07N}, \hyperref[R08N]{R08N} (fatti a caso) \\ \hline
+    \textbf{Requisiti non funzionali} & \hyperref[R04N]{R04N}, \hyperref[R05N]{R05N}, \hyperref[R07N]{R07N} \\ \hline
     \textbf{Punti aperti} & \\ \hline
 \end{tabularx}
 
@@ -1012,7 +1012,6 @@ Il file di log sarà generato da un componente interno al sistema chiamato \text
 \section{Analisi documento dei requisiti: Analisi delle funzionalità}
 
 \subsection{Tabella delle funzionalità}
-Manca la parte di Log (guardare doVado)
 
 \begin{tabularx}{\textwidth}{|X|X|X|X|}
     \hline
@@ -1078,62 +1077,519 @@ Manca la parte di Log (guardare doVado)
                         \item Memorizzazione dati;
                         \item Interazione esterno;
                     \end{itemize} & Semplice & \hyperref[R04F]{R04F}, \hyperref[R20F]{R20F} \\ \hline
+    Registrazione Log & \begin{itemize}[nosep, leftmargin=*]
+                        \item Memorizzazione dati;
+                    \end{itemize} & Semplice & \hyperref[R22F]{R22F} \\ \hline
+    Esportazione Log & \begin{itemize}[nosep, leftmargin=*]
+                        \item Interazione esterno;
+                    \end{itemize} & Semplice & \hyperref[R23F]{R23F} \\ \hline
 \end{tabularx}
 
 \subsection{Tabelle informazioni/flusso}
+Di seguito, saranno riportate le scomposizioni delle informazioni composte per rendere più leggibili le diverse tabelle informazioni/flusso.
 
+\subsubsection{Informazione: Profilo} \label{Profilo}
+L'informazione \hyperref[Profilo]{Profilo} è composta da:
+\begin{tabularx}{\textwidth}{|X|X|X|X|}
+    \hline
+    \rowcolor{studyColor} \textbf{Informazione} & \textbf{Tipo} & \textbf{Livello protezione / Privacy} & \textbf{Vincoli} \\ \hline
+    \endhead
+    Nome & semplice & Protezione media & Non più di 40 caratteri \\ \hline
+    Cognome & semplice & Protezione media & Non più di 40 caratteri \\ \hline
+    Corso di studi & semplice & Protezione media & Non più di 50 caratteri \\ \hline
+    Biografia & semplice & Protezione media & Non più di 250 caratteri \\ \hline
+    Immagine & semplice & Protezione media & Percorso file valido, non più di x Mb \\ \hline
+    Commento & composto & Protezione media & \\ \hline
+\end{tabularx}
+
+\subsubsection{Informazione: Credenziali} \label{Credenziali}
+L'informazione \hyperref[Credenziali]{Credenziali} è composta da:
+\begin{tabularx}{\textwidth}{|X|X|X|X|}
+    \hline
+    \rowcolor{studyColor} \textbf{Informazione} & \textbf{Tipo} & \textbf{Livello protezione / Privacy} & \textbf{Vincoli} \\ \hline
+    \endhead
+    Email & semplice & Protezione alta & Email istituzionale universitaria valida (es. @studio.unibo.it) \\ \hline
+    Password & semplice & Protezione alta & Almeno 8 caratteri, contenente un numero e un carattere speciale \\ \hline
+\end{tabularx}
+
+\subsubsection{Informazione: Evento} \label{Evento}
+L'informazione \hyperref[Evento]{Evento} è composta da:
+\begin{tabularx}{\textwidth}{|X|X|X|X|}
+    \hline
+    \rowcolor{studyColor} \textbf{Informazione} & \textbf{Tipo} & \textbf{Livello protezione / Privacy} & \textbf{Vincoli} \\ \hline
+    \endhead
+    Titolo & semplice & Protezione media & Non più di 50 caratteri \\ \hline
+    Materia & semplice & Protezione media & Non più di 100 caratteri \\ \hline
+    Data & semplice & Protezione media & Nel formato GG/MM/AAAA \\ \hline
+    Orario & semplice & Protezione media & Nel formato HH:MM \\ \hline
+    Indirizzo & composto & Protezione alta & \\ \hline
+    Tipo di Luogo & semplice & Protezione media & Valore scelto tra Pubblico o Privato \\ \hline
+    Numero posti & semplice & Protezione media & Non più di 100 persone \\ \hline
+\end{tabularx}
+
+\subsubsection{Informazione: Indirizzo} \label{Indirizzo}
+L'informazione \hyperref[Indirizzo]{Indirizzo} è composta da:
+\begin{tabularx}{\textwidth}{|X|X|X|X|}
+    \hline
+    \rowcolor{studyColor} \textbf{Informazione} & \textbf{Tipo} & \textbf{Livello protezione / Privacy} & \textbf{Vincoli} \\ \hline
+    \endhead
+    Via & semplice & Protezione alta & Non più di 100 caratteri \\ \hline
+    Nome struttura o aula & semplice & Protezione alta & Non più di 100 caratteri \\ \hline
+\end{tabularx}
+
+\subsubsection{Informazione: Bacheca} \label{Bacheca}
+L'informazione \hyperref[Bacheca]{Bacheca} è composta da:
+\begin{tabularx}{\textwidth}{|X|X|X|X|}
+    \hline
+    \rowcolor{studyColor} \textbf{Informazione} & \textbf{Tipo} & \textbf{Livello protezione / Privacy} & \textbf{Vincoli} \\ \hline
+    \endhead
+    Evento & composto & Protezione media & \\ \hline
+\end{tabularx}
+
+\subsubsection{Informazione: Prenotazione} \label{Prenotazione}
+L'informazione \hyperref[Prenotazione]{Prenotazione} è composta da:
+\begin{tabularx}{\textwidth}{|X|X|X|X|}
+    \hline
+    \rowcolor{studyColor} \textbf{Informazione} & \textbf{Tipo} & \textbf{Livello protezione / Privacy} & \textbf{Vincoli} \\ \hline
+    \endhead
+    Profilo & composto & Protezione alta & \\ \hline
+    Evento & composto & Protezione alta & \\ \hline
+    Data prenotazione & semplice & Protezione media & Nel formato GG/MM/AAAA HH:MM \\ \hline
+\end{tabularx}
+
+\subsubsection{Informazione: Filtro} \label{Filtro}
+L'informazione \hyperref[Filtro]{Filtro} è composta da:
+\begin{tabularx}{\textwidth}{|X|X|X|X|}
+    \hline
+    \rowcolor{studyColor} \textbf{Informazione} & \textbf{Tipo} & \textbf{Livello protezione / Privacy} & \textbf{Vincoli} \\ \hline
+    \endhead
+    Data & semplice & Protezione media & Nel formato GG/MM/AAAA \\ \hline
+    Indirizzo & composto & Protezione media & \\ \hline
+    Tipo di Luogo & semplice & Protezione media & Valore scelto tra Pubblico o Privato \\ \hline
+    Numero posti & semplice & Protezione media & Valore intero maggiore o uguale a 0 \\ \hline
+\end{tabularx}
+
+\subsubsection{Informazione: Commento} \label{Commento}
+L'informazione \hyperref[Commento]{Commento} è composta da:
+\begin{tabularx}{\textwidth}{|X|X|X|X|}
+    \hline
+    \rowcolor{studyColor} \textbf{Informazione} & \textbf{Tipo} & \textbf{Livello protezione / Privacy} & \textbf{Vincoli} \\ \hline
+    \endhead
+    Profilo & composto & Protezione media & \\ \hline
+    Profilo & composto & Protezione media & \\ \hline
+    Testo & semplice & Protezione media & Massimo 500 caratteri \\ \hline
+    Valutazione & semplice & Protezione media & Valore numerico indicante valutazione positiva o negativa \\ \hline
+\end{tabularx}
+
+\subsubsection{Informazione: Chat} \label{Chat}
+L'informazione \hyperref[Chat]{Chat} è composta da:
+\begin{tabularx}{\textwidth}{|X|X|X|X|}
+    \hline
+    \rowcolor{studyColor} \textbf{Informazione} & \textbf{Tipo} & \textbf{Livello protezione / Privacy} & \textbf{Vincoli} \\ \hline
+    \endhead
+    Messaggio & composto & Protezione alta & \\ \hline
+    Evento & composto & Protezione alta & \\ \hline
+\end{tabularx}
+
+\subsubsection{Informazione: Messaggio} \label{Messaggio}
+L'informazione \hyperref[Messaggio]{Messaggio} è composta da:
+\begin{tabularx}{\textwidth}{|X|X|X|X|}
+    \hline
+    \rowcolor{studyColor} \textbf{Informazione} & \textbf{Tipo} & \textbf{Livello protezione / Privacy} & \textbf{Vincoli} \\ \hline
+    \endhead
+    Profilo & composto & Protezione alta & \\ \hline
+    Testo & semplice & Protezione alta & Massimo 1000 caratteri \\ \hline
+    Data e ora & semplice & Protezione alta & Nel formato GG/MM/AAAA HH:MM \\ \hline
+\end{tabularx}
+
+\subsubsection{Informazione: Notifica} \label{Notifica}
+L'informazione \hyperref[Notifica]{Notifica} è composta da:
+\begin{tabularx}{\textwidth}{|X|X|X|X|}
+    \hline
+    \rowcolor{studyColor} \textbf{Informazione} & \textbf{Tipo} & \textbf{Livello protezione / Privacy} & \textbf{Vincoli} \\ \hline
+    \endhead
+    Avviso & composto & Protezione alta & \\ \hline
+    Data e ora & semplice & Protezione alta & Nel formato GG/MM/AAAA HH:MM \\ \hline
+\end{tabularx}
+
+\subsubsection{Informazione: Avviso} \label{Avviso}
+L'informazione \hyperref[Avviso]{Avviso} è composta da:
+\begin{tabularx}{\textwidth}{|X|X|X|X|}
+    \hline
+    \rowcolor{studyColor} \textbf{Informazione} & \textbf{Tipo} & \textbf{Livello protezione / Privacy} & \textbf{Vincoli} \\ \hline
+    \endhead
+    Testo & semplice & Protezione alta & Massimo 255 caratteri \\ \hline
+    Tipo & semplice & Protezione alta & Identificativo della tipologia di avviso \\ \hline
+\end{tabularx}
+
+\subsubsection{Informazione: Log di sistema} \label{Log di sistema}
+L'informazione \hyperref[Log di sistema]{Log di sistema} è composta da:
+\begin{tabularx}{\textwidth}{|X|X|X|X|}
+    \hline
+    \rowcolor{studyColor} \textbf{Informazione} & \textbf{Tipo} & \textbf{Livello protezione / Privacy} & \textbf{Vincoli} \\ \hline
+    \endhead
+    Voce di log & composto & Protezione alta & \\ \hline
+\end{tabularx}
+
+\subsubsection{Informazione: Voce di log} \label{Voce di log}
+L'informazione \hyperref[Voce di log]{Voce di log} è composta da:
+\begin{tabularx}{\textwidth}{|X|X|X|X|}
+    \hline
+    \rowcolor{studyColor} \textbf{Informazione} & \textbf{Tipo} & \textbf{Livello protezione / Privacy} & \textbf{Vincoli} \\ \hline
+    \endhead
+    Data & semplice & Protezione alta & Nel formato GG/MM/AAAA \\ \hline
+    Ora & semplice & Protezione alta & Nel formato HH:MM \\ \hline
+    Profilo & composto & Protezione alta & \\ \hline
+    Azione & semplice & Protezione alta & Descrizione dell'operazione effettuata \\ \hline
+\end{tabularx}
+
+
+\subsubsection{Tabella Informazioni / Flusso: Registrazione}
+\begin{tabularx}{\textwidth}{|X|X|X|X|X|}
+    \hline
+    \rowcolor{studyColor} \textbf{Informazione} & \textbf{Tipo} & \textbf{Livello protezione / Privacy} & \textbf{Input / Output} & \textbf{Vincoli} \\ \hline
+    \endhead
+    Email & semplice & Protezione alta & Input & Email istituzionale universitaria (es. @studio.unibo.it) \\ \hline
+    Password & semplice & Protezione alta & Input & Almeno 8 caratteri, contenente un numero e un carattere speciale (R08N) \\ \hline
+    Profilo & composto & Protezione media & Output & \\ \hline
+\end{tabularx}
+
+\subsubsection{Tabella Informazioni / Flusso: Autenticazione}
+\begin{tabularx}{\textwidth}{|X|X|X|X|X|}
+    \hline
+    \rowcolor{studyColor} \textbf{Informazione} & \textbf{Tipo} & \textbf{Livello protezione / Privacy} & \textbf{Input / Output} & \textbf{Vincoli} \\ \hline
+    \endhead
+    Email & semplice & Protezione alta & Input & Email utilizzata in fase di registrazione \\ \hline
+    Password & semplice & Protezione alta & Input & Password associata all'account \\ \hline
+    Profilo & composto & Protezione media & Output & \\ \hline
+\end{tabularx}
+
+\subsubsection{Tabella Informazioni / Flusso: Creazione evento}
+\begin{tabularx}{\textwidth}{|X|X|X|X|X|}
+    \hline
+    \rowcolor{studyColor} \textbf{Informazione} & \textbf{Tipo} & \textbf{Livello protezione / Privacy} & \textbf{Input / Output} & \textbf{Vincoli} \\ \hline
+    \endhead
+    Titolo & semplice & Protezione media & Input & Non più di 50 caratteri \\ \hline
+    Materia & semplice & Protezione media & Input & Non più di 100 caratteri \\ \hline
+    Data & semplice & Protezione media & Input & Nel formato GG/MM/AAAA \\ \hline
+    Orario & semplice & Protezione media & Input & Nel formato HH:MM \\ \hline
+    Indirizzo & composto & Protezione alta & Input & \\ \hline
+    Tipo di Luogo & semplice & Protezione media & Input & Valore scelto tra Pubblico o Privato \\ \hline
+    Numero posti & semplice & Protezione media & Input & Valore intero maggiore o uguale a 0 \\ \hline
+    Evento & composto & Protezione media & Output & \\ \hline
+\end{tabularx}
+
+\subsubsection{Tabella Informazioni / Flusso: Gestione evento}
+\begin{tabularx}{\textwidth}{|X|X|X|X|X|}
+    \hline
+    \rowcolor{studyColor} \textbf{Informazione} & \textbf{Tipo} & \textbf{Livello protezione / Privacy} & \textbf{Input / Output} & \textbf{Vincoli} \\ \hline
+    \endhead
+    Evento & composto & Protezione media & Input & \\ \hline
+    Evento & composto & Protezione media & Output & \\ \hline
+    Notifica & composto & Protezione alta & Output & \\ \hline
+\end{tabularx}
+
+\subsubsection{Tabella Informazioni / Flusso: Cancellazione evento}
+\begin{tabularx}{\textwidth}{|X|X|X|X|X|}
+    \hline
+    \rowcolor{studyColor} \textbf{Informazione} & \textbf{Tipo} & \textbf{Livello protezione / Privacy} & \textbf{Input / Output} & \textbf{Vincoli} \\ \hline
+    \endhead
+    Evento & composto & Protezione media & Input & \\ \hline
+    Notifica & composto & Protezione alta & Output & \\ \hline
+\end{tabularx}
+
+\subsubsection{Tabella Informazioni / Flusso: Modifica evento}
+\begin{tabularx}{\textwidth}{|X|X|X|X|X|}
+    \hline
+    \rowcolor{studyColor} \textbf{Informazione} & \textbf{Tipo} & \textbf{Livello protezione / Privacy} & \textbf{Input / Output} & \textbf{Vincoli} \\ \hline
+    \endhead
+    Evento & composto & Protezione media & Input & \\ \hline
+    Evento & composto & Protezione media & Output & \\ \hline
+    Notifica & composto & Protezione alta & Output & \\ \hline
+\end{tabularx}
+
+\subsubsection{Tabella Informazioni / Flusso: Rimozione partecipante}
+\begin{tabularx}{\textwidth}{|X|X|X|X|X|}
+    \hline
+    \rowcolor{studyColor} \textbf{Informazione} & \textbf{Tipo} & \textbf{Livello protezione / Privacy} & \textbf{Input / Output} & \textbf{Vincoli} \\ \hline
+    \endhead
+    Profilo & composto & Protezione alta & Input & \\ \hline
+    Evento & composto & Protezione media & Input/Output & \\ \hline
+    Notifica & composto & Protezione alta & Output & \\ \hline
+\end{tabularx}
+
+\subsubsection{Tabella Informazioni / Flusso: Invio notifica}
+\begin{tabularx}{\textwidth}{|X|X|X|X|X|}
+    \hline
+    \rowcolor{studyColor} \textbf{Informazione} & \textbf{Tipo} & \textbf{Livello protezione / Privacy} & \textbf{Input / Output} & \textbf{Vincoli} \\ \hline
+    \endhead
+    Avviso & composto & Protezione alta & Input & \\ \hline
+    Notifica & composto & Protezione alta & Output & \\ \hline
+\end{tabularx}
+
+\subsubsection{Tabella Informazioni / Flusso: Gestione profilo}
+\begin{tabularx}{\textwidth}{|X|X|X|X|X|}
+    \hline
+    \rowcolor{studyColor} \textbf{Informazione} & \textbf{Tipo} & \textbf{Livello protezione / Privacy} & \textbf{Input / Output} & \textbf{Vincoli} \\ \hline
+    \endhead
+    Profilo & composto & Protezione media & Input & \\ \hline
+    Profilo & composto & Protezione media & Output & \\ \hline
+\end{tabularx}
+
+\subsubsection{Tabella Informazioni / Flusso: Visualizzazione commenti}
+\begin{tabularx}{\textwidth}{|X|X|X|X|X|}
+    \hline
+    \rowcolor{studyColor} \textbf{Informazione} & \textbf{Tipo} & \textbf{Livello protezione / Privacy} & \textbf{Input / Output} & \textbf{Vincoli} \\ \hline
+    \endhead
+    Profilo & composto & Protezione media & Input & \\ \hline
+    Commento & composto & Protezione media & Output & \\ \hline
+\end{tabularx}
+
+\subsubsection{Tabella Informazioni / Flusso: Visualizzazione bacheca}
+\begin{tabularx}{\textwidth}{|X|X|X|X|X|}
+    \hline
+    \rowcolor{studyColor} \textbf{Informazione} & \textbf{Tipo} & \textbf{Livello protezione / Privacy} & \textbf{Input / Output} & \textbf{Vincoli} \\ \hline
+    \endhead
+    Filtro & composto & Protezione media & Input & \\ \hline
+    Bacheca & composto & Protezione media & Output & \\ \hline
+\end{tabularx}
+
+\subsubsection{Tabella Informazioni / Flusso: Visualizzazione partecipante}
+\begin{tabularx}{\textwidth}{|X|X|X|X|X|}
+    \hline
+    \rowcolor{studyColor} \textbf{Informazione} & \textbf{Tipo} & \textbf{Livello protezione / Privacy} & \textbf{Input / Output} & \textbf{Vincoli} \\ \hline
+    \endhead
+    Profilo & composto & Protezione media & Input & \\ \hline
+    Profilo & composto & Protezione media & Output & \\ \hline
+\end{tabularx}
+
+\subsubsection{Tabella Informazioni / Flusso: Prenotazione evento}
+\begin{tabularx}{\textwidth}{|X|X|X|X|X|}
+    \hline
+    \rowcolor{studyColor} \textbf{Informazione} & \textbf{Tipo} & \textbf{Livello protezione / Privacy} & \textbf{Input / Output} & \textbf{Vincoli} \\ \hline
+    \endhead
+    Evento & composto & Protezione media & Input & \\ \hline
+    Prenotazione & composto & Protezione alta & Output & \\ \hline
+\end{tabularx}
+
+\subsubsection{Tabella Informazioni / Flusso: Annullamento prenotazione}
+\begin{tabularx}{\textwidth}{|X|X|X|X|X|}
+    \hline
+    \rowcolor{studyColor} \textbf{Informazione} & \textbf{Tipo} & \textbf{Livello protezione / Privacy} & \textbf{Input / Output} & \textbf{Vincoli} \\ \hline
+    \endhead
+    Prenotazione & composto & Protezione alta & Input & \\ \hline
+    Evento & composto & Protezione media & Output & \\ \hline
+\end{tabularx}
+
+\subsubsection{Tabella Informazioni / Flusso: Utilizzo chat}
+\begin{tabularx}{\textwidth}{|X|X|X|X|X|}
+    \hline
+    \rowcolor{studyColor} \textbf{Informazione} & \textbf{Tipo} & \textbf{Livello protezione / Privacy} & \textbf{Input / Output} & \textbf{Vincoli} \\ \hline
+    \endhead
+    Messaggio & composto & Protezione alta & Input & \\ \hline
+    Chat & composto & Protezione alta & Output & \\ \hline
+\end{tabularx}
+
+\subsubsection{Tabella Informazioni / Flusso: Inserimento commento}
+\begin{tabularx}{\textwidth}{|X|X|X|X|X|}
+    \hline
+    \rowcolor{studyColor} \textbf{Informazione} & \textbf{Tipo} & \textbf{Livello protezione / Privacy} & \textbf{Input / Output} & \textbf{Vincoli} \\ \hline
+    \endhead
+    Testo & semplice & Protezione media & Input & Massimo 500 caratteri \\ \hline
+    Valutazione & semplice & Protezione media & Input & Valore numerico indicante valutazione positiva o negativa \\ \hline
+    Commento & composto & Protezione media & Output & \\ \hline
+\end{tabularx}
+
+\subsubsection{Tabella Informazioni / Flusso: Registrazione Log}
+\begin{tabularx}{\textwidth}{|X|X|X|X|X|}
+    \hline
+    \rowcolor{studyColor} \textbf{Informazione} & \textbf{Tipo} & \textbf{Livello protezione / Privacy} & \textbf{Input / Output} & \textbf{Vincoli} \\ \hline
+    \endhead
+    Data & semplice & Protezione media & Input & Non più di 40 caratteri \\ \hline
+    Ora & semplice & Protezione media & Input & Non più di 40 caratteri \\ \hline
+    Operazione eseguita & composto & Protezione alta & Input & \\ \hline
+    Messaggio & composto & Protezione molto alta & Input & \\ \hline
+\end{tabularx}
+
+\subsubsection{Tabella Informazioni / Flusso: Esportazione Log}
+\begin{tabularx}{\textwidth}{|X|X|X|X|X|}
+    \hline
+    \rowcolor{studyColor} \textbf{Informazione} & \textbf{Tipo} & \textbf{Livello protezione / Privacy} & \textbf{Input / Output} & \textbf{Vincoli} \\ \hline
+    \endhead
+    Segnalazione & composto & Protezione bassa & Output & \\ \hline
+\end{tabularx}
 
 % Analisi documento dei requisiti: Analisi dei vincoli
 \newpage
 \section{Analisi documento dei requisiti: Analisi dei vincoli}
 
 \subsection{Tabella dei vincoli}
+\begin{tabularx}{\textwidth}{|X|X|X|X|}
+    \hline
+    \rowcolor{studyColor} \textbf{Requisito} & \textbf{Categorie} & \textbf{Impatto} & \textbf{Funzionalità} \\ \hline
+    \endhead
+    Accessibilità online (R01N) & Disponibilità & Garantire continuità del servizio & Tutte \\ \hline
+    Univocità credenziali (R02N) & Sicurezza & Migliora l'integrità dei dati & Registrazione, Autenticazione \\ \hline
+    Interfaccia intuitiva (R03N) & Usabilità & Cercare di migliorare & Visualizzazione Bacheca, Tutte \\ \hline
+    Fuso orario GMT+1 (R04N) & Usabilità & Standardizzazione e chiarezza & Creazione Evento, Gestione Evento, Tutte \\ \hline
+    Formato data e ora (R05N) & Usabilità & Standardizzazione e chiarezza & Creazione Evento, Gestione Evento, Tutte \\ \hline
+    Rispetto GDPR (R06N) & Sicurezza & Migliorano la privacy dei dati & Gestione Profilo, Tutte \\ \hline
+    Bacheca aggiornata (R07N) & Tempo di risposta & Cercare di migliorare & Visualizzazione Bacheca \\ \hline
+    Password sicura (R08N) & Sicurezza & Peggiorano usabilità, migliorano la privacy dei dati & Registrazione, Autenticazione, Gestione Profilo \\ \hline
+    Messaggi istantanei (R09N) & Tempo di risposta & Cercare di migliorare & Utilizzo Chat \\ \hline
+    Cifratura HTTPS/TLS (R10N) & Sicurezza & Peggiorano tempo di risposta, migliorano la privacy dei dati & Tutte \\ \hline
+    Blocco account (R11N) & Sicurezza & Peggiorano tempo di risposta e usabilità, migliorano la privacy dei dati & Autenticazione \\ \hline
+\end{tabularx}
 
 % Analisi documento dei requisiti: Analisi delle interazioni
 \newpage
 \section{Analisi documento dei requisiti: Analisi delle interazioni}
 
 \subsection{Tabella delle maschere}
+\begin{tabularx}{\textwidth}{|p{4.5cm}|X|p{4cm}|}
+    \hline
+    \rowcolor{studyColor} \textbf{Maschera} & \textbf{Informazioni} & \textbf{Funzionalità} \\ \hline
+    \endhead
+    View Autenticazione & Email, Password & Autenticazione \\ \hline
+    View Registrazione & Nome, Cognome, Corso di studi, Email, Password & Registrazione \\ \hline
+    Home Bacheca & Filtro (Data, Indirizzo, Tipo di Luogo, Numero posti), Elenco degli Eventi & Visualizzazione bacheca \\ \hline
+    View Dettaglio Evento & Titolo, Materia, Data, Orario, Indirizzo, Tipo di Luogo, Numero posti, Elenco Partecipanti & Visualizzazione bacheca, Prenotazione evento, Annullamento prenotazione \\ \hline
+    View Creazione Evento & Titolo, Materia, Data, Orario, Indirizzo, Tipo di Luogo, Numero posti & Creazione evento \\ \hline
+    View Gestione Evento & Dati Evento precompilati, Elenco Partecipanti (con opzione di rimozione) & Gestione evento, Rimozione partecipante, Cancellazione evento \\ \hline
+    View Profilo Personale & Nome, Cognome, Corso di studi, Biografia, Immagine, Commenti ricevuti & Gestione profilo, Visualizzazione commenti \\ \hline
+    View Modifica Profilo & Nome, Cognome, Corso di studi, Biografia, Immagine, Password & Gestione profilo \\ \hline
+    View Profilo Partecipante & Nome, Cognome, Corso di studi, Biografia, Immagine, Commenti & Visualizzazione partecipante, Visualizzazione commenti \\ \hline
+    Home Elenco Chat & Elenco degli Eventi a cui si è iscritti con relative Notifiche & Utilizzo chat \\ \hline
+    View Chat Evento & Cronologia Messaggi, Input nuovo messaggio & Utilizzo chat \\ \hline
+    View Inserimento Commento & Profilo del destinatario, Testo del commento, Valutazione & Inserimento commento \\ \hline
+    Home Log & Scelta del tipo di analisi o visione del registro delle operazioni & AnalisiLog (sistema esterno) \\ \hline
+\end{tabularx}
 
 \subsection{Tabella dei sistemi esterni}
+\begin{tabularx}{\textwidth}{|p{3cm}|X|p{4cm}|p{3.5cm}|}
+    \hline
+    \rowcolor{studyColor} \textbf{Sistema} & \textbf{Descrizione} & \textbf{Protocollo di Interazione} & \textbf{Livello di Sicurezza} \\ \hline
+    \endhead
+    AnalisiLog & Sistema esterno che si occupa della ricezione, conservazione e analisi dei log generati dall'applicazione & L'applicazione invia i log in formato strutturato tramite connessione sicura HTTPS. L'interazione è unidirezionale (solo invio) & Alto livello di sicurezza per proteggere l'integrità dei record e i dati sensibili degli Utenti tracciati \\ \hline
+\end{tabularx}
 
 % Analisi dei ruoli e responsabilità
 \newpage
 \section{Analisi dei ruoli e responsabilità}
 
 \subsection{Tabella dei ruoli}
+\begin{tabularx}{\textwidth}{|p{2.5cm}|X|p{3.5cm}|p{2cm}|X|}
+    \hline
+    \rowcolor{studyColor} \textbf{Ruolo} & \textbf{Responsabilità} & \textbf{Maschere} & \textbf{Riservatezza} & \textbf{Numerosità} \\ \hline
+    \endhead
+    Utente & Registrazione, login, gestione del proprio profilo e navigazione della Bacheca & View Autenticazione, View Registrazione, Home Bacheca, View Profilo Personale, View Modifica Profilo & Grado medio di riservatezza & Elevata (potenzialmente tutti gli studenti universitari) \\ \hline
+    Organizzatore & Creazione di nuovi Eventi di studio e gestione dei dettagli (modifica, cancellazione, rimozione partecipanti) & View Creazione Evento, View Gestione Evento & Grado medio di riservatezza & Variabile in base agli Eventi attivi in contemporanea \\ \hline
+    Partecipante & Prenotazione agli Eventi, partecipazione alle Chat di gruppo e inserimento Commenti & View Dettaglio Evento, View Profilo Partecipante, Home Elenco Chat, View Chat Evento, View Inserimento Commento & Alto grado di riservatezza per accedere ai dati dell'Evento e Chat private & Limitata alla capienza dei singoli Eventi di studio \\ \hline
+\end{tabularx}
 
-\subsection{Tabella ruolo/informazioni: Ruolo1 (in JustBit era "Persona")}
+\subsection{Utente: Tabella Ruolo-Informazioni}
+\begin{tabularx}{\textwidth}{|X|X|}
+    \hline
+    \rowcolor{studyColor} \textbf{Informazione} & \textbf{Tipo di Accesso} \\ \hline
+    \endhead
+    Email & Lettura/scrittura \\ \hline
+    Password & Scrittura \\ \hline
+    Nome & Lettura/scrittura \\ \hline
+    Cognome & Lettura/scrittura \\ \hline
+    Corso di studi & Lettura/scrittura \\ \hline
+    Biografia & Lettura/scrittura \\ \hline
+    Immagine & Lettura/scrittura \\ \hline
+    Commento (ricevuto) & Lettura \\ \hline
+    Filtro & Scrittura \\ \hline
+    Bacheca (Eventi) & Lettura \\ \hline
+\end{tabularx}
 
-\subsection{Tabella ruolo/informazioni: Ruolo2 (in JustBit era "Utente")}
+\subsection{Organizzatore: Tabella Ruolo-Informazioni}
+\begin{tabularx}{\textwidth}{|X|X|}
+    \hline
+    \rowcolor{studyColor} \textbf{Informazione} & \textbf{Tipo di Accesso} \\ \hline
+    \endhead
+    Titolo & Lettura/scrittura \\ \hline
+    Materia & Lettura/scrittura \\ \hline
+    Data & Lettura/scrittura \\ \hline
+    Orario & Lettura/scrittura \\ \hline
+    Indirizzo & Lettura/scrittura \\ \hline
+    Tipo di Luogo & Lettura/scrittura \\ \hline
+    Numero posti & Lettura/scrittura \\ \hline
+    Profilo (Partecipanti) & Lettura \\ \hline
+    Notifica & Scrittura (indiretta) \\ \hline
+\end{tabularx}
 
-\subsection{Tabella ruolo/informazioni: Ruolo3 (in JustBit era "Amministratore")}
+\subsection{Partecipante: Tabella Ruolo-Informazioni}
+\begin{tabularx}{\textwidth}{|X|X|}
+    \hline
+    \rowcolor{studyColor} \textbf{Informazione} & \textbf{Tipo di Accesso} \\ \hline
+    \endhead
+    Prenotazione & Lettura/scrittura \\ \hline
+    Messaggio & Lettura/scrittura \\ \hline
+    Testo (Commento) & Scrittura \\ \hline
+    Valutazione & Scrittura \\ \hline
+    Profilo (Altri partecipanti) & Lettura \\ \hline
+    Notifica & Lettura \\ \hline
+\end{tabularx}
 
 % Scomposizione del problema
 \newpage
 \section{Scomposizione del problema}
 
 \subsection{Tabella scomposizione delle funzionalità}
+\begin{tabularx}{\textwidth}{|X|X|}
+    \hline
+    \rowcolor{studyColor} \textbf{Funzionalità} & \textbf{Scomposizione} \\ \hline
+    \endhead
+    Gestione Profilo & Registrazione, Modifica Profilo, Visualizzazione Commenti \\ \hline
+    Gestione Evento & Creazione Evento, Modifica Evento, Cancellazione Evento, Rimozione Partecipante \\ \hline
+\end{tabularx}
 
-\subsection{Tabelle delle sottofunzionalità: Sottofunzionalità1 (in JustBit era "Gestione piano alimentare")}
+\subsection{Gestione Profilo: Tabella Sotto-Funzionalità}
+\begin{tabularx}{\textwidth}{|X|X|X|X|}
+    \hline
+    \rowcolor{studyColor} \textbf{Sotto-funzionalità} & \textbf{Sotto-funzionalità} & \textbf{Legame} & \textbf{Informazioni} \\ \hline
+    \endhead
+    Modifica Profilo & Registrazione & Modifica Profilo dipende da Registrazione (non si può modificare se non ci si è registrati) & Profilo \\ \hline
+    Visualizzazione Commenti & Registrazione & Dipende da Registrazione & Profilo, Commento \\ \hline
+\end{tabularx}
+
+\subsection{Gestione Evento: Tabella Sotto-Funzionalità}
+\begin{tabularx}{\textwidth}{|X|X|X|X|}
+    \hline
+    \rowcolor{studyColor} \textbf{Sotto-funzionalità} & \textbf{Sotto-funzionalità} & \textbf{Legame} & \textbf{Informazioni} \\ \hline
+    \endhead
+    Modifica Evento & Creazione Evento & Modifica Evento dipende da Creazione Evento & Evento \\ \hline
+    Cancellazione Evento & Creazione Evento & Cancellazione Evento dipende da Creazione Evento & Evento \\ \hline
+    Rimozione Partecipante & Creazione Evento & Non si può rimuovere un partecipante se l'Evento non esiste & Evento, Profilo \\ \hline
+\end{tabularx}
+
+\subsection{Utilizzo Chat: Tabella Sotto-Funzionalità}
+\begin{tabularx}{\textwidth}{|X|X|X|X|}
+    \hline
+    \rowcolor{studyColor} \textbf{Sotto-funzionalità} & \textbf{Sotto-funzionalità} & \textbf{Legame} & \textbf{Informazioni} \\ \hline
+    \endhead
+    Invio Messaggio & Visualizzazione Chat & Non si può inviare un messaggio se non si è aperta la chat dell'Evento & Messaggio, Chat \\ \hline
+\end{tabularx}
 
 % Modello del dominio
 \newpage
 \section{Modello del dominio}
 
-\subsection{Modello del dominio: Dominio1 (in JustBit era "Utente")}
+\subsection{Modello del dominio: Utente e Profilo}
 
-\subsection{Modello del dominio: Dominio2 (in JustBit era "Alimento e Piatto")}
+\subsection{Modello del dominio: Evento}
 
-\subsection{Modello del dominio: Dominio3 (in JustBit era "Dispensa")}
+\subsection{Modello del dominio: Prenotazione}
 
-\subsection{Modello del dominio: Dominio4 (in JustBit era "Calendario")}
+\subsection{Modello del dominio: Bacheca e Filtro}
 
-\subsection{Modello del dominio: Dominio5 (in JustBit era "Piano alimentare")}
+\subsection{Modello del dominio: Chat e Messaggio}
 
-\subsection{Modello del dominio: Dominio6 (in JustBit era "Filtro")}
+\subsection{Modello del dominio: Commento}
 
-\subsection{Modello del dominio: Dominio7 (in JustBit era "Log")}
+\subsection{Modello del dominio: Log di sistema}
 
 % Architettura logica
 \newpage
@@ -1157,9 +1613,9 @@ Manca la parte di Log (guardare doVado)
 \newpage
 \section{Piano del collaudo}
 
-\subsection{Collaudo: Elemento1 (in JustBit era "Alimento")}
+\subsection{Collaudo: Evento}
 
-\subsection{Collaudo: Elemento2 (in JustBit era "Piatto")}
+\subsection{Collaudo: Profilo}
 
 % Progettazione
 \newpage
@@ -1196,9 +1652,9 @@ Manca la parte di Log (guardare doVado)
 \newpage
 \section{Progettazione del collaudo}
 
-\subsection{Test di unità: Elemento1 (in JustBit era "Piatto")}
+\subsection{Test di unità: Evento}
 
-\subsection{Test di unità: Elemento2 (in JustBit era "Alimento")}
+\subsection{Test di unità: Profilo}
 
 % Progettazione del deployment
 \newpage
