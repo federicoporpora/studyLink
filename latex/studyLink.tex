@@ -784,10 +784,10 @@ Di seguito sono presentati tutti gli scenari nel loro dettaglio.
     \endhead
     Sistema Informativo & \textbf{Alto.} L'infrastruttura è fondamentale per garantire l'accesso alla Bacheca, la gestione delle Prenotazioni e le Chat in tempo
         & \textbf{Alta.} L'indisponibilità di un sistema causerebbe l'interruzione del servizio e l'impossibilità per gli studenti di incontrarsi \\ \hline
-    Dati Profilo Utente e Credenziali & \textbf{Alto.} Contine dati strettamente personali tutelati dal (\href{https://gdpr-info.eu/}{GDPR}): Credenziali e informazioni fornite dall'Utente 
+    Dati Profilo Utente e Credenziali & \textbf{Alto.} Contiene dati strettamente personali tutelati dal (\href{https://gdpr-info.eu/}{GDPR}): Credenziali e informazioni fornite dall'Utente 
         & \textbf{Alta.} In caso di furto c'è il rischio di gravi violazioni della privacy \\ \hline
-    Dati Eventi e Prenotazioni & \textbf{Molto Alto.} Questi dati rivalano l'indirizzo fisico esatto, la data e l'orario in cui un gruppo specifico di studenti si troverà
-        & \textbf{Molto Alta.} L'espoizione non autorizzata di questi dati comporta rischi per la sicurezza degli studenti \\ \hline
+    Dati Eventi e Prenotazioni & \textbf{Molto Alto.} Questi dati rivelano l'indirizzo fisico esatto, la data e l'orario in cui un gruppo specifico di studenti si troverà
+        & \textbf{Molto Alta.} L'esposizione non autorizzata di questi dati comporta rischi per la sicurezza degli studenti \\ \hline
     Contenuto Chat di Gruppo & \textbf{Medio.} Le chat sono canali privati accessibili esclusivamente dai Partecipanti all'Evento 
         & \textbf{Media.} L'intercettazione dei messaggi comprometterebbe la riservatezza dell'incontro\\ \hline
 \end{tabularx}
@@ -797,7 +797,7 @@ Di seguito sono presentati tutti gli scenari nel loro dettaglio.
     \hline
     \rowcolor{studyColor} \textbf{Minaccia} & \textbf{Probabilità} & \textbf{Controllo} & \textbf{Rischio} \\ \hline
     \endhead
-    Furto Credenziali Utente & \textbf{Media.} La Mail istituzionale è nota, le passoword devono essere indovinate & Imposizione di requisiti di sicurezza sulle Password limitazioni di tentativi di accesso
+    Furto Credenziali Utente & \textbf{Media.} La Mail istituzionale è nota, le password devono essere indovinate & Imposizione di requisiti di sicurezza sulle Password limitazioni di tentativi di accesso
         & \textbf{Costo Medio-basso.} L'Utente è obbligato a memorizzare una password più difficile \\ \hline
     Intercettazione delle comunicazioni & \textbf{Alta.} L'app viene usata in mobilità spesso su reti wi-fi universitarie o pubbliche non sempre sicure & Cifratura delle comunicazioni
         & \textbf{Costo basso.} Le tecnologie per la cifratura del traffico web sono gratuite e facilmente integrabili \\ \hline
@@ -1125,6 +1125,7 @@ L'informazione \hyperref[Evento]{Evento} è composta da:
     Indirizzo & composto & Protezione alta & \\ \hline
     Tipo di Luogo & semplice & Protezione media & Valore scelto tra Pubblico o Privato \\ \hline
     Numero posti & semplice & Protezione media & Non più di 100 persone \\ \hline
+    Fase & semplice & Protezione media & Valore scelto tra Programmato o Concluso \\ \hline
 \end{tabularx}
 
 \subsubsection{Informazione: Indirizzo} \label{Indirizzo}
@@ -1154,7 +1155,7 @@ L'informazione \hyperref[Prenotazione]{Prenotazione} è composta da:
     \endhead
     Profilo & composto & Protezione alta & \\ \hline
     Evento & composto & Protezione alta & \\ \hline
-    Data prenotazione & semplice & Protezione media & Nel formato GG/MM/AAAA HH:MM \\ \hline
+    Data e orario & semplice & Protezione media & Nel formato GG/MM/AAAA HH:MM \\ \hline
 \end{tabularx}
 
 \subsubsection{Informazione: Filtro} \label{Filtro}
@@ -1249,8 +1250,7 @@ L'informazione \hyperref[Voce di log]{Voce di log} è composta da:
     \hline
     \rowcolor{studyColor} \textbf{Informazione} & \textbf{Tipo} & \textbf{Livello protezione / Privacy} & \textbf{Input / Output} & \textbf{Vincoli} \\ \hline
     \endhead
-    Email & semplice & Protezione alta & Input & Email istituzionale universitaria (es. @studio.unibo.it) \\ \hline
-    Password & semplice & Protezione alta & Input & Almeno 8 caratteri, contenente un numero e un carattere speciale (R08N) \\ \hline
+    Credenziali & composto & Protezione alta & Input & \\ \hline
     Profilo & composto & Protezione media & Output & \\ \hline
 \end{tabularx}
 
@@ -1259,8 +1259,7 @@ L'informazione \hyperref[Voce di log]{Voce di log} è composta da:
     \hline
     \rowcolor{studyColor} \textbf{Informazione} & \textbf{Tipo} & \textbf{Livello protezione / Privacy} & \textbf{Input / Output} & \textbf{Vincoli} \\ \hline
     \endhead
-    Email & semplice & Protezione alta & Input & Email utilizzata in fase di registrazione \\ \hline
-    Password & semplice & Protezione alta & Input & Password associata all'account \\ \hline
+    Credenziali & composto & Protezione alta & Input & \\ \hline
     Profilo & composto & Protezione media & Output & \\ \hline
 \end{tabularx}
 
@@ -1368,6 +1367,7 @@ L'informazione \hyperref[Voce di log]{Voce di log} è composta da:
     \hline
     \rowcolor{studyColor} \textbf{Informazione} & \textbf{Tipo} & \textbf{Livello protezione / Privacy} & \textbf{Input / Output} & \textbf{Vincoli} \\ \hline
     \endhead
+    Profilo & composto & Protezione alta & Input & \\ \hline
     Evento & composto & Protezione media & Input & \\ \hline
     Prenotazione & composto & Protezione alta & Output & \\ \hline
 \end{tabularx}
@@ -1395,9 +1395,22 @@ L'informazione \hyperref[Voce di log]{Voce di log} è composta da:
     \hline
     \rowcolor{studyColor} \textbf{Informazione} & \textbf{Tipo} & \textbf{Livello protezione / Privacy} & \textbf{Input / Output} & \textbf{Vincoli} \\ \hline
     \endhead
+    Profilo (Mittente) & composto & Protezione media & Input & \\ \hline
+    Profilo (Destinatario) & composto & Protezione media & Input & \\ \hline
     Testo & semplice & Protezione media & Input & Massimo 500 caratteri \\ \hline
     Valutazione & semplice & Protezione media & Input & Valore numerico indicante valutazione positiva o negativa \\ \hline
     Commento & composto & Protezione media & Output & \\ \hline
+\end{tabularx}
+
+{\color{red}
+\subsubsection{Informazione: Segnalazione} \label{Segnalazione}
+L'informazione \hyperref[Segnalazione]{Segnalazione} è composta da:
+\begin{tabularx}{\textwidth}{|X|X|X|X|}
+    \hline
+    \rowcolor{studyColor} \textbf{Informazione} & \textbf{Tipo} & \textbf{Livello protezione / Privacy} & \textbf{Vincoli} \\ \hline
+    \endhead
+    Log di sistema & composto & Protezione alta & \\ \hline
+    Livello gravità & semplice & Protezione media & Valore numerico o testuale \\ \hline
 \end{tabularx}
 
 \subsubsection{Tabella Informazioni / Flusso: Registrazione Log}
@@ -1405,10 +1418,11 @@ L'informazione \hyperref[Voce di log]{Voce di log} è composta da:
     \hline
     \rowcolor{studyColor} \textbf{Informazione} & \textbf{Tipo} & \textbf{Livello protezione / Privacy} & \textbf{Input / Output} & \textbf{Vincoli} \\ \hline
     \endhead
-    Data & semplice & Protezione media & Input & Non più di 40 caratteri \\ \hline
-    Ora & semplice & Protezione media & Input & Non più di 40 caratteri \\ \hline
-    Operazione eseguita & composto & Protezione alta & Input & \\ \hline
-    Messaggio & composto & Protezione molto alta & Input & \\ \hline
+    Data & semplice & Protezione alta & Input & Nel formato GG/MM/AAAA \\ \hline
+    Ora & semplice & Protezione alta & Input & Nel formato HH:MM \\ \hline
+    Profilo & composto & Protezione alta & Input & \\ \hline
+    Azione & semplice & Protezione alta & Input & Descrizione dell'operazione effettuata \\ \hline
+    Voce di log & composto & Protezione alta & Output & \\ \hline
 \end{tabularx}
 
 \subsubsection{Tabella Informazioni / Flusso: Esportazione Log}
@@ -1416,8 +1430,10 @@ L'informazione \hyperref[Voce di log]{Voce di log} è composta da:
     \hline
     \rowcolor{studyColor} \textbf{Informazione} & \textbf{Tipo} & \textbf{Livello protezione / Privacy} & \textbf{Input / Output} & \textbf{Vincoli} \\ \hline
     \endhead
+    Log di sistema & composto & Protezione alta & Input & \\ \hline
     Segnalazione & composto & Protezione bassa & Output & \\ \hline
 \end{tabularx}
+}
 
 % Analisi documento dei requisiti: Analisi dei vincoli
 \newpage
@@ -1428,16 +1444,16 @@ L'informazione \hyperref[Voce di log]{Voce di log} è composta da:
     \hline
     \rowcolor{studyColor} \textbf{Requisito} & \textbf{Categorie} & \textbf{Impatto} & \textbf{Funzionalità} \\ \hline
     \endhead
-    Accessibilità online (R01N) & Disponibilità & Garantire continuità del servizio & Tutte \\ \hline
+    Accessibilità online (R01N) & Disponibilità & Garantire continuità del servizio & Registrazione, Autenticazione, Creazione evento, Gestione evento, Cancellazione evento, Modifica evento, Rimozione partecipante, Invio notifica, Gestione profilo, Visualizzazione commenti, Visualizzazione bacheca, Visualizzazione partecipante, Prenotazione evento, Annullamento prenotazione, Utilizzo chat, Inserimento commento, Registrazione Log, Esportazione Log \\ \hline
     Univocità credenziali (R02N) & Sicurezza & Migliora l'integrità dei dati & Registrazione, Autenticazione \\ \hline
-    Interfaccia intuitiva (R03N) & Usabilità & Cercare di migliorare & Visualizzazione Bacheca, Tutte \\ \hline
-    Fuso orario GMT+1 (R04N) & Usabilità & Standardizzazione e chiarezza & Creazione Evento, Gestione Evento, Tutte \\ \hline
-    Formato data e ora (R05N) & Usabilità & Standardizzazione e chiarezza & Creazione Evento, Gestione Evento, Tutte \\ \hline
-    Rispetto GDPR (R06N) & Sicurezza & Migliorano la privacy dei dati & Gestione Profilo, Tutte \\ \hline
-    Bacheca aggiornata (R07N) & Tempo di risposta & Cercare di migliorare & Visualizzazione Bacheca \\ \hline
-    Password sicura (R08N) & Sicurezza & Peggiorano usabilità, migliorano la privacy dei dati & Registrazione, Autenticazione, Gestione Profilo \\ \hline
-    Messaggi istantanei (R09N) & Tempo di risposta & Cercare di migliorare & Utilizzo Chat \\ \hline
-    Cifratura HTTPS/TLS (R10N) & Sicurezza & Peggiorano tempo di risposta, migliorano la privacy dei dati & Tutte \\ \hline
+    Interfaccia intuitiva (R03N) & Usabilità & Cercare di migliorare & Registrazione, Autenticazione, Creazione evento, Gestione evento, Cancellazione evento, Modifica evento, Rimozione partecipante, Invio notifica, Gestione profilo, Visualizzazione commenti, Visualizzazione bacheca, Visualizzazione partecipante, Prenotazione evento, Annullamento prenotazione, Utilizzo chat, Inserimento commento, Registrazione Log, Esportazione Log \\ \hline
+    Fuso orario GMT+1 (R04N) & Usabilità & Standardizzazione e chiarezza & Registrazione, Autenticazione, Creazione evento, Gestione evento, Cancellazione evento, Modifica evento, Rimozione partecipante, Invio notifica, Gestione profilo, Visualizzazione commenti, Visualizzazione bacheca, Visualizzazione partecipante, Prenotazione evento, Annullamento prenotazione, Utilizzo chat, Inserimento commento, Registrazione Log, Esportazione Log \\ \hline
+    Formato data e ora (R05N) & Usabilità & Standardizzazione e chiarezza & Registrazione, Autenticazione, Creazione evento, Gestione evento, Cancellazione evento, Modifica evento, Rimozione partecipante, Invio notifica, Gestione profilo, Visualizzazione commenti, Visualizzazione bacheca, Visualizzazione partecipante, Prenotazione evento, Annullamento prenotazione, Utilizzo chat, Inserimento commento, Registrazione Log, Esportazione Log \\ \hline
+    Rispetto GDPR (R06N) & Sicurezza & Migliorano la privacy dei dati & Registrazione, Autenticazione, Creazione evento, Gestione evento, Cancellazione evento, Modifica evento, Rimozione partecipante, Invio notifica, Gestione profilo, Visualizzazione commenti, Visualizzazione bacheca, Visualizzazione partecipante, Prenotazione evento, Annullamento prenotazione, Utilizzo chat, Inserimento commento, Registrazione Log, Esportazione Log \\ \hline
+    Bacheca aggiornata (R07N) & Tempo di risposta & Cercare di migliorare & Visualizzazione bacheca \\ \hline
+    Password sicura (R08N) & Sicurezza & Peggiorano usabilità, migliorano la privacy dei dati & Registrazione, Autenticazione, Gestione profilo \\ \hline
+    Messaggi istantanei (R09N) & Tempo di risposta & Cercare di migliorare & Utilizzo chat \\ \hline
+    Cifratura HTTPS/TLS (R10N) & Sicurezza & Peggiorano tempo di risposta, migliorano la privacy dei dati & Registrazione, Autenticazione, Creazione evento, Gestione evento, Cancellazione evento, Modifica evento, Rimozione partecipante, Invio notifica, Gestione profilo, Visualizzazione commenti, Visualizzazione bacheca, Visualizzazione partecipante, Prenotazione evento, Annullamento prenotazione, Utilizzo chat, Inserimento commento, Registrazione Log, Esportazione Log \\ \hline
     Blocco account (R11N) & Sicurezza & Peggiorano tempo di risposta e usabilità, migliorano la privacy dei dati & Autenticazione \\ \hline
 \end{tabularx}
 
@@ -1455,14 +1471,15 @@ L'informazione \hyperref[Voce di log]{Voce di log} è composta da:
     Home Bacheca & Filtro (Data, Indirizzo, Tipo di Luogo, Numero posti), Elenco degli Eventi & Visualizzazione bacheca \\ \hline
     View Dettaglio Evento & Titolo, Materia, Data, Orario, Indirizzo, Tipo di Luogo, Numero posti, Elenco Partecipanti & Visualizzazione bacheca, Prenotazione evento, Annullamento prenotazione \\ \hline
     View Creazione Evento & Titolo, Materia, Data, Orario, Indirizzo, Tipo di Luogo, Numero posti & Creazione evento \\ \hline
-    View Gestione Evento & Dati Evento precompilati, Elenco Partecipanti (con opzione di rimozione) & Gestione evento, Rimozione partecipante, Cancellazione evento \\ \hline
+    View Gestione Evento & Dati Evento precompilati, Elenco Partecipanti (con opzione di rimozione) & Gestione evento, Rimozione partecipante, Cancellazione evento, \textcolor{red}{Modifica evento} \\ \hline
     View Profilo Personale & Nome, Cognome, Corso di studi, Biografia, Immagine, Commenti ricevuti & Gestione profilo, Visualizzazione commenti \\ \hline
     View Modifica Profilo & Nome, Cognome, Corso di studi, Biografia, Immagine, Password & Gestione profilo \\ \hline
     View Profilo Partecipante & Nome, Cognome, Corso di studi, Biografia, Immagine, Commenti & Visualizzazione partecipante, Visualizzazione commenti \\ \hline
     Home Elenco Chat & Elenco degli Eventi a cui si è iscritti con relative Notifiche & Utilizzo chat \\ \hline
     View Chat Evento & Cronologia Messaggi, Input nuovo messaggio & Utilizzo chat \\ \hline
     View Inserimento Commento & Profilo del destinatario, Testo del commento, Valutazione & Inserimento commento \\ \hline
-    Home Log & Scelta del tipo di analisi o visione del registro delle operazioni & AnalisiLog (sistema esterno) \\ \hline
+    \textcolor{red}{View Centro Notifiche} & \textcolor{red}{Avviso} & \textcolor{red}{Invio notifica} \\ \hline
+    Home Log & Scelta del tipo di analisi o visione del registro delle operazioni & \textcolor{red}{Registrazione Log, Esportazione Log} \\ \hline
 \end{tabularx}
 
 \subsection{Tabella dei sistemi esterni}
@@ -1482,6 +1499,7 @@ L'informazione \hyperref[Voce di log]{Voce di log} è composta da:
     \hline
     \rowcolor{studyColor} \textbf{Ruolo} & \textbf{Responsabilità} & \textbf{Maschere} & \textbf{Riservatezza} & \textbf{Numerosità} \\ \hline
     \endhead
+    Studente & Navigazione iniziale e inserimento dati al fine di creare un Profilo e accedere alla piattaforma & View Registrazione & Basso grado di riservatezza & Elevata (tutti i potenziali interessati) \\ \hline
     Utente & Registrazione, login, gestione del proprio profilo e navigazione della Bacheca & View Autenticazione, View Registrazione, Home Bacheca, View Profilo Personale, View Modifica Profilo & Grado medio di riservatezza & Elevata (potenzialmente tutti gli studenti universitari) \\ \hline
     Organizzatore & Creazione di nuovi Eventi di studio e gestione dei dettagli (modifica, cancellazione, rimozione partecipanti) & View Creazione Evento, View Gestione Evento & Grado medio di riservatezza & Variabile in base agli Eventi attivi in contemporanea \\ \hline
     Partecipante & Prenotazione agli Eventi, partecipazione alle Chat di gruppo e inserimento Commenti & View Dettaglio Evento, View Profilo Partecipante, Home Elenco Chat, View Chat Evento, View Inserimento Commento & Alto grado di riservatezza per accedere ai dati dell'Evento e Chat private & Limitata alla capienza dei singoli Eventi di studio \\ \hline
