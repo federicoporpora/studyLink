@@ -1154,7 +1154,6 @@ L'informazione \hyperref[Prenotazione]{Prenotazione} è composta da:
     \endhead
     Profilo & composto & Protezione alta & \\ \hline
     Evento & composto & Protezione alta & \\ \hline
-    Data prenotazione & semplice & Protezione media & Nel formato GG/MM/AAAA HH:MM \\ \hline
 \end{tabularx}
 
 \subsubsection{Informazione: Filtro} \label{Filtro}
@@ -1176,9 +1175,8 @@ L'informazione \hyperref[Commento]{Commento} è composta da:
     \rowcolor{studyColor} \textbf{Informazione} & \textbf{Tipo} & \textbf{Livello protezione / Privacy} & \textbf{Vincoli} \\ \hline
     \endhead
     Profilo & composto & Protezione media & \\ \hline
-    Profilo & composto & Protezione media & \\ \hline
     Testo & semplice & Protezione media & Massimo 500 caratteri \\ \hline
-    Valutazione & semplice & Protezione media & Valore numerico indicante valutazione positiva o negativa \\ \hline
+    Valutazione & semplice & Protezione media & Valore numerico da 1 a 5 \\ \hline
 \end{tabularx}
 
 \subsubsection{Informazione: Chat} \label{Chat}
@@ -1199,7 +1197,8 @@ L'informazione \hyperref[Messaggio]{Messaggio} è composta da:
     \endhead
     Profilo & composto & Protezione alta & \\ \hline
     Testo & semplice & Protezione alta & Massimo 1000 caratteri \\ \hline
-    Data e ora & semplice & Protezione alta & Nel formato GG/MM/AAAA HH:MM \\ \hline
+    Data & semplice & Protezione media & Nel formato GG/MM/AAAA HH:MM \\ \hline
+    Orario & semplice & Protezione media & Nel formato HH:MM \\ \hline
 \end{tabularx}
 
 \subsubsection{Informazione: Notifica} \label{Notifica}
@@ -1209,7 +1208,8 @@ L'informazione \hyperref[Notifica]{Notifica} è composta da:
     \rowcolor{studyColor} \textbf{Informazione} & \textbf{Tipo} & \textbf{Livello protezione / Privacy} & \textbf{Vincoli} \\ \hline
     \endhead
     Avviso & composto & Protezione alta & \\ \hline
-    Data e ora & semplice & Protezione alta & Nel formato GG/MM/AAAA HH:MM \\ \hline
+    Data & semplice & Protezione media & Nel formato GG/MM/AAAA HH:MM \\ \hline
+    Orario & semplice & Protezione media & Nel formato HH:MM \\ \hline
 \end{tabularx}
 
 \subsubsection{Informazione: Avviso} \label{Avviso}
@@ -1237,8 +1237,8 @@ L'informazione \hyperref[Voce di log]{Voce di log} è composta da:
     \hline
     \rowcolor{studyColor} \textbf{Informazione} & \textbf{Tipo} & \textbf{Livello protezione / Privacy} & \textbf{Vincoli} \\ \hline
     \endhead
-    Data & semplice & Protezione alta & Nel formato GG/MM/AAAA \\ \hline
-    Ora & semplice & Protezione alta & Nel formato HH:MM \\ \hline
+    Data & semplice & Protezione media & Nel formato GG/MM/AAAA \\ \hline
+    Orario & semplice & Protezione media & Nel formato HH:MM \\ \hline
     Profilo & composto & Protezione alta & \\ \hline
     Azione & semplice & Protezione alta & Descrizione dell'operazione effettuata \\ \hline
 \end{tabularx}
