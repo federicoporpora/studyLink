@@ -145,15 +145,15 @@ Inoltre, per facilitare l'organizzazione, tutti gli iscritti a un Evento hanno a
         \item \textbf{Titolo:} il titolo dell'Evento deve essere chiaro e descrittivo, nel caso anche della materia che si intende studiare nell'incontro;
         \item \textbf{Data e orario:} l'Evento deve avere una data e un orario di inizio e fine ben definiti;
         \item \textbf{Indirizzo:} indicazione fisica specifica (via, nome della struttura o aula) in cui si terrà l'incontro;
-        \item \textbf{Tipo di Luogo:} scegliere tra Luogo ``Pubblico`` o ``Privato``;
-        \item \textbf{Numero di posti:} può essere a posti ``Limitati`` o ``Illimitati``.
+        \item \textbf{Tipo di Luogo:} scegliere tra Luogo ``Pubblico'' o ``Privato'';
+        \item \textbf{Numero di posti:} può essere a posti ``Limitati'' o ``Illimitati''.
     \end{itemize}
     \item Il sistema deve offrire una Bacheca globale dove l'Utente può sfogliare gli Eventi di studio creati da altri Utenti. Gli Eventi scompaiono dalla Bacheca una volta pieni.
     \item L'Utente deve poter filtrare gli Eventi in Bacheca in base alla categoria (Specifico per Esame o Generale), Tipo di Luogo (Pubblico o Privato), numero di posti (Limitato o Illimitato), data e Indirizzo.
     \item Gli utenti scelgono l'evento in base al titolo dato dall'organizzatore
     \item Un Utente può prenotarsi per un Evento esistente se sono presenti posti disponibili.
-    \item Un Partecipante può annullare la propria Prenotazione fino a un'ora prima, liberando il posto per altri Utenti. Nel caso di 3 Prenotazioni annullate negli ultimi 30 giorni, al Partecipante viene vietata la possibilità di iscriversi o creare Eventi per i 7 giorni successivi.
-    \item L'Organizzatore può modificare i dettagli dell'Evento o cancellarlo fino all'ora precedente. In caso di modifica o cancellazione, tutti i Partecipanti ricevono una Notifica automatica. Nel caso di 3 Eventi annullati negli ultimi 30 giorni, all'Organizzatore viene vietata la possibilità di iscriversi o creare Eventi per i 7 giorni successivi.
+    \item Un Partecipante può annullare la propria Prenotazione fino a un'ora prima, liberando il posto per altri Utenti.
+    \item L'Organizzatore può modificare i dettagli dell'Evento o cancellarlo fino all'ora precedente. In caso di modifica o cancellazione, tutti i Partecipanti ricevono una Notifica automatica.
     \item L'Organizzatore può rimuovere gli Utenti Partecipanti a sua discrezione.
     \item Alla pubblicazione di un Evento, il sistema deve generare automaticamente una Chat di gruppo privata, accessibile esclusivamente all'Organizzatore e ai Partecipanti di quello specifico Evento.
     \item Al termine dell'Evento i Partecipanti possono lasciare dei Commenti positivi o negativi.
@@ -185,13 +185,12 @@ Inoltre, per facilitare l'organizzazione, tutti gli iscritti a un Evento hanno a
     \reqlabel{R12F}R12F & Un Utente può prenotarsi a un Evento, diventandone Partecipante & Funzionale \\ \hline
     \reqlabel{R13F}R13F & Un Utente prima di prenotarsi a un Evento può visualizzare il Profilo Utente dei Partecipanti & Funzionale \\ \hline
     \reqlabel{R14F}R14F & Un Partecipante può annullare la Prenotazione all'Evento fino a un'ora prima dell'inizio & Funzionale \\ \hline
-    \reqlabel{R15F}R15F & Se un Utente annulla la sua Prenotazione per 3 volte entro 30 giorni, gli viene sospesa la possibilità di iscriversi o creare altri Eventi per 7 giorni & Funzionale \\ \hline
-    \reqlabel{R16F}R16F & L'Organizzatore può modificare i dettagli dell'Evento o cancellarlo fino all'ora precedente & Funzionale \\ \hline
-    \reqlabel{R17F}R17F & Ogni modifica di un Evento invia una Notifica a tutti i Partecipanti & Funzionale \\ \hline
-    \reqlabel{R18F}R18F & L'Organizzatore può rimuovere i Partecipanti all'Evento a sua discrezione & Funzionale \\ \hline
-    \reqlabel{R19F}R19F & Per ogni Evento è prevista una Chat di gruppo accessibile solo ai Partecipanti & Funzionale \\ \hline
-    \reqlabel{R20F}R20F & Al termine dell'Evento, ciascun Partecipante può lasciare un Commento a ognuno degli altri presenti & Funzionale \\ \hline
-    \reqlabel{R21F}R21F & Un Utente può richiedere l'eliminazione del proprio Profilo & Funzionale \\ \hline
+    \reqlabel{R15F}R15F & L'Organizzatore può modificare i dettagli dell'Evento o cancellarlo fino all'ora precedente & Funzionale \\ \hline
+    \reqlabel{R16F}R16F & Ogni modifica di un Evento invia una Notifica a tutti i Partecipanti & Funzionale \\ \hline
+    \reqlabel{R17F}R17F & L'Organizzatore può rimuovere i Partecipanti all'Evento a sua discrezione & Funzionale \\ \hline
+    \reqlabel{R18F}R18F & Per ogni Evento è prevista una Chat di gruppo accessibile solo ai Partecipanti & Funzionale \\ \hline
+    \reqlabel{R19F}R19F & Al termine dell'Evento, ciascun Partecipante può lasciare un Commento a ognuno degli altri presenti & Funzionale \\ \hline
+    \reqlabel{R20F}R20F & Un Utente può richiedere l'eliminazione del proprio Profilo & Funzionale \\ \hline
 \end{tabularx}
 
 \subsection{Requisiti non funzionali}
@@ -315,7 +314,7 @@ Di seguito sono presentati tutti gli scenari nel loro dettaglio.
     \hline
     \rowcolor{studyColor} \textbf{Titolo} & \textbf{Autenticazione} \\ \hline
     \endhead
-    \textbf{Descrizione} & L'attore inserisce le proprie Credenziali e si autentica sulla piattaforma \\ \hline
+    \textbf{Descrizione} & L'Utente inserisce le proprie Credenziali e si autentica sulla piattaforma \\ \hline
     \textbf{Attori} & Utente \\ \hline
     \textbf{Relazioni} &
         \begin{itemize}[nosep, leftmargin=*]
@@ -330,14 +329,14 @@ Di seguito sono presentati tutti gli scenari nel loro dettaglio.
             \item \hyperref[tab:Utilizzo Chat]{Utilizzo Chat}
             \item \hyperref[tab:Inserimento Commento]{Inserimento Commento}
         \end{itemize} \\ \hline
-    \textbf{Precondizioni} & L'attore è registrato nel sistema \\ \hline
-    \textbf{Postcondizioni} & L'attore è autenticato nel sistema \\ \hline
+    \textbf{Precondizioni} & L'Utente è registrato nel sistema \\ \hline
+    \textbf{Postcondizioni} & L'Utente è autenticato nel sistema \\ \hline
     \textbf{Scenario principale} &
         \begin{enumerate}[nosep, leftmargin=*]
             \item Il sistema richiede l'inserimento delle Credenziali di accesso
-            \item L'attore inserisce le proprie credenziali
-            \item Il sistema verifica che le credenziali appartengano a un attore
-            \item L'attore è autenticato nel sistema
+            \item L'Utente inserisce le proprie credenziali
+            \item Il sistema verifica che le credenziali appartengano a un Utente
+            \item L'Utente è autenticato nel sistema
         \end{enumerate} \\ \hline
     \textbf{Scenari alternativi} & 
         \begin{itemize}[nosep, leftmargin=*] %, before=\vspace{-0.5\baselineskip}, after=\vspace{-0.8\baselineskip}
@@ -399,7 +398,7 @@ Di seguito sono presentati tutti gli scenari nel loro dettaglio.
                 \item Viene mostrato un messaggio di errore
                 \item L'Utente può inserire una nuova Biografia
             \end{enumerate}
-            \item La Immagine è troppo grande
+            \item L'Immagine è troppo grande
             \begin{enumerate}[nosep, leftmargin=*]
                 \setcounter{enumi}{2}
                 \item Viene mostrato un messaggio di errore
@@ -898,8 +897,8 @@ Di seguito sono presentati tutti gli scenari nel loro dettaglio.
         \textbf{Sistema} & \textbf{Attaccante} \\ \hline
         Invia messaggi crittografati sulla rete per fornire i suoi servizi & \\ \hline
         & Intercetta i pacchetti di rete in transito \\ \hline
-        & Riesce a decifrare i dati trasmessi e ottine la possibilita di leggere e alterare le informazioni \\ \hline
-        Riconosce i dati intercettati come validi e ne trascrive nel Log & \\ \hline
+        & Riesce a decifrare i dati trasmessi e ottiene la possibilità di leggere e alterare le informazioni \\ \hline
+        Riconosce i dati intercettati come validi e li registra nel Log & \\ \hline
     \end{tabular} \\ \hline
 \end{tabularx}
 \vspace{1cm}
@@ -974,23 +973,23 @@ A seguito dell'introduzione dei controlli di sicurezza, il caso d'uso \textbf{Au
     \hline
     \rowcolor{studyColor} \textbf{Titolo} & \textbf{Autenticazione} \\ \hline
     \endhead
-    \textbf{Descrizione} & L'attore inserisce le proprie Credenziali e si autentica sulla piattaforma \\ \hline
+    \textbf{Descrizione} & L'Utente inserisce le proprie Credenziali e si autentica sulla piattaforma \\ \hline
     \textbf{Attori} & Utente \\ \hline
     \textbf{Relazioni} & \textit{Invariate rispetto all'analisi precedente} \\ \hline
-    \textbf{Precondizioni} & L'attore è registrato nel sistema \\ \hline
-    \textbf{Postcondizioni} & L'attore è autenticato nel sistema \\ \hline
+    \textbf{Precondizioni} & L'Utente è registrato nel sistema \\ \hline
+    \textbf{Postcondizioni} & L'Utente è autenticato nel sistema \\ \hline
     \textbf{Scenario principale} & 
         \begin{enumerate}[nosep, leftmargin=*]
             \item Il sistema richiede l'inserimento delle Credenziali di accesso
-            \item L'attore inserisce le proprie credenziali
-            \item Il sistema verifica che le credenziali appartengano a un attore
-            \item L'attore è autenticato nel sistema
+            \item L'Utente inserisce le proprie credenziali
+            \item Il sistema verifica che le credenziali appartengano a un Utente
+            \item L'Utente è autenticato nel sistema
         \end{enumerate} \\ \hline
     \textbf{Scenari alternativi} & 
         Le Credenziali sono errate
         \begin{enumerate}[nosep, leftmargin=*]
             \setcounter{enumi}{3}
-            \item Viene mostrato un messaggio di errore e l'Utente può reinserire le Credenzialis
+            \item Viene mostrato un messaggio di errore e l'Utente può reinserire le Credenziali
             \item Se il numero di tentativi errati supera i 5 consecutivi, il sistema blocca temporaneamente l'accesso per 15 minuti e registra l'evento nel Log.
         \end{enumerate} \\ \hline
     \textbf{Requisiti non funzionali} & \hyperref[R03N]{R03N}, \hyperref[R07N]{R07N}, \hyperref[R09N]{R09N}, \hyperref[R10N]{R10N}, \hyperref[R11N]{R11N} \\ \hline
@@ -1155,10 +1154,6 @@ L'informazione \hyperref[Prenotazione]{Prenotazione} è composta da:
     \endhead
     Profilo & composto & Protezione alta & \\ \hline
     Evento & composto & Protezione alta & \\ \hline
-<<<<<<< HEAD
-=======
-    Data e orario & semplice & Protezione media & Nel formato GG/MM/AAAA HH:MM \\ \hline
->>>>>>> 65490a91ee657463c69d9524c8e3829b14e912d7
 \end{tabularx}
 
 \subsubsection{Informazione: Filtro} \label{Filtro}
@@ -1402,7 +1397,7 @@ L'informazione \hyperref[Voce di log]{Voce di log} è composta da:
     Profilo (Mittente) & composto & Protezione media & Input & \\ \hline
     Profilo (Destinatario) & composto & Protezione media & Input & \\ \hline
     Testo & semplice & Protezione media & Input & Massimo 500 caratteri \\ \hline
-    Valutazione & semplice & Protezione media & Input & Valore numerico indicante valutazione positiva o negativa \\ \hline
+    Valutazione & semplice & Protezione media & Input & Valore numerico da 1 a 5 \\ \hline
     Commento & composto & Protezione media & Output & \\ \hline
 \end{tabularx}
 
@@ -1533,6 +1528,7 @@ L'informazione \hyperref[Segnalazione]{Segnalazione} è composta da:
     Tipo di Luogo & Lettura/scrittura \\ \hline
     Numero posti & Lettura/scrittura \\ \hline
     Profilo (Partecipanti) & Lettura \\ \hline
+    Prenotazione & Lettura/scrittura \\ \hline
     Notifica & Scrittura (indiretta) \\ \hline
 \end{tabularx}
 
@@ -1592,20 +1588,73 @@ L'informazione \hyperref[Segnalazione]{Segnalazione} è composta da:
 % Modello del dominio
 \newpage
 \section{Modello del dominio}
+Nei diagrammi UML delle classi abbiamo scelto la notazione delle cardinalità che si legge nel seguente modo: ``Un'istanza della classe [vicina alla molteplicità] è in relazione con [molteplicità] istanze della classe [lontana dalla molteplicità] e viceversa''. Per esempio la relazione tra Utente e Prenotazione si legge nel seguente modo: ``Un Utente effettua da 0 a $N$ prenotazioni e una Prenotazione è associata a esattamente 1 utente''.
 
-\subsection{Modello del dominio: Utente e Profilo}
+I metodi get e set sono stati omessi per brevità, ma sono presenti in tutti i modelli.
+
+\subsection{Modello del dominio: Utente}
+Il modello riguardante il profilo è presentato nel seguente diagramma.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{images/modello-del-dominio-profilo.png}
+\end{figure}
 
 \subsection{Modello del dominio: Evento}
+Il modello riguardante l'evento è presentato nel seguente diagramma.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{images/modello-del-dominio-evento.png}
+\end{figure}
 
 \subsection{Modello del dominio: Prenotazione}
+Il modello riguardante la prenotazione è presentato nel seguente diagramma.
 
-\subsection{Modello del dominio: Bacheca e Filtro}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{images/modello-del-dominio-prenotazione.png}
+\end{figure}
 
-\subsection{Modello del dominio: Chat e Messaggio}
+\subsection{Modello del dominio: Bacheca}
+Il modello riguardante la bacheca è presentato nel seguente diagramma.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{images/modello-del-dominio-bacheca.png}
+\end{figure}
+
+\subsection{Modello del dominio: Filtro}
+Il modello riguardante il filtro è presentato nel seguente diagramma.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{images/modello-del-dominio-filtro.png}
+\end{figure}
+
+\subsection{Modello del dominio: Chat}
+Il modello riguardante la chat è presentato nel seguente diagramma.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{images/modello-del-dominio-chat.png}
+\end{figure}
 
 \subsection{Modello del dominio: Commento}
+Il modello riguardante il commento è presentato nel seguente diagramma.
 
-\subsection{Modello del dominio: Log di sistema}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{images/modello-del-dominio-commento.png}
+\end{figure}
+
+\subsection{Modello del dominio: Log}
+Il modello riguardante il log è presentato nel seguente diagramma.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{images/modello-del-dominio-log.png}
+\end{figure}
 
 % Architettura logica
 \newpage
@@ -1698,7 +1747,7 @@ L'informazione \hyperref[Segnalazione]{Segnalazione} è composta da:
 % TODO
 \section{TODO}
 \begin{itemize}[leftmargin=*]
-    \item 
+    togliere subsubsection dall'indice \item 
 \end{itemize}
 
 \end{document}
