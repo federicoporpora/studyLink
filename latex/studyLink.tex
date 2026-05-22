@@ -1076,12 +1076,6 @@ Il file di log sarà generato da un componente interno al sistema chiamato \text
                         \item Memorizzazione dati;
                         \item Interazione esterno;
                     \end{itemize} & Semplice & \hyperref[R04F]{R04F}, \hyperref[R20F]{R20F} \\ \hline
-    Registrazione Log & \begin{itemize}[nosep, leftmargin=*]
-                        \item Memorizzazione dati;
-                    \end{itemize} & Semplice & \hyperref[R22F]{R22F} \\ \hline
-    Esportazione Log & \begin{itemize}[nosep, leftmargin=*]
-                        \item Interazione esterno;
-                    \end{itemize} & Semplice & \hyperref[R23F]{R23F} \\ \hline
 \end{tabularx}
 
 \subsection{Tabelle informazioni/flusso}
@@ -1174,8 +1168,9 @@ L'informazione \hyperref[Filtro]{Filtro} è composta da:
     \rowcolor{studyColor} \textbf{Informazione} & \textbf{Tipo} & \textbf{Livello protezione / Privacy} & \textbf{Vincoli} \\ \hline
     \endhead
     Indirizzo & composto & Protezione media & \\ \hline
+    Distanza & semplice & Protezione media & Valore in km maggiore di 0 \\ \hline
     Tipo di Luogo & semplice & Protezione media & Valore scelto tra Pubblico o Privato \\ \hline
-    Numero posti & semplice & Protezione media & Valore intero maggiore o uguale a 0 \\ \hline
+    Numero posti & semplice & Protezione media & Illimitati o non più di 50 persone \\ \hline
     Data di inizio & semplice & Protezione media & Nel formato GG/MM/AAAA \\ \hline
     Data di fine & semplice & Protezione media & Nel formato GG/MM/AAAA \\ \hline
     Orario di inizio & semplice & Protezione media & Nel formato HH:MM \\ \hline
@@ -1226,27 +1221,6 @@ L'informazione \hyperref[Notifica]{Notifica} è composta da:
     Utente & composto & Protezione alta & \\ \hline
     Titolo & semplice & Protezione media & Non più di 50 caratteri \\ \hline
     Descrizione & semplice & Protezione media & Non più di 500 caratteri \\ \hline
-\end{tabularx}
-
-\subsubsection{Informazione: Log di sistema} \label{Log di sistema}
-L'informazione \hyperref[Log di sistema]{Log di sistema} è composta da:
-\begin{tabularx}{\textwidth}{|X|X|X|X|}
-    \hline
-    \rowcolor{studyColor} \textbf{Informazione} & \textbf{Tipo} & \textbf{Livello protezione / Privacy} & \textbf{Vincoli} \\ \hline
-    \endhead
-    Voce di log & composto & Protezione alta & \\ \hline
-\end{tabularx}
-
-\subsubsection{Informazione: Voce di log} \label{Voce di log}
-L'informazione \hyperref[Voce di log]{Voce di log} è composta da:
-\begin{tabularx}{\textwidth}{|X|X|X|X|}
-    \hline
-    \rowcolor{studyColor} \textbf{Informazione} & \textbf{Tipo} & \textbf{Livello protezione / Privacy} & \textbf{Vincoli} \\ \hline
-    \endhead
-    Utente & composto & Protezione alta & \\ \hline
-    Data & semplice & Protezione media & Nel formato GG/MM/AAAA \\ \hline
-    Orario & semplice & Protezione media & Nel formato HH:MM \\ \hline
-    Azione & semplice & Protezione alta & Descrizione dell'operazione effettuata, non più di 500 caratteri \\ \hline
 \end{tabularx}
 
 
@@ -1407,39 +1381,6 @@ L'informazione \hyperref[Voce di log]{Voce di log} è composta da:
     Commento & composto & Protezione media & Output & \\ \hline
 \end{tabularx}
 
-{\color{red}
-\subsubsection{Informazione: Segnalazione} \label{Segnalazione}
-L'informazione \hyperref[Segnalazione]{Segnalazione} è composta da:
-\begin{tabularx}{\textwidth}{|X|X|X|X|}
-    \hline
-    \rowcolor{studyColor} \textbf{Informazione} & \textbf{Tipo} & \textbf{Livello protezione / Privacy} & \textbf{Vincoli} \\ \hline
-    \endhead
-    Log di sistema & composto & Protezione alta & \\ \hline
-    Livello gravità & semplice & Protezione media & Valore numerico o testuale \\ \hline
-\end{tabularx}
-
-\subsubsection{Tabella Informazioni / Flusso: Registrazione Log}
-\begin{tabularx}{\textwidth}{|X|X|X|X|X|}
-    \hline
-    \rowcolor{studyColor} \textbf{Informazione} & \textbf{Tipo} & \textbf{Livello protezione / Privacy} & \textbf{Input / Output} & \textbf{Vincoli} \\ \hline
-    \endhead
-    Data & semplice & Protezione alta & Input & Nel formato GG/MM/AAAA \\ \hline
-    Ora & semplice & Protezione alta & Input & Nel formato HH:MM \\ \hline
-    Profilo & composto & Protezione alta & Input & \\ \hline
-    Azione & semplice & Protezione alta & Input & Descrizione dell'operazione effettuata \\ \hline
-    Voce di log & composto & Protezione alta & Output & \\ \hline
-\end{tabularx}
-
-\subsubsection{Tabella Informazioni / Flusso: Esportazione Log}
-\begin{tabularx}{\textwidth}{|X|X|X|X|X|}
-    \hline
-    \rowcolor{studyColor} \textbf{Informazione} & \textbf{Tipo} & \textbf{Livello protezione / Privacy} & \textbf{Input / Output} & \textbf{Vincoli} \\ \hline
-    \endhead
-    Log di sistema & composto & Protezione alta & Input & \\ \hline
-    Segnalazione & composto & Protezione bassa & Output & \\ \hline
-\end{tabularx}
-}
-
 % Analisi documento dei requisiti: Analisi dei vincoli
 \newpage
 \section{Analisi documento dei requisiti: Analisi dei vincoli}
@@ -1477,16 +1418,18 @@ L'informazione \hyperref[Segnalazione]{Segnalazione} è composta da:
     Home Elenco Chat & Elenco degli Eventi a cui si è iscritti con relative Notifiche & Utilizzo chat \\ \hline
     View Chat Evento & Cronologia Messaggi, Input nuovo messaggio & Utilizzo chat \\ \hline
     View Inserimento Commento & Profilo del destinatario, Testo del commento, Valutazione & Inserimento commento \\ \hline
-    \textcolor{red}{View Centro Notifiche} & \textcolor{red}{Avviso} & \textcolor{red}{Invio notifica} \\ \hline
-    Home Log & Scelta del tipo di analisi o visione del registro delle operazioni & \textcolor{red}{Registrazione Log, Esportazione Log} \\ \hline
 \end{tabularx}
 
 \subsection{Tabella dei sistemi esterni}
-\begin{tabularx}{\textwidth}{|p{3cm}|X|p{4cm}|p{3.5cm}|}
+Il programma non fa utilizzo di nessun sistema esterno direttamente nel funzionamento interno di esso, l’unico sistema esterno presente è il visualizzatore di log che interagisce attraverso un file generato dall’applicazione per fornire servizi di sicurezza.
+
+\begin{tabularx}{\textwidth}{|X|X|}
     \hline
-    \rowcolor{studyColor} \textbf{Sistema} & \textbf{Descrizione} & \textbf{Protocollo di Interazione} & \textbf{Livello di Sicurezza} \\ \hline
     \endhead
-    AnalisiLog & Sistema esterno che si occupa della ricezione, conservazione e analisi dei log generati dall'applicazione & L'applicazione invia i log in formato strutturato tramite connessione sicura HTTPS. L'interazione è unidirezionale (solo invio) & Alto livello di sicurezza per proteggere l'integrità dei record e i dati sensibili degli Utenti tracciati \\ \hline
+    \rowcolor{studyColor} \textbf{Nome sistema} & Visualizzatore log \\ \hline
+    \textbf{Descrizione} & Sistema che si occupa della gestione dei log generati dall'applicazione per la visualizzazione e individuazione di comportamenti indesiderati \\ \hline
+    \textbf{Protocollo di interazione} & L'applicazione genera tramite il GestoreLog righe di messaggi su un file che poi il visualizzatore utilizzerà come sorgente per la visualizzazione dei log \\ \hline
+    \textbf{Livello di protezione} & Alto \\ \hline
 \end{tabularx}
 
 % Analisi dei ruoli e responsabilità
@@ -1630,14 +1573,6 @@ Il modello riguardante la chat è presentato nel seguente diagramma.
 %    \includegraphics[width=\textwidth]{images/modello-del-dominio-chat.png}
 %\end{figure}
 
-\subsection{Modello del dominio: Commento}
-Il modello riguardante il commento è presentato nel seguente diagramma.
-
-%\begin{figure}[H]
-%    \centering
-%    \includegraphics[width=\textwidth]{images/modello-del-dominio-commento.png}
-%\end{figure}
-
 \subsection{Modello del dominio: Log}
 Il modello riguardante il log è presentato nel seguente diagramma.
 
@@ -1740,6 +1675,8 @@ Il modello riguardante il log è presentato nel seguente diagramma.
     \item togliere subsubsection dall'indice
     \item guardare le frecce e la sintassi in generale del modello del dominio
     \item capire se dividere anche nelle tabelle e in tutto il progetto (per esempio tabella informazioni / flusso) commento inviato/ricevuto o evento posti limitati / posti illimitati
+    \item aggiungere in tutto il documento il fatto che nel filtro calcoliamo la distanza dall'indirizzo
+    \item da capire se la notifica va nell'analisi del modello del dominio, in particolare se è una classe oppure no, dato che abbiamo fatto la tabella delle informazioni ma non abbiamo fatto nessuno schema
 \end{itemize}
 
 \end{document}
