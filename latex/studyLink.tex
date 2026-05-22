@@ -1087,18 +1087,14 @@ Il file di log sarà generato da un componente interno al sistema chiamato \text
 \subsection{Tabelle informazioni/flusso}
 Di seguito, saranno riportate le scomposizioni delle informazioni composte per rendere più leggibili le diverse tabelle informazioni/flusso.
 
-\subsubsection{Informazione: Profilo} \label{Profilo}
-L'informazione \hyperref[Profilo]{Profilo} è composta da:
+\subsubsection{Informazione: Utente} \label{Utente}
+L'informazione \hyperref[Utente]{Utente} è composta da:
 \begin{tabularx}{\textwidth}{|X|X|X|X|}
     \hline
     \rowcolor{studyColor} \textbf{Informazione} & \textbf{Tipo} & \textbf{Livello protezione / Privacy} & \textbf{Vincoli} \\ \hline
     \endhead
-    Nome & semplice & Protezione media & Non più di 40 caratteri \\ \hline
-    Cognome & semplice & Protezione media & Non più di 40 caratteri \\ \hline
-    Corso di studi & semplice & Protezione media & Non più di 50 caratteri \\ \hline
-    Biografia & semplice & Protezione media & Non più di 250 caratteri \\ \hline
-    Immagine & semplice & Protezione media & Percorso file valido, non più di x Mb \\ \hline
-    Commento & composto & Protezione media & \\ \hline
+    Credenziali & composto & Protezione alta & \\ \hline
+    Profilo & composto & Protezione alta & \\ \hline
 \end{tabularx}
 
 \subsubsection{Informazione: Credenziali} \label{Credenziali}
@@ -1111,6 +1107,20 @@ L'informazione \hyperref[Credenziali]{Credenziali} è composta da:
     Password & semplice & Protezione alta & Almeno 8 caratteri, contenente un numero e un carattere speciale \\ \hline
 \end{tabularx}
 
+\subsubsection{Informazione: Profilo} \label{Profilo}
+L'informazione \hyperref[Profilo]{Profilo} è composta da:
+\begin{tabularx}{\textwidth}{|X|X|X|X|}
+    \hline
+    \rowcolor{studyColor} \textbf{Informazione} & \textbf{Tipo} & \textbf{Livello protezione / Privacy} & \textbf{Vincoli} \\ \hline
+    \endhead
+    Nome & semplice & Protezione media & Non più di 50 caratteri \\ \hline
+    Cognome & semplice & Protezione media & Non più di 50 caratteri \\ \hline
+    Corso di studi & semplice & Protezione media & Non più di 50 caratteri \\ \hline
+    Biografia & semplice & Protezione media & Non più di 500 caratteri \\ \hline
+    Immagine & semplice & Protezione media & Percorso file valido, non più di 5 Mb \\ \hline
+    Commento & composto & Protezione media & \\ \hline
+\end{tabularx}
+
 \subsubsection{Informazione: Evento} \label{Evento}
 L'informazione \hyperref[Evento]{Evento} è composta da:
 \begin{tabularx}{\textwidth}{|X|X|X|X|}
@@ -1118,12 +1128,12 @@ L'informazione \hyperref[Evento]{Evento} è composta da:
     \rowcolor{studyColor} \textbf{Informazione} & \textbf{Tipo} & \textbf{Livello protezione / Privacy} & \textbf{Vincoli} \\ \hline
     \endhead
     Titolo & semplice & Protezione media & Non più di 50 caratteri \\ \hline
-    Materia & semplice & Protezione media & Non più di 100 caratteri \\ \hline
+    Materia & semplice & Protezione media & Non più di 50 caratteri \\ \hline
     Data & semplice & Protezione media & Nel formato GG/MM/AAAA \\ \hline
     Orario & semplice & Protezione media & Nel formato HH:MM \\ \hline
     Indirizzo & composto & Protezione alta & \\ \hline
     Tipo di Luogo & semplice & Protezione media & Valore scelto tra Pubblico o Privato \\ \hline
-    Numero posti & semplice & Protezione media & Non più di 100 persone \\ \hline
+    Numero posti & semplice & Protezione media & Illimitati o non più di 50 persone \\ \hline
 \end{tabularx}
 
 \subsubsection{Informazione: Indirizzo} \label{Indirizzo}
@@ -1132,8 +1142,8 @@ L'informazione \hyperref[Indirizzo]{Indirizzo} è composta da:
     \hline
     \rowcolor{studyColor} \textbf{Informazione} & \textbf{Tipo} & \textbf{Livello protezione / Privacy} & \textbf{Vincoli} \\ \hline
     \endhead
-    Via & semplice & Protezione alta & Non più di 100 caratteri \\ \hline
-    Nome struttura o aula & semplice & Protezione alta & Non più di 100 caratteri \\ \hline
+    Via & semplice & Protezione alta & Non più di 50 caratteri \\ \hline
+    Nome Luogo & semplice & Protezione alta & Non più di 50 caratteri \\ \hline
 \end{tabularx}
 
 \subsubsection{Informazione: Bacheca} \label{Bacheca}
@@ -1151,8 +1161,10 @@ L'informazione \hyperref[Prenotazione]{Prenotazione} è composta da:
     \hline
     \rowcolor{studyColor} \textbf{Informazione} & \textbf{Tipo} & \textbf{Livello protezione / Privacy} & \textbf{Vincoli} \\ \hline
     \endhead
-    Profilo & composto & Protezione alta & \\ \hline
+    Utente & composto & Protezione alta & \\ \hline
     Evento & composto & Protezione alta & \\ \hline
+    Data & semplice & Protezione media & Nel formato GG/MM/AAAA \\ \hline
+    Orario & semplice & Protezione media & Nel formato HH:MM \\ \hline
 \end{tabularx}
 
 \subsubsection{Informazione: Filtro} \label{Filtro}
@@ -1161,10 +1173,13 @@ L'informazione \hyperref[Filtro]{Filtro} è composta da:
     \hline
     \rowcolor{studyColor} \textbf{Informazione} & \textbf{Tipo} & \textbf{Livello protezione / Privacy} & \textbf{Vincoli} \\ \hline
     \endhead
-    Data & semplice & Protezione media & Nel formato GG/MM/AAAA \\ \hline
     Indirizzo & composto & Protezione media & \\ \hline
     Tipo di Luogo & semplice & Protezione media & Valore scelto tra Pubblico o Privato \\ \hline
     Numero posti & semplice & Protezione media & Valore intero maggiore o uguale a 0 \\ \hline
+    Data di inizio & semplice & Protezione media & Nel formato GG/MM/AAAA \\ \hline
+    Data di fine & semplice & Protezione media & Nel formato GG/MM/AAAA \\ \hline
+    Orario di inizio & semplice & Protezione media & Nel formato HH:MM \\ \hline
+    Orario di fine & semplice & Protezione media & Nel formato HH:MM \\ \hline
 \end{tabularx}
 
 \subsubsection{Informazione: Commento} \label{Commento}
@@ -1173,9 +1188,11 @@ L'informazione \hyperref[Commento]{Commento} è composta da:
     \hline
     \rowcolor{studyColor} \textbf{Informazione} & \textbf{Tipo} & \textbf{Livello protezione / Privacy} & \textbf{Vincoli} \\ \hline
     \endhead
-    Profilo & composto & Protezione media & \\ \hline
-    Testo & semplice & Protezione media & Massimo 500 caratteri \\ \hline
+    Utente & composto & Protezione media & \\ \hline
+    Testo & semplice & Protezione media & Non più più di 500 caratteri \\ \hline
     Valutazione & semplice & Protezione media & Valore numerico da 1 a 5 \\ \hline
+    Data & semplice & Protezione media & Nel formato GG/MM/AAAA \\ \hline
+    Orario & semplice & Protezione media & Nel formato HH:MM \\ \hline
 \end{tabularx}
 
 \subsubsection{Informazione: Chat} \label{Chat}
@@ -1194,9 +1211,9 @@ L'informazione \hyperref[Messaggio]{Messaggio} è composta da:
     \hline
     \rowcolor{studyColor} \textbf{Informazione} & \textbf{Tipo} & \textbf{Livello protezione / Privacy} & \textbf{Vincoli} \\ \hline
     \endhead
-    Profilo & composto & Protezione alta & \\ \hline
-    Testo & semplice & Protezione alta & Massimo 1000 caratteri \\ \hline
-    Data & semplice & Protezione media & Nel formato GG/MM/AAAA HH:MM \\ \hline
+    Utente & composto & Protezione alta & \\ \hline
+    Testo & semplice & Protezione alta & Non più di 500 caratteri \\ \hline
+    Data & semplice & Protezione media & Nel formato GG/MM/AAAA \\ \hline
     Orario & semplice & Protezione media & Nel formato HH:MM \\ \hline
 \end{tabularx}
 
@@ -1206,19 +1223,9 @@ L'informazione \hyperref[Notifica]{Notifica} è composta da:
     \hline
     \rowcolor{studyColor} \textbf{Informazione} & \textbf{Tipo} & \textbf{Livello protezione / Privacy} & \textbf{Vincoli} \\ \hline
     \endhead
-    Avviso & composto & Protezione alta & \\ \hline
-    Data & semplice & Protezione media & Nel formato GG/MM/AAAA HH:MM \\ \hline
-    Orario & semplice & Protezione media & Nel formato HH:MM \\ \hline
-\end{tabularx}
-
-\subsubsection{Informazione: Avviso} \label{Avviso}
-L'informazione \hyperref[Avviso]{Avviso} è composta da:
-\begin{tabularx}{\textwidth}{|X|X|X|X|}
-    \hline
-    \rowcolor{studyColor} \textbf{Informazione} & \textbf{Tipo} & \textbf{Livello protezione / Privacy} & \textbf{Vincoli} \\ \hline
-    \endhead
-    Testo & semplice & Protezione alta & Massimo 255 caratteri \\ \hline
-    Tipo & semplice & Protezione alta & Identificativo della tipologia di avviso \\ \hline
+    Utente & composto & Protezione alta & \\ \hline
+    Titolo & semplice & Protezione media & Non più di 50 caratteri \\ \hline
+    Descrizione & semplice & Protezione media & Non più di 500 caratteri \\ \hline
 \end{tabularx}
 
 \subsubsection{Informazione: Log di sistema} \label{Log di sistema}
@@ -1236,10 +1243,10 @@ L'informazione \hyperref[Voce di log]{Voce di log} è composta da:
     \hline
     \rowcolor{studyColor} \textbf{Informazione} & \textbf{Tipo} & \textbf{Livello protezione / Privacy} & \textbf{Vincoli} \\ \hline
     \endhead
+    Utente & composto & Protezione alta & \\ \hline
     Data & semplice & Protezione media & Nel formato GG/MM/AAAA \\ \hline
     Orario & semplice & Protezione media & Nel formato HH:MM \\ \hline
-    Profilo & composto & Protezione alta & \\ \hline
-    Azione & semplice & Protezione alta & Descrizione dell'operazione effettuata \\ \hline
+    Azione & semplice & Protezione alta & Descrizione dell'operazione effettuata, non più di 500 caratteri \\ \hline
 \end{tabularx}
 
 
@@ -1732,6 +1739,7 @@ Il modello riguardante il log è presentato nel seguente diagramma.
 \begin{itemize}[leftmargin=*]
     \item togliere subsubsection dall'indice
     \item guardare le frecce e la sintassi in generale del modello del dominio
+    \item capire se dividere anche nelle tabelle e in tutto il progetto (per esempio tabella informazioni / flusso) commento inviato/ricevuto o evento posti limitati / posti illimitati
 \end{itemize}
 
 \end{document}
