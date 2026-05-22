@@ -59,7 +59,7 @@
 % Impostazioni
 \keepXColumns
 \setcounter{secnumdepth}{3}
-\setcounter{tocdepth}{3}
+\setcounter{tocdepth}{2}
 
 % Capitoli
 \titleformat{\chapter}
@@ -149,7 +149,7 @@ Inoltre, per facilitare l'organizzazione, tutti gli iscritti a un Evento hanno a
         \item \textbf{Numero di posti:} può essere a posti ``Limitati'' o ``Illimitati''.
     \end{itemize}
     \item Il sistema deve offrire una Bacheca globale dove l'Utente può sfogliare gli Eventi di studio creati da altri Utenti. Gli Eventi scompaiono dalla Bacheca una volta pieni.
-    \item L'Utente deve poter filtrare gli Eventi in Bacheca in base alla categoria (Specifico per Esame o Generale), Tipo di Luogo (Pubblico o Privato), numero di posti (Limitato o Illimitato), data e Indirizzo.
+    \item L'Utente deve poter filtrare gli Eventi in Bacheca in base alla Materia (Specifico per Esame o Generale), Tipo di Luogo (Pubblico o Privato), numero di posti (Limitato o Illimitato), data e Indirizzo.
     \item Gli utenti scelgono l'evento in base al titolo dato dall'organizzatore
     \item Un Utente può prenotarsi per un Evento esistente se sono presenti posti disponibili.
     \item Un Partecipante può annullare la propria Prenotazione fino a un'ora prima, liberando il posto per altri Utenti.
@@ -1124,7 +1124,6 @@ L'informazione \hyperref[Evento]{Evento} è composta da:
     Indirizzo & composto & Protezione alta & \\ \hline
     Tipo di Luogo & semplice & Protezione media & Valore scelto tra Pubblico o Privato \\ \hline
     Numero posti & semplice & Protezione media & Non più di 100 persone \\ \hline
-    Fase & semplice & Protezione media & Valore scelto tra Programmato o Concluso \\ \hline
 \end{tabularx}
 
 \subsubsection{Informazione: Indirizzo} \label{Indirizzo}
@@ -1595,66 +1594,50 @@ I metodi get e set sono stati omessi per brevità, ma sono presenti in tutti i m
 \subsection{Modello del dominio: Utente}
 Il modello riguardante il profilo è presentato nel seguente diagramma.
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\textwidth]{images/modello-del-dominio-profilo.png}
-\end{figure}
+%\begin{figure}[H]
+%    \centering
+%    \includegraphics[width=\textwidth]{images/modello-del-dominio-profilo.png}
+%\end{figure}
 
 \subsection{Modello del dominio: Evento}
 Il modello riguardante l'evento è presentato nel seguente diagramma.
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\textwidth]{images/modello-del-dominio-evento.png}
-\end{figure}
-
-\subsection{Modello del dominio: Prenotazione}
-Il modello riguardante la prenotazione è presentato nel seguente diagramma.
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\textwidth]{images/modello-del-dominio-prenotazione.png}
-\end{figure}
-
-\subsection{Modello del dominio: Bacheca}
-Il modello riguardante la bacheca è presentato nel seguente diagramma.
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\textwidth]{images/modello-del-dominio-bacheca.png}
-\end{figure}
+%\begin{figure}[H]
+%    \centering
+%    \includegraphics[width=\textwidth]{images/modello-del-dominio-evento.png}
+%\end{figure}
 
 \subsection{Modello del dominio: Filtro}
 Il modello riguardante il filtro è presentato nel seguente diagramma.
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\textwidth]{images/modello-del-dominio-filtro.png}
-\end{figure}
+%\begin{figure}[H]
+%    \centering
+%    \includegraphics[width=\textwidth]{images/modello-del-dominio-filtro.png}
+%\end{figure}
 
 \subsection{Modello del dominio: Chat}
 Il modello riguardante la chat è presentato nel seguente diagramma.
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\textwidth]{images/modello-del-dominio-chat.png}
-\end{figure}
+%\begin{figure}[H]
+%    \centering
+%    \includegraphics[width=\textwidth]{images/modello-del-dominio-chat.png}
+%\end{figure}
 
 \subsection{Modello del dominio: Commento}
 Il modello riguardante il commento è presentato nel seguente diagramma.
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\textwidth]{images/modello-del-dominio-commento.png}
-\end{figure}
+%\begin{figure}[H]
+%    \centering
+%    \includegraphics[width=\textwidth]{images/modello-del-dominio-commento.png}
+%\end{figure}
 
 \subsection{Modello del dominio: Log}
 Il modello riguardante il log è presentato nel seguente diagramma.
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\textwidth]{images/modello-del-dominio-log.png}
-\end{figure}
+%\begin{figure}[H]
+%    \centering
+%    \includegraphics[width=\textwidth]{images/modello-del-dominio-log.png}
+%\end{figure}
 
 % Architettura logica
 \newpage
@@ -1670,7 +1653,7 @@ Il modello riguardante il log è presentato nel seguente diagramma.
 \newpage
 \section{Piano di lavoro}
 
-\subsection{Caratteristiche primo prototipo (Giugno 2025)}
+\subsection{Caratteristiche primo prototipo (Giugno 2026)}
 
 \subsection{Sviluppi futuri}
 
@@ -1747,7 +1730,8 @@ Il modello riguardante il log è presentato nel seguente diagramma.
 % TODO
 \section{TODO}
 \begin{itemize}[leftmargin=*]
-    togliere subsubsection dall'indice \item 
+    \item togliere subsubsection dall'indice
+    \item guardare le frecce e la sintassi in generale del modello del dominio
 \end{itemize}
 
 \end{document}
