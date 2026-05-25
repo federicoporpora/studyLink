@@ -13,3 +13,13 @@ opt: optional (if)
 sd: seq diag (da un nome)
 ref: reference (referisce ad un altro sd)
 loop: loop
+
+QUALI FARE
+-registrazione
+-autenticazione
+-gestisci profilo
+-creazione evento
+-gestisci evento
+-bacheca/filtro/prenotazione
+-chat
+-inserimento commento
