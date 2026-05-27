@@ -1415,7 +1415,6 @@ L'informazione \hyperref[Notifica]{Notifica} è composta da:
     View Profilo Personale & Nome, Cognome, Corso di studi, Biografia, Immagine, Commenti ricevuti & Gestione profilo, Visualizzazione commenti \\ \hline
     View Modifica Profilo & Nome, Cognome, Corso di studi, Biografia, Immagine, Password & Gestione profilo \\ \hline
     View Profilo Partecipante & Nome, Cognome, Corso di studi, Biografia, Immagine, Commenti & Visualizzazione partecipante, Visualizzazione commenti \\ \hline
-    Home Elenco Chat & Elenco degli Eventi a cui si è iscritti con relative Notifiche & Utilizzo chat \\ \hline
     View Chat Evento & Cronologia Messaggi, Input nuovo messaggio & Utilizzo chat \\ \hline
     View Inserimento Commento & Profilo del destinatario, Testo del commento, Valutazione & Inserimento commento \\ \hline
 \end{tabularx}
@@ -1444,7 +1443,7 @@ Il programma non fa utilizzo di nessun sistema esterno direttamente nel funziona
     Studente & Navigazione iniziale e inserimento dati al fine di creare un Profilo e accedere alla piattaforma & View Registrazione & Basso grado di riservatezza & Elevata (tutti i potenziali interessati) \\ \hline
     Utente & Registrazione, login, gestione del proprio profilo e navigazione della Bacheca & View Autenticazione, View Registrazione, Home Bacheca, View Profilo Personale, View Modifica Profilo & Grado medio di riservatezza & Elevata (potenzialmente tutti gli studenti universitari) \\ \hline
     Organizzatore & Creazione di nuovi Eventi di studio e gestione dei dettagli (modifica, cancellazione, rimozione partecipanti) & View Creazione Evento, View Gestione Evento & Grado medio di riservatezza & Variabile in base agli Eventi attivi in contemporanea \\ \hline
-    Partecipante & Prenotazione agli Eventi, partecipazione alle Chat di gruppo e inserimento Commenti & View Dettaglio Evento, View Profilo Partecipante, Home Elenco Chat, View Chat Evento, View Inserimento Commento & Alto grado di riservatezza per accedere ai dati dell'Evento e Chat private & Limitata alla capienza dei singoli Eventi di studio \\ \hline
+    Partecipante & Prenotazione agli Eventi, partecipazione alle Chat di gruppo e inserimento Commenti & View Dettaglio Evento, View Profilo Partecipante, View Chat Evento, View Inserimento Commento & Alto grado di riservatezza per accedere ai dati dell'Evento e Chat private & Limitata alla capienza dei singoli Eventi di studio \\ \hline
 \end{tabularx}
 
 \subsection{Utente: Tabella Ruolo-Informazioni}
@@ -1637,6 +1636,55 @@ Di seguito è presentato il diagramma delle classi di view e controller per la g
 \end{figure}
 
 \subsection{Interazione}
+Di seguito sono presentate le interazioni tra gli attori e il sistema.
+
+\subsubsection{Interazione: Registrazione}
+In figura è presentato un diagramma di sequenza che mostra l'interazione tra i componenti per effettuare la registrazione di un nuovo utente.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{images/interazione-registrazione.png}
+\end{figure}
+
+\subsubsection{Interazione: Autenticazione}
+In figura è presentato un diagramma di sequenza che mostra l'interazione tra i componenti per effettuare l'autenticazione di un utente esistente.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{images/interazione-autenticazione.png}
+\end{figure}
+
+\subsubsection{Interazione: Elimina Utente}
+In figura è presentato un diagramma di sequenza che mostra l'interazione tra i componenti per effettuare l'eliminazione di un utente esistente.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{images/interazione-elimina-utente.png}
+\end{figure}
+
+\subsubsection{Interazione: Modifica Profilo}
+In figura è presentato un diagramma di sequenza che mostra l'interazione tra i componenti per effettuare la modifica del profilo di un utente esistente.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{images/interazione-modifica-profilo.png}
+\end{figure}
+
+\subsubsection{Interazione: Creazione Evento}
+In figura è presentato un diagramma di sequenza che mostra l'interazione tra i componenti per effettuare la creazione di un nuovo evento.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{images/interazione-creazione-evento.png}
+\end{figure}
+
+\subsubsection{Interazione: Gestione Evento}
+In figura è presentato un diagramma di sequenza che mostra l'interazione tra i componenti per effettuare la gestione di un evento esistente.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{images/interazione-gestione-evento.png}
+\end{figure}
 
 \subsection{Comportamento}
 
@@ -1726,6 +1774,8 @@ Di seguito è presentato il diagramma delle classi di view e controller per la g
     \item capire se dividere anche nelle tabelle e in tutto il progetto (per esempio tabella informazioni / flusso) commento inviato/ricevuto o evento posti limitati / posti illimitati
     \item aggiungere in tutto il documento il fatto che nel filtro calcoliamo la distanza dall'indirizzo
     \item da capire se la notifica va nell'analisi del modello del dominio, in particolare se è una classe oppure no, dato che abbiamo fatto la tabella delle informazioni ma non abbiamo fatto nessuno schema
+    \item in modello del dominio tipodiluogo deve essere un enum e non {pubblico, privato}
+    \item in interazioni in particolare modifica evento, da aggiungere anche elimina evento, ma da non fare il grafico, dire solo che è praticamente uguale a modifica evento solo che elimina la classe invece di modificarla
 \end{itemize}
 
 \end{document}
