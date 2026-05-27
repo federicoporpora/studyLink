@@ -1,0 +1,96 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="Pagina-1" id="zzqoi6UL4slpJ1WZl4bf">
+    <mxGraphModel dx="1075" dy="527" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="InokAUec4tlz2pfvOClK-1" connectable="0" parent="1" style="group" value="" vertex="1">
+          <mxGeometry height="90" width="60" x="40" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="InokAUec4tlz2pfvOClK-2" edge="1" parent="InokAUec4tlz2pfvOClK-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;dashPattern=8 8;endArrow=none;endFill=0;strokeWidth=1;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="27" y="90" as="sourcePoint" />
+            <mxPoint x="27" y="333" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="InokAUec4tlz2pfvOClK-3" parent="InokAUec4tlz2pfvOClK-1" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;strokeWidth=2;strokeColor=light-dark(#000000,#000000);fillColor=none;" value="&lt;b&gt;Utente&lt;/b&gt;" vertex="1">
+          <mxGeometry height="60" width="30" x="12" as="geometry" />
+        </mxCell>
+        <mxCell id="InokAUec4tlz2pfvOClK-4" parent="1" style="html=1;whiteSpace=wrap;strokeColor=light-dark(#c57467, #a84a3c);fillColor=#FF9281;" value=":HomeBacheca" vertex="1">
+          <mxGeometry height="31" width="131" x="177" y="59.5" as="geometry" />
+        </mxCell>
+        <mxCell id="InokAUec4tlz2pfvOClK-5" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;dashPattern=8 8;endArrow=none;endFill=0;strokeWidth=1;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="242.07999999999993" y="102" as="sourcePoint" />
+            <mxPoint x="242" y="364" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="InokAUec4tlz2pfvOClK-6" parent="1" style="html=1;whiteSpace=wrap;strokeColor=light-dark(#2C7A2C,#A84A3C);fillColor=#43BA43;" value=":ControllerBacheca" vertex="1">
+          <mxGeometry height="28" width="153" x="341" y="59.5" as="geometry" />
+        </mxCell>
+        <mxCell id="InokAUec4tlz2pfvOClK-7" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;dashPattern=8 8;endArrow=none;endFill=0;strokeWidth=1;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="418.5799999999999" y="98" as="sourcePoint" />
+            <mxPoint x="419" y="363" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="InokAUec4tlz2pfvOClK-8" edge="1" parent="1" style="endArrow=open;html=1;rounded=0;endFill=0;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="68" y="161" as="sourcePoint" />
+            <mxPoint x="243" y="161" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="InokAUec4tlz2pfvOClK-9" edge="1" parent="1" style="endArrow=classic;html=1;rounded=0;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="241" y="202" as="sourcePoint" />
+            <mxPoint x="416" y="202" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="InokAUec4tlz2pfvOClK-10" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="applicaFiltro" vertex="1">
+          <mxGeometry height="30" width="60" x="120" y="138" as="geometry" />
+        </mxCell>
+        <mxCell id="InokAUec4tlz2pfvOClK-11" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="applicaFiltro" vertex="1">
+          <mxGeometry height="30" width="60" x="303" y="179" as="geometry" />
+        </mxCell>
+        <mxCell id="InokAUec4tlz2pfvOClK-12" edge="1" parent="1" style="edgeStyle=none;orthogonalLoop=1;jettySize=auto;html=1;rounded=0;startArrow=open;startFill=0;endArrow=none;endFill=0;dashed=1;dashPattern=12 12;" value="">
+          <mxGeometry relative="1" width="100" as="geometry">
+            <Array as="points" />
+            <mxPoint x="244" y="319" as="sourcePoint" />
+            <mxPoint x="417" y="319" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="InokAUec4tlz2pfvOClK-13" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="ok" vertex="1">
+          <mxGeometry height="30" width="60" x="300" y="289" as="geometry" />
+        </mxCell>
+        <mxCell id="InokAUec4tlz2pfvOClK-14" edge="1" parent="1" source="InokAUec4tlz2pfvOClK-15" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;dashPattern=8 8;endArrow=none;endFill=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="575" y="159" as="sourcePoint" />
+            <mxPoint x="575" y="370" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="InokAUec4tlz2pfvOClK-15" parent="1" style="html=1;whiteSpace=wrap;strokeColor=#4775A9;fillColor=#6DB2FF;" value=":Bacheca" vertex="1">
+          <mxGeometry height="28" width="75" x="536" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="InokAUec4tlz2pfvOClK-16" edge="1" parent="1" style="endArrow=classic;html=1;rounded=0;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="420" y="240" as="sourcePoint" />
+            <mxPoint x="574" y="240" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="InokAUec4tlz2pfvOClK-17" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="applicaFltro" vertex="1">
+          <mxGeometry height="30" width="60" x="479" y="214" as="geometry" />
+        </mxCell>
+        <mxCell id="InokAUec4tlz2pfvOClK-18" edge="1" parent="1" style="edgeStyle=none;orthogonalLoop=1;jettySize=auto;html=1;rounded=0;startArrow=open;startFill=0;endArrow=none;endFill=0;dashed=1;dashPattern=12 12;" value="">
+          <mxGeometry relative="1" width="100" as="geometry">
+            <Array as="points" />
+            <mxPoint x="417.5" y="296" as="sourcePoint" />
+            <mxPoint x="575" y="296" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="InokAUec4tlz2pfvOClK-19" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="ok" vertex="1">
+          <mxGeometry height="30" width="60" x="462.5" y="266" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
