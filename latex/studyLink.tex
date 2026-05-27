@@ -14,6 +14,7 @@
 \usepackage{enumitem}
 \usepackage[table]{xcolor}
 \usepackage{array}
+\usepackage{listings}
 
 % CARICAMENTO HYPERREF (SEMPRE PER ULTIMO)
 \usepackage{hyperref}
@@ -55,6 +56,31 @@
 % Definizione Colori
 \definecolor{studyColor}{HTML}{f78a88}
 \definecolor{linkColor}{HTML}{4f7ca7}
+\definecolor{codeKeyword}{RGB}{0, 0, 255}
+\definecolor{codeString}{RGB}{206, 49, 29}
+\definecolor{codeComment}{RGB}{0, 128, 0}
+\definecolor{codeAttribute}{RGB}{43, 145, 175}
+\definecolor{codeBackground}{RGB}{250, 250, 250}
+
+% Configurazione listings per C#
+\lstset{
+    language=[Sharp]C,
+    basicstyle=\ttfamily\small,
+    keywordstyle=\color{codeKeyword},
+    stringstyle=\color{codeString},
+    commentstyle=\color{codeComment},
+    numberstyle=\tiny\color{gray},
+    numbers=left,
+    numbersep=8pt,
+    backgroundcolor=\color{codeBackground},
+    frame=single,
+    rulecolor=\color{lightgray},
+    breaklines=true,
+    showstringspaces=false,
+    tabsize=4,
+    morekeywords={var, string, Assert, CollectionAssert, TestFixture, SetUp, Test, DateTime, Profilo, Evento, Indirizzo, Orario, TipoDiLuogo, Commento, Chat},
+    literate={à}{{\`a}}1 {è}{{\`e}}1 {ì}{{\`i}}1 {ò}{{\`o}}1 {ù}{{\`u}}1,
+}
 
 % Impostazioni
 \keepXColumns
@@ -1641,50 +1667,50 @@ Di seguito sono presentate le interazioni tra gli attori e il sistema.
 \subsubsection{Interazione: Registrazione}
 In figura è presentato un diagramma di sequenza che mostra l'interazione tra i componenti per effettuare la registrazione di un nuovo utente.
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\textwidth]{images/interazione-registrazione.png}
-\end{figure}
+% \begin{figure}[H]
+%     \centering
+%     \includegraphics[width=\textwidth]{images/interazione-registrazione.png}
+% \end{figure}
 
 \subsubsection{Interazione: Autenticazione}
 In figura è presentato un diagramma di sequenza che mostra l'interazione tra i componenti per effettuare l'autenticazione di un utente esistente.
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\textwidth]{images/interazione-autenticazione.png}
-\end{figure}
+% \begin{figure}[H]
+%     \centering
+%     \includegraphics[width=\textwidth]{images/interazione-autenticazione.png}
+% \end{figure}
 
 \subsubsection{Interazione: Elimina Utente}
 In figura è presentato un diagramma di sequenza che mostra l'interazione tra i componenti per effettuare l'eliminazione di un utente esistente.
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\textwidth]{images/interazione-elimina-utente.png}
-\end{figure}
+% \begin{figure}[H]
+%     \centering
+%     \includegraphics[width=\textwidth]{images/interazione-elimina-utente.png}
+% \end{figure}
 
 \subsubsection{Interazione: Modifica Profilo}
 In figura è presentato un diagramma di sequenza che mostra l'interazione tra i componenti per effettuare la modifica del profilo di un utente esistente.
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\textwidth]{images/interazione-modifica-profilo.png}
-\end{figure}
+% \begin{figure}[H]
+%     \centering
+%     \includegraphics[width=\textwidth]{images/interazione-modifica-profilo.png}
+% \end{figure}
 
 \subsubsection{Interazione: Creazione Evento}
 In figura è presentato un diagramma di sequenza che mostra l'interazione tra i componenti per effettuare la creazione di un nuovo evento.
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\textwidth]{images/interazione-creazione-evento.png}
-\end{figure}
+% \begin{figure}[H]
+%     \centering
+%     \includegraphics[width=\textwidth]{images/interazione-creazione-evento.png}
+% \end{figure}
 
 \subsubsection{Interazione: Gestione Evento}
 In figura è presentato un diagramma di sequenza che mostra l'interazione tra i componenti per effettuare la gestione di un evento esistente.
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\textwidth]{images/interazione-gestione-evento.png}
-\end{figure}
+% \begin{figure}[H]
+%     \centering
+%     \includegraphics[width=\textwidth]{images/interazione-gestione-evento.png}
+% \end{figure}
 
 \subsection{Comportamento}
 
@@ -1724,18 +1750,274 @@ In figura è presentato un diagramma di sequenza che mostra l'interazione tra i 
 
 \end{tabularx}
 
+\begin{tabularx}{\textwidth}{|X|X|}
+    \hline
+    \rowcolor{studyColor} \textbf{Periodo} & \textbf{Fase} \\ \hline
+    \endhead
+    Giugno 2026 & Creazione del primo prototipo. \\ \hline
+    Ottobre 2026 & Completamento della prima versione con tutte le funzionalità. \\ \hline
+    Dicembre 2026 & Rilascio ad un numero di utenti limitato. \\ \hline
+    Febbraio 2027 & Rilascio al pubblico. \\ \hline
+\end{tabularx}
 
 \subsection{Caratteristiche primo prototipo (Giugno 2026)}
+Il primo prototipo del programma non implementerà tutte le funzionalità previste. Le funzionalità che saranno tralasciate sono in particolare quelle relative al fatto che il programma non sarà rilasciato al pubblico:
+\begin{itemize}
+    \item La gestione dei log per la sicurezza
+    \item La creazione dei termini e le condizioni di utilizzo per adeguarlo al GDPR
+    \item Il filtro in base alla distanza dalla posizione dell'Evento, la ricerca è solo possibile tramite corrispondenza delle stringhe dell'indirizzo
+\end{itemize}
 
 \subsection{Sviluppi futuri}
+Il committente ha richiesto di aggiungere le possibilità di penalizzare gli Utenti a seguito di disiscrizioni a ridosso di Eventi a cui si è iscritti, abbiamo organizzato o comportamenti scorretti.
+Si richiede al Team Progettazione di tenere conto di questi sviluppi futuri.
 
 % Piano del collaudo
 \newpage
 \section{Piano del collaudo}
+Di seguito, al fine di non rendere eccessivamente prolissa la trattazione, sono presentati solo alcuni test unitari del sistema.
+In particolare, sono stati scelti i test unitari delle classi che si ritengono centrali per il funzionamento del sistema
 
 \subsection{Collaudo: Evento}
+\begin{lstlisting}
+using NUnit.Framework;
+
+[TestFixture]
+public class TestEvento
+{
+    private Evento eventoLimitato, eventoIllimitato;
+    private Profilo organizzatore;
+    private Indirizzo indirizzo;
+
+    [SetUp]
+    public void Setup()
+    {
+        organizzatore = new Profilo(
+            "Mario", "Rossi",
+            "Informatica", "Studente appassionato",
+            null
+        );
+
+        indirizzo = new Indirizzo("Via Zamboni 33", "Biblioteca Universitaria");
+
+        eventoLimitato = new Evento(
+            "Studio Analisi II",
+            "Analisi Matematica II",
+            new DateTime(2026, 7, 15),
+            new Orario("14:00", "17:00"),
+            indirizzo,
+            TipoDiLuogo.Pubblico,
+            5,
+            organizzatore
+        );
+
+        eventoIllimitato = new Evento(
+            "Ripasso Algebra",
+            "Algebra e Geometria",
+            new DateTime(2026, 7, 20),
+            new Orario("10:00", "13:00"),
+            indirizzo,
+            TipoDiLuogo.Privato,
+            0,
+            organizzatore
+        );
+    }
+
+    [Test]
+    public void TestCreazioneEvento()
+    {
+        Assert.AreEqual("Studio Analisi II",
+            eventoLimitato.getTitolo());
+        Assert.AreEqual("Analisi Matematica II",
+            eventoLimitato.getMateria());
+        Assert.AreEqual(new DateTime(2026, 7, 15),
+            eventoLimitato.getData());
+        Assert.AreEqual(new Orario("14:00", "17:00"),
+            eventoLimitato.getOrario());
+        Assert.AreEqual(indirizzo,
+            eventoLimitato.getIndirizzo());
+        Assert.AreEqual(TipoDiLuogo.Pubblico,
+            eventoLimitato.getTipoDiLuogo());
+        Assert.AreEqual(5,
+            eventoLimitato.getNumeroPosti());
+        Assert.AreEqual(organizzatore,
+            eventoLimitato.getOrganizzatore());
+    }
+
+    [Test]
+    public void TestEventoIllimitato()
+    {
+        Assert.AreEqual("Ripasso Algebra",
+            eventoIllimitato.getTitolo());
+        Assert.AreEqual(TipoDiLuogo.Privato,
+            eventoIllimitato.getTipoDiLuogo());
+        Assert.AreEqual(0,
+            eventoIllimitato.getNumeroPosti());
+    }
+
+    [Test]
+    public void TestPartecipanti()
+    {
+        Profilo partecipante = new Profilo(
+            "Luca", "Bianchi",
+            "Informatica", "Studio volentieri in gruppo",
+            null
+        );
+        eventoLimitato.aggiungiPartecipante(partecipante);
+
+        CollectionAssert.Contains(
+            eventoLimitato.getPartecipanti(),
+            partecipante
+        );
+        Assert.AreEqual(1,
+            eventoLimitato.getPartecipanti().Count);
+    }
+
+    [Test]
+    public void TestRimozionePartecipante()
+    {
+        Profilo partecipante = new Profilo(
+            "Luca", "Bianchi",
+            "Informatica", "Studio volentieri in gruppo",
+            null
+        );
+        eventoLimitato.aggiungiPartecipante(partecipante);
+        eventoLimitato.rimuoviPartecipante(partecipante);
+
+        CollectionAssert.DoesNotContain(
+            eventoLimitato.getPartecipanti(),
+            partecipante
+        );
+        Assert.AreEqual(0,
+            eventoLimitato.getPartecipanti().Count);
+    }
+
+    [Test]
+    public void TestPostiDisponibili()
+    {
+        Assert.AreEqual(5,
+            eventoLimitato.getPostiDisponibili());
+
+        Profilo partecipante = new Profilo(
+            "Luca", "Bianchi",
+            "Informatica", "Studio volentieri in gruppo",
+            null
+        );
+        eventoLimitato.aggiungiPartecipante(partecipante);
+
+        Assert.AreEqual(4,
+            eventoLimitato.getPostiDisponibili());
+    }
+
+    [Test]
+    public void TestChatGenerata()
+    {
+        Assert.IsNotNull(eventoLimitato.getChat());
+    }
+}
+\end{lstlisting}
 
 \subsection{Collaudo: Profilo}
+\begin{lstlisting}
+using NUnit.Framework;
+
+[TestFixture]
+public class TestProfilo
+{
+    private Profilo profiloCompleto, profiloMinimo;
+
+    [SetUp]
+    public void Setup()
+    {
+        profiloCompleto = new Profilo(
+            "Mario", "Rossi",
+            "Ingegneria Informatica",
+            "Studente del terzo anno",
+            "immagine.png"
+        );
+
+        profiloMinimo = new Profilo(
+            "Luca", "Bianchi",
+            "Matematica",
+            "",
+            null
+        );
+    }
+
+    [Test]
+    public void TestCreazioneProfilo()
+    {
+        Assert.AreEqual("Mario",
+            profiloCompleto.getNome());
+        Assert.AreEqual("Rossi",
+            profiloCompleto.getCognome());
+        Assert.AreEqual("Ingegneria Informatica",
+            profiloCompleto.getCorsoDiStudi());
+        Assert.AreEqual("Studente del terzo anno",
+            profiloCompleto.getBiografia());
+        Assert.AreEqual("immagine.png",
+            profiloCompleto.getImmagine());
+    }
+
+    [Test]
+    public void TestProfiloMinimo()
+    {
+        Assert.AreEqual("Luca",
+            profiloMinimo.getNome());
+        Assert.AreEqual("Bianchi",
+            profiloMinimo.getCognome());
+        Assert.AreEqual("Matematica",
+            profiloMinimo.getCorsoDiStudi());
+        Assert.AreEqual("",
+            profiloMinimo.getBiografia());
+        Assert.IsNull(profiloMinimo.getImmagine());
+    }
+
+    [Test]
+    public void TestSetterProfilo()
+    {
+        profiloCompleto.setNome("Giuseppe");
+        Assert.AreEqual("Giuseppe",
+            profiloCompleto.getNome());
+
+        profiloCompleto.setCognome("Verdi");
+        Assert.AreEqual("Verdi",
+            profiloCompleto.getCognome());
+
+        profiloCompleto.setCorsoDiStudi("Fisica");
+        Assert.AreEqual("Fisica",
+            profiloCompleto.getCorsoDiStudi());
+
+        profiloCompleto.setBiografia("Nuova biografia");
+        Assert.AreEqual("Nuova biografia",
+            profiloCompleto.getBiografia());
+
+        profiloCompleto.setImmagine("nuova_immagine.png");
+        Assert.AreEqual("nuova_immagine.png",
+            profiloCompleto.getImmagine());
+    }
+
+    [Test]
+    public void TestCommenti()
+    {
+        Commento commento = new Commento(
+            profiloMinimo,
+            "Ottimo compagno di studio",
+            4,
+            new DateTime(2026, 7, 16),
+            new Orario("18:00")
+        );
+        profiloCompleto.aggiungiCommento(commento);
+
+        CollectionAssert.Contains(
+            profiloCompleto.getCommenti(),
+            commento
+        );
+        Assert.AreEqual(1,
+            profiloCompleto.getCommenti().Count);
+    }
+}
+\end{lstlisting}
 
 % Progettazione
 \newpage
@@ -1809,6 +2091,7 @@ In figura è presentato un diagramma di sequenza che mostra l'interazione tra i 
     \item da capire se la notifica va nell'analisi del modello del dominio, in particolare se è una classe oppure no, dato che abbiamo fatto la tabella delle informazioni ma non abbiamo fatto nessuno schema
     \item in modello del dominio tipodiluogo deve essere un enum e non {pubblico, privato}
     \item in interazioni in particolare modifica evento, da aggiungere anche elimina evento, ma da non fare il grafico, dire solo che è praticamente uguale a modifica evento solo che elimina la classe invece di modificarla
+    \item pensare a se mettere l'amministratore, poi nel prototipo non si scrive
 \end{itemize}
 
 \end{document}

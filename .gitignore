@@ -4,5 +4,7 @@
 *.toc
 *.fdb_latexmk
 *.fls
+*.gz
+./latex/*.pdf
 
 GEMINI.md
