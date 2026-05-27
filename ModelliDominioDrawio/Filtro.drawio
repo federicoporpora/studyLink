@@ -1,6 +1,6 @@
 <mxfile host="app.diagrams.net">
   <diagram name="Pagina-1" id="mzueSdHK7Ct0xg_DZuQe">
-    <mxGraphModel dx="687" dy="351" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1075" dy="622" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -10,7 +10,7 @@
         <mxCell id="MTtY--_HALb1GSXlYKvF-5" parent="MTtY--_HALb1GSXlYKvF-1" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" value="- titolo: String [0..1]" vertex="1">
           <mxGeometry height="26" width="210" y="26" as="geometry" />
         </mxCell>
-        <mxCell id="MTtY--_HALb1GSXlYKvF-9" parent="MTtY--_HALb1GSXlYKvF-1" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" value="- tipoLuogo: {Pubblico, Privato} [0..1]" vertex="1">
+        <mxCell id="MTtY--_HALb1GSXlYKvF-9" parent="MTtY--_HALb1GSXlYKvF-1" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" value="- tipoLuogo: TipoLuogo [0..1]" vertex="1">
           <mxGeometry height="26" width="210" y="52" as="geometry" />
         </mxCell>
         <mxCell id="MTtY--_HALb1GSXlYKvF-8" parent="MTtY--_HALb1GSXlYKvF-1" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" value="- materia: String [0..1]" vertex="1">
@@ -54,6 +54,15 @@
         </mxCell>
         <mxCell id="MTtY--_HALb1GSXlYKvF-28" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="&lt;font style=&quot;font-size: 16px;&quot;&gt;0..1&lt;/font&gt;" vertex="1">
           <mxGeometry height="30" width="60" x="232" y="269" as="geometry" />
+        </mxCell>
+        <mxCell id="67ep8UohfUz69hrE--r5-96" parent="1" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=50;fillColor=none;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="&amp;lt;&amp;lt;enumeration&amp;gt;&amp;gt;&lt;div&gt;&lt;b&gt;TipoLuogo&lt;/b&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="102" width="140" x="70" y="90" as="geometry" />
+        </mxCell>
+        <mxCell id="67ep8UohfUz69hrE--r5-98" parent="67ep8UohfUz69hrE--r5-96" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="+ Pubblico" vertex="1">
+          <mxGeometry height="26" width="140" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="67ep8UohfUz69hrE--r5-99" parent="67ep8UohfUz69hrE--r5-96" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="+ Privato" vertex="1">
+          <mxGeometry height="26" width="140" y="76" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
