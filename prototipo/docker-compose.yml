@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_USER: studylink
+      POSTGRES_PASSWORD: studylinkpassword
+      POSTGRES_DB: studylinkdb
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "5000:8080"
+    environment:
+      - ConnectionStrings__DefaultConnection=Host=db;Database=studylinkdb;Username=studylink;Password=studylinkpassword
+      - JWT__Key=SuperSecretKeyThatIsAtLeast32CharactersLongAndVerySecure!
+      - JWT__Issuer=StudyLinkIssuer
+      - JWT__Audience=StudyLinkAudience
+    depends_on:
+      - db
+
+
+volumes:
+  pgdata:
