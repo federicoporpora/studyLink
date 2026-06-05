@@ -2026,27 +2026,33 @@ public class TestProfilo
 \section{Progettazione architetturale}
 
 \subsection{Requisiti non funzionali}
-Dalla tabella dei vincoli si nota che due requisiti non funzionali fondamentali sono l'usabilità e la sicurezza. Questi due aspetti si trovano parzialmente in contrasto tra loro.
-Per gestire questo problema, sono state prese le seguenti decisioni architetturali:
+Dall'Analisi del Problema (Tabella Vincoli) sono emersi diversi requisiti non funzionali che impongono dei vincoli al sistema, in particolare l'usabilità (accessibilità e reattività) e la sicurezza (protezione dei dati personali). 
+
+Questi due aspetti si trovano parzialmente in contrasto tra loro, poiché misure di sicurezza molto stringenti possono peggiorare l'esperienza d'uso e rallentare i tempi di risposta. Per gestire questo problema e bilanciare i requisiti, sono state prese le seguenti decisioni:
 \begin{itemize}
-    \item Per garantire la sicurezza, si è scelto di utilizzare tecnologie standard che proteggono le comunicazioni (come il protocollo HTTPS/TLS) e gestiscono in modo sicuro le autenticazioni.
-    \item Per favorire l'usabilità (in particolare la possibilità di usare l'app da dispositivi diversi), si è deciso di salvare i dati in un database remoto e non in locale sul dispositivo dell'utente. Questa scelta diminuisce in parte la sicurezza, poiché i dati sono più esposti, ma è essenziale per la portabilità.
+    \item \textbf{Sicurezza}: si è scelto di utilizzare protocolli crittografici standard per la protezione dei canali di comunicazione pubblici e meccanismi robusti per il controllo degli accessi e la gestione delle sessioni (tramite token).
+    \item \textbf{Usabilità e Portabilità}: per favorire l'uso dell'applicazione da molteplici dispositivi, si è deciso di salvare i dati in modo centralizzato su un database remoto e non in locale sul dispositivo dell'utente, esponendo i servizi tramite API fruibili via web.
 \end{itemize}
 
 \subsection{Scelta dell'architettura}
-Per soddisfare le richieste del cliente e le scelte appena descritte, l'applicazione verrà sviluppata seguendo un'architettura client/server a tre livelli:
+Dal punto di vista architetturale, per rispettare i requisiti evidenziati, l'architettura più idonea per il sistema è un'architettura Client/Server Web a 3 livelli:
+
 \begin{itemize}
-    \item Il \textbf{client} gestisce la presentazione grafica e l'interazione con l'utente. Per semplificare lo sviluppo e rendere il sistema più flessibile, si è optato per un \textit{thin client}.
-    \item Il \textbf{server} elabora la logica di business e controlla la validità dei dati inviati dal client. Comunica con il client fornendo delle API REST e si occupa di interrogare il database.
-    \item Il \textbf{livello di persistenza} ha il compito di memorizzare e strutturare le informazioni. Per semplificare l'accesso ai dati, si è deciso di usare la tecnica dell'Object-Relational Mapping (ORM).
+    \item \textbf{L1 - Client}: Il client si occupa della presentazione e dell'interazione con l'utente. Per garantire un'elevata reattività dell'interfaccia, specialmente per funzionalità che richiedono aggiornamenti dinamici come la Chat di gruppo, si opta per un approccio basato su \textit{fat client} (Single Page Application). In questo modo il client delega le elaborazioni complesse al server e gestisce lo stato dell'interfaccia.
+    \item \textbf{L2 - Server}: Il server si occupa di accentrare la logica di business, il controllo degli accessi e la validazione dei dati. Il server metterà a disposizione delle API REST (\textit{Representational State Transfer}) \textit{stateless} attraverso cui i client potranno interagire. L'assenza di stato nelle API facilita la scalabilità del sistema e semplifica l'architettura.
+    \item \textbf{L3 - Persistenza}: Per la gestione della persistenza si avrà un server dedicato nel quale sarà installato un opportuno DBMS che gestirà in modo completo la base dati dell'applicazione. Per risolvere il conflitto di impedenza tra il modello a oggetti del server e il modello relazionale del database, verrà utilizzato il paradigma Object-Relational Mapping (ORM).
 \end{itemize}
-Infine, per ridurre la possibilità di errori e facilitare futuri ampliamenti, i componenti del server sono stati progettati \textit{senza stato} (stateless).
 
 \subsection{Scelte tecnologiche}
-Per costruire l'applicazione sono state impiegate diverse tecnologie. Per separare bene i compiti e facilitare la manutenzione del codice, si è scelto di adottare il pattern Model-View-Controller (MVC). 
-Nello specifico, il server sarà implementato usando il framework \textbf{ASP.NET Core} e il linguaggio \textbf{C\#}. Questa soluzione offre una struttura stabile e include librerie pronte all'uso per gestire la sicurezza (come i \textbf{JSON Web Token} per l'autenticazione) e le comunicazioni in tempo reale (come \textbf{SignalR} per la chat).
-Per il salvataggio dei dati si è scelto il database relazionale \textbf{PostgreSQL}, collegato tramite l'ORM \textbf{Entity Framework Core}, che si integra in modo nativo con ASP.NET. 
-Infine, per sviluppare il lato client è stata scelta la libreria \textbf{React}, che permette di creare facilmente interfacce utente dinamiche, veloci e adatte anche ai dispositivi mobili.
+Al fine di favorire la separazione delle responsabilità e la manutenibilità del codice, si è scelto di adottare il pattern architetturale Model-View-Controller (MVC) sul lato server e Model-View-ViewModel (MVVM) sul lato frontend.
+
+Per la comunicazione tra L1 e L2 verrà utilizzato il protocollo HTTPS, in modo che il livello TLS garantisca l'integrità e la riservatezza dei dati scambiati, tutelando la privacy degli utenti. Le richieste alle API saranno autenticate tramite l'uso di token di sessione sicuri (es. JSON Web Token).
+
+In aggiunta alle API REST, data l'importanza del requisito della Chat di gruppo per gli Eventi di studio, il server adotterà tecnologie capaci di mantenere una comunicazione bidirezionale in tempo reale (come il protocollo WebSocket), permettendo ai client di ricevere e inviare i nuovi messaggi con latenza minima.
+
+Per l'implementazione del Server (L2), si utilizzerà un framework web lato server robusto, orientato agli oggetti e ad alte prestazioni (es. ASP.NET Core con C\#).
+Per la Persistenza (L3), la scelta ricade su un DBMS relazionale, adatto alla natura strutturata dei dati del dominio, interfacciato tramite la libreria ORM nativa.
+Per il Client (L1), verrà impiegato un framework web frontend reattivo moderno, capace di creare interfacce dinamiche e responsive.
 
 \subsection{Diagramma dei package}
 
