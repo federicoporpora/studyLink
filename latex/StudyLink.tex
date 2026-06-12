@@ -2040,9 +2040,8 @@ Dal punto di vista architetturale, per rispettare i requisiti evidenziati, l'arc
 
 \begin{itemize}
     \item \textbf{L1 - Client}: Il client si occupa della presentazione e dell'interazione con l'utente. Per garantire un'elevata reattività dell'interfaccia, specialmente per funzionalità che richiedono aggiornamenti dinamici come la Chat di gruppo, si opta per un approccio basato su \textit{fat client} (Single Page Application). In questo modo il client delega le elaborazioni complesse al server e gestisce lo stato dell'interfaccia.
-    \item \textbf{L2 - Server}: Il server si occupa di accentrare la logica di business, il controllo degli accessi e la validazione dei dati. Il server metterà a disposizione delle API REST (\textit{Representational State Transfer}) \textit{stateless} attraverso cui i client potranno interagire. L'assenza di stato nelle API facilita la scalabilità del sistema e semplifica l'architettura.
-    \item \textbf{L3 - Persistenza}: Per la gestione della persistenza si avrà un server dedicato nel quale sarà installato un opportuno DBMS che gestirà in modo completo la base dati dell'applicazione. Per risolvere il conflitto di impedenza tra il modello a oggetti del server e il modello relazionale del database, verrà utilizzato il paradigma Object-Relational Mapping (ORM).
-\end{itemize}
+    \item \textbf{L2 - Server}: Il server si occupa di accentrare la logica di business, il controllo degli accessi e la validazione dei dati. Il server metterà a disposizione delle API REST (\textit{Representational State Transfer}) \textit{stateless} per la gestione standard dell'applicativo. Inoltre, per gestire le funzionalità in tempo reale come la Chat di gruppo, il server gestirà connessioni persistenti e bidirezionali tramite protocollo WebSocket. L'utilizzo di API stateless unito a WebSocket permette di coniugare scalabilità e reattività.
+    \item \label{L3-Persistenza}\textbf{L3 - Persistenza}: Per la gestione della persistenza si avrà un server dedicato nel quale sarà installato un opportuno DBMS che gestirà in modo completo la base dati dell'applicazione. Per risolvere il conflitto di impedenza tra il modello a oggetti del server e il modello relazionale del database, verrà utilizzato il paradigma Object-Relational Mapping (ORM).
 
 \subsection{Scelte tecnologiche}
 Al fine di favorire la separazione delle responsabilità e la manutenibilità del codice, si è scelto di adottare il pattern architetturale Model-View-Controller (MVC) sul lato server e Model-View-ViewModel (MVVM) sul lato frontend.
@@ -2051,13 +2050,28 @@ Per la comunicazione tra L1 e L2 verrà utilizzato il protocollo HTTPS, in modo 
 
 In aggiunta alle API REST, data l'importanza del requisito della Chat di gruppo per gli Eventi di studio, il server adotterà tecnologie capaci di mantenere una comunicazione bidirezionale in tempo reale (come il protocollo WebSocket), permettendo ai client di ricevere e inviare i nuovi messaggi con latenza minima.
 
+
+Per il Client (L1), verrà impiegato un framework web frontend reattivo moderno, capace di creare interfacce dinamiche e responsive.
 Per l'implementazione del Server (L2), si utilizzerà un framework web lato server robusto, orientato agli oggetti e ad alte prestazioni (es. ASP.NET Core con C\#).
 Per la Persistenza (L3), la scelta ricade su un DBMS relazionale, adatto alla natura strutturata dei dati del dominio, interfacciato tramite la libreria ORM nativa.
-Per il Client (L1), verrà impiegato un framework web frontend reattivo moderno, capace di creare interfacce dinamiche e responsive.
 
 \subsection{Diagramma dei package}
+Di seguito è riportato il diagramma dei package dell'applicazione.
+La presenza di un layer di persistenza (viola) tra i controller e il modello permette una certa trasparenza rispetto alle operazioni di salvataggio e lettura dei dati nel livello dei controller.
+Si sceglie di utilizzare la tecnica ORM (come spiegato in \hyperref[L3-Persistenza]{L3 - Persistenza}) per mappare le entità alle tabelle del database.
+
+% \begin{figure}[H]
+%     \centering
+%     \includegraphics[width=\textwidth]{images/diagramma-dei-package-progettazione.png}
+% \end{figure}
 
 \subsection{Diagramma dei componenti}
+Nella figura sottostante è riportata l'architettura del Sistema, organizzata attraverso un diagramma del componenti.
+
+% \begin{figure}[H]
+%     \centering
+%     \includegraphics[width=\textwidth]{images/diagramma-dei-componenti-progettazione.png}
+% \end{figure}
 
 % Progettazione di dettaglio
 \newpage
