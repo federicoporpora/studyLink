@@ -1,0 +1,46 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="Pagina-1" id="viXP-c2YXnJEPS010ls2">
+    <mxGraphModel dx="1075" dy="527" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="kcfNMbTQGit6Pc0RTBvF-1" parent="1" style="shape=umlFrame;whiteSpace=wrap;html=1;pointerEvents=0;width=150;height=40;fillColor=#FFA9A3;strokeColor=#A35757;strokeWidth=2;" value="&lt;b&gt;pkg &lt;/b&gt;InterfacciaProfilo" vertex="1">
+          <mxGeometry height="350" width="610" x="130" y="160" as="geometry" />
+        </mxCell>
+        <mxCell id="kcfNMbTQGit6Pc0RTBvF-13" edge="1" parent="1" source="kcfNMbTQGit6Pc0RTBvF-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="kcfNMbTQGit6Pc0RTBvF-10">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="kcfNMbTQGit6Pc0RTBvF-2" parent="1" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;fillColor=#FFA9A3;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;strokeColor=#A35757;" value="ViewProfiloPersonale" vertex="1">
+          <mxGeometry height="52" width="140" x="180" y="260" as="geometry" />
+        </mxCell>
+        <mxCell id="kcfNMbTQGit6Pc0RTBvF-4" parent="kcfNMbTQGit6Pc0RTBvF-2" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="+ gestisciProfilo()" vertex="1">
+          <mxGeometry height="26" width="140" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="kcfNMbTQGit6Pc0RTBvF-6" parent="1" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;fillColor=#FFA9A3;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;strokeColor=#A35757;" value="ViewAutenticazione" vertex="1">
+          <mxGeometry height="70" width="140" x="504" y="410" as="geometry" />
+        </mxCell>
+        <mxCell id="kcfNMbTQGit6Pc0RTBvF-7" parent="kcfNMbTQGit6Pc0RTBvF-6" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="+ autentica(email:String, password: String" vertex="1">
+          <mxGeometry height="44" width="140" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="kcfNMbTQGit6Pc0RTBvF-8" parent="1" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;fillColor=#FFA9A3;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;strokeColor=#A35757;" value="ViewRegistrazione" vertex="1">
+          <mxGeometry height="70" width="150" x="184" y="410" as="geometry" />
+        </mxCell>
+        <mxCell id="kcfNMbTQGit6Pc0RTBvF-9" parent="kcfNMbTQGit6Pc0RTBvF-8" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="+ registra(email: String, password: String" vertex="1">
+          <mxGeometry height="44" width="150" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="kcfNMbTQGit6Pc0RTBvF-10" parent="1" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;fillColor=#FFA9A3;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;strokeColor=#A35757;" value="ViewModificaProfilo" vertex="1">
+          <mxGeometry height="150" width="240" x="470" y="211" as="geometry" />
+        </mxCell>
+        <mxCell id="kcfNMbTQGit6Pc0RTBvF-14" parent="kcfNMbTQGit6Pc0RTBvF-10" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;fontColor=light-dark(#000000,#000000);fontStyle=0;fontSize=13;" value="+ modificaDati(nome: String, cognome: String, corsoDiStudi: String, biografia: String, immagineProfilo: Image)" vertex="1">
+          <mxGeometry height="54" width="240" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="kcfNMbTQGit6Pc0RTBvF-15" parent="kcfNMbTQGit6Pc0RTBvF-10" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;fontColor=light-dark(#000000,#000000);fontStyle=0;fontSize=13;" value="+ modificaPassword(passwordVecchia: String, passwordNuova: String)" vertex="1">
+          <mxGeometry height="40" width="240" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="kcfNMbTQGit6Pc0RTBvF-16" parent="kcfNMbTQGit6Pc0RTBvF-10" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="&lt;font style=&quot;color: light-dark(rgb(0, 0, 0), rgb(0, 0, 0));&quot;&gt;&lt;span style=&quot;font-size: 13px;&quot;&gt;+ eliminaProfilo(password: String)&lt;/span&gt;&lt;/font&gt;" vertex="1">
+          <mxGeometry height="30" width="240" y="120" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
