@@ -1,19 +1,23 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
-// https://vitejs.dev/config/
+// https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
   server: {
-    host: true, // Listen on all local IPs
     proxy: {
       '/api': {
-        target: 'http://localhost:5000',
+        target: 'http://backend:8080',
         changeOrigin: true
       },
       '/chathub': {
-        target: 'http://localhost:5000',
-        ws: true
+        target: 'http://backend:8080',
+        ws: true,
+        changeOrigin: true
+      },
+      '/uploads': {
+        target: 'http://backend:8080',
+        changeOrigin: true
       }
     }
   }

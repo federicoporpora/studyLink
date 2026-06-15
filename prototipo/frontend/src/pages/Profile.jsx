@@ -1,149 +1,233 @@
-import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect, useRef } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import { Camera, ArrowLeft } from 'lucide-react';
+import logo from '../assets/logo.png';
+import UserAvatar from '../components/UserAvatar';
 
-export default function Profile() {
+const Profile = () => {
+  const [profile, setProfile] = useState({
+    nome: '',
+    cognome: '',
+    corsoDiStudi: '',
+    biografia: '',
+    immagineProfilo: null
+  });
+  const [passwordData, setPasswordData] = useState({
+    oldPassword: '',
+    newPassword: ''
+  });
   const navigate = useNavigate();
-  const [profile, setProfile] = useState(null);
-  const [isEditing, setIsEditing] = useState(false);
-  const [formData, setFormData] = useState({ corsoDiStudi: '', biografia: '', immagine: '' });
+  const fileInputRef = useRef(null);
 
   useEffect(() => {
+    const fetchProfile = async () => {
+      try {
+        const token = localStorage.getItem('token');
+        if (!token) return navigate('/login');
+        
+        const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/profilo/me`, {
+          headers: { Authorization: `Bearer ${token}` }
+        });
+        setProfile(response.data);
+      } catch (error) {
+        if (error.response && error.response.status === 401) {
+          navigate('/login');
+        }
+      }
+    };
     fetchProfile();
-  }, []);
+  }, [navigate]);
 
-  const fetchProfile = async () => {
+  const handleChange = (e) => {
+    setProfile({ ...profile, [e.target.name]: e.target.value });
+  };
+
+  const handleSave = async () => {
     try {
       const token = localStorage.getItem('token');
-      const res = await fetch('/api/profile', {
-        headers: { 'Authorization': `Bearer ${token}` }
+      await axios.put(`${import.meta.env.VITE_API_URL}/api/profilo/me`, profile, {
+        headers: { Authorization: `Bearer ${token}` }
       });
-      if (res.ok) {
-        const data = await res.json();
-        setProfile(data);
-        setFormData({ corsoDiStudi: data.corsoDiStudi || '', biografia: data.biografia || '', immagine: data.immagine || '' });
-      }
-    } catch (err) { console.error(err); }
-  };
-
-  const handleUpdate = async (e) => {
-    e.preventDefault();
-    try {
-      const token = localStorage.getItem('token');
-      const res = await fetch('/api/profile', {
-        method: 'PUT',
-        headers: { 
-          'Authorization': `Bearer ${token}`,
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(formData)
-      });
-      if (res.ok) {
-        setIsEditing(false);
-        fetchProfile();
-      }
-    } catch (err) { console.error(err); }
-  };
-
-  const handleDeleteAccount = async () => {
-    if (!window.confirm("ATTENZIONE! L'eliminazione dell'account è irreversibile. Sei sicuro?")) return;
-    try {
-      const token = localStorage.getItem('token');
-      await fetch('/api/profile', { method: 'DELETE', headers: { 'Authorization': `Bearer ${token}` }});
-      localStorage.removeItem('token');
-      localStorage.removeItem('user');
-      navigate('/login');
-    } catch (err) { console.error(err); }
-  };
-
-  const handleFileChange = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setFormData({...formData, immagine: reader.result});
-      };
-      reader.readAsDataURL(file);
+      alert('Profilo aggiornato con successo!');
+      navigate('/bacheca');
+    } catch (error) {
+      alert('Errore durante l\'aggiornamento del profilo.');
     }
   };
 
-  if (!profile) return <div style={{textAlign:'center', marginTop:'3rem'}}>Caricamento...</div>;
+  const handleImageUpload = async (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    const formData = new FormData();
+    formData.append('image', file);
+
+    try {
+      const token = localStorage.getItem('token');
+      const res = await axios.post(`${import.meta.env.VITE_API_URL}/api/profilo/upload-image`, formData, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'multipart/form-data'
+        }
+      });
+      setProfile(prev => ({ ...prev, immagineProfilo: res.data.url }));
+    } catch (error) {
+      alert('Errore caricamento immagine');
+    }
+  };
+
+  const handlePasswordChange = (e) => {
+    setPasswordData({ ...passwordData, [e.target.name]: e.target.value });
+  };
+
+  const handleSavePassword = async () => {
+    if (!passwordData.oldPassword || !passwordData.newPassword) {
+      alert('Inserisci sia la vecchia che la nuova password.');
+      return;
+    }
+    try {
+      const token = localStorage.getItem('token');
+      await axios.post(`${import.meta.env.VITE_API_URL}/api/auth/change-password`, passwordData, {
+        headers: { Authorization: `Bearer ${token}` }
+      });
+      alert('Password aggiornata con successo!');
+      setPasswordData({ oldPassword: '', newPassword: '' });
+    } catch (error) {
+      if (error.response && error.response.data) {
+        alert(error.response.data);
+      } else {
+        alert('Errore durante l\'aggiornamento della password.');
+      }
+    }
+  };
+
+  const handleDeleteProfile = async () => {
+    if (window.confirm('Sei sicuro di voler eliminare il tuo profilo? Questa azione non può essere annullata.')) {
+      try {
+        const token = localStorage.getItem('token');
+        await axios.delete(`${import.meta.env.VITE_API_URL}/api/auth/delete-account`, {
+          headers: { Authorization: `Bearer ${token}` }
+        });
+        alert('Profilo eliminato con successo.');
+        localStorage.removeItem('token');
+        navigate('/login');
+      } catch (error) {
+        alert('Errore durante l\'eliminazione del profilo.');
+      }
+    }
+  };
 
   return (
-    <div style={{ maxWidth: '800px', margin: '0 auto' }}>
-      <div className="card">
-        <h1 className="title" style={{ marginBottom: '1.5rem' }}>Il mio Profilo</h1>
-        
-        {isEditing ? (
-          <form onSubmit={handleUpdate}>
-            <div className="form-group">
-              <label className="form-label">Immagine Profilo</label>
-              {formData.immagine && <img src={formData.immagine} alt="Preview" style={{width:'80px', height:'80px', borderRadius:'50%', objectFit:'cover', marginBottom:'1rem', display:'block'}} />}
-              <input type="file" accept="image/*" className="form-control" onChange={handleFileChange} />
-            </div>
-            <div className="form-group">
-              <label className="form-label">Corso di Studi</label>
-              <input type="text" className="form-control" value={formData.corsoDiStudi} onChange={e => setFormData({...formData, corsoDiStudi: e.target.value})} />
-            </div>
-            <div className="form-group">
-              <label className="form-label">Biografia</label>
-              <textarea className="form-control" value={formData.biografia} onChange={e => setFormData({...formData, biografia: e.target.value})} rows="4"></textarea>
-            </div>
-            <div style={{ display: 'flex', gap: '1rem' }}>
-              <button type="submit" className="btn btn-primary">Salva Modifiche</button>
-              <button type="button" className="btn" onClick={() => setIsEditing(false)}>Annulla</button>
-            </div>
-          </form>
-        ) : (
-          <div>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '2rem' }}>
-              <div style={{ display: 'flex', gap: '1.5rem', alignItems: 'center' }}>
-                {profile.immagine ? (
-                  <img src={profile.immagine} alt="Profilo" style={{ width: '80px', height: '80px', borderRadius: '50%', objectFit: 'cover' }} />
-                ) : (
-                  <div style={{ width: '80px', height: '80px', borderRadius: '50%', background: 'var(--primary)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '2rem', color: 'white' }}>
-                    {profile.nome[0]}{profile.cognome[0]}
-                  </div>
-                )}
-                <div>
-                  <h2>{profile.nome} {profile.cognome}</h2>
-                  <div style={{ color: 'var(--text-muted)' }}>{profile.email}</div>
-                </div>
-              </div>
-              <button className="btn btn-primary" onClick={() => setIsEditing(true)}>Modifica</button>
-            </div>
-            
-            <div style={{ marginBottom: '1.5rem' }}>
-              <strong>🎓 Corso di Studi:</strong> <br/>
-              {profile.corsoDiStudi || 'Non specificato'}
-            </div>
-            <div style={{ marginBottom: '2rem' }}>
-              <strong>📝 Biografia:</strong> <br/>
-              {profile.biografia || 'Nessuna biografia inserita.'}
-            </div>
-
-            <button onClick={handleDeleteAccount} className="btn btn-danger">Elimina Account</button>
-          </div>
-        )}
+    <div className="container">
+      <div className="header" style={{ position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <div 
+          onClick={() => navigate('/bacheca')}
+          style={{ position: 'absolute', left: '20px', cursor: 'pointer', color: 'var(--primary)' }}
+        >
+          <ArrowLeft size={24} />
+        </div>
+        <h2 style={{margin: 0}}>Modifica Profilo</h2>
       </div>
-
-      <h2 style={{ marginTop: '3rem', marginBottom: '1.5rem' }}>Recensioni Ricevute ({profile.commentiRicevuti?.length || 0})</h2>
-      <div style={{ display: 'grid', gap: '1rem' }}>
-        {profile.commentiRicevuti?.map(c => (
-          <div key={c.id} className="card">
-            <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.5rem' }}>
-              <strong>{c.mittenteNome}</strong>
-              <span style={{ color: 'gold' }}>{"⭐".repeat(c.valutazione)}</span>
-            </div>
-            <p style={{ margin: 0 }}>{c.testo}</p>
-            <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)', marginTop: '0.5rem' }}>
-              {new Date(c.data).toLocaleDateString()}
-            </div>
-          </div>
-        ))}
-        {(!profile.commentiRicevuti || profile.commentiRicevuti.length === 0) && (
-          <p style={{ color: 'var(--text-muted)' }}>Nessuna recensione ricevuta al momento.</p>
-        )}
+      
+      <div className="profile-avatar-container">
+        <UserAvatar 
+          user={profile} 
+          size={120} 
+          style={{ boxShadow: '0 2px 10px rgba(0,0,0,0.1)' }} 
+        />
+        <div className="camera-icon" onClick={() => fileInputRef.current.click()} style={{cursor: 'pointer'}}>
+          <Camera size={18} />
+        </div>
+        <input 
+          type="file" 
+          ref={fileInputRef} 
+          onChange={handleImageUpload} 
+          style={{ display: 'none' }} 
+          accept="image/png, image/jpeg" 
+        />
       </div>
+      
+      <div className="input-group">
+        <label>Nome:</label>
+        <input 
+          type="text" 
+          name="nome"
+          value={profile.nome} 
+          onChange={handleChange}
+        />
+      </div>
+      
+      <div className="input-group">
+        <label>Cognome:</label>
+        <input 
+          type="text" 
+          name="cognome"
+          value={profile.cognome} 
+          onChange={handleChange}
+        />
+      </div>
+      
+      <div className="input-group">
+        <label>Corso di studi:</label>
+        <input 
+          type="text" 
+          name="corsoDiStudi"
+          value={profile.corsoDiStudi} 
+          onChange={handleChange}
+        />
+      </div>
+      
+      <div style={{ marginBottom: '15px' }}>
+        <label style={{ fontSize: '14px', fontWeight: '500', display: 'block', marginBottom: '5px' }}>
+          Biografia:
+        </label>
+        <textarea 
+          name="biografia"
+          value={profile.biografia} 
+          onChange={handleChange}
+          style={{ width: '100%', padding: '12px 15px', border: '1px solid var(--border-color)', borderRadius: '8px', backgroundColor: '#f9f9f9', outline: 'none' }}
+        />
+      </div>
+      
+      <button className="btn btn-secondary" onClick={handleSave}>
+        SALVA MODIFICHE PROFILO
+      </button>
+
+      <hr style={{ margin: '30px 0', borderColor: '#eee' }} />
+
+      <h3 style={{ fontSize: '18px', marginBottom: '15px' }}>Modifica Password</h3>
+      <div className="input-group">
+        <label>Vecchia Password:</label>
+        <input 
+          type="password" 
+          name="oldPassword"
+          value={passwordData.oldPassword} 
+          onChange={handlePasswordChange}
+        />
+      </div>
+      <div className="input-group">
+        <label>Nuova Password:</label>
+        <input 
+          type="password" 
+          name="newPassword"
+          value={passwordData.newPassword} 
+          onChange={handlePasswordChange}
+        />
+      </div>
+      <button className="btn btn-primary" onClick={handleSavePassword}>
+        CAMBIA PASSWORD
+      </button>
+
+      <hr style={{ margin: '30px 0', borderColor: '#eee' }} />
+
+      <button className="btn" style={{ backgroundColor: '#dc3545', color: 'white', marginBottom: '30px' }} onClick={handleDeleteProfile}>
+        ELIMINA PROFILO
+      </button>
+
+      <div style={{ flex: 1 }}></div>
     </div>
   );
-}
+};
+
+export default Profile;

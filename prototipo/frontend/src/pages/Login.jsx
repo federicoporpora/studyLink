@@ -1,77 +1,65 @@
-import { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import logo from '../assets/logo.png';
 
-export default function Login() {
-  const navigate = useNavigate();
+const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
+  const navigate = useNavigate();
 
-  const handleSubmit = async (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch('/api/auth/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password })
+      const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/auth/login`, {
+        email,
+        password
       });
-      const data = await res.json();
-
-      if (!res.ok) {
-        throw new Error(data || 'Login failed');
-      }
-
-      localStorage.setItem('token', data.token);
-      localStorage.setItem('user', JSON.stringify(data));
-      navigate('/');
-      window.location.reload();
-    } catch (err) {
-      setError(err.message);
+      localStorage.setItem('token', response.data.token);
+      navigate('/bacheca');
+    } catch (error) {
+      alert('Login fallito. Controlla le tue credenziali.');
     }
   };
 
   return (
-    <div style={{ maxWidth: '400px', margin: '4rem auto' }}>
-      <div className="card">
-        <h2 className="title" style={{ textAlign: 'center' }}>Bentornato</h2>
-        <p style={{ textAlign: 'center', color: 'var(--text-muted)', marginBottom: '2rem' }}>
-          Accedi a StudyLink per i tuoi gruppi
-        </p>
-
-        {error && <div style={{ color: 'var(--danger)', marginBottom: '1rem', textAlign: 'center' }}>{error}</div>}
-
-        <form onSubmit={handleSubmit}>
-          <div className="form-group">
-            <label className="form-label">Email Istituzionale</label>
-            <input 
-              type="email" 
-              className="form-control" 
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="mario.rossi@studenti.unina.it"
-              required 
-            />
-          </div>
-          <div className="form-group">
-            <label className="form-label">Password</label>
-            <input 
-              type="password" 
-              className="form-control" 
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="••••••••"
-              required 
-            />
-          </div>
-          <button type="submit" className="btn btn-primary" style={{ width: '100%', marginTop: '1rem' }}>
-            Accedi
-          </button>
-        </form>
-
-        <p style={{ textAlign: 'center', marginTop: '1.5rem', color: 'var(--text-muted)' }}>
-          Non hai un account? <Link to="/register" style={{ color: 'var(--primary)' }}>Registrati</Link>
-        </p>
+    <div className="container form-no-label" style={{ justifyContent: 'center' }}>
+      <div className="header">
+        <img src={logo} alt="StudyLink Logo" />
+        <h1 className="page-title">Accesso</h1>
       </div>
+      
+      <form onSubmit={handleLogin}>
+        <div className="input-group">
+          <input 
+            type="email" 
+            placeholder="Mail Istituzionale..." 
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required 
+          />
+        </div>
+        
+        <div className="input-group">
+          <input 
+            type="password" 
+            placeholder="Password..." 
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required 
+          />
+        </div>
+        
+        <button type="submit" className="btn btn-secondary">
+          ACCEDI
+        </button>
+      </form>
+      
+      <Link to="/register" className="link-text">
+        NON SEI ANCORA REGISTRATO? CLICCA QUI
+      </Link>
     </div>
   );
-}
+};
+
+export default Login;

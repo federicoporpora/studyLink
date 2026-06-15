@@ -1,78 +1,90 @@
-import { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import logo from '../assets/logo.png';
 
-export default function Register() {
+const Register = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [nome, setNome] = useState('');
+  const [cognome, setCognome] = useState('');
   const navigate = useNavigate();
-  const [formData, setFormData] = useState({
-    nome: '',
-    cognome: '',
-    email: '',
-    password: ''
-  });
-  const [error, setError] = useState('');
 
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
-  const handleSubmit = async (e) => {
+  const handleRegister = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch('/api/auth/register', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData)
+      const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/auth/register`, {
+        email,
+        password,
+        nome,
+        cognome
       });
-      const data = await res.json();
-
-      if (!res.ok) {
-        throw new Error(data || 'Registration failed');
+      localStorage.setItem('token', response.data.token);
+      navigate('/bacheca');
+    } catch (error) {
+      if (error.response && error.response.data) {
+        alert('Registrazione fallita: ' + error.response.data);
+      } else {
+        alert('Registrazione fallita. Riprova più tardi.');
       }
-
-      navigate('/login');
-    } catch (err) {
-      setError(err.message);
     }
   };
 
   return (
-    <div style={{ maxWidth: '500px', margin: '4rem auto' }}>
-      <div className="card">
-        <h2 className="title" style={{ textAlign: 'center' }}>Unisciti a noi</h2>
-        <p style={{ textAlign: 'center', color: 'var(--text-muted)', marginBottom: '2rem' }}>
-          Crea il tuo account StudyLink
-        </p>
-
-        {error && <div style={{ color: 'var(--danger)', marginBottom: '1rem', textAlign: 'center' }}>{error}</div>}
-
-        <form onSubmit={handleSubmit}>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
-            <div className="form-group">
-              <label className="form-label">Nome</label>
-              <input type="text" name="nome" className="form-control" onChange={handleChange} required />
-            </div>
-            <div className="form-group">
-              <label className="form-label">Cognome</label>
-              <input type="text" name="cognome" className="form-control" onChange={handleChange} required />
-            </div>
-          </div>
-          <div className="form-group">
-            <label className="form-label">Email Istituzionale</label>
-            <input type="email" name="email" className="form-control" onChange={handleChange} placeholder="nome.cognome@studenti.unina.it" required />
-          </div>
-          <div className="form-group">
-            <label className="form-label">Password</label>
-            <input type="password" name="password" className="form-control" onChange={handleChange} required />
-          </div>
-          <button type="submit" className="btn btn-primary" style={{ width: '100%', marginTop: '1rem' }}>
-            Crea Account
-          </button>
-        </form>
-
-        <p style={{ textAlign: 'center', marginTop: '1.5rem', color: 'var(--text-muted)' }}>
-          Hai già un account? <Link to="/login" style={{ color: 'var(--primary)' }}>Accedi</Link>
-        </p>
+    <div className="container form-no-label" style={{ justifyContent: 'center' }}>
+      <div className="header">
+        <img src={logo} alt="StudyLink Logo" />
+        <h1 className="page-title">Registrazione</h1>
       </div>
+      
+      <form onSubmit={handleRegister}>
+        <div className="input-group">
+          <input 
+            type="text" 
+            placeholder="Nome..." 
+            value={nome}
+            onChange={(e) => setNome(e.target.value)}
+            required 
+          />
+        </div>
+        <div className="input-group">
+          <input 
+            type="text" 
+            placeholder="Cognome..." 
+            value={cognome}
+            onChange={(e) => setCognome(e.target.value)}
+            required 
+          />
+        </div>
+        <div className="input-group">
+          <input 
+            type="email" 
+            placeholder="Mail Istituzionale..." 
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required 
+          />
+        </div>
+        <div className="input-group">
+          <input 
+            type="password" 
+            placeholder="Password..." 
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required 
+          />
+        </div>
+        
+        <button type="submit" className="btn btn-secondary">
+          REGISTRATI
+        </button>
+      </form>
+      
+      <Link to="/login" className="link-text">
+        SEI GIÀ REGISTRATO? CLICCA QUI
+      </Link>
     </div>
   );
-}
+};
+
+export default Register;

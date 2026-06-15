@@ -1,11 +1,15 @@
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
-COPY ["StudyLink.Backend.csproj", "./"]
-RUN dotnet restore "./StudyLink.Backend.csproj"
+
+COPY ["StudyLink.Api/StudyLink.Api.csproj", "StudyLink.Api/"]
+RUN dotnet restore "StudyLink.Api/StudyLink.Api.csproj"
+
 COPY . .
-RUN dotnet publish "StudyLink.Backend.csproj" -c Release -o /app/publish
+WORKDIR "/src/StudyLink.Api"
+RUN dotnet build "StudyLink.Api.csproj" -c Release -o /app/build
+RUN dotnet publish "StudyLink.Api.csproj" -c Release -o /app/publish
 
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS final
 WORKDIR /app
 COPY --from=build /app/publish .
-ENTRYPOINT ["dotnet", "StudyLink.Backend.dll"]
+ENTRYPOINT ["dotnet", "StudyLink.Api.dll"]

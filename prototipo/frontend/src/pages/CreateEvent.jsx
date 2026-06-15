@@ -1,110 +1,142 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import { PenLine, Atom, Calendar, Clock, MapPin, TreePine, Users } from 'lucide-react';
+import logo from '../assets/logo.png';
 
-export default function CreateEvent() {
-  const navigate = useNavigate();
-  const [formData, setFormData] = useState({
+const CreateEvent = () => {
+  const [evento, setEvento] = useState({
     titolo: '',
     materia: '',
     data: '',
     orario: '',
-    indirizzoVia: '',
-    indirizzoNomeLuogo: '',
-    tipoDiLuogo: 0,
-    numeroPosti: 0
+    indirizzo: '',
+    tipoLuogo: 'Pubblico',
+    numeroPosti: ''
   });
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    setEvento({ ...evento, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    const eventDate = new Date(`${formData.data}T${formData.orario}`);
-    if (eventDate < new Date()) {
-      alert("Non puoi creare un evento nel passato.");
-      return;
-    }
-
+  const handleSave = async () => {
     try {
       const token = localStorage.getItem('token');
-      const payload = {
-        ...formData,
-        tipoDiLuogo: parseInt(formData.tipoDiLuogo),
-        numeroPosti: parseInt(formData.numeroPosti),
-        orario: formData.orario + ":00" // convert to TimeSpan
+      const dataToSend = {
+        ...evento,
+        numeroPosti: evento.numeroPosti ? parseInt(evento.numeroPosti) : null
       };
-
-      const res = await fetch('/api/events', {
-        method: 'POST',
-        headers: { 
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`
-        },
-        body: JSON.stringify(payload)
+      await axios.post('/api/evento', dataToSend, {
+        headers: { Authorization: `Bearer ${token}` }
       });
-      
-      if (res.ok) {
-        navigate('/');
+      alert('Evento creato con successo!');
+      navigate('/bacheca');
+    } catch (error) {
+      if (error.response && error.response.data) {
+        alert('Errore: ' + JSON.stringify(error.response.data));
       } else {
-        const text = await res.text();
-        alert("Errore: " + text);
+        alert('Errore durante la creazione dell\'evento.');
       }
-    } catch (err) {
-      console.error(err);
     }
   };
 
   return (
-    <div style={{ maxWidth: '600px', margin: '0 auto' }}>
-      <div className="card">
-        <h2 className="title">Crea Nuovo Gruppo di Studio</h2>
-        <form onSubmit={handleSubmit} style={{ marginTop: '2rem' }}>
-          <div className="form-group">
-            <label className="form-label">Titolo</label>
-            <input type="text" name="titolo" className="form-control" onChange={handleChange} required />
-          </div>
-          <div className="form-group">
-            <label className="form-label">Materia</label>
-            <input type="text" name="materia" className="form-control" onChange={handleChange} required />
-          </div>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
-            <div className="form-group">
-              <label className="form-label">Data</label>
-              <input type="date" name="data" className="form-control" min={new Date().toISOString().split('T')[0]} onChange={handleChange} required />
-            </div>
-            <div className="form-group">
-              <label className="form-label">Orario</label>
-              <input type="time" name="orario" className="form-control" onChange={handleChange} required />
-            </div>
-          </div>
-          <div className="form-group">
-            <label className="form-label">Indirizzo / Luogo</label>
-            <input type="text" name="indirizzoNomeLuogo" className="form-control" placeholder="es. Biblioteca Centrale" onChange={handleChange} required />
-          </div>
-          <div className="form-group">
-            <label className="form-label">Via</label>
-            <input type="text" name="indirizzoVia" className="form-control" placeholder="es. Via Mezzocannone 8" onChange={handleChange} required />
-          </div>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
-            <div className="form-group">
-              <label className="form-label">Tipo di Luogo</label>
-              <select name="tipoDiLuogo" className="form-control" onChange={handleChange}>
-                <option value={0}>Pubblico</option>
-                <option value={1}>Privato</option>
-              </select>
-            </div>
-            <div className="form-group">
-              <label className="form-label">Numero Posti (0 = Illimitati)</label>
-              <input type="number" name="numeroPosti" className="form-control" min="0" defaultValue="0" onChange={handleChange} required />
-            </div>
-          </div>
-          <button type="submit" className="btn btn-primary" style={{ width: '100%', marginTop: '1rem' }}>
-            Crea Evento
-          </button>
-        </form>
+    <div className="container">
+      <div className="header">
+        <img src={logo} alt="StudyLink Logo" />
+        <h1 style={{ fontSize: '20px', fontWeight: 'bold', marginBottom: '20px' }}>Crea Nuovo Evento</h1>
+      </div>
+      
+      <div className="input-group">
+        <label>Titolo</label>
+        <PenLine className="input-icon" style={{ left: '115px' }} />
+        <input 
+          type="text" 
+          name="titolo"
+          placeholder="Nome dell'evento..." 
+          style={{ paddingLeft: '40px' }}
+          value={evento.titolo} 
+          onChange={handleChange}
+        />
+      </div>
+
+
+      <div className="input-group">
+        <label>Data</label>
+        <Calendar className="input-icon" style={{ left: '115px' }} />
+        <input 
+          type="date" 
+          name="data"
+          style={{ paddingLeft: '40px' }}
+          value={evento.data} 
+          onChange={handleChange}
+        />
+      </div>
+
+      <div className="input-group">
+        <label>Orario</label>
+        <Clock className="input-icon" style={{ left: '115px' }} />
+        <input 
+          type="time" 
+          name="orario"
+          style={{ paddingLeft: '40px' }}
+          value={evento.orario} 
+          onChange={handleChange}
+        />
+      </div>
+
+      <div className="input-group">
+        <label>Indirizzo</label>
+        <MapPin className="input-icon" style={{ left: '115px' }} />
+        <input 
+          type="text" 
+          name="indirizzo"
+          placeholder="Cerca o inserisci indirizzo..." 
+          style={{ paddingLeft: '40px' }}
+          value={evento.indirizzo} 
+          onChange={handleChange}
+        />
+      </div>
+
+      <div className="input-group">
+        <label>Tipo di Luogo</label>
+        <TreePine className="input-icon" style={{ left: '115px' }} />
+        <select 
+          name="tipoLuogo"
+          style={{ paddingLeft: '40px' }}
+          value={evento.tipoLuogo} 
+          onChange={handleChange}
+        >
+          <option value="Pubblico">PUBBLICO</option>
+          <option value="Privato">PRIVATO</option>
+        </select>
+      </div>
+
+      <div className="input-group">
+        <label>Numero posti</label>
+        <Users className="input-icon" style={{ left: '115px' }} />
+        <input 
+          type="number" 
+          name="numeroPosti"
+          placeholder="Posti disponibili..." 
+          style={{ paddingLeft: '40px' }}
+          value={evento.numeroPosti} 
+          onChange={handleChange}
+        />
+      </div>
+      
+      <button className="btn btn-primary" onClick={handleSave}>
+        SALVA EVENTO
+      </button>
+
+      <div style={{ textAlign: 'center', marginTop: '15px' }}>
+        <span style={{ color: 'var(--primary)', fontWeight: '500', cursor: 'pointer' }} onClick={() => navigate(-1)}>
+          Annulla
+        </span>
       </div>
     </div>
   );
-}
+};
+
+export default CreateEvent;

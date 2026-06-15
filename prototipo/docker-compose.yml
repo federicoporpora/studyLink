@@ -2,15 +2,17 @@ version: '3.8'
 
 services:
   db:
-    image: postgres:15-alpine
+    image: postgres:15
     environment:
-      POSTGRES_USER: studylink
-      POSTGRES_PASSWORD: studylinkpassword
-      POSTGRES_DB: studylinkdb
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: studylink
     ports:
       - "5432:5432"
     volumes:
-      - pgdata:/var/lib/postgresql/data
+      - db_data:/var/lib/postgresql/data
+    networks:
+      - studylink-network
 
   backend:
     build:
@@ -19,13 +21,35 @@ services:
     ports:
       - "5000:8080"
     environment:
-      - ConnectionStrings__DefaultConnection=Host=db;Database=studylinkdb;Username=studylink;Password=studylinkpassword
-      - JWT__Key=SuperSecretKeyThatIsAtLeast32CharactersLongAndVerySecure!
-      - JWT__Issuer=StudyLinkIssuer
-      - JWT__Audience=StudyLinkAudience
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__DefaultConnection=Host=db;Port=5432;Database=studylink;Username=user;Password=password
+      - Jwt__Key=SuperSecretKeyForStudyLinkApp123456789!
+      - Jwt__Issuer=StudyLink
+      - Jwt__Audience=StudyLink
     depends_on:
       - db
+    volumes:
+      - uploads_data:/app/wwwroot/uploads
+    networks:
+      - studylink-network
 
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - VITE_API_URL=
+    depends_on:
+      - backend
+    networks:
+      - studylink-network
 
 volumes:
-  pgdata:
+  db_data:
+  uploads_data:
+
+networks:
+  studylink-network:
+    driver: bridge

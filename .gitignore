@@ -10,15 +10,15 @@
 GEMINI.md
 
 # ===== Prototipo: Backend (.NET) =====
-prototipo/backend/bin/
-prototipo/backend/obj/
-# Private configs (JWT, DB credentials)
-prototipo/backend/appsettings.json
-prototipo/backend/appsettings.*.json
+prototipo/backend/**/bin/
+prototipo/backend/**/obj/
+prototipo/backend/**/publish/
+prototipo/backend/.vs/
+prototipo/backend/.vscode/
 
 # ===== Prototipo: Frontend =====
-# Env files that may contain secrets
-prototipo/frontend/.env
-prototipo/frontend/.env.*
 prototipo/frontend/node_modules/
 prototipo/frontend/dist/
+prototipo/frontend/.env
+prototipo/frontend/.env.*
+!prototipo/frontend/.env.example
