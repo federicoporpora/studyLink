@@ -1,20 +1,27 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import axios from 'axios';
 import { Plus, Search, Filter } from 'lucide-react';
 import logo from '../assets/logo.png';
 import UserAvatar from '../components/UserAvatar';
 
 const Bacheca = () => {
+  const location = useLocation();
   const [eventi, setEventi] = useState([]);
-  const [activeTab, setActiveTab] = useState('esplora'); // 'esplora' or 'miei'
+  const [activeTab, setActiveTab] = useState(location.state?.activeTab || 'esplora');
   const [search, setSearch] = useState('');
   const [myProfile, setMyProfile] = useState(null);
   const [myUserId, setMyUserId] = useState(null);
   const [showMenu, setShowMenu] = useState(false);
   const [showFilterModal, setShowFilterModal] = useState(false);
+  const [msg, setMsg] = useState(null);
   const [filter, setFilter] = useState({ tipoLuogo: '', postiMinimi: '', dataInizio: '', dataFine: '' });
   const navigate = useNavigate();
+
+  const handleTabChange = (tab) => {
+    setActiveTab(tab);
+    navigate('.', { state: { ...location.state, activeTab: tab }, replace: true });
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -54,10 +61,11 @@ const Bacheca = () => {
       await axios.post('/api/evento/' + eventoId + '/partecipa', {}, {
         headers: { Authorization: `Bearer ${token}` }
       });
-      alert('Prenotato con successo!');
-      window.location.reload();
+      setMsg({ type: 'success', text: 'Prenotato con successo!' });
+      setTimeout(() => window.location.reload(), 1500);
     } catch (error) {
-      alert(error.response?.data || 'Errore durante la prenotazione');
+      setMsg({ type: 'error', text: error.response?.data || 'Errore durante la prenotazione' });
+      setTimeout(() => setMsg(null), 3000);
     }
   };
 
@@ -67,11 +75,28 @@ const Bacheca = () => {
   };
 
   const filteredEvents = eventi.filter(e => {
+    const today = new Date();
+    today.setHours(0,0,0,0);
+    // Correct for local timezone instead of UTC so date strings match correctly
+    const tzOffset = today.getTimezoneOffset() * 60000;
+    const localToday = new Date(today.getTime() - tzOffset);
+    const todayStr = localToday.toISOString().split('T')[0];
+    
+    const fourteenDaysAgo = new Date(localToday);
+    fourteenDaysAgo.setDate(localToday.getDate() - 14);
+    const fourteenDaysAgoStr = fourteenDaysAgo.toISOString().split('T')[0];
+
+    const isMine = e.organizzatoreId === myUserId || e.isIscritto;
+    const isPast = e.data < todayStr;
+    const isRecentPast = isPast && e.data >= fourteenDaysAgoStr;
+
     // Tab filter
-    if (activeTab === 'miei') {
-      if (e.organizzatoreId !== myUserId && !e.isIscritto) return false;
-    } else {
-      if (e.organizzatoreId === myUserId || e.isIscritto) return false;
+    if (activeTab === 'passati') {
+      if (!isMine || !isRecentPast) return false;
+    } else if (activeTab === 'miei') {
+      if (!isMine || isPast) return false;
+    } else { // 'esplora'
+      if (isMine || isPast) return false;
     }
     
     // Search filter
@@ -103,7 +128,7 @@ const Bacheca = () => {
   });
 
   return (
-    <div style={{ flex: 1, display: 'flex', flexDirection: 'column', height: '100vh', width: '100%', position: 'relative' }}>
+    <div style={{ flex: 1, display: 'flex', flexDirection: 'column', height: '100dvh', width: '100%', position: 'relative' }}>
       {/* Header */}
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '20px' }}>
         <img src={logo} alt="StudyLink" style={{ height: '30px' }} />
@@ -135,20 +160,35 @@ const Bacheca = () => {
       </div>
 
       {/* Tabs */}
-      <div style={{ display: 'flex', borderBottom: '1px solid var(--border-color)' }}>
+      <div style={{ display: 'flex', borderBottom: '1px solid var(--border-color)', fontSize: '13px' }}>
         <div 
-          onClick={() => setActiveTab('esplora')}
+          onClick={() => handleTabChange('esplora')}
           style={{ flex: 1, textAlign: 'center', padding: '15px 0', cursor: 'pointer', fontWeight: 'bold', color: activeTab === 'esplora' ? 'var(--primary)' : 'var(--text-light)', borderBottom: activeTab === 'esplora' ? '3px solid var(--primary)' : 'none' }}
         >
           ESPLORA
         </div>
         <div 
-          onClick={() => setActiveTab('miei')}
+          onClick={() => handleTabChange('miei')}
           style={{ flex: 1, textAlign: 'center', padding: '15px 0', cursor: 'pointer', fontWeight: 'bold', color: activeTab === 'miei' ? 'var(--primary)' : 'var(--text-light)', borderBottom: activeTab === 'miei' ? '3px solid var(--primary)' : 'none' }}
         >
           I MIEI EVENTI
         </div>
+        <div 
+          onClick={() => handleTabChange('passati')}
+          style={{ flex: 1, textAlign: 'center', padding: '15px 0', cursor: 'pointer', fontWeight: 'bold', color: activeTab === 'passati' ? 'var(--primary)' : 'var(--text-light)', borderBottom: activeTab === 'passati' ? '3px solid var(--primary)' : 'none' }}
+        >
+          PASSATI
+        </div>
       </div>
+      
+      {msg && (
+        <div style={{
+          position: 'absolute', top: '130px', left: '50%', transform: 'translateX(-50%)', zIndex: 2000,
+          backgroundColor: msg.type === 'success' ? '#4caf50' : '#e57373', color: 'white', padding: '10px 20px', borderRadius: '20px', boxShadow: '0 4px 10px rgba(0,0,0,0.2)'
+        }}>
+          {msg.text}
+        </div>
+      )}
 
       {/* Search / Filters */}
       <div style={{ padding: '20px 20px 10px 20px', display: 'flex', gap: '10px' }}>
@@ -229,18 +269,21 @@ const Bacheca = () => {
       {/* Event List */}
       <div style={{ flex: 1, overflowY: 'auto', padding: '0 20px 100px 20px' }}>
         {filteredEvents.map(evento => (
-          <div key={evento.id} style={{ 
+          <div key={evento.id} 
+            onClick={() => navigate('/dettagli-evento', { state: { eventoId: evento.id } })}
+            style={{ 
             backgroundColor: 'white', 
             borderRadius: '12px', 
             padding: '15px', 
             marginBottom: '15px', 
+            cursor: 'pointer',
             boxShadow: '0 2px 10px rgba(0,0,0,0.05)', 
             border: '1px solid #eee',
-            borderLeft: activeTab === 'miei' 
+            borderLeft: (activeTab === 'miei' || activeTab === 'passati')
                           ? (evento.organizzatoreId === myUserId ? '6px solid var(--primary)' : '6px solid #28a745') 
                           : '1px solid #eee'
           }}>
-            {activeTab === 'miei' && (
+            {(activeTab === 'miei' || activeTab === 'passati') && (
               <div style={{ fontSize: '11px', fontWeight: 'bold', color: evento.organizzatoreId === myUserId ? 'var(--primary)' : '#28a745', marginBottom: '5px' }}>
                 {evento.organizzatoreId === myUserId ? 'ORGANIZZATO DA TE' : 'PARTECIPI'}
               </div>
@@ -255,16 +298,16 @@ const Bacheca = () => {
             </p>
             
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-              <span style={{ fontSize: '12px', fontWeight: 'bold' }}>
+              <span style={{ fontSize: '12px', fontWeight: 'bold', paddingRight: '10px' }}>
                 Posti disponibili: {evento.numeroPosti ? (evento.numeroPosti - evento.partecipantiAttuali - 1) + ' / ' + evento.numeroPosti : 'Illimitati'}
               </span>
               
               {activeTab === 'miei' || evento.organizzatoreId === myUserId || evento.isIscritto ? (
-                <button className="btn btn-secondary" style={{ width: 'auto', padding: '8px 20px', marginTop: 0, fontSize: '12px' }} onClick={() => navigate('/chat', { state: { eventoId: evento.id } })}>
+                <button className="btn btn-secondary" style={{ width: 'auto', padding: '8px 15px', marginTop: 0, fontSize: '12px', whiteSpace: 'nowrap' }} onClick={(e) => { e.stopPropagation(); navigate('/chat', { state: { eventoId: evento.id, eventoNome: evento.titolo } }); }}>
                   VAI ALLA CHAT
                 </button>
               ) : (
-                <button className="btn btn-primary" style={{ width: 'auto', padding: '8px 20px', marginTop: 0, fontSize: '12px' }} onClick={() => handlePartecipa(evento.id)}>
+                <button className="btn btn-primary" style={{ width: 'auto', padding: '8px 15px', marginTop: 0, fontSize: '12px', whiteSpace: 'nowrap' }} onClick={(e) => { e.stopPropagation(); handlePartecipa(evento.id); }}>
                   PARTECIPA
                 </button>
               )}
@@ -280,9 +323,10 @@ const Bacheca = () => {
       <div 
         onClick={() => navigate('/create-event')}
         style={{
-          position: 'absolute',
+          position: 'fixed',
           bottom: '30px',
           right: '30px',
+          zIndex: 1000,
           width: '60px',
           height: '60px',
           backgroundColor: 'var(--primary)',

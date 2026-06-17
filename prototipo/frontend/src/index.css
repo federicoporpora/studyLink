@@ -20,13 +20,13 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
+  min-height: 100dvh;
 }
 
 #root {
   width: 100%;
   max-width: 414px; /* iPhone Max width */
-  min-height: 100vh;
+  min-height: 100dvh;
   background-color: #ffffff;
   position: relative;
   overflow-x: hidden;

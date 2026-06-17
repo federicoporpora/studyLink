@@ -38,6 +38,41 @@ namespace StudyLink.Api.Controllers
             });
         }
 
+        [HttpGet("{id}")]
+        public async Task<ActionResult<UtenteProfiloDto>> GetUserProfile(int id)
+        {
+            var profilo = await _context.Profili.FirstOrDefaultAsync(p => p.UtenteId == id);
+            if (profilo == null) return NotFound();
+
+            var commenti = await _context.Commenti
+                .Include(c => c.Mittente)
+                .ThenInclude(m => m.Profilo)
+                .Where(c => c.DestinatarioId == id)
+                .OrderByDescending(c => c.Data)
+                .Select(c => new CommentoDto
+                {
+                    Id = c.Id,
+                    MittenteId = c.MittenteId,
+                    MittenteNome = c.Mittente.Profilo != null ? (c.Mittente.Profilo.Nome + " " + c.Mittente.Profilo.Cognome).Trim() : "Sconosciuto",
+                    MittenteImmagine = c.Mittente.Profilo != null ? c.Mittente.Profilo.ImmagineProfilo : null,
+                    Testo = c.Testo,
+                    Voto = c.Valutazione,
+                    Data = c.Data.ToString("yyyy-MM-dd")
+                })
+                .ToListAsync();
+
+            return Ok(new UtenteProfiloDto
+            {
+                UtenteId = id,
+                Nome = profilo.Nome,
+                Cognome = profilo.Cognome,
+                CorsoDiStudi = profilo.CorsoDiStudi,
+                Biografia = profilo.Biografia,
+                ImmagineProfilo = profilo.ImmagineProfilo,
+                Commenti = commenti
+            });
+        }
+
         [HttpPut("me")]
         public async Task<IActionResult> UpdateProfile(ProfiloDto request)
         {
@@ -96,6 +131,39 @@ namespace StudyLink.Api.Controllers
             await _context.SaveChangesAsync();
 
             return Ok(new { url = relativeUrl });
+        }
+
+        public class CreateCommentoDto
+        {
+            public string Testo { get; set; } = string.Empty;
+            public int Valutazione { get; set; }
+        }
+
+        [HttpPost("{id}/commento")]
+        public async Task<IActionResult> LasciaCommento(int id, CreateCommentoDto request)
+        {
+            var userIdStr = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (!int.TryParse(userIdStr, out int userId)) return Unauthorized();
+
+            if (userId == id) return BadRequest("Non puoi autocommentarti.");
+
+            var destinatario = await _context.Utenti.FindAsync(id);
+            if (destinatario == null) return NotFound("Utente non trovato.");
+
+            var commento = new StudyLink.Api.Models.Commento
+            {
+                MittenteId = userId,
+                DestinatarioId = id,
+                Testo = request.Testo,
+                Valutazione = request.Valutazione,
+                Data = DateTime.UtcNow,
+                Orario = DateTime.UtcNow.TimeOfDay
+            };
+
+            _context.Commenti.Add(commento);
+            await _context.SaveChangesAsync();
+
+            return Ok();
         }
     }
 }

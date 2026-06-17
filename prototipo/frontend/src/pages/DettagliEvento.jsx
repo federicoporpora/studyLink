@@ -9,6 +9,11 @@ const DettagliEvento = () => {
   const id = location.state?.eventoId;
   const navigate = useNavigate();
   const [evento, setEvento] = useState(null);
+  const [msg, setMsg] = useState(null);
+  const [myUserId, setMyUserId] = useState(null);
+  const [commentTarget, setCommentTarget] = useState(null); // { id: 1, nome: 'Mario' }
+  const [commentText, setCommentText] = useState('');
+  const [commentRating, setCommentRating] = useState(5);
 
   useEffect(() => {
     const fetchEvento = async () => {
@@ -17,13 +22,17 @@ const DettagliEvento = () => {
         const token = localStorage.getItem('token');
         if (!token) return navigate('/login');
 
-        const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/evento/${id}`, {
+        const payload = JSON.parse(atob(token.split('.')[1]));
+        const userId = parseInt(payload["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier"]);
+        setMyUserId(userId);
+
+        const res = await axios.get(`${import.meta.env.VITE_API_URL || ''}/api/evento/${id}`, {
           headers: { Authorization: `Bearer ${token}` }
         });
         setEvento(res.data);
       } catch (error) {
         console.error("Errore fetch evento", error);
-        alert("Impossibile caricare i dettagli dell'evento.");
+        setMsg({ type: 'error', text: "Impossibile caricare i dettagli dell'evento." });
       }
     };
     fetchEvento();
@@ -31,8 +40,36 @@ const DettagliEvento = () => {
 
   if (!evento) return <div style={{ padding: '20px', textAlign: 'center' }}>Caricamento...</div>;
 
+  const today = new Date();
+  today.setHours(0,0,0,0);
+  const tzOffset = today.getTimezoneOffset() * 60000;
+  const localToday = new Date(today.getTime() - tzOffset);
+  const todayStr = localToday.toISOString().split('T')[0];
+  const isPast = evento.data < todayStr;
+
+  const handlePostComment = async () => {
+    if (!commentText.trim()) return;
+    try {
+      const token = localStorage.getItem('token');
+      await axios.post(`${import.meta.env.VITE_API_URL || ''}/api/profilo/${commentTarget.id}/commento`, {
+        testo: commentText,
+        valutazione: commentRating
+      }, {
+        headers: { Authorization: `Bearer ${token}` }
+      });
+      setMsg({ type: 'success', text: 'Commento inviato!' });
+      setCommentTarget(null);
+      setCommentText('');
+      setCommentRating(5);
+      setTimeout(() => setMsg(null), 3000);
+    } catch (err) {
+      setMsg({ type: 'error', text: err.response?.data || 'Errore invio commento' });
+      setTimeout(() => setMsg(null), 3000);
+    }
+  };
+
   return (
-    <div style={{ flex: 1, display: 'flex', flexDirection: 'column', height: '100vh', width: '100%', backgroundColor: '#f9f9f9' }}>
+    <div style={{ flex: 1, display: 'flex', flexDirection: 'column', height: '100dvh', width: '100%', backgroundColor: '#f9f9f9' }}>
       {/* Header */}
       <div style={{ backgroundColor: 'var(--primary)', color: 'white', padding: '15px 20px', display: 'flex', alignItems: 'center', boxShadow: '0 2px 5px rgba(0,0,0,0.1)' }}>
         <ArrowLeft size={24} onClick={() => navigate(-1)} style={{ cursor: 'pointer', marginRight: '15px' }} />
@@ -40,6 +77,14 @@ const DettagliEvento = () => {
       </div>
 
       <div style={{ padding: '20px', overflowY: 'auto', flex: 1 }}>
+        {msg && (
+          <div style={{ 
+            backgroundColor: msg.type === 'success' ? '#4caf50' : '#e57373', 
+            color: 'white', padding: '10px', borderRadius: '8px', marginBottom: '15px', textAlign: 'center' 
+          }}>
+            {msg.text}
+          </div>
+        )}
         {/* Info Box */}
         <div style={{ backgroundColor: 'white', padding: '20px', borderRadius: '16px', boxShadow: '0 4px 15px rgba(0,0,0,0.05)', marginBottom: '20px' }}>
           <h1 style={{ fontSize: '24px', marginBottom: '15px', color: 'var(--text)' }}>{evento.titolo}</h1>
@@ -74,7 +119,10 @@ const DettagliEvento = () => {
 
           <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
             {/* Organizzatore */}
-            <div style={{ display: 'flex', alignItems: 'center', backgroundColor: 'white', padding: '12px 15px', borderRadius: '12px', borderLeft: '4px solid var(--primary)', boxShadow: '0 2px 5px rgba(0,0,0,0.02)' }}>
+            <div 
+              style={{ display: 'flex', alignItems: 'center', backgroundColor: 'white', padding: '12px 15px', borderRadius: '12px', borderLeft: '4px solid var(--primary)', boxShadow: '0 2px 5px rgba(0,0,0,0.02)', cursor: 'pointer' }}
+              onClick={() => navigate('/user-profile', { state: { id: evento.organizzatoreId } })}
+            >
               <UserAvatar 
                 user={{ 
                   nome: evento.organizzatoreNome, 
@@ -87,11 +135,23 @@ const DettagliEvento = () => {
                 <div style={{ fontSize: '15px', fontWeight: '500' }}>{evento.organizzatoreNome}</div>
                 <div style={{ fontSize: '12px', color: 'var(--primary)', fontWeight: 'bold' }}>Organizzatore</div>
               </div>
+              {isPast && evento.organizzatoreId !== myUserId && (
+                <button 
+                  onClick={(e) => { e.stopPropagation(); setCommentTarget({ id: evento.organizzatoreId, nome: evento.organizzatoreNome }); }}
+                  style={{ padding: '6px 12px', fontSize: '12px', borderRadius: '20px', border: '1px solid var(--primary)', backgroundColor: 'transparent', color: 'var(--primary)', cursor: 'pointer' }}
+                >
+                  Lascia commento
+                </button>
+              )}
             </div>
 
             {/* Iscritti */}
             {evento.partecipanti.map((p, index) => (
-              <div key={index} style={{ display: 'flex', alignItems: 'center', backgroundColor: 'white', padding: '12px 15px', borderRadius: '12px', boxShadow: '0 2px 5px rgba(0,0,0,0.02)' }}>
+              <div 
+                key={index} 
+                style={{ display: 'flex', alignItems: 'center', backgroundColor: 'white', padding: '12px 15px', borderRadius: '12px', boxShadow: '0 2px 5px rgba(0,0,0,0.02)', cursor: 'pointer' }}
+                onClick={() => navigate('/user-profile', { state: { id: p.utenteId } })}
+              >
                 <UserAvatar 
                   user={{ 
                     nome: p.nome, 
@@ -100,12 +160,64 @@ const DettagliEvento = () => {
                   size={40} 
                   style={{ marginRight: '15px' }} 
                 />
-                <div style={{ fontSize: '15px', fontWeight: '500' }}>{p.nome}</div>
+                <div style={{ flex: 1, fontSize: '15px', fontWeight: '500' }}>{p.nome}</div>
+                
+                {isPast && p.utenteId !== myUserId && (
+                  <button 
+                    onClick={(e) => { e.stopPropagation(); setCommentTarget({ id: p.utenteId, nome: p.nome }); }}
+                    style={{ padding: '6px 12px', fontSize: '12px', borderRadius: '20px', border: '1px solid var(--primary)', backgroundColor: 'transparent', color: 'var(--primary)', cursor: 'pointer' }}
+                  >
+                    Lascia commento
+                  </button>
+                )}
               </div>
             ))}
           </div>
         </div>
       </div>
+
+      {/* Modal Commento */}
+      {commentTarget && (
+        <div style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, backgroundColor: 'rgba(0,0,0,0.5)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 3000, padding: '20px' }}>
+          <div style={{ backgroundColor: 'white', padding: '20px', borderRadius: '16px', width: '100%', maxWidth: '400px', boxShadow: '0 10px 25px rgba(0,0,0,0.2)' }}>
+            <h3 style={{ fontSize: '18px', marginBottom: '15px' }}>Lascia un commento per {commentTarget.nome}</h3>
+            
+            <div style={{ marginBottom: '15px' }}>
+              <label style={{ display: 'block', fontSize: '14px', marginBottom: '8px' }}>Valutazione (1-5)</label>
+              <div style={{ display: 'flex', gap: '5px' }}>
+                {[1,2,3,4,5].map(v => (
+                  <button key={v} onClick={() => setCommentRating(v)} style={{ padding: '5px 10px', borderRadius: '5px', border: 'none', backgroundColor: commentRating >= v ? '#ffb400' : '#eee', color: commentRating >= v ? 'white' : '#666' }}>★</button>
+                ))}
+              </div>
+            </div>
+
+            <div style={{ marginBottom: '20px' }}>
+              <label style={{ display: 'block', fontSize: '14px', marginBottom: '8px' }}>Commento</label>
+              <textarea 
+                value={commentText}
+                onChange={e => setCommentText(e.target.value)}
+                style={{ width: '100%', padding: '10px', borderRadius: '8px', border: '1px solid #ddd', minHeight: '80px', fontFamily: 'inherit' }}
+                placeholder="Scrivi la tua opinione..."
+              />
+            </div>
+
+            <div style={{ display: 'flex', gap: '10px', justifyContent: 'flex-end' }}>
+              <button 
+                onClick={() => { setCommentTarget(null); setCommentText(''); setCommentRating(5); }}
+                style={{ padding: '8px 15px', borderRadius: '8px', border: 'none', backgroundColor: '#eee', color: '#333', fontWeight: 'bold' }}
+              >
+                Annulla
+              </button>
+              <button 
+                onClick={handlePostComment}
+                style={{ padding: '8px 15px', borderRadius: '8px', border: 'none', backgroundColor: 'var(--primary)', color: 'white', fontWeight: 'bold' }}
+              >
+                Invia
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

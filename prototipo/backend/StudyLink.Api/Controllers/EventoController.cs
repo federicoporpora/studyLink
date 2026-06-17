@@ -154,7 +154,7 @@ namespace StudyLink.Api.Controllers
 
             if (evento == null) return NotFound();
 
-            if (evento.NumeroPosti.HasValue && evento.Prenotazioni.Count >= evento.NumeroPosti.Value)
+            if (evento.NumeroPosti.HasValue && evento.Prenotazioni.Count >= (evento.NumeroPosti.Value - 1))
             {
                 return BadRequest("Evento pieno");
             }

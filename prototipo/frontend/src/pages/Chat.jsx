@@ -13,6 +13,7 @@ const Chat = () => {
   const [newMessage, setNewMessage] = useState('');
   const [connection, setConnection] = useState(null);
   const [myUserId, setMyUserId] = useState(null);
+  const [eventoNome, setEventoNome] = useState(location.state?.eventoNome || 'Chat Evento');
   const messagesEndRef = useRef(null);
 
   const scrollToBottom = () => {
@@ -43,8 +44,15 @@ const Chat = () => {
           headers: { Authorization: `Bearer ${token}` }
         });
         setMessages(res.data);
+        
+        if (eventoNome === 'Chat Evento') {
+            const evRes = await axios.get(`${import.meta.env.VITE_API_URL || ''}/api/evento/${eventoId}`, {
+                headers: { Authorization: `Bearer ${token}` }
+            });
+            setEventoNome(evRes.data.titolo);
+        }
       } catch (err) {
-        console.error('Error fetching messages', err);
+        console.error('Error fetching data', err);
       }
 
       // Initialize SignalR
@@ -105,8 +113,19 @@ const Chat = () => {
     }
   };
 
+  const [viewportHeight, setViewportHeight] = useState('100dvh');
+
+  useEffect(() => {
+    if (window.visualViewport) {
+      const handleResize = () => setViewportHeight(`${window.visualViewport.height}px`);
+      window.visualViewport.addEventListener('resize', handleResize);
+      handleResize();
+      return () => window.visualViewport.removeEventListener('resize', handleResize);
+    }
+  }, []);
+
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', height: '100vh', width: '100%', backgroundColor: '#ece5dd' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', height: viewportHeight, width: '100%', backgroundColor: '#ece5dd' }}>
       {/* Chat Header */}
       <div style={{ backgroundColor: 'var(--primary)', color: 'white', padding: '15px 20px', display: 'flex', alignItems: 'center', boxShadow: '0 1px 3px rgba(0,0,0,0.1)' }}>
         <ArrowLeft size={24} onClick={() => navigate('/bacheca')} style={{ cursor: 'pointer', marginRight: '15px' }} />
@@ -118,8 +137,8 @@ const Chat = () => {
             💬
           </div>
           <div>
-            <h2 style={{ fontSize: '18px', margin: 0 }}>Chat Evento</h2>
-            <span style={{ fontSize: '12px', opacity: 0.8 }}>Tocca qui per info</span>
+            <h2 style={{ fontSize: '18px', margin: 0 }}>{eventoNome}</h2>
+            <span style={{ fontSize: '12px', opacity: 0.8 }}>Tocca qui per info sull'evento</span>
           </div>
         </div>
       </div>
@@ -154,7 +173,10 @@ const Chat = () => {
           return (
             <div key={index} style={{ display: 'flex', gap: '8px', alignSelf: isMine ? 'flex-end' : 'flex-start', maxWidth: '85%', marginTop: isFirstInGroup && index !== 0 ? '6px' : '0' }}>
               {!isMine && (
-                <div style={{ width: '32px', flexShrink: 0, display: 'flex', justifyContent: 'center', alignItems: 'flex-end' }}>
+                <div 
+                  style={{ width: '32px', flexShrink: 0, display: 'flex', justifyContent: 'center', alignItems: 'flex-end', cursor: 'pointer' }}
+                  onClick={() => navigate('/user-profile', { state: { id: msg.utenteId } })}
+                >
                   {showProfile && (
                     <UserAvatar user={{ utenteNome: msg.utenteNome, immagineProfilo: msg.immagineProfilo }} size={32} />
                   )}
@@ -169,12 +191,24 @@ const Chat = () => {
                 borderTopLeftRadius: !isMine && isFirstInGroup ? '0' : '12px',
                 boxShadow: '0 1px 2px rgba(0,0,0,0.1)',
                 display: 'flex',
-                flexDirection: 'column'
-              }}>  {!isMine && showProfile && <div style={{ fontSize: '12px', color: nameColor, fontWeight: 'bold', marginBottom: '2px', paddingRight: '15px' }}>{msg.utenteNome}</div>}
+                flexDirection: 'column',
+                position: 'relative',
+                minWidth: '70px'
+              }}>  {!isMine && showProfile && (
+                  <div 
+                    style={{ fontSize: '12px', color: nameColor, fontWeight: 'bold', marginBottom: '2px', paddingRight: '15px', cursor: 'pointer' }}
+                    onClick={() => navigate('/user-profile', { state: { id: msg.utenteId } })}
+                  >
+                    {msg.utenteNome}
+                  </div>
+                )}
                 
-                <div style={{ fontSize: '14px', wordBreak: 'break-word', lineHeight: '1.2', display: 'flex', alignItems: 'flex-end', gap: '8px' }}>
-                  <span style={{ paddingBottom: '4px' }}>{msg.testo}</span>
-                  <span style={{ fontSize: '10px', color: isMine ? 'rgba(255,255,255,0.7)' : '#999', position: 'relative', bottom: '-2px', flexShrink: 0 }}>{localTime}</span>
+                <div style={{ fontSize: '14px', wordBreak: 'break-word', lineHeight: '1.2', paddingBottom: '4px' }}>
+                  {msg.testo}
+                  <span style={{ display: 'inline-block', width: '38px' }}></span>
+                </div>
+                <div style={{ fontSize: '10px', opacity: 0.7, position: 'absolute', bottom: '4px', right: '8px' }}>
+                  {localTime}
                 </div>
               </div>
             </div>
@@ -187,9 +221,14 @@ const Chat = () => {
       <form onSubmit={handleSendMessage} style={{ padding: '10px', backgroundColor: '#f0f0f0', display: 'flex', alignItems: 'center', gap: '10px' }}>
         <input 
           type="text" 
-          placeholder="Scrivi un messaggio" 
+          placeholder="Scrivi un messaggio..." 
           value={newMessage}
           onChange={(e) => setNewMessage(e.target.value)}
+          onFocus={() => {
+            setTimeout(() => {
+              messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+            }, 300);
+          }}
           style={{ flex: 1, padding: '12px 20px', borderRadius: '25px', border: 'none', outline: 'none', fontSize: '15px' }}
         />
         <button type="submit" style={{ backgroundColor: 'var(--primary)', color: 'white', border: 'none', width: '45px', height: '45px', borderRadius: '50%', display: 'flex', justifyContent: 'center', alignItems: 'center', cursor: 'pointer', transition: 'transform 0.1s' }} onMouseDown={e => e.currentTarget.style.transform='scale(0.9)'} onMouseUp={e => e.currentTarget.style.transform='scale(1)'}>

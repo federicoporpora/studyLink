@@ -14,6 +14,7 @@ const CreateEvent = () => {
     tipoLuogo: 'Pubblico',
     numeroPosti: ''
   });
+  const [msg, setMsg] = useState(null);
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -30,13 +31,13 @@ const CreateEvent = () => {
       await axios.post('/api/evento', dataToSend, {
         headers: { Authorization: `Bearer ${token}` }
       });
-      alert('Evento creato con successo!');
-      navigate('/bacheca');
+      setMsg({ type: 'success', text: 'Evento creato con successo!' });
+      setTimeout(() => navigate('/bacheca'), 1500);
     } catch (error) {
-      if (error.response && error.response.data) {
-        alert('Errore: ' + JSON.stringify(error.response.data));
+      if (error.response?.data) {
+        setMsg({ type: 'error', text: 'Errore: ' + JSON.stringify(error.response.data) });
       } else {
-        alert('Errore durante la creazione dell\'evento.');
+        setMsg({ type: 'error', text: 'Errore durante la creazione dell\'evento.' });
       }
     }
   };
@@ -48,6 +49,15 @@ const CreateEvent = () => {
         <h1 style={{ fontSize: '20px', fontWeight: 'bold', marginBottom: '20px' }}>Crea Nuovo Evento</h1>
       </div>
       
+      {msg && (
+          <div style={{ 
+            backgroundColor: msg.type === 'success' ? '#4caf50' : '#e57373', 
+            color: 'white', padding: '10px', borderRadius: '8px', marginBottom: '15px', textAlign: 'center' 
+          }}>
+            {msg.text}
+          </div>
+      )}
+
       <div className="input-group">
         <label>Titolo</label>
         <PenLine className="input-icon" style={{ left: '115px' }} />
@@ -119,10 +129,16 @@ const CreateEvent = () => {
         <input 
           type="number" 
           name="numeroPosti"
-          placeholder="Posti disponibili..." 
+          placeholder="Illimitati" 
+          min="1"
           style={{ paddingLeft: '40px' }}
           value={evento.numeroPosti} 
-          onChange={handleChange}
+          onChange={(e) => {
+            const val = e.target.value;
+            if (val === '' || parseInt(val) > 0) {
+              setEvento({ ...evento, numeroPosti: val });
+            }
+          }}
         />
       </div>
       

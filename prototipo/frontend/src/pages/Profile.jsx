@@ -13,10 +13,9 @@ const Profile = () => {
     biografia: '',
     immagineProfilo: null
   });
-  const [passwordData, setPasswordData] = useState({
-    oldPassword: '',
-    newPassword: ''
-  });
+  const [oldPassword, setOldPassword] = useState('');
+  const [newPassword, setNewPassword] = useState('');
+  const [msg, setMsg] = useState(null);
   const navigate = useNavigate();
   const fileInputRef = useRef(null);
 
@@ -49,10 +48,11 @@ const Profile = () => {
       await axios.put(`${import.meta.env.VITE_API_URL}/api/profilo/me`, profile, {
         headers: { Authorization: `Bearer ${token}` }
       });
-      alert('Profilo aggiornato con successo!');
-      navigate('/bacheca');
+      setMsg({ type: 'success', text: 'Profilo aggiornato con successo!' });
+      setTimeout(() => setMsg(null), 3000);
     } catch (error) {
-      alert('Errore durante l\'aggiornamento del profilo.');
+      setMsg({ type: 'error', text: 'Errore durante l\'aggiornamento del profilo.' });
+      setTimeout(() => setMsg(null), 3000);
     }
   };
 
@@ -73,32 +73,33 @@ const Profile = () => {
       });
       setProfile(prev => ({ ...prev, immagineProfilo: res.data.url }));
     } catch (error) {
-      alert('Errore caricamento immagine');
+      setMsg({ type: 'error', text: 'Errore caricamento immagine' });
+      setTimeout(() => setMsg(null), 3000);
     }
   };
 
-  const handlePasswordChange = (e) => {
-    setPasswordData({ ...passwordData, [e.target.name]: e.target.value });
-  };
-
   const handleSavePassword = async () => {
-    if (!passwordData.oldPassword || !passwordData.newPassword) {
-      alert('Inserisci sia la vecchia che la nuova password.');
+    if (!oldPassword || !newPassword) {
+      setMsg({ type: 'error', text: 'Inserisci sia la vecchia che la nuova password.' });
+      setTimeout(() => setMsg(null), 3000);
       return;
     }
     try {
       const token = localStorage.getItem('token');
-      await axios.post(`${import.meta.env.VITE_API_URL}/api/auth/change-password`, passwordData, {
+      await axios.post(`${import.meta.env.VITE_API_URL}/api/auth/change-password`, { oldPassword, newPassword }, {
         headers: { Authorization: `Bearer ${token}` }
       });
-      alert('Password aggiornata con successo!');
-      setPasswordData({ oldPassword: '', newPassword: '' });
+      setMsg({ type: 'success', text: 'Password aggiornata con successo!' });
+      setTimeout(() => setMsg(null), 3000);
+      setOldPassword('');
+      setNewPassword('');
     } catch (error) {
       if (error.response && error.response.data) {
-        alert(error.response.data);
+        setMsg({ type: 'error', text: error.response.data });
       } else {
-        alert('Errore durante l\'aggiornamento della password.');
+        setMsg({ type: 'error', text: 'Errore durante l\'aggiornamento della password.' });
       }
+      setTimeout(() => setMsg(null), 3000);
     }
   };
 
@@ -109,11 +110,14 @@ const Profile = () => {
         await axios.delete(`${import.meta.env.VITE_API_URL}/api/auth/delete-account`, {
           headers: { Authorization: `Bearer ${token}` }
         });
-        alert('Profilo eliminato con successo.');
-        localStorage.removeItem('token');
-        navigate('/login');
+        setMsg({ type: 'success', text: 'Profilo eliminato con successo.' });
+        setTimeout(() => {
+          localStorage.removeItem('token');
+          navigate('/login');
+        }, 1500);
       } catch (error) {
-        alert('Errore durante l\'eliminazione del profilo.');
+        setMsg({ type: 'error', text: 'Errore durante l\'eliminazione del profilo.' });
+        setTimeout(() => setMsg(null), 3000);
       }
     }
   };
@@ -127,8 +131,17 @@ const Profile = () => {
         >
           <ArrowLeft size={24} />
         </div>
-        <h2 style={{margin: 0}}>Modifica Profilo</h2>
+        <h2 style={{ fontSize: '18px', margin: 0 }}>Profilo Personale</h2>
       </div>
+
+      {msg && (
+        <div style={{
+          position: 'fixed', top: '70px', left: '50%', transform: 'translateX(-50%)', zIndex: 2000,
+          backgroundColor: msg.type === 'success' ? '#4caf50' : '#e57373', color: 'white', padding: '10px 20px', borderRadius: '20px', boxShadow: '0 4px 10px rgba(0,0,0,0.2)'
+        }}>
+          {msg.text}
+        </div>
+      )}
       
       <div className="profile-avatar-container">
         <UserAvatar 
@@ -197,24 +210,25 @@ const Profile = () => {
       <hr style={{ margin: '30px 0', borderColor: '#eee' }} />
 
       <h3 style={{ fontSize: '18px', marginBottom: '15px' }}>Modifica Password</h3>
-      <div className="input-group">
-        <label>Vecchia Password:</label>
-        <input 
-          type="password" 
-          name="oldPassword"
-          value={passwordData.oldPassword} 
-          onChange={handlePasswordChange}
-        />
-      </div>
-      <div className="input-group">
-        <label>Nuova Password:</label>
-        <input 
-          type="password" 
-          name="newPassword"
-          value={passwordData.newPassword} 
-          onChange={handlePasswordChange}
-        />
-      </div>
+        <div className="input-group">
+          <label>Vecchia Password</label>
+          <input 
+            type="password" 
+            name="oldPassword"
+            value={oldPassword} 
+            onChange={e => setOldPassword(e.target.value)}
+          />
+        </div>
+
+        <div className="input-group">
+          <label>Nuova Password</label>
+          <input 
+            type="password" 
+            name="newPassword"
+            value={newPassword} 
+            onChange={e => setNewPassword(e.target.value)}
+          />
+        </div>
       <button className="btn btn-primary" onClick={handleSavePassword}>
         CAMBIA PASSWORD
       </button>

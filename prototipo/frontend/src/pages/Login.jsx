@@ -6,6 +6,7 @@ import logo from '../assets/logo.png';
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [errorMsg, setErrorMsg] = useState('');
   const navigate = useNavigate();
 
   const handleLogin = async (e) => {
@@ -18,7 +19,7 @@ const Login = () => {
       localStorage.setItem('token', response.data.token);
       navigate('/bacheca');
     } catch (error) {
-      alert('Login fallito. Controlla le tue credenziali.');
+      setErrorMsg('Login fallito. Controlla le tue credenziali.');
     }
   };
 
@@ -28,6 +29,8 @@ const Login = () => {
         <img src={logo} alt="StudyLink Logo" />
         <h1 className="page-title">Accesso</h1>
       </div>
+      
+      {errorMsg && <div style={{ color: 'white', backgroundColor: '#e57373', padding: '10px', borderRadius: '8px', marginBottom: '15px', textAlign: 'center' }}>{errorMsg}</div>}
       
       <form onSubmit={handleLogin}>
         <div className="input-group">

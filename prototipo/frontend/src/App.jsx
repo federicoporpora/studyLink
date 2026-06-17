@@ -5,6 +5,7 @@ import Profile from './pages/Profile';
 import CreateEvent from './pages/CreateEvent';
 import Bacheca from './pages/Bacheca';
 import Chat from './pages/Chat';
+import UserProfile from './pages/UserProfile';
 
 import DettagliEvento from './pages/DettagliEvento';
 
@@ -20,6 +21,7 @@ function App() {
         <Route path="/bacheca" element={<Bacheca />} />
         <Route path="/chat" element={<Chat />} />
         <Route path="/dettagli-evento" element={<DettagliEvento />} />
+        <Route path="/user-profile" element={<UserProfile />} />
       </Routes>
     </BrowserRouter>
   );

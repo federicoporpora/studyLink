@@ -8,6 +8,7 @@ const Register = () => {
   const [password, setPassword] = useState('');
   const [nome, setNome] = useState('');
   const [cognome, setCognome] = useState('');
+  const [errorMsg, setErrorMsg] = useState('');
   const navigate = useNavigate();
 
   const handleRegister = async (e) => {
@@ -23,9 +24,9 @@ const Register = () => {
       navigate('/bacheca');
     } catch (error) {
       if (error.response && error.response.data) {
-        alert('Registrazione fallita: ' + error.response.data);
+        setErrorMsg('Registrazione fallita: ' + error.response.data);
       } else {
-        alert('Registrazione fallita. Riprova più tardi.');
+        setErrorMsg('Registrazione fallita. Riprova più tardi.');
       }
     }
   };
@@ -37,6 +38,8 @@ const Register = () => {
         <h1 className="page-title">Registrazione</h1>
       </div>
       
+      {errorMsg && <div style={{ color: 'white', backgroundColor: '#e57373', padding: '10px', borderRadius: '8px', marginBottom: '15px', textAlign: 'center' }}>{errorMsg}</div>}
+
       <form onSubmit={handleRegister}>
         <div className="input-group">
           <input 

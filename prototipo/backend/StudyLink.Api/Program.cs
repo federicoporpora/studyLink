@@ -5,6 +5,8 @@ using StudyLink.Api.Data;
 using StudyLink.Api.Hubs;
 using System.Text;
 
+AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
