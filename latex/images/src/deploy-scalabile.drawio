@@ -1,6 +1,6 @@
 <mxfile host="app.diagrams.net">
   <diagram name="Pagina-1" id="0SrchaaMbrDjRgwlIxbT">
-    <mxGraphModel dx="967" dy="539" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="681" dy="729" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -52,7 +52,7 @@
             <mxPoint x="414" y="190" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="jkjrgGU1j489Sjj6jVHz-48" parent="1" style="shape=cube;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;darkOpacity=0.05;darkOpacity2=0.1;size=10;" value="&lt;font style=&quot;font-size: 9px;&quot;&gt;reverse proxy&lt;/font&gt;" vertex="1">
+        <mxCell id="jkjrgGU1j489Sjj6jVHz-48" parent="1" style="shape=cube;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;darkOpacity=0.05;darkOpacity2=0.1;size=10;" value="&lt;font style=&quot;font-size: 9px;&quot;&gt;server&lt;/font&gt;" vertex="1">
           <mxGeometry height="60" width="50" x="319" y="430" as="geometry" />
         </mxCell>
         <mxCell id="jkjrgGU1j489Sjj6jVHz-49" edge="1" parent="1" source="jkjrgGU1j489Sjj6jVHz-36" style="edgeStyle=none;curved=1;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=1;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.15;entryY=0.05;entryDx=0;entryDy=0;entryPerimeter=0;fontSize=12;startSize=8;endSize=8;endArrow=diamond;endFill=1;" target="jkjrgGU1j489Sjj6jVHz-35">
