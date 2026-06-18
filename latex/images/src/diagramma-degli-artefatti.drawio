@@ -1,0 +1,48 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="Pagina-1" id="0SrchaaMbrDjRgwlIxbT">
+    <mxGraphModel dx="967" dy="539" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="jkjrgGU1j489Sjj6jVHz-3" parent="1" style="html=1;dropTarget=0;whiteSpace=wrap;fillColor=#d5e8d4;strokeColor=#82b366;" value="Backend" vertex="1">
+          <mxGeometry height="90" width="180" x="90" y="150" as="geometry" />
+        </mxCell>
+        <mxCell id="jkjrgGU1j489Sjj6jVHz-4" parent="jkjrgGU1j489Sjj6jVHz-3" style="shape=module;jettyWidth=8;jettyHeight=4;" value="" vertex="1">
+          <mxGeometry height="20" relative="1" width="20" x="1" as="geometry">
+            <mxPoint x="-27" y="7" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="jkjrgGU1j489Sjj6jVHz-7" edge="1" parent="1" source="jkjrgGU1j489Sjj6jVHz-5" style="edgeStyle=none;curved=1;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontSize=12;startSize=8;endSize=8;endArrow=open;endFill=0;dashed=1;dashPattern=8 8;" target="jkjrgGU1j489Sjj6jVHz-3" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="jkjrgGU1j489Sjj6jVHz-8" connectable="0" parent="jkjrgGU1j489Sjj6jVHz-7" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=12;" value="&amp;lt;&amp;lt;manifest&amp;gt;&amp;gt;" vertex="1">
+          <mxGeometry relative="1" x="0.0293" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="jkjrgGU1j489Sjj6jVHz-5" parent="1" style="html=1;dropTarget=0;whiteSpace=wrap;fillColor=#d5e8d4;strokeColor=#82b366;" value="&lt;div&gt;&amp;lt;&amp;lt;docker image&amp;gt;&amp;gt;&lt;/div&gt;&lt;div&gt;Backend&lt;/div&gt;" vertex="1">
+          <mxGeometry height="90" width="180" x="90" y="360" as="geometry" />
+        </mxCell>
+        <mxCell id="jkjrgGU1j489Sjj6jVHz-6" parent="jkjrgGU1j489Sjj6jVHz-5" style="shape=module;jettyWidth=8;jettyHeight=4;" value="" vertex="1">
+          <mxGeometry height="20" relative="1" width="20" x="1" as="geometry">
+            <mxPoint x="-27" y="7" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="jkjrgGU1j489Sjj6jVHz-9" parent="1" style="html=1;dropTarget=0;whiteSpace=wrap;fillColor=#ffe6cc;strokeColor=#d79b00;" value="Backend" vertex="1">
+          <mxGeometry height="90" width="180" x="323" y="150" as="geometry" />
+        </mxCell>
+        <mxCell id="jkjrgGU1j489Sjj6jVHz-11" edge="1" parent="1" source="jkjrgGU1j489Sjj6jVHz-13" style="edgeStyle=none;curved=1;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontSize=12;startSize=8;endSize=8;endArrow=open;endFill=0;dashed=1;dashPattern=8 8;" target="jkjrgGU1j489Sjj6jVHz-9" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="jkjrgGU1j489Sjj6jVHz-12" connectable="0" parent="jkjrgGU1j489Sjj6jVHz-11" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=12;" value="&amp;lt;&amp;lt;manifest&amp;gt;&amp;gt;" vertex="1">
+          <mxGeometry relative="1" x="0.0293" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="jkjrgGU1j489Sjj6jVHz-13" parent="1" style="html=1;dropTarget=0;whiteSpace=wrap;fillColor=#ffe6cc;strokeColor=#d79b00;" value="&amp;lt;&amp;lt;docker image&amp;gt;&amp;gt;&lt;div&gt;Frontend&lt;/div&gt;" vertex="1">
+          <mxGeometry height="90" width="180" x="323" y="360" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

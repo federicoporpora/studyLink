@@ -281,6 +281,7 @@ L'analisi dei requisiti e del dominio hanno portato ai seguenti casi d'uso che i
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth,height=0.5\textheight,keepaspectratio]{images/modello-dei-casi-d-uso.png}
+    \caption{Modello dei casi d'uso}
 \end{figure}
 %
 \newpage
@@ -380,7 +381,7 @@ Di seguito sono presentati tutti gli scenari nel loro dettaglio.
 
 \newpage
 \subsubsection{Gestione profilo}
-\reqlabel{tab:GestioneProfilo}
+\reqlabel{tab:Gestione Profilo}
 \begin{tabularx}{\textwidth}{|p{3.8cm}|X|}
     \hline
     \rowcolor{studyColor} \textbf{Titolo} & \textbf{Gestione profilo} \\ \hline
@@ -1077,7 +1078,7 @@ Il file di log sarà generato da un componente interno al sistema chiamato \text
     Gestione profilo & \begin{itemize}[nosep, leftmargin=*, before={\vspace{-0.5\baselineskip}}, after={\vspace{-0.8\baselineskip}}]
                         \item Gestione e memorizzazione dati;
                         \item Interazione esterno;
-                    \end{itemize} & Complesso & \hyperref[R04F]{R04F}, \hyperref[R13F]{R13F}, \hyperref[R20F]{R20F}, \hyperref[R21F]{R21F} \\ \hline
+                    \end{itemize} & Complesso & \hyperref[R04F]{R04F}, \hyperref[R13F]{R13F}, \hyperref[R20F]{R20F} \\ \hline
     Visualizzazione commenti & \begin{itemize}[nosep, leftmargin=*, before={\vspace{-0.5\baselineskip}}, after={\vspace{-0.8\baselineskip}}]
                         \item Interazione esterno;
                     \end{itemize} & Semplice & \hyperref[R04F]{R04F}, \hyperref[R13F]{R13F}, \hyperref[R20F]{R20F} \\ \hline
@@ -1573,6 +1574,7 @@ Il modello riguardante il profilo è presentato nel seguente diagramma.
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth,height=0.5\textheight,keepaspectratio]{images/modello-del-dominio-utente.png}
+    \caption{Modello del dominio: Utente}
 \end{figure}
 %
 \subsection{Modello del dominio: Evento}
@@ -1581,6 +1583,7 @@ Il modello riguardante l'evento è presentato nel seguente diagramma.
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth,height=0.5\textheight,keepaspectratio]{images/modello-del-dominio-evento.png}
+    \caption{Modello del dominio: Evento}
 \end{figure}
 %
 \subsection{Modello del dominio: Filtro}
@@ -1589,6 +1592,7 @@ Il modello riguardante il filtro è presentato nel seguente diagramma.
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth,height=0.5\textheight,keepaspectratio]{images/modello-del-dominio-filtro.png}
+    \caption{Modello del dominio: Filtro}
 \end{figure}
 %
 \subsection{Modello del dominio: Chat}
@@ -1597,6 +1601,7 @@ Il modello riguardante la chat è presentato nel seguente diagramma.
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth,height=0.5\textheight,keepaspectratio]{images/modello-del-dominio-chat.png}
+    \caption{Modello del dominio: Chat}
 \end{figure}
 %
 \subsection{Modello del dominio: Log}
@@ -1605,6 +1610,7 @@ Il modello riguardante il log è presentato nel seguente diagramma.
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth,height=0.5\textheight,keepaspectratio]{images/modello-del-dominio-log.png}
+    \caption{Modello del dominio: Log}
 \end{figure}
 %
 % Architettura logica
@@ -1619,6 +1625,7 @@ Di seguito è presentato il diagramma dei package e le diverse dipendenze che in
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth,height=0.5\textheight,keepaspectratio]{images/diagramma-dei-package.png}
+    \caption{Diagramma dei package}
 \end{figure}
 %
 \subsubsection{Diagramma delle classi: Registrazione e Autenticazione}
@@ -1628,6 +1635,7 @@ Una volta autenticato l'utente è portato alla HomeUtente che è omessa perché 
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth,height=0.5\textheight,keepaspectratio]{images/diagramma-dei-package-registrazione-autenticazione.png}
+    \caption{Diagramma delle classi: Registrazione e Autenticazione}
 \end{figure}
 %
 \subsubsection{Diagramma delle classi: Profilo}
@@ -1636,6 +1644,7 @@ Di seguito è presentato il diagramma delle classi di view e controller per la g
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth,height=0.5\textheight,keepaspectratio]{images/diagramma-dei-package-profilo.png}
+    \caption{Diagramma delle classi: Profilo}
 \end{figure}
 %
 \subsubsection{Diagramma delle classi: Evento}
@@ -1644,6 +1653,7 @@ Di seguito è presentato il diagramma delle classi di view e controller per la g
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth,height=0.5\textheight,keepaspectratio]{images/diagramma-dei-package-evento.png}
+    \caption{Diagramma delle classi: Evento}
 \end{figure}
 %
 \subsubsection{Diagramma delle classi: Bacheca}
@@ -1652,6 +1662,7 @@ Di seguito è presentato il diagramma delle classi di view e controller per la g
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth,height=0.5\textheight,keepaspectratio]{images/diagramma-dei-package-bacheca.png}
+    \caption{Diagramma delle classi: Bacheca}
 \end{figure}
 %
 \subsubsection{Diagramma delle classi: Comunicazione}
@@ -1660,6 +1671,7 @@ Di seguito è presentato il diagramma delle classi di view e controller per la g
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth,height=0.5\textheight,keepaspectratio]{images/diagramma-dei-package-comunicazione.png}
+    \caption{Diagramma delle classi: Comunicazione}
 \end{figure}
 %
 \subsection{Interazioni}
@@ -1671,6 +1683,7 @@ In figura è presentato un diagramma di sequenza che mostra l'interazione tra i 
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth,height=0.5\textheight,keepaspectratio]{images/interazione-registrazione.png}
+    \caption{Interazione: Registrazione}
 \end{figure}
 %
 \subsubsection{Interazione: Autenticazione}
@@ -1679,6 +1692,7 @@ In figura è presentato un diagramma di sequenza che mostra l'interazione tra i 
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth,height=0.5\textheight,keepaspectratio]{images/interazione-autenticazione.png}
+    \caption{Interazione: Autenticazione}
 \end{figure}
 %
 \subsubsection{Interazione: Elimina Utente}
@@ -1687,6 +1701,7 @@ In figura è presentato un diagramma di sequenza che mostra l'interazione tra i 
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth,height=0.5\textheight,keepaspectratio]{images/interazione-elimina-utente.png}
+    \caption{Interazione: Elimina Utente}
 \end{figure}
 %
 \subsubsection{Interazione: Modifica Profilo}
@@ -1695,6 +1710,7 @@ In figura è presentato un diagramma di sequenza che mostra l'interazione tra i 
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth,height=0.5\textheight,keepaspectratio]{images/interazione-modifica-profilo.png}
+    \caption{Interazione: Modifica Profilo}
 \end{figure}
 %
 \subsubsection{Interazione: Creazione Evento}
@@ -1703,6 +1719,7 @@ In figura è presentato un diagramma di sequenza che mostra l'interazione tra i 
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth,height=0.5\textheight,keepaspectratio]{images/interazione-creazione-evento.png}
+    \caption{Interazione: Creazione Evento}
 \end{figure}
 %
 \subsubsection{Interazione: Gestione Evento}
@@ -1711,6 +1728,7 @@ In figura è presentato un diagramma di sequenza che mostra l'interazione tra i 
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth,height=0.5\textheight,keepaspectratio]{images/interazione-gestione-evento.png}
+    \caption{Interazione: Gestione Evento}
 \end{figure}
 %
 \subsubsection{Interazione: Chat}
@@ -1719,6 +1737,7 @@ In figura è presentato un diagramma di sequenza che mostra l'interazione tra i 
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth,height=0.5\textheight,keepaspectratio]{images/interazione-chat.png}
+    \caption{Interazione: Chat}
 \end{figure}
 %
 \subsubsection{Interazione: Commento}
@@ -1727,6 +1746,7 @@ In figura è presentato un diagramma di sequenza che mostra l'interazione tra i 
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth,height=0.5\textheight,keepaspectratio]{images/interazione-commento.png}
+    \caption{Interazione: Commento}
 \end{figure}
 %
 \subsection{Comportamento}
@@ -2081,6 +2101,7 @@ Si sceglie di utilizzare la tecnica ORM (come spiegato in \hyperref[L3-Persisten
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth,height=0.5\textheight,keepaspectratio]{images/diagramma-dei-package-progettazione.png}
+    \caption{Diagramma dei package: Progettazione}
 \end{figure}
 %
 \subsection{Diagramma dei componenti}
@@ -2089,6 +2110,7 @@ Nella figura sottostante è riportata l'architettura del Sistema, organizzata at
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth,height=0.5\textheight,keepaspectratio]{images/diagramma-dei-componenti-progettazione.png}
+    \caption{Diagramma dei componenti}
 \end{figure}
 %
 % Progettazione di dettaglio
@@ -2104,6 +2126,7 @@ Di seguito è presentato il diagramma delle classi del modello del dominio rigua
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth,height=0.5\textheight,keepaspectratio]{images/diagramma-di-dettaglio-account.png}
+    \caption{Diagramma di dettaglio: Account}
 \end{figure}
 %
 In questo diagramma è da notare che:
@@ -2122,6 +2145,7 @@ Di seguito è presentato il diagramma delle classi del modello del dominio rigua
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth,height=0.5\textheight,keepaspectratio]{images/diagramma-di-dettaglio-evento.png}
+    \caption{Diagramma di dettaglio: Evento}
 \end{figure}
 %
 In questo diagramma è da notare che:
@@ -2140,6 +2164,7 @@ Di seguito è presentato il diagramma delle classi del modello del dominio rigua
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth,height=0.5\textheight,keepaspectratio]{images/diagramma-di-dettaglio-chat.png}
+    \caption{Diagramma di dettaglio: Chat}
 \end{figure}
 %
 In questo diagramma è da notare che:
@@ -2157,6 +2182,7 @@ Di seguito è presentato il diagramma delle classi del modello del dominio rigua
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth,height=0.5\textheight,keepaspectratio]{images/diagramma-di-dettaglio-filtro.png}
+    \caption{Diagramma di dettaglio: Filtro}
 \end{figure}
 %
 In questo diagramma è da notare che:
@@ -2173,6 +2199,7 @@ Di seguito è presentato il diagramma delle classi del modello del dominio rigua
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth,height=0.5\textheight,keepaspectratio]{images/diagramma-di-dettaglio-log.png}
+    \caption{Diagramma di dettaglio: Log}
 \end{figure}
 %
 In questo diagramma è da notare che:
@@ -2244,6 +2271,7 @@ Di seguito è riportato il diagramma ER della persistenza del sistema.
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth,height=0.5\textheight,keepaspectratio]{images/diagramma-entity-relationship.png}
+    \caption{Diagramma Entity-Relationship}
 \end{figure}
 %
 È da notare che:
@@ -2279,20 +2307,40 @@ L'applicazione è divisa in due artefatti principali:
     \item Il software che compone il \textbf{backend}, che implementa la logica di business, il livello di traduzione REST e la gestione della persistenza;
     \item Il software che compone il \textbf{frontend}, che implementa le view e il livello di traduzione tra l'interfaccia dell'Utente e le chiamate HTTP dirette al backend.
 \end{itemize}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth,height=0.5\textheight,keepaspectratio]{images/diagramma-degli-artefatti.png}
+    \caption{Diagramma degli artefatti}
+\end{figure}
+%
 Questi artefatti racchiudono tutti i package definiti in fase di analisi e progettazione, fornendo all'Utente le funzionalità per agire sia come Organizzatore che come Partecipante.
 
 \subsection{Target di deploy}
 In linea con le scelte architetturali, l'applicazione sarà \textit{web-based}, di conseguenza il deploy è diviso in due sezioni:
 \begin{itemize}[leftmargin=*]
-    \item Il deploy del \textbf{backend} verrà effettuato inizialmente su un singolo nodo, ma sarà eseguito con strumenti di automazione come Docker (come configurato nell'ambiente di sviluppo tramite \texttt{docker-compose.yml}) per favorire una futura espansione orizzontale, con l'eventuale necessità di load balancer.
+    \item Il deploy del \textbf{backend} verrà effettuato inizialmente su un singolo nodo, ma sarà eseguito con strumenti di automazione come Docker per favorire una futura espansione orizzontale, con l'eventuale necessità di load balancer.
     \item Il deploy del \textbf{frontend} verrà eseguito analogamente al backend, servito su più nodi indipendenti o piattaforme specializzate il cui compito è distribuire il software ai browser web dei clienti.
 \end{itemize}
 
 I programmi sul server saranno eseguiti da utenti del sistema con permessi minimi, in modo da garantire la sicurezza del nodo contro eventuali attacchi. Le credenziali per il database (PostgreSQL) e le chiavi segrete per l'autenticazione JWT verranno iniettate a livello di deployment tramite variabili d'ambiente in modo da essere facilmente modificabili.
 Di seguito sono presentati i due possibili scenari di deploy:
 \begin{itemize}[leftmargin=*]
-    \item Uno schema base con un singolo nodo che gestisce i container del frontend, del backend e del database (utile per lo sviluppo e il testing);
+    \item Uno schema base con un singolo nodo che gestisce i container del frontend, del backend e del database (più semplice per lo sviluppo e il testing);
+\end{itemize}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.5\textwidth,height=0.5\textheight,keepaspectratio]{images/deploy-base.png}
+        \caption{Deploy: Schema base}
+    \end{figure}
+%
+\begin{itemize}[leftmargin=*]
     \item Uno schema scalabile orizzontalmente, dove i target sono configurati in automatico tramite orchestratori (es. Docker) e un reverse proxy gestisce il bilanciamento del carico tra i vari nodi REST.
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.5\textwidth,height=0.5\textheight,keepaspectratio]{images/deploy-scalabile.png}
+        \caption{Deploy: Schema scalabile}
+    \end{figure}
+%
 \end{itemize}
 
 % Di cosa parlare
