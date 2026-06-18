@@ -2069,9 +2069,9 @@ Per la comunicazione tra L1 e L2 verrà utilizzato il protocollo HTTPS, in modo 
 In aggiunta alle API REST, data l'importanza del requisito della Chat di gruppo per gli Eventi di studio, il server adotterà tecnologie capaci di mantenere una comunicazione bidirezionale in tempo reale (come il protocollo WebSocket), permettendo ai client di ricevere e inviare i nuovi messaggi con latenza minima.
 
 
-Per il Client (L1), verrà impiegato un framework web frontend reattivo moderno, capace di creare interfacce dinamiche e responsive.
-Per l'implementazione del Server (L2), si utilizzerà un framework web lato server robusto, orientato agli oggetti e ad alte prestazioni (es. ASP.NET Core con C\#).
-Per la Persistenza (L3), la scelta ricade su un DBMS relazionale, adatto alla natura strutturata dei dati del dominio, interfacciato tramite la libreria ORM nativa.
+Per il Client (L1), verrà impiegato un framework web frontend reattivo moderno (React), utilizzando lo strumento di build \textit{Vite} per velocizzare l'ambiente di sviluppo locale e ottimizzare la compilazione finale dei file statici.
+Per l'implementazione del Server (L2), si utilizzerà un framework web lato server robusto, orientato agli oggetti e ad alte prestazioni (es. ASP.NET con C\#).
+Per la Persistenza (L3), la scelta ricade su un DBMS relazionale (PostgreSQL), adatto alla natura strutturata dei dati del dominio, interfacciato tramite la libreria ORM nativa.
 
 \subsection{Diagramma dei package}
 Di seguito è riportato il diagramma dei package dell'applicazione.
@@ -2263,10 +2263,37 @@ Di seguito è riportato il diagramma ER della persistenza del sistema.
 % Progettazione del deployment
 \newpage
 \section{Progettazione del deployment}
+Il deployment dell'applicazione sarà così gestito:
+\begin{itemize}[leftmargin=*]
+    \item La parte server del programma sarà installata su un server fisico. Per favorire l'eventuale espansione orizzontale del sistema, il processo sarà automatizzato tramite Docker. Il server sarà composto da:
+    \begin{itemize}[leftmargin=*]
+        \item Il server web che si occupa della gestione delle richieste REST in arrivo, sviluppato in ambiente .NET;
+        \item Un DBMS (PostgreSQL) con cui il server web interagirà per la gestione della persistenza.
+    \end{itemize}
+    \item La parte client sarà fornita da un server web che servirà l'applicazione frontend sviluppata tramite Vite. Non richiede particolari azioni da parte dell'utente finale, che potrà accedere all'interfaccia tramite un comune browser.
+\end{itemize}
 
 \subsection{Artefatti}
+L'applicazione è divisa in due artefatti principali:
+\begin{itemize}[leftmargin=*]
+    \item Il software che compone il \textbf{backend}, che implementa la logica di business, il livello di traduzione REST e la gestione della persistenza;
+    \item Il software che compone il \textbf{frontend}, che implementa le view e il livello di traduzione tra l'interfaccia dell'Utente e le chiamate HTTP dirette al backend.
+\end{itemize}
+Questi artefatti racchiudono tutti i package definiti in fase di analisi e progettazione, fornendo all'Utente le funzionalità per agire sia come Organizzatore che come Partecipante.
 
 \subsection{Target di deploy}
+In linea con le scelte architetturali, l'applicazione sarà \textit{web-based}, di conseguenza il deploy è diviso in due sezioni:
+\begin{itemize}[leftmargin=*]
+    \item Il deploy del \textbf{backend} verrà effettuato inizialmente su un singolo nodo, ma sarà eseguito con strumenti di automazione come Docker (come configurato nell'ambiente di sviluppo tramite \texttt{docker-compose.yml}) per favorire una futura espansione orizzontale, con l'eventuale necessità di load balancer.
+    \item Il deploy del \textbf{frontend} verrà eseguito analogamente al backend, servito su più nodi indipendenti o piattaforme specializzate il cui compito è distribuire il software ai browser web dei clienti.
+\end{itemize}
+
+I programmi sul server saranno eseguiti da utenti del sistema con permessi minimi, in modo da garantire la sicurezza del nodo contro eventuali attacchi. Le credenziali per il database (PostgreSQL) e le chiavi segrete per l'autenticazione JWT verranno iniettate a livello di deployment tramite variabili d'ambiente in modo da essere facilmente modificabili.
+Di seguito sono presentati i due possibili scenari di deploy:
+\begin{itemize}[leftmargin=*]
+    \item Uno schema base con un singolo nodo che gestisce i container del frontend, del backend e del database (utile per lo sviluppo e il testing);
+    \item Uno schema scalabile orizzontalmente, dove i target sono configurati in automatico tramite orchestratori (es. Docker) e un reverse proxy gestisce il bilanciamento del carico tra i vari nodi REST.
+\end{itemize}
 
 % Di cosa parlare
 \newpage
