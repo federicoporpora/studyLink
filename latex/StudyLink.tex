@@ -12,6 +12,7 @@
 \usepackage{float}
 \usepackage{titlesec}
 \usepackage{enumitem}
+\setlist[itemize]{noitemsep}
 \usepackage[table]{xcolor}
 \usepackage{array}
 \usepackage{listings}
@@ -193,7 +194,7 @@ Inoltre, per facilitare l'organizzazione, tutti gli iscritti a un Evento hanno a
 \section{Requisiti di sistema}
 
 \subsection{Requisiti funzionali}
-\begin{tabularx}{\textwidth}{|p{2cm}|X|p{3cm}|}
+\begin{tabularx}{\textwidth}{|p{1.2cm}|X|p{2.6cm}|}
     \hline
     \rowcolor{studyColor} \textbf{ID} & \textbf{Requisito} & \textbf{Tipo} \\ \hline
     \endhead
@@ -220,7 +221,7 @@ Inoltre, per facilitare l'organizzazione, tutti gli iscritti a un Evento hanno a
 \end{tabularx}
 
 \subsection{Requisiti non funzionali}
-\begin{tabularx}{\textwidth}{|p{2cm}|X|p{3cm}|}
+\begin{tabularx}{\textwidth}{|p{1.2cm}|X|p{2.6cm}|}
     \hline
     \rowcolor{studyColor} \textbf{ID} & \textbf{Requisito} & \textbf{Tipo} \\ \hline
     \endhead
@@ -240,7 +241,7 @@ Inoltre, per facilitare l'organizzazione, tutti gli iscritti a un Evento hanno a
 \section{Analisi del dominio}
 
 \subsection{Vocabolario}
-\begin{tabularx}{\textwidth}{|p{3cm}|X|p{3.5cm}|}
+\begin{tabularx}{\textwidth}{|p{2.8cm}|X|p{2.2cm}|}
     \hline
     \rowcolor{studyColor} \textbf{Voce} & \textbf{Definizione} & \textbf{Sinonimi} \\ \hline
     \endhead
@@ -279,16 +280,16 @@ L'analisi dei requisiti e del dominio hanno portato ai seguenti casi d'uso che i
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\textwidth,height=0.6\textheight,keepaspectratio]{images/modello-dei-casi-d-uso.png}
+    \includegraphics[width=\textwidth,height=0.5\textheight,keepaspectratio]{images/modello-dei-casi-d-uso.png}
 \end{figure}
-
+%
 \newpage
 \subsection{Scenari}
 Di seguito sono presentati tutti gli scenari nel loro dettaglio.
 
 \subsubsection{Registrazione}
 \reqlabel{tab:Registrazione}
-\begin{tabularx}{\textwidth}{|X|X|}
+\begin{tabularx}{\textwidth}{|p{3.8cm}|X|}
     \hline
     \rowcolor{studyColor} \textbf{Titolo} & \textbf{Registrazione} \\ \hline
     \endhead
@@ -298,7 +299,7 @@ Di seguito sono presentati tutti gli scenari nel loro dettaglio.
     \textbf{Precondizioni} & \\ \hline
     \textbf{Postcondizioni} & Il sistema memorizza il nuovo Utente \\ \hline
     \textbf{Scenario principale} &
-        \begin{enumerate}[nosep, leftmargin=*]
+        \begin{enumerate}[nosep, leftmargin=*, before={\vspace{-0.5\baselineskip}}, after={\vspace{-0.8\baselineskip}}]
             \item Il sistema richiede i dati per la registrazione
             \begin{itemize}[nosep, leftmargin=*]
                 \item Email
@@ -309,7 +310,7 @@ Di seguito sono presentati tutti gli scenari nel loro dettaglio.
             \item Il sistema crea il nuovo Utente
         \end{enumerate} \\ \hline
     \textbf{Scenari alternativi} & 
-        \begin{itemize}[nosep, leftmargin=*]
+        \begin{itemize}[nosep, leftmargin=*, before={\vspace{-0.5\baselineskip}}, after={\vspace{-0.8\baselineskip}}]
             \item L'Email fornita è già in uso
             \begin{enumerate}[nosep, leftmargin=*]
                 \setcounter{enumi}{3}
@@ -336,14 +337,14 @@ Di seguito sono presentati tutti gli scenari nel loro dettaglio.
 \newpage
 \subsubsection{Autenticazione}
 \reqlabel{tab:Autenticazione}
-\begin{tabularx}{\textwidth}{|X|X|}
+\begin{tabularx}{\textwidth}{|p{3.8cm}|X|}
     \hline
     \rowcolor{studyColor} \textbf{Titolo} & \textbf{Autenticazione} \\ \hline
     \endhead
     \textbf{Descrizione} & L'Utente inserisce le proprie Credenziali e si autentica sulla piattaforma \\ \hline
     \textbf{Attori} & Utente \\ \hline
     \textbf{Relazioni} &
-        \begin{itemize}[nosep, leftmargin=*]
+        \begin{itemize}[nosep, leftmargin=*, before={\vspace{-0.5\baselineskip}}, after={\vspace{-0.8\baselineskip}}]
             \item \hyperref[tab:Visualizzazione Commenti]{Visualizzazione Commenti}
             \item \hyperref[tab:Gestione Profilo]{Gestione Profilo}
             \item \hyperref[tab:Visualizzazione Bacheca]{Visualizzazione Bacheca}
@@ -358,14 +359,14 @@ Di seguito sono presentati tutti gli scenari nel loro dettaglio.
     \textbf{Precondizioni} & L'Utente è registrato nel sistema \\ \hline
     \textbf{Postcondizioni} & L'Utente è autenticato nel sistema \\ \hline
     \textbf{Scenario principale} &
-        \begin{enumerate}[nosep, leftmargin=*]
+        \begin{enumerate}[nosep, leftmargin=*, before={\vspace{-0.5\baselineskip}}, after={\vspace{-0.8\baselineskip}}]
             \item Il sistema richiede l'inserimento delle Credenziali di accesso
             \item L'Utente inserisce le proprie credenziali
             \item Il sistema verifica che le credenziali appartengano a un Utente
             \item L'Utente è autenticato nel sistema
         \end{enumerate} \\ \hline
     \textbf{Scenari alternativi} & 
-        \begin{itemize}[nosep, leftmargin=*] %, before=\vspace{-0.5\baselineskip}, after=\vspace{-0.8\baselineskip}
+        \begin{itemize}[nosep, leftmargin=*, before={\vspace{-0.5\baselineskip}}, after={\vspace{-0.8\baselineskip}}]
             \item Le Credenziali sono errate
             \begin{enumerate}[nosep, leftmargin=*]
                 \setcounter{enumi}{3}
@@ -380,20 +381,20 @@ Di seguito sono presentati tutti gli scenari nel loro dettaglio.
 \newpage
 \subsubsection{Gestione profilo}
 \reqlabel{tab:GestioneProfilo}
-\begin{tabularx}{\textwidth}{|X|X|}
+\begin{tabularx}{\textwidth}{|p{3.8cm}|X|}
     \hline
     \rowcolor{studyColor} \textbf{Titolo} & \textbf{Gestione profilo} \\ \hline
     \endhead
     \textbf{Descrizione} & Inserimento, modifica o eliminazione di dati specifici dell'Utente \\ \hline
     \textbf{Attori} & Utente \\ \hline
     \textbf{Relazioni} &
-        \begin{itemize}[nosep, leftmargin=*]
+        \begin{itemize}[nosep, leftmargin=*, before={\vspace{-0.5\baselineskip}}, after={\vspace{-0.8\baselineskip}}]
             \item \hyperref[tab:Autenticazione]{Autenticazione}
         \end{itemize} \\ \hline
     \textbf{Precondizioni} & \\ \hline
     \textbf{Postcondizioni} & Le modifiche del profilo sono memorizzate nel sistema \\ \hline
     \textbf{Scenario principale} &
-        \begin{enumerate}[nosep, leftmargin=*]
+        \begin{enumerate}[nosep, leftmargin=*, before={\vspace{-0.5\baselineskip}}, after={\vspace{-0.8\baselineskip}}]
             \item \hyperref[tab:Autenticazione]{Autenticazione}
             \item Il sistema mostra le funzionalità disponibili:
             \begin{enumerate}[nosep, leftmargin=*]
@@ -411,7 +412,7 @@ Di seguito sono presentati tutti gli scenari nel loro dettaglio.
             \item Il sistema apporta le modifiche effettuate
         \end{enumerate} \\ \hline
     \textbf{Scenari alternativi} & 
-        \begin{itemize}[nosep, leftmargin=*]
+        \begin{itemize}[nosep, leftmargin=*, before={\vspace{-0.5\baselineskip}}, after={\vspace{-0.8\baselineskip}}]
             \item La Password non è sicura
             \begin{enumerate}[nosep, leftmargin=*]
                 \setcounter{enumi}{2}
@@ -438,20 +439,20 @@ Di seguito sono presentati tutti gli scenari nel loro dettaglio.
 \newpage
 \subsubsection{Creazione Evento}
 \reqlabel{tab:Creazione Evento}
-\begin{tabularx}{\textwidth}{|X|X|}
+\begin{tabularx}{\textwidth}{|p{3.8cm}|X|}
     \hline
     \rowcolor{studyColor} \textbf{Titolo} & \textbf{Creazione Evento} \\ \hline
     \endhead
     \textbf{Descrizione} & L'Organizzatore inserisce i dettagli necessari per programmare una nuova sessione di studio \\ \hline
     \textbf{Attori} & Utente \\ \hline
     \textbf{Relazioni} &
-        \begin{itemize}[nosep, leftmargin=*]
+        \begin{itemize}[nosep, leftmargin=*, before={\vspace{-0.5\baselineskip}}, after={\vspace{-0.8\baselineskip}}]
             \item \hyperref[tab:Autenticazione]{Autenticazione}
         \end{itemize} \\ \hline
     \textbf{Precondizioni} & \\ \hline
     \textbf{Postcondizioni} & Il sistema memorizza le modifiche effettuate e l'Utente diventa Organizzatore e Partecipante all'Evento \\ \hline
     \textbf{Scenario principale} &
-        \begin{enumerate}[nosep, leftmargin=*]
+        \begin{enumerate}[nosep, leftmargin=*, before={\vspace{-0.5\baselineskip}}, after={\vspace{-0.8\baselineskip}}]
             \item \hyperref[tab:Autenticazione]{Autenticazione}
             \item Il sistema mostra la possibilità di creare un Evento
             \item Il sistema mostra i dati relativi all'Evento:
@@ -467,7 +468,7 @@ Di seguito sono presentati tutti gli scenari nel loro dettaglio.
             \item Il sistema apporta le modifiche effettuate
         \end{enumerate} \\ \hline
     \textbf{Scenari alternativi} & 
-        \begin{itemize}[nosep, leftmargin=*]
+        \begin{itemize}[nosep, leftmargin=*, before={\vspace{-0.5\baselineskip}}, after={\vspace{-0.8\baselineskip}}]
             \item Dei campi sono stati omessi
             \begin{enumerate}[nosep, leftmargin=*]
                 \setcounter{enumi}{4}
@@ -500,20 +501,20 @@ Di seguito sono presentati tutti gli scenari nel loro dettaglio.
 \newpage
 \subsubsection{Gestione Evento}
 \reqlabel{tab:Gestione Evento}
-\begin{tabularx}{\textwidth}{|X|X|}
+\begin{tabularx}{\textwidth}{|p{3.8cm}|X|}
     \hline
     \rowcolor{studyColor} \textbf{Titolo} & \textbf{Gestione Evento} \\ \hline
     \endhead
     \textbf{Descrizione} & L'Organizzatore modifica i dettagli dell'Evento \\ \hline
     \textbf{Attori} & Organizzatore \\ \hline
     \textbf{Relazioni} &
-        \begin{itemize}[nosep, leftmargin=*]
+        \begin{itemize}[nosep, leftmargin=*, before={\vspace{-0.5\baselineskip}}, after={\vspace{-0.8\baselineskip}}]
             \item \hyperref[tab:Autenticazione]{Autenticazione}
         \end{itemize} \\ \hline
     \textbf{Precondizioni} & L'Evento deve esistere \\ \hline
     \textbf{Postcondizioni} & Le modifiche dell'Evento sono memorizzate nel sistema \\ \hline
     \textbf{Scenario principale} &
-        \begin{enumerate}[nosep, leftmargin=*]
+        \begin{enumerate}[nosep, leftmargin=*, before={\vspace{-0.5\baselineskip}}, after={\vspace{-0.8\baselineskip}}]
             \item \hyperref[tab:Autenticazione]{Autenticazione}
             \item Il sistema mostra le funzionalità disponibili:
             \begin{enumerate}[nosep, leftmargin=*]
@@ -532,7 +533,7 @@ Di seguito sono presentati tutti gli scenari nel loro dettaglio.
             \item Il sistema apporta le modifiche effettuate
         \end{enumerate} \\ \hline
     \textbf{Scenari alternativi} & 
-        \begin{itemize}[nosep, leftmargin=*]
+        \begin{itemize}[nosep, leftmargin=*, before={\vspace{-0.5\baselineskip}}, after={\vspace{-0.8\baselineskip}}]
             \item Il Numero di Partecipanti inserito è minore del numero di Partecipanti attuali
             \begin{enumerate}[nosep, leftmargin=*]
                 \setcounter{enumi}{2}
@@ -571,21 +572,21 @@ Di seguito sono presentati tutti gli scenari nel loro dettaglio.
 \newpage
 \subsubsection{Rimozione Partecipante}
 \reqlabel{tab:Rimozione Partecipante}
-\begin{tabularx}{\textwidth}{|X|X|}
+\begin{tabularx}{\textwidth}{|p{3.8cm}|X|}
     \hline
     \rowcolor{studyColor} \textbf{Titolo} & \textbf{Rimozione Partecipante} \\ \hline
     \endhead
     \textbf{Descrizione} & L'Organizzatore rimuove un Partecipante dall'Evento \\ \hline
     \textbf{Attori} & Organizzatore \\ \hline
     \textbf{Relazioni} &
-        \begin{itemize}[nosep, leftmargin=*]
+        \begin{itemize}[nosep, leftmargin=*, before={\vspace{-0.5\baselineskip}}, after={\vspace{-0.8\baselineskip}}]
             \item \hyperref[tab:Autenticazione]{Autenticazione}
             \item \hyperref[tab:Gestione Evento]{Gestione Evento}
         \end{itemize} \\ \hline
     \textbf{Precondizioni} & L'Evento deve esistere \\ \hline
     \textbf{Postcondizioni} & Le modifiche dell'Evento sono memorizzate nel sistema \\ \hline
     \textbf{Scenario principale} &
-        \begin{enumerate}[nosep, leftmargin=*]
+        \begin{enumerate}[nosep, leftmargin=*, before={\vspace{-0.5\baselineskip}}, after={\vspace{-0.8\baselineskip}}]
             \item \hyperref[tab:Autenticazione]{Autenticazione}
             \item Il sistema mostra all'Organizzatore la possibilità di rimuovere un Partecipante
             \item L'Organizzatore seleziona il Partecipante da rimuovere
@@ -593,7 +594,7 @@ Di seguito sono presentati tutti gli scenari nel loro dettaglio.
             \item Il sistema notifica il Partecipante della rimozione dall'Evento
             \item Il sistema apporta le modifiche effettuate
         \end{enumerate} \\ \hline
-    \textbf{Scenari alternativi} \\ \hline
+    \textbf{Scenari alternativi} & \\ \hline
     \textbf{Requisiti non funzionali} & \hyperref[R03N]{R03N}, \hyperref[R07N]{R07N}, \hyperref[R09N]{R09N} \\ \hline
     \textbf{Punti aperti} & \\ \hline
 \end{tabularx}
@@ -601,20 +602,20 @@ Di seguito sono presentati tutti gli scenari nel loro dettaglio.
 \newpage
 \subsubsection{Visualizzazione Bacheca}
 \reqlabel{tab:Visualizzazione Bacheca}
-\begin{tabularx}{\textwidth}{|X|X|}
+\begin{tabularx}{\textwidth}{|p{3.8cm}|X|}
     \hline
     \rowcolor{studyColor} \textbf{Titolo} & \textbf{Visualizzazione Bacheca} \\ \hline
     \endhead
     \textbf{Descrizione} & L'Utente visualizza tutti gli Eventi disponibili con la possibilità di applicare Filtri \\ \hline
     \textbf{Attori} & Utente \\ \hline
     \textbf{Relazioni} & 
-        \begin{itemize}[nosep, leftmargin=*]
+        \begin{itemize}[nosep, leftmargin=*, before={\vspace{-0.5\baselineskip}}, after={\vspace{-0.8\baselineskip}}]
             \item \hyperref[tab:Autenticazione]{Autenticazione}
         \end{itemize} \\ \hline
     \textbf{Precondizioni} & \\ \hline
     \textbf{Postcondizioni} & \\ \hline
     \textbf{Scenario principale} &
-        \begin{enumerate}[nosep, leftmargin=*]
+        \begin{enumerate}[nosep, leftmargin=*, before={\vspace{-0.5\baselineskip}}, after={\vspace{-0.8\baselineskip}}]
             \item \hyperref[tab:Autenticazione]{Autenticazione}
             \item Il sistema mostra all'Utente la Bacheca degli Eventi
             \item Il sistema mostra la possibilità di applicare i seguenti Filtri:
@@ -635,21 +636,21 @@ Di seguito sono presentati tutti gli scenari nel loro dettaglio.
 \newpage
 \subsubsection{Prenotazione Evento}
 \reqlabel{tab:Prenotazione Evento}
-\begin{tabularx}{\textwidth}{|X|X|}
+\begin{tabularx}{\textwidth}{|p{3.8cm}|X|}
     \hline
     \rowcolor{studyColor} \textbf{Titolo} & \textbf{Prenotazione Evento} \\ \hline
     \endhead
     \textbf{Descrizione} & Permette all'Utente di prenotare un Evento dalla Bacheca \\ \hline
     \textbf{Attori} & Utente \\ \hline
     \textbf{Relazioni} &
-        \begin{itemize}[nosep, leftmargin=*]
+        \begin{itemize}[nosep, leftmargin=*, before={\vspace{-0.5\baselineskip}}, after={\vspace{-0.8\baselineskip}}]
             \item \hyperref[tab:Autenticazione]{Autenticazione}
             \item \hyperref[tab:Visualizzazione Bacheca]{Visualizzazione Bacheca}
         \end{itemize} \\ \hline
     \textbf{Precondizioni} & \\ \hline
     \textbf{Postcondizioni} & L'Utente diventa Partecipante dell'Evento \\ \hline
     \textbf{Scenario principale} &
-        \begin{enumerate}[nosep, leftmargin=*]
+        \begin{enumerate}[nosep, leftmargin=*, before={\vspace{-0.5\baselineskip}}, after={\vspace{-0.8\baselineskip}}]
             \item \hyperref[tab:Autenticazione]{Autenticazione}
             \item L'Utente seleziona un Evento dalla Bacheca
             \item Il sistema mostra i dettagli dell'Evento e i suoi Partecipanti
@@ -664,21 +665,21 @@ Di seguito sono presentati tutti gli scenari nel loro dettaglio.
 \newpage
 \subsubsection{Visualizzazione Partecipante}
 \reqlabel{tab:Visualizzazione Partecipante}
-\begin{tabularx}{\textwidth}{|X|X|}
+\begin{tabularx}{\textwidth}{|p{3.8cm}|X|}
     \hline
     \rowcolor{studyColor} \textbf{Titolo} & \textbf{Visualizzazione Partecipante} \\ \hline
     \endhead
     \textbf{Descrizione} & Permette agli Utenti di visualizzare i dettagli e i commenti dei Partecipanti ad un Evento \\ \hline
     \textbf{Attori} & Utente \\ \hline
     \textbf{Relazioni} & 
-        \begin{itemize}[nosep, leftmargin=*]
+        \begin{itemize}[nosep, leftmargin=*, before={\vspace{-0.5\baselineskip}}, after={\vspace{-0.8\baselineskip}}]
             \item \hyperref[tab:Autenticazione]{Autenticazione}
             \item \hyperref[tab:Visualizzazione Bacheca]{Visualizzazione Bacheca}
         \end{itemize} \\ \hline
     \textbf{Precondizioni} & \\ \hline
     \textbf{Postcondizioni} & \\ \hline
     \textbf{Scenario principale} &
-        \begin{enumerate}[nosep, leftmargin=*]
+        \begin{enumerate}[nosep, leftmargin=*, before={\vspace{-0.5\baselineskip}}, after={\vspace{-0.8\baselineskip}}]
             \item \hyperref[tab:Autenticazione]{Autenticazione}
             \item L'Utente seleziona un Evento dalla Bacheca
             \item Il sistema mostra i dettagli dell'Evento e i suoi Partecipanti
@@ -692,20 +693,20 @@ Di seguito sono presentati tutti gli scenari nel loro dettaglio.
 \newpage
 \subsubsection{Visualizzazione Commenti}
 \reqlabel{tab:Visualizzazione Commenti}
-\begin{tabularx}{\textwidth}{|X|X|}
+\begin{tabularx}{\textwidth}{|p{3.8cm}|X|}
     \hline
     \rowcolor{studyColor} \textbf{Titolo} & \textbf{Visualizzazione Commenti} \\ \hline
     \endhead
     \textbf{Descrizione} & Permette all'Utente di visualizzare i commenti presenti sul suo Profilo \\ \hline
     \textbf{Attori} & Utente \\ \hline
     \textbf{Relazioni} & 
-        \begin{itemize}[nosep, leftmargin=*]
+        \begin{itemize}[nosep, leftmargin=*, before={\vspace{-0.5\baselineskip}}, after={\vspace{-0.8\baselineskip}}]
             \item \hyperref[tab:Autenticazione]{Autenticazione}
         \end{itemize} \\ \hline
     \textbf{Precondizioni} & \\ \hline
     \textbf{Postcondizioni} & \\ \hline
     \textbf{Scenario principale} &
-        \begin{enumerate}[nosep, leftmargin=*]
+        \begin{enumerate}[nosep, leftmargin=*, before={\vspace{-0.5\baselineskip}}, after={\vspace{-0.8\baselineskip}}]
             \item \hyperref[tab:Autenticazione]{Autenticazione}
             \item Il sistema mostra all'Utente la possibilità di visualizzare i commenti che gli altri Utenti hanno lasciato su di lui
         \end{enumerate} \\ \hline
@@ -717,20 +718,20 @@ Di seguito sono presentati tutti gli scenari nel loro dettaglio.
 \newpage
 \subsubsection{Annullamento Prenotazione}
 \reqlabel{tab:Annullamento Prenotazione}
-\begin{tabularx}{\textwidth}{|X|X|}
+\begin{tabularx}{\textwidth}{|p{3.8cm}|X|}
     \hline
     \rowcolor{studyColor} \textbf{Titolo} & \textbf{Annullamento Prenotazione} \\ \hline
     \endhead
     \textbf{Descrizione} & L'Utente annulla una prenotazione effettuata in precedenza \\ \hline
     \textbf{Attori} & Utente \\ \hline
     \textbf{Relazioni} & 
-        \begin{itemize}[nosep, leftmargin=*]
+        \begin{itemize}[nosep, leftmargin=*, before={\vspace{-0.5\baselineskip}}, after={\vspace{-0.8\baselineskip}}]
             \item \hyperref[tab:Autenticazione]{Autenticazione}
         \end{itemize} \\ \hline
     \textbf{Precondizioni} & L'Utente deve essere iscritto ad un Evento \\ \hline
     \textbf{Postcondizioni} & La Prenotazione all'Evento viene annullata \\ \hline
     \textbf{Scenario principale} &
-        \begin{enumerate}[nosep, leftmargin=*]
+        \begin{enumerate}[nosep, leftmargin=*, before={\vspace{-0.5\baselineskip}}, after={\vspace{-0.8\baselineskip}}]
             \item \hyperref[tab:Autenticazione]{Autenticazione}
             \item Il sistema mostra all'Utente la lista delle Prenotazioni attive
             \item L'Utente seleziona la Prenotazione da annullare
@@ -744,21 +745,21 @@ Di seguito sono presentati tutti gli scenari nel loro dettaglio.
 \newpage
 \subsubsection{Utilizzo Chat}
 \reqlabel{tab:Utilizzo Chat}
-\begin{tabularx}{\textwidth}{|X|X|}
+\begin{tabularx}{\textwidth}{|p{3.8cm}|X|}
     \hline
     \rowcolor{studyColor} \textbf{Titolo} & \textbf{Utilizzo Chat} \\ \hline
     \endhead
     \textbf{Descrizione} & Permette al Partecipante di comunicare con gli altri Partecipanti ad un Evento tramite messaggi \\ \hline
     \textbf{Attori} & Partecipante \\ \hline
     \textbf{Relazioni} & 
-        \begin{itemize}[nosep, leftmargin=*]
+        \begin{itemize}[nosep, leftmargin=*, before={\vspace{-0.5\baselineskip}}, after={\vspace{-0.8\baselineskip}}]
             \item \hyperref[tab:Autenticazione]{Autenticazione}
             \item \hyperref[tab:Prenotazione Evento]{Prenotazione Evento}
         \end{itemize} \\ \hline
     \textbf{Precondizioni} & Il Partecipante deve essere iscritto all'Evento \\ \hline
     \textbf{Postcondizioni} & La comunicazione avviene con successo tra tutti i Partecipanti \\ \hline
     \textbf{Scenario principale} &
-        \begin{enumerate}[nosep, leftmargin=*]
+        \begin{enumerate}[nosep, leftmargin=*, before={\vspace{-0.5\baselineskip}}, after={\vspace{-0.8\baselineskip}}]
             \item \hyperref[tab:Autenticazione]{Autenticazione}
             \item Il Partecipante seleziona l'Evento
             \item Il sistema mostra la chat dell'Evento
@@ -772,21 +773,21 @@ Di seguito sono presentati tutti gli scenari nel loro dettaglio.
 \newpage
 \subsubsection{Inserimento Commento}
 \reqlabel{tab:Inserimento Commento}
-\begin{tabularx}{\textwidth}{|X|X|}
+\begin{tabularx}{\textwidth}{|p{3.8cm}|X|}
     \hline
     \rowcolor{studyColor} \textbf{Titolo} & \textbf{Inserimento Commento} \\ \hline
     \endhead
     \textbf{Descrizione} & Alla chiusura di un Evento, un Partecipante inserisce un commento nel profilo di un altro Partecipante \\ \hline
     \textbf{Attori} & Partecipante \\ \hline
     \textbf{Relazioni} & 
-        \begin{itemize}[nosep, leftmargin=*]
+        \begin{itemize}[nosep, leftmargin=*, before={\vspace{-0.5\baselineskip}}, after={\vspace{-0.8\baselineskip}}]
             \item \hyperref[tab:Autenticazione]{Autenticazione}
             \item \hyperref[tab:Prenotazione Evento]{Prenotazione Evento}
         \end{itemize} \\ \hline
     \textbf{Precondizioni} & Il Partecipante deve essere iscritto all'Evento \\ \hline
     \textbf{Postcondizioni} & Il commento viene salvato nel profilo del Partecipante destinatario \\ \hline
     \textbf{Scenario principale} &
-        \begin{enumerate}[nosep, leftmargin=*]
+        \begin{enumerate}[nosep, leftmargin=*, before={\vspace{-0.5\baselineskip}}, after={\vspace{-0.8\baselineskip}}]
             \item \hyperref[tab:Autenticazione]{Autenticazione}
             \item Il Partecipante seleziona l'Evento passato
             \item Il sistema mostra la lista dei Partecipanti all'Evento
@@ -803,7 +804,7 @@ Di seguito sono presentati tutti gli scenari nel loro dettaglio.
 \section{Analisi del Rischio}
 
 \subsection{Tabella valutazione dei beni}
-\begin{tabularx}{\textwidth}{|X|X|X|}
+\begin{tabularx}{\textwidth}{|p{3.8cm}|X|X|}
     \hline
     \rowcolor{studyColor} \textbf{Bene} & \textbf{Valore} & \textbf{Esposizione} \\ \hline
     \endhead
@@ -836,24 +837,24 @@ Di seguito sono presentati tutti gli scenari nel loro dettaglio.
 \end{tabularx}
 
 \subsection{Analisi tecnologica della sicurezza}
-\begin{tabularx}{\textwidth}{|X|X|}
+\begin{tabularx}{\textwidth}{|p{5.5cm}|X|}
     \hline
     \rowcolor{studyColor} \textbf{Tecnologia} & \textbf{Vulnerabilità} \\ \hline
     \endhead
-    Autenticazione tramite Credenziali & \begin{itemize}[nosep, leftmargin=*]
+    Autenticazione tramite Credenziali & \begin{itemize}[nosep, leftmargin=*, before={\vspace{-0.5\baselineskip}}, after={\vspace{-0.8\baselineskip}}]
                     \item Password banali;
                     \item Password cracking;
                     \item Social Engineering;
                     \item Negligenza
                 \end{itemize} \\ \hline
-    Registrazione vincolata & \begin{itemize}[nosep, leftmargin=*]
+    Registrazione vincolata & \begin{itemize}[nosep, leftmargin=*, before={\vspace{-0.5\baselineskip}}, after={\vspace{-0.8\baselineskip}}]
                     \item Creazione di account fake (gli indirizzi universitari sono facilmente reperibili);
                 \end{itemize} \\ \hline
-    Sitema di Chat integrato & \begin{itemize}[nosep, leftmargin=*]
+    Sitema di Chat integrato & \begin{itemize}[nosep, leftmargin=*, before={\vspace{-0.5\baselineskip}}, after={\vspace{-0.8\baselineskip}}]
                     \item Cross-Site Scripting (XSS);
                     \item Iniezione di link malevoli/Phishing
                 \end{itemize} \\ \hline
-    Architettura Client/Server & \begin{itemize}[nosep, leftmargin=*]
+    Architettura Client/Server & \begin{itemize}[nosep, leftmargin=*, before={\vspace{-0.5\baselineskip}}, after={\vspace{-0.8\baselineskip}}]
                     \item Attacco DoS;
                     \item Attacco Man in the Middle;
                     \item Sniffing della comunicazione
@@ -861,7 +862,7 @@ Di seguito sono presentati tutti gli scenari nel loro dettaglio.
 
     Cifratura delle Comunicazioni & 
                 La siurezza dipende dal tipo di cifratura:
-                \begin{enumerate}[nosep, leftmargin=*]
+                \begin{enumerate}[nosep, leftmargin=*, before={\vspace{-0.5\baselineskip}}, after={\vspace{-0.8\baselineskip}}]
                     \item Cifratura simmetrica;
                     \begin{itemize}
                         \item tempo di vita della chiave;
@@ -879,7 +880,7 @@ Di seguito sono presentati tutti gli scenari nel loro dettaglio.
 
 \subsection{Security use case e misuse case}
 % Immagine da inserire, poi tabella
-\begin{tabularx}{\textwidth}{|X|X|}
+\begin{tabularx}{\textwidth}{|p{3.8cm}|X|}
     \hline
     \rowcolor{studyColor} \textbf{Titolo} & \textbf{Controllo accesso} \\ \hline
     \endhead 
@@ -903,7 +904,7 @@ Di seguito sono presentati tutti gli scenari nel loro dettaglio.
     \end{tabular} \\ \hline
 \end{tabularx}
 \vspace{1cm}
-\begin{tabularx}{\textwidth}{|X|X|}
+\begin{tabularx}{\textwidth}{|p{3.8cm}|X|}
     \hline
     \rowcolor{studyColor} \textbf{Titolo} & \textbf{Confidenzialità e Protezione Dati} \\ \hline
     \endhead
@@ -928,7 +929,7 @@ Di seguito sono presentati tutti gli scenari nel loro dettaglio.
     \end{tabular} \\ \hline
 \end{tabularx}
 \vspace{1cm}
-\begin{tabularx}{\textwidth}{|X|X|}
+\begin{tabularx}{\textwidth}{|p{3.8cm}|X|}
     \hline
     \rowcolor{studyColor} \textbf{Titolo} & \textbf{Integrità dei Dati} \\ \hline
     \endhead
@@ -973,7 +974,7 @@ Dall'analisi del rischio si possono evincere i seguenti ulteriori requisiti:
 \vspace{1cm}
 
 \subsection{Aggiornamento requisiti di sistema}
-\begin{tabularx}{\textwidth}{|p{2cm}|X|p{3cm}|}
+\begin{tabularx}{\textwidth}{|p{1.2cm}|X|p{2.6cm}|}
     \hline
     \rowcolor{studyColor} \textbf{ID} & \textbf{Requisito} & \textbf{Tipo} \\ \hline
     \endhead
@@ -984,7 +985,7 @@ Dall'analisi del rischio si possono evincere i seguenti ulteriori requisiti:
 \end{tabularx}
 
 \subsection{Aggiornamento vocabolario}
-\begin{tabularx}{\textwidth}{|p{3cm}|X|p{3.5cm}|}
+\begin{tabularx}{\textwidth}{|p{2.8cm}|X|p{2.2cm}|}
     \hline
     \rowcolor{studyColor} \textbf{Voce} & \textbf{Definizione} & \textbf{Sinonimi} \\ \hline
     \endhead
@@ -995,7 +996,7 @@ Dall'analisi del rischio si possono evincere i seguenti ulteriori requisiti:
 \subsection{Casi d'uso aggiornati}
 A seguito dell'introduzione dei controlli di sicurezza, il caso d'uso \textbf{Autenticazione} subisce le seguenti variazioni:
 
-\begin{tabularx}{\textwidth}{|X|X|}
+\begin{tabularx}{\textwidth}{|p{3.8cm}|X|}
     \hline
     \rowcolor{studyColor} \textbf{Titolo} & \textbf{Autenticazione} \\ \hline
     \endhead
@@ -1005,7 +1006,7 @@ A seguito dell'introduzione dei controlli di sicurezza, il caso d'uso \textbf{Au
     \textbf{Precondizioni} & L'Utente è registrato nel sistema \\ \hline
     \textbf{Postcondizioni} & L'Utente è autenticato nel sistema \\ \hline
     \textbf{Scenario principale} & 
-        \begin{enumerate}[nosep, leftmargin=*]
+        \begin{enumerate}[nosep, leftmargin=*, before={\vspace{-0.5\baselineskip}}, after={\vspace{-0.8\baselineskip}}]
             \item Il sistema richiede l'inserimento delle Credenziali di accesso
             \item L'Utente inserisce le proprie credenziali
             \item Il sistema verifica che le credenziali appartengano a un Utente
@@ -1013,7 +1014,7 @@ A seguito dell'introduzione dei controlli di sicurezza, il caso d'uso \textbf{Au
         \end{enumerate} \\ \hline
     \textbf{Scenari alternativi} & 
         Le Credenziali sono errate
-        \begin{enumerate}[nosep, leftmargin=*]
+        \begin{enumerate}[nosep, leftmargin=*, before={\vspace{-0.5\baselineskip}}, after={\vspace{-0.8\baselineskip}}]
             \setcounter{enumi}{3}
             \item Viene mostrato un messaggio di errore e l'Utente può reinserire le Credenziali
             \item Se il numero di tentativi errati supera i 5 consecutivi, il sistema blocca temporaneamente l'accesso per 15 minuti e registra l'evento nel Log.
@@ -1038,67 +1039,67 @@ Il file di log sarà generato da un componente interno al sistema chiamato \text
 
 \subsection{Tabella delle funzionalità}
 
-\begin{tabularx}{\textwidth}{|X|X|X|X|}
+\begin{tabularx}{\textwidth}{|p{3.2cm}|X|p{2.3cm}|p{2.8cm}|}
     \hline
     \rowcolor{studyColor} \textbf{Funzionalità} & \textbf{Tipo} & \textbf{Grado Complessità} & \textbf{Requisiti Collegati} \\ \hline
     \endhead
-    Registrazione & \begin{itemize}[nosep, leftmargin=*]
+    Registrazione & \begin{itemize}[nosep, leftmargin=*, before={\vspace{-0.5\baselineskip}}, after={\vspace{-0.8\baselineskip}}]
                         \item Memorizzazione dati;
                         \item Interazione esterno;
                     \end{itemize} & Semplice & \hyperref[R01F]{R01F}, \hyperref[R02F]{R02F} \\ \hline
-    Autenticazione & \begin{itemize}[nosep, leftmargin=*]
+    Autenticazione & \begin{itemize}[nosep, leftmargin=*, before={\vspace{-0.5\baselineskip}}, after={\vspace{-0.8\baselineskip}}]
                         \item Gestione dati;
                         \item Interazione esterno;
                     \end{itemize} & Semplice & \hyperref[R03F]{R03F}, \hyperref[R11N]{R11N} \\ \hline
-    Creazione evento & \begin{itemize}[nosep, leftmargin=*]
+    Creazione evento & \begin{itemize}[nosep, leftmargin=*, before={\vspace{-0.5\baselineskip}}, after={\vspace{-0.8\baselineskip}}]
                         \item Memorizzazione dati;
                         \item Interazione esterno;
                     \end{itemize} & Semplice & \hyperref[R05F]{R05F}, \hyperref[R06F]{R06F}, \hyperref[R07F]{R07F}, \hyperref[R08F]{R08F}, \hyperref[R15F]{R15F} \\ \hline
-    Gestione evento & \begin{itemize}[nosep, leftmargin=*]
+    Gestione evento & \begin{itemize}[nosep, leftmargin=*, before={\vspace{-0.5\baselineskip}}, after={\vspace{-0.8\baselineskip}}]
                         \item Gestione e memorizzazione dati;
                         \item Interazione esterno;
                     \end{itemize} & Complesso & \hyperref[R05F]{R05F}, \hyperref[R06F]{R06F}, \hyperref[R07F]{R07F}, \hyperref[R08F]{R08F}, \hyperref[R09F]{R09F}, \hyperref[R16F]{R16F}, \hyperref[R17F]{R17F}, \hyperref[R18F]{R18F} \\ \hline
-    Cancellazione evento & \begin{itemize}[nosep, leftmargin=*]
+    Cancellazione evento & \begin{itemize}[nosep, leftmargin=*, before={\vspace{-0.5\baselineskip}}, after={\vspace{-0.8\baselineskip}}]
                         \item Gestione dati;
                         \item Interazione esterno;
                     \end{itemize} & Semplice & \hyperref[R16F]{R16F}, \hyperref[R17F]{R17F} \\ \hline
-    Modifica evento & \begin{itemize}[nosep, leftmargin=*]
+    Modifica evento & \begin{itemize}[nosep, leftmargin=*, before={\vspace{-0.5\baselineskip}}, after={\vspace{-0.8\baselineskip}}]
                         \item Gestione dati;
                         \item Interazione esterno;
                     \end{itemize} & Semplice & \hyperref[R05F]{R05F}, \hyperref[R06F]{R06F}, \hyperref[R08F]{R08F}, \hyperref[R16F]{R16F} \\ \hline
-    Rimozione partecipante & \begin{itemize}[nosep, leftmargin=*]
+    Rimozione partecipante & \begin{itemize}[nosep, leftmargin=*, before={\vspace{-0.5\baselineskip}}, after={\vspace{-0.8\baselineskip}}]
                         \item Gestione dati;
                         \item Interazione esterno;
                     \end{itemize} & Semplice & \hyperref[R12F]{R12F}, \hyperref[R18F]{R18F} \\ \hline
-    Invio notifica & \begin{itemize}[nosep, leftmargin=*]
+    Invio notifica & \begin{itemize}[nosep, leftmargin=*, before={\vspace{-0.5\baselineskip}}, after={\vspace{-0.8\baselineskip}}]
                         \item Interazione esterno;
                     \end{itemize} & Semplice & \hyperref[R12F]{R12F}, \hyperref[R16F]{R16F}, \hyperref[R17F]{R17F}, \hyperref[R18F]{R18F} \\ \hline
-    Gestione profilo & \begin{itemize}[nosep, leftmargin=*]
+    Gestione profilo & \begin{itemize}[nosep, leftmargin=*, before={\vspace{-0.5\baselineskip}}, after={\vspace{-0.8\baselineskip}}]
                         \item Gestione e memorizzazione dati;
                         \item Interazione esterno;
                     \end{itemize} & Complesso & \hyperref[R04F]{R04F}, \hyperref[R13F]{R13F}, \hyperref[R20F]{R20F}, \hyperref[R21F]{R21F} \\ \hline
-    Visualizzazione commenti & \begin{itemize}[nosep, leftmargin=*]
+    Visualizzazione commenti & \begin{itemize}[nosep, leftmargin=*, before={\vspace{-0.5\baselineskip}}, after={\vspace{-0.8\baselineskip}}]
                         \item Interazione esterno;
                     \end{itemize} & Semplice & \hyperref[R04F]{R04F}, \hyperref[R13F]{R13F}, \hyperref[R20F]{R20F} \\ \hline
-    Visualizzazione bacheca & \begin{itemize}[nosep, leftmargin=*]
+    Visualizzazione bacheca & \begin{itemize}[nosep, leftmargin=*, before={\vspace{-0.5\baselineskip}}, after={\vspace{-0.8\baselineskip}}]
                         \item Interazione esterno;
                     \end{itemize} & Semplice & \hyperref[R07F]{R07F}, \hyperref[R08F]{R08F}, \hyperref[R09F]{R09F}, \hyperref[R11F]{R11F}, \hyperref[R12F]{R12F} \\ \hline
-    Visualizzazione partecipante & \begin{itemize}[nosep, leftmargin=*]
+    Visualizzazione partecipante & \begin{itemize}[nosep, leftmargin=*, before={\vspace{-0.5\baselineskip}}, after={\vspace{-0.8\baselineskip}}]
                         \item Interazione esterno;
                     \end{itemize} & Semplice & \hyperref[R04F]{R04F}, \hyperref[R13F]{R13F}, \hyperref[R20F]{R20F} \\ \hline
-    Prenotazione evento & \begin{itemize}[nosep, leftmargin=*]
+    Prenotazione evento & \begin{itemize}[nosep, leftmargin=*, before={\vspace{-0.5\baselineskip}}, after={\vspace{-0.8\baselineskip}}]
                         \item Gestione dati;
                         \item Interazione esterno;
                     \end{itemize} & Semplice & \hyperref[R12F]{R12F}, \hyperref[R14F]{R14F}, \hyperref[R15F]{R15F} \\ \hline
-    Annullamento prenotazione & \begin{itemize}[nosep, leftmargin=*]
+    Annullamento prenotazione & \begin{itemize}[nosep, leftmargin=*, before={\vspace{-0.5\baselineskip}}, after={\vspace{-0.8\baselineskip}}]
                         \item Gestione dati;
                         \item Interazione esterno;
                     \end{itemize} & Semplice & \hyperref[R14F]{R14F}, \hyperref[R15F]{R15F} \\ \hline
-    Utilizzo chat & \begin{itemize}[nosep, leftmargin=*]
+    Utilizzo chat & \begin{itemize}[nosep, leftmargin=*, before={\vspace{-0.5\baselineskip}}, after={\vspace{-0.8\baselineskip}}]
                         \item Gestione e memorizzazione dati;
                         \item Interazione esterno;
                     \end{itemize} & Complesso & \hyperref[R19F]{R19F} \\ \hline
-    Inserimento commento & \begin{itemize}[nosep, leftmargin=*]
+    Inserimento commento & \begin{itemize}[nosep, leftmargin=*, before={\vspace{-0.5\baselineskip}}, after={\vspace{-0.8\baselineskip}}]
                         \item Memorizzazione dati;
                         \item Interazione esterno;
                     \end{itemize} & Semplice & \hyperref[R04F]{R04F}, \hyperref[R20F]{R20F} \\ \hline
@@ -1109,7 +1110,7 @@ Di seguito, saranno riportate le scomposizioni delle informazioni composte per r
 
 \subsubsection{Informazione: Utente} \label{Utente}
 L'informazione \hyperref[Utente]{Utente} è composta da:
-\begin{tabularx}{\textwidth}{|X|X|X|X|}
+\begin{tabularx}{\textwidth}{|p{2.8cm}|p{1.8cm}|p{3.2cm}|X|}
     \hline
     \rowcolor{studyColor} \textbf{Informazione} & \textbf{Tipo} & \textbf{Livello protezione / Privacy} & \textbf{Vincoli} \\ \hline
     \endhead
@@ -1119,7 +1120,7 @@ L'informazione \hyperref[Utente]{Utente} è composta da:
 
 \subsubsection{Informazione: Credenziali} \label{Credenziali}
 L'informazione \hyperref[Credenziali]{Credenziali} è composta da:
-\begin{tabularx}{\textwidth}{|X|X|X|X|}
+\begin{tabularx}{\textwidth}{|p{2.8cm}|p{1.8cm}|p{3.2cm}|X|}
     \hline
     \rowcolor{studyColor} \textbf{Informazione} & \textbf{Tipo} & \textbf{Livello protezione / Privacy} & \textbf{Vincoli} \\ \hline
     \endhead
@@ -1129,7 +1130,7 @@ L'informazione \hyperref[Credenziali]{Credenziali} è composta da:
 
 \subsubsection{Informazione: Profilo} \label{Profilo}
 L'informazione \hyperref[Profilo]{Profilo} è composta da:
-\begin{tabularx}{\textwidth}{|X|X|X|X|}
+\begin{tabularx}{\textwidth}{|p{2.8cm}|p{1.8cm}|p{3.2cm}|X|}
     \hline
     \rowcolor{studyColor} \textbf{Informazione} & \textbf{Tipo} & \textbf{Livello protezione / Privacy} & \textbf{Vincoli} \\ \hline
     \endhead
@@ -1143,7 +1144,7 @@ L'informazione \hyperref[Profilo]{Profilo} è composta da:
 
 \subsubsection{Informazione: Evento} \label{Evento}
 L'informazione \hyperref[Evento]{Evento} è composta da:
-\begin{tabularx}{\textwidth}{|X|X|X|X|}
+\begin{tabularx}{\textwidth}{|p{2.8cm}|p{1.8cm}|p{3.2cm}|X|}
     \hline
     \rowcolor{studyColor} \textbf{Informazione} & \textbf{Tipo} & \textbf{Livello protezione / Privacy} & \textbf{Vincoli} \\ \hline
     \endhead
@@ -1158,7 +1159,7 @@ L'informazione \hyperref[Evento]{Evento} è composta da:
 
 \subsubsection{Informazione: Indirizzo} \label{Indirizzo}
 L'informazione \hyperref[Indirizzo]{Indirizzo} è composta da:
-\begin{tabularx}{\textwidth}{|X|X|X|X|}
+\begin{tabularx}{\textwidth}{|p{2.8cm}|p{1.8cm}|p{3.2cm}|X|}
     \hline
     \rowcolor{studyColor} \textbf{Informazione} & \textbf{Tipo} & \textbf{Livello protezione / Privacy} & \textbf{Vincoli} \\ \hline
     \endhead
@@ -1168,7 +1169,7 @@ L'informazione \hyperref[Indirizzo]{Indirizzo} è composta da:
 
 \subsubsection{Informazione: Bacheca} \label{Bacheca}
 L'informazione \hyperref[Bacheca]{Bacheca} è composta da:
-\begin{tabularx}{\textwidth}{|X|X|X|X|}
+\begin{tabularx}{\textwidth}{|p{2.8cm}|p{1.8cm}|p{3.2cm}|X|}
     \hline
     \rowcolor{studyColor} \textbf{Informazione} & \textbf{Tipo} & \textbf{Livello protezione / Privacy} & \textbf{Vincoli} \\ \hline
     \endhead
@@ -1177,7 +1178,7 @@ L'informazione \hyperref[Bacheca]{Bacheca} è composta da:
 
 \subsubsection{Informazione: Prenotazione} \label{Prenotazione}
 L'informazione \hyperref[Prenotazione]{Prenotazione} è composta da:
-\begin{tabularx}{\textwidth}{|X|X|X|X|}
+\begin{tabularx}{\textwidth}{|p{2.8cm}|p{1.8cm}|p{3.2cm}|X|}
     \hline
     \rowcolor{studyColor} \textbf{Informazione} & \textbf{Tipo} & \textbf{Livello protezione / Privacy} & \textbf{Vincoli} \\ \hline
     \endhead
@@ -1189,7 +1190,7 @@ L'informazione \hyperref[Prenotazione]{Prenotazione} è composta da:
 
 \subsubsection{Informazione: Filtro} \label{Filtro}
 L'informazione \hyperref[Filtro]{Filtro} è composta da:
-\begin{tabularx}{\textwidth}{|X|X|X|X|}
+\begin{tabularx}{\textwidth}{|p{2.8cm}|p{1.8cm}|p{3.2cm}|X|}
     \hline
     \rowcolor{studyColor} \textbf{Informazione} & \textbf{Tipo} & \textbf{Livello protezione / Privacy} & \textbf{Vincoli} \\ \hline
     \endhead
@@ -1205,7 +1206,7 @@ L'informazione \hyperref[Filtro]{Filtro} è composta da:
 
 \subsubsection{Informazione: Commento} \label{Commento}
 L'informazione \hyperref[Commento]{Commento} è composta da:
-\begin{tabularx}{\textwidth}{|X|X|X|X|}
+\begin{tabularx}{\textwidth}{|p{2.8cm}|p{1.8cm}|p{3.2cm}|X|}
     \hline
     \rowcolor{studyColor} \textbf{Informazione} & \textbf{Tipo} & \textbf{Livello protezione / Privacy} & \textbf{Vincoli} \\ \hline
     \endhead
@@ -1218,7 +1219,7 @@ L'informazione \hyperref[Commento]{Commento} è composta da:
 
 \subsubsection{Informazione: Chat} \label{Chat}
 L'informazione \hyperref[Chat]{Chat} è composta da:
-\begin{tabularx}{\textwidth}{|X|X|X|X|}
+\begin{tabularx}{\textwidth}{|p{2.8cm}|p{1.8cm}|p{3.2cm}|X|}
     \hline
     \rowcolor{studyColor} \textbf{Informazione} & \textbf{Tipo} & \textbf{Livello protezione / Privacy} & \textbf{Vincoli} \\ \hline
     \endhead
@@ -1228,7 +1229,7 @@ L'informazione \hyperref[Chat]{Chat} è composta da:
 
 \subsubsection{Informazione: Messaggio} \label{Messaggio}
 L'informazione \hyperref[Messaggio]{Messaggio} è composta da:
-\begin{tabularx}{\textwidth}{|X|X|X|X|}
+\begin{tabularx}{\textwidth}{|p{2.8cm}|p{1.8cm}|p{3.2cm}|X|}
     \hline
     \rowcolor{studyColor} \textbf{Informazione} & \textbf{Tipo} & \textbf{Livello protezione / Privacy} & \textbf{Vincoli} \\ \hline
     \endhead
@@ -1240,7 +1241,7 @@ L'informazione \hyperref[Messaggio]{Messaggio} è composta da:
 
 \subsubsection{Informazione: Notifica} \label{Notifica}
 L'informazione \hyperref[Notifica]{Notifica} è composta da:
-\begin{tabularx}{\textwidth}{|X|X|X|X|}
+\begin{tabularx}{\textwidth}{|p{2.8cm}|p{1.8cm}|p{3.2cm}|X|}
     \hline
     \rowcolor{studyColor} \textbf{Informazione} & \textbf{Tipo} & \textbf{Livello protezione / Privacy} & \textbf{Vincoli} \\ \hline
     \endhead
@@ -1412,7 +1413,7 @@ L'informazione \hyperref[Notifica]{Notifica} è composta da:
 \section{Analisi documento dei requisiti: Analisi dei vincoli}
 
 \subsection{Tabella dei vincoli}
-\begin{tabularx}{\textwidth}{|X|X|X|X|}
+\begin{tabularx}{\textwidth}{|p{3.0cm}|p{2.2cm}|p{3.5cm}|X|}
     \hline
     \rowcolor{studyColor} \textbf{Vincolo} & \textbf{Categorie} & \textbf{Impatto} & \textbf{Funzionalità} \\ \hline
     \endhead
@@ -1524,7 +1525,7 @@ Il programma non fa utilizzo di nessun sistema esterno direttamente nel funziona
 \section{Scomposizione del problema}
 
 \subsection{Tabella scomposizione delle funzionalità}
-\begin{tabularx}{\textwidth}{|X|X|}
+\begin{tabularx}{\textwidth}{|l|X|}
     \hline
     \rowcolor{studyColor} \textbf{Funzionalità} & \textbf{Scomposizione} \\ \hline
     \endhead
@@ -1533,7 +1534,7 @@ Il programma non fa utilizzo di nessun sistema esterno direttamente nel funziona
 \end{tabularx}
 
 \subsection{Gestione Profilo: Tabella Sotto-Funzionalità}
-\begin{tabularx}{\textwidth}{|X|X|X|X|}
+\begin{tabularx}{\textwidth}{|p{3.2cm}|p{2.5cm}|X|p{2.4cm}|}
     \hline
     \rowcolor{studyColor} \textbf{Sotto-funzionalità} & \textbf{Sotto-funzionalità} & \textbf{Legame} & \textbf{Informazioni} \\ \hline
     \endhead
@@ -1542,7 +1543,7 @@ Il programma non fa utilizzo di nessun sistema esterno direttamente nel funziona
 \end{tabularx}
 
 \subsection{Gestione Evento: Tabella Sotto-Funzionalità}
-\begin{tabularx}{\textwidth}{|X|X|X|X|}
+\begin{tabularx}{\textwidth}{|p{3.2cm}|p{2.5cm}|X|p{2.4cm}|}
     \hline
     \rowcolor{studyColor} \textbf{Sotto-funzionalità} & \textbf{Sotto-funzionalità} & \textbf{Legame} & \textbf{Informazioni} \\ \hline
     \endhead
@@ -1552,7 +1553,7 @@ Il programma non fa utilizzo di nessun sistema esterno direttamente nel funziona
 \end{tabularx}
 
 \subsection{Utilizzo Chat: Tabella Sotto-Funzionalità}
-\begin{tabularx}{\textwidth}{|X|X|X|X|}
+\begin{tabularx}{\textwidth}{|p{3.2cm}|p{2.5cm}|X|p{2.4cm}|}
     \hline
     \rowcolor{studyColor} \textbf{Sotto-funzionalità} & \textbf{Sotto-funzionalità} & \textbf{Legame} & \textbf{Informazioni} \\ \hline
     \endhead
@@ -1571,41 +1572,41 @@ Il modello riguardante il profilo è presentato nel seguente diagramma.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\textwidth,height=0.6\textheight,keepaspectratio]{images/modello-del-dominio-utente.png}
+    \includegraphics[width=\textwidth,height=0.5\textheight,keepaspectratio]{images/modello-del-dominio-utente.png}
 \end{figure}
-
+%
 \subsection{Modello del dominio: Evento}
 Il modello riguardante l'evento è presentato nel seguente diagramma.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\textwidth,height=0.6\textheight,keepaspectratio]{images/modello-del-dominio-evento.png}
+    \includegraphics[width=\textwidth,height=0.5\textheight,keepaspectratio]{images/modello-del-dominio-evento.png}
 \end{figure}
-
+%
 \subsection{Modello del dominio: Filtro}
 Il modello riguardante il filtro è presentato nel seguente diagramma.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\textwidth,height=0.6\textheight,keepaspectratio]{images/modello-del-dominio-filtro.png}
+    \includegraphics[width=\textwidth,height=0.5\textheight,keepaspectratio]{images/modello-del-dominio-filtro.png}
 \end{figure}
-
+%
 \subsection{Modello del dominio: Chat}
 Il modello riguardante la chat è presentato nel seguente diagramma.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\textwidth,height=0.6\textheight,keepaspectratio]{images/modello-del-dominio-chat.png}
+    \includegraphics[width=\textwidth,height=0.5\textheight,keepaspectratio]{images/modello-del-dominio-chat.png}
 \end{figure}
-
+%
 \subsection{Modello del dominio: Log}
 Il modello riguardante il log è presentato nel seguente diagramma.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\textwidth,height=0.6\textheight,keepaspectratio]{images/modello-del-dominio-log.png}
+    \includegraphics[width=\textwidth,height=0.5\textheight,keepaspectratio]{images/modello-del-dominio-log.png}
 \end{figure}
-
+%
 % Architettura logica
 \newpage
 \section{Architettura logica}
@@ -1617,50 +1618,50 @@ Di seguito è presentato il diagramma dei package e le diverse dipendenze che in
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\textwidth,height=0.6\textheight,keepaspectratio]{images/diagramma-dei-package.png}
+    \includegraphics[width=\textwidth,height=0.5\textheight,keepaspectratio]{images/diagramma-dei-package.png}
 \end{figure}
-
+%
 \subsubsection{Diagramma delle classi: Registrazione e Autenticazione}
 Di seguito è presentato il diagramma delle classi di view e controller per la registrazione e autenticazione degli utenti.
 Una volta autenticato l'utente è portato alla HomeUtente che è omessa perché connessa semplicemente a tutte le altre home, senza ulteriori funzionalità.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\textwidth,height=0.6\textheight,keepaspectratio]{images/diagramma-dei-package-registrazione-autenticazione.png}
+    \includegraphics[width=\textwidth,height=0.5\textheight,keepaspectratio]{images/diagramma-dei-package-registrazione-autenticazione.png}
 \end{figure}
-
+%
 \subsubsection{Diagramma delle classi: Profilo}
 Di seguito è presentato il diagramma delle classi di view e controller per la gestione del profilo.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\textwidth,height=0.6\textheight,keepaspectratio]{images/diagramma-dei-package-profilo.png}
+    \includegraphics[width=\textwidth,height=0.5\textheight,keepaspectratio]{images/diagramma-dei-package-profilo.png}
 \end{figure}
-
+%
 \subsubsection{Diagramma delle classi: Evento}
 Di seguito è presentato il diagramma delle classi di view e controller per la gestione dell'evento.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\textwidth,height=0.6\textheight,keepaspectratio]{images/diagramma-dei-package-evento.png}
+    \includegraphics[width=\textwidth,height=0.5\textheight,keepaspectratio]{images/diagramma-dei-package-evento.png}
 \end{figure}
-
+%
 \subsubsection{Diagramma delle classi: Bacheca}
 Di seguito è presentato il diagramma delle classi di view e controller per la gestione della bacheca.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\textwidth,height=0.6\textheight,keepaspectratio]{images/diagramma-dei-package-bacheca.png}
+    \includegraphics[width=\textwidth,height=0.5\textheight,keepaspectratio]{images/diagramma-dei-package-bacheca.png}
 \end{figure}
-
+%
 \subsubsection{Diagramma delle classi: Comunicazione}
 Di seguito è presentato il diagramma delle classi di view e controller per la gestione della comunicazione.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\textwidth,height=0.6\textheight,keepaspectratio]{images/diagramma-dei-package-comunicazione.png}
+    \includegraphics[width=\textwidth,height=0.5\textheight,keepaspectratio]{images/diagramma-dei-package-comunicazione.png}
 \end{figure}
-
+%
 \subsection{Interazioni}
 Di seguito sono presentate le interazioni tra gli attori e il sistema.
 
@@ -1669,65 +1670,65 @@ In figura è presentato un diagramma di sequenza che mostra l'interazione tra i 
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\textwidth,height=0.6\textheight,keepaspectratio]{images/interazione-registrazione.png}
+    \includegraphics[width=\textwidth,height=0.5\textheight,keepaspectratio]{images/interazione-registrazione.png}
 \end{figure}
-
+%
 \subsubsection{Interazione: Autenticazione}
 In figura è presentato un diagramma di sequenza che mostra l'interazione tra i componenti per effettuare l'autenticazione di un Utente esistente.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\textwidth,height=0.6\textheight,keepaspectratio]{images/interazione-autenticazione.png}
+    \includegraphics[width=\textwidth,height=0.5\textheight,keepaspectratio]{images/interazione-autenticazione.png}
 \end{figure}
-
+%
 \subsubsection{Interazione: Elimina Utente}
 In figura è presentato un diagramma di sequenza che mostra l'interazione tra i componenti per effettuare l'eliminazione di un Utente esistente.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\textwidth,height=0.6\textheight,keepaspectratio]{images/interazione-elimina-utente.png}
+    \includegraphics[width=\textwidth,height=0.5\textheight,keepaspectratio]{images/interazione-elimina-utente.png}
 \end{figure}
-
+%
 \subsubsection{Interazione: Modifica Profilo}
 In figura è presentato un diagramma di sequenza che mostra l'interazione tra i componenti per effettuare la modifica del profilo di un Utente esistente.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\textwidth,height=0.6\textheight,keepaspectratio]{images/interazione-modifica-profilo.png}
+    \includegraphics[width=\textwidth,height=0.5\textheight,keepaspectratio]{images/interazione-modifica-profilo.png}
 \end{figure}
-
+%
 \subsubsection{Interazione: Creazione Evento}
 In figura è presentato un diagramma di sequenza che mostra l'interazione tra i componenti per effettuare la creazione di un nuovo Evento.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\textwidth,height=0.6\textheight,keepaspectratio]{images/interazione-creazione-evento.png}
+    \includegraphics[width=\textwidth,height=0.5\textheight,keepaspectratio]{images/interazione-creazione-evento.png}
 \end{figure}
-
+%
 \subsubsection{Interazione: Gestione Evento}
 In figura è presentato un diagramma di sequenza che mostra l'interazione tra i componenti per effettuare la gestione di un Evento esistente.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\textwidth,height=0.6\textheight,keepaspectratio]{images/interazione-gestione-evento.png}
+    \includegraphics[width=\textwidth,height=0.5\textheight,keepaspectratio]{images/interazione-gestione-evento.png}
 \end{figure}
-
+%
 \subsubsection{Interazione: Chat}
 In figura è presentato un diagramma di sequenza che mostra l'interazione tra i componenti per effettuare l'utilizzo della Chat.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\textwidth,height=0.6\textheight,keepaspectratio]{images/interazione-chat.png}
+    \includegraphics[width=\textwidth,height=0.5\textheight,keepaspectratio]{images/interazione-chat.png}
 \end{figure}
-
+%
 \subsubsection{Interazione: Commento}
 In figura è presentato un diagramma di sequenza che mostra l'interazione tra i componenti per effettuare la creazione di un Commento.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\textwidth,height=0.6\textheight,keepaspectratio]{images/interazione-commento.png}
+    \includegraphics[width=\textwidth,height=0.5\textheight,keepaspectratio]{images/interazione-commento.png}
 \end{figure}
-
+%
 \subsection{Comportamento}
 Dato che il modello non presenta comportamenti particolarmente elaborati, non vengono mostrati i diagrammi di stato.
 
@@ -2079,17 +2080,17 @@ Si sceglie di utilizzare la tecnica ORM (come spiegato in \hyperref[L3-Persisten
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\textwidth,height=0.6\textheight,keepaspectratio]{images/diagramma-dei-package-progettazione.png}
+    \includegraphics[width=\textwidth,height=0.5\textheight,keepaspectratio]{images/diagramma-dei-package-progettazione.png}
 \end{figure}
-
+%
 \subsection{Diagramma dei componenti}
 Nella figura sottostante è riportata l'architettura del Sistema, organizzata attraverso un diagramma del componenti.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\textwidth,height=0.6\textheight,keepaspectratio]{images/diagramma-dei-componenti-progettazione.png}
+    \includegraphics[width=\textwidth,height=0.5\textheight,keepaspectratio]{images/diagramma-dei-componenti-progettazione.png}
 \end{figure}
-
+%
 % Progettazione di dettaglio
 \newpage
 \section{Progettazione di dettaglio}
@@ -2102,9 +2103,9 @@ Di seguito è presentato il diagramma delle classi del modello del dominio rigua
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\textwidth,height=0.6\textheight,keepaspectratio]{images/diagramma-di-dettaglio-account.png}
+    \includegraphics[width=\textwidth,height=0.5\textheight,keepaspectratio]{images/diagramma-di-dettaglio-account.png}
 \end{figure}
-
+%
 In questo diagramma è da notare che:
 \begin{itemize}[leftmargin=*]
     \item Il concetto generale di fruitore del sistema è stato rinominato da Utente ad Account per favorire l'espandibilità dell'applicazione.
@@ -2120,9 +2121,9 @@ Di seguito è presentato il diagramma delle classi del modello del dominio rigua
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\textwidth,height=0.6\textheight,keepaspectratio]{images/diagramma-di-dettaglio-evento.png}
+    \includegraphics[width=\textwidth,height=0.5\textheight,keepaspectratio]{images/diagramma-di-dettaglio-evento.png}
 \end{figure}
-
+%
 In questo diagramma è da notare che:
 \begin{itemize}[leftmargin=*]
     \item È stata definita l'interfaccia IEvento che impone i metodi contrattuali di base (aggiungiPartecipante, rimuoviPartecipante, annullaEvento, puoPartecipare). Questo garantisce un alto grado di espandibilità (Open/Closed Principle): se in futuro si volessero modellare nuove tipologie di attività, come ad esempio sessioni di studio telematiche (che necessitano di un link anziché di un Indirizzo fisico) o eventi sportivi come una corsa, queste potranno implementare l'interfaccia senza alterare la logica preesistente del sistema.
@@ -2138,9 +2139,9 @@ Di seguito è presentato il diagramma delle classi del modello del dominio rigua
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\textwidth,height=0.6\textheight,keepaspectratio]{images/diagramma-di-dettaglio-chat.png}
+    \includegraphics[width=\textwidth,height=0.5\textheight,keepaspectratio]{images/diagramma-di-dettaglio-chat.png}
 \end{figure}
-
+%
 In questo diagramma è da notare che:
 \begin{itemize}[leftmargin=*]
     \item La struttura è stata progettata per essere estremamente lineare e focalizzata. La classe Chat modella l'insieme della conversazione fungendo da aggregatore per la lista di messaggi.
@@ -2155,9 +2156,9 @@ Di seguito è presentato il diagramma delle classi del modello del dominio rigua
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\textwidth,height=0.6\textheight,keepaspectratio]{images/diagramma-di-dettaglio-filtro.png}
+    \includegraphics[width=\textwidth,height=0.5\textheight,keepaspectratio]{images/diagramma-di-dettaglio-filtro.png}
 \end{figure}
-
+%
 In questo diagramma è da notare che:
 \begin{itemize}[leftmargin=*]
     \item È stata creata l'interfaccia generica \texttt{IFiltro<T>} dotata del metodo applica(). Questa scelta architetturale applica il pattern Strategy e garantisce il pieno rispetto del principio Open/Closed (OCP), permettendo di aggiungere agilmente in futuro nuovi criteri di filtraggio senza dover modificare il codice delle classi client (come la Bacheca).
@@ -2171,9 +2172,9 @@ Di seguito è presentato il diagramma delle classi del modello del dominio rigua
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\textwidth,height=0.6\textheight,keepaspectratio]{images/diagramma-di-dettaglio-log.png}
+    \includegraphics[width=\textwidth,height=0.5\textheight,keepaspectratio]{images/diagramma-di-dettaglio-log.png}
 \end{figure}
-
+%
 In questo diagramma è da notare che:
 \begin{itemize}[leftmargin=*]
     \item Nel rispetto del principio di singola responsabilità (SRP), l'intera gestione del tracciamento è stata isolata all'interno della classe ReportDeiLog, che si occupa di aggregare le singole entità VoceDiLog e gestire il file di output.
@@ -2190,34 +2191,49 @@ Per questo motivo, in questo documento abbiamo deciso di inserire solo le scherm
 Non abbiamo messo la versione per computer perché è molto facile da immaginare: si tratta semplicemente della stessa grafica 
 allargata e riadattata per uno schermo più grande.
 
-\subsubsection{Interfaccia: Registrazione e Autenticazione}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.35\textwidth]{images/interfaccia-utente-registrazione.png}
-    \hspace{0.05\textwidth}
-    \includegraphics[width=0.35\textwidth]{images/interfaccia-utente-autenticazione.png}
-    \caption{Registrazione (sinistra) e Autenticazione (destra)}
-\end{figure}
-
-\subsubsection{Interfaccia: Profilo ed Evento}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.35\textwidth]{images/interfaccia-utente-profilo.png}
-    \hspace{0.05\textwidth}
-    \includegraphics[width=0.35\textwidth]{images/interfaccia-utente-evento.png}
-    \caption{Profilo (sinistra) ed Evento (destra)}
-\end{figure}
-
-\subsubsection{Interfaccia: Bacheca}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.35\textwidth]{images/interfaccia-bacheca.png}
-\end{figure}
-
-\subsubsection{Interfaccia: Comunicazione}
+%\subsubsection{Interfaccia: Registrazione e Autenticazione}
+%
+%\begin{figure}[H]
+%    \centering
+%    \includegraphics[width=0.35\textwidth]{images/interfaccia-utente-registrazione.png}
+%    \hspace{0.05\textwidth}
+%    \includegraphics[width=0.35\textwidth]{images/interfaccia-utente-autenticazione.png}
+%    \caption{Registrazione (sinistra) e Autenticazione (destra)}
+%\end{figure}
+%
+%\subsubsection{Interfaccia: Profilo ed Evento}
+%
+%\begin{figure}[H]
+%    \centering
+%    \includegraphics[width=0.35\textwidth]{images/interfaccia-utente-profilo.png}
+%    \hspace{0.05\textwidth}
+%    \includegraphics[width=0.35\textwidth]{images/interfaccia-crea-evento.png}
+%    \caption{Profilo (sinistra) ed Evento (destra)}
+%\end{figure}
+%
+%\subsubsection{Interfaccia: Bacheca}
+%
+%\begin{figure}[H]
+%    \centering
+%    \includegraphics[width=0.35\textwidth]{images/interfaccia-bacheca-esplora.png}
+%    \hspace{0.05\textwidth}
+%    \includegraphics[width=0.35\textwidth]{images/interfaccia-bacheca-miei-eventi.png}
+%    \hspace{0.05\textwidth}
+%    \includegraphics[width=0.35\textwidth]{images/interfaccia-bacheca-passati.png}
+%    \caption{Bacheca: Esplora (sinistra), I miei eventi (centro), Passati (destra)}
+%\end{figure}
+%
+%\begin{figure}[H]
+%    \centering
+%    \includegraphics[width=0.35\textwidth]{images/interfaccia-dettagli-evento.png}
+%    \hspace{0.05\textwidth}
+%    \includegraphics[width=0.35\textwidth]{images/interfaccia-dettagli-utente.png}
+%    \hspace{0.05\textwidth}
+%    \includegraphics[width=0.35\textwidth]{images/interfaccia-chat.png}
+%    \caption{Bacheca: Dettagli Evento (sinistra), Dettagli Utente (centro), Chat (destra)}
+%\end{figure}
+%
+%\subsubsection{Interfaccia: Comunicazione}
 
 
 % Progettazione della persistenza
@@ -2227,9 +2243,9 @@ Di seguito è riportato il diagramma ER della persistenza del sistema.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\textwidth,height=0.6\textheight,keepaspectratio]{images/diagramma-entity-relationship.png}
+    \includegraphics[width=\textwidth,height=0.5\textheight,keepaspectratio]{images/diagramma-entity-relationship.png}
 \end{figure}
-
+%
 È da notare che:
 \begin{itemize}[leftmargin=*]
     \item Cosa importantissima da notare.
@@ -2280,6 +2296,7 @@ Di seguito è riportato il diagramma ER della persistenza del sistema.
     \item pensare a se mettere l'amministratore, poi nel prototipo non si scrive
     \item da togliere la materia all'interno dell'evento nel modello del dominio
     \item tra luogo e evento è 1 - 1? ci sono in teoria luoghi che possono avere più eventi e i luoghi esistono a prescindere degli eventi, ma a lato codice non ha senso dire che esistono, dato che vivono esclusivamente dentro la classe Evento
+    \item da capire se fare un'interfaccia notifiche o no, in generale come gestire le notifiche, essendo un'applicazione web
 \end{itemize}
 
 \end{document}
