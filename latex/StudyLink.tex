@@ -2280,13 +2280,343 @@ Di seguito è riportato il diagramma ER della persistenza del sistema.
     \item Cosa un po' meno importante da notare.
 \end{itemize}
 
+
+
+
+
+
+
 % Progettazione del collaudo
 \newpage
 \section{Progettazione del collaudo}
+Il collaudo è effettuato attraverso sistemi di testing automatici eseguiti sulle
+modifiche del codice (\emph{continuous integration}). I test sono divisi in tre
+categorie a seconda di ciò che vanno a verificare:
+\begin{itemize}
+    \item \textbf{Test di unità}: controllano il comportamento dei singoli componenti;
+    \item \textbf{Test di integrazione}: controllano le interazioni tra i vari componenti;
+    \item \textbf{Test punto a punto}: controllano il funzionamento del sistema nel suo
+          complesso.
+\end{itemize}
+Coerentemente con il Piano del collaudo (Sezione 2.9), sono presentati
+solo i test di unità delle classi ritenute centrali per il funzionamento del sistema,
+riallineati alla struttura emersa dalla Progettazione di dettaglio (Sezione 3.2).
+
+In particolare, rispetto all'analisi, l'entità \texttt{Profilo} è stata scomposta
+nelle classi \texttt{Account}, \texttt{Utente} e \texttt{ProfiloUtente}, mentre
+l'\texttt{Evento} si specializza in \texttt{EventoAPostiLimitati} ed
+\texttt{EventoAPostiIllimitati}. Vengono presentati i test di unità di Evento e Profilo.
 
 \subsection{Test di unità: Evento}
+\begin{lstlisting}
+using NUnit.Framework;
+
+[TestFixture]
+public class TestEvento
+{
+    private EventoAPostiLimitati eventoLimitato;
+    private EventoAPostiIllimitati eventoIllimitato;
+    private Utente organizzatore;
+    private Luogo luogoPubblico, luogoPrivato;
+
+    [SetUp]
+    public void Setup()
+    {
+        organizzatore = new Utente(
+            "matteo.gattobigio@studio.unibo.it",
+            "Password1!",
+            new ProfiloUtente(
+                "Matteo", "Gattobigio",
+                "Ingegneria Informatica", "Studente appassionato e vivace",
+                null
+            )
+        );
+
+        luogoPubblico = new Luogo(
+            "Biblioteca Universitaria",
+            "Via Zamboni 33",
+            TipoDiLuogo.Pubblico
+        );
+
+        luogoPrivato = new Luogo(
+            "Appartamento studio",
+            "Via Irnerio 12",
+            TipoDiLuogo.Privato
+        );
+
+        eventoLimitato = new EventoAPostiLimitati(
+            "Studio Analisi II",
+            new DateTime(2026, 7, 15, 14, 0, 0),
+            luogoPubblico,
+            organizzatore,
+            2
+        );
+
+        eventoIllimitato = new EventoAPostiIllimitati(
+            "Ripasso Reti di Calcolatori",
+            new DateTime(2026, 7, 20, 10, 0, 0),
+            luogoPrivato,
+            organizzatore
+        );
+    }
+
+    [Test]
+    public void TestCreazioneEvento()
+    {
+        Assert.AreEqual("Studio Analisi II",
+            eventoLimitato.getTitolo());
+        Assert.AreEqual(new DateTime(2026, 7, 15, 14, 0, 0),
+            eventoLimitato.getDataEOrario());
+        Assert.AreEqual(luogoPubblico,
+            eventoLimitato.getLuogo());
+        Assert.AreEqual(organizzatore,
+            eventoLimitato.getOrganizzatore());
+        Assert.AreEqual(2,
+            eventoLimitato.getPosti());
+        Assert.IsTrue(eventoLimitato.getLuogo().isPubblico());
+    }
+
+    [Test]
+    public void TestEventoIllimitato()
+    {
+        Assert.AreEqual("Ripasso Reti di Calcolatori",
+            eventoIllimitato.getTitolo());
+        Assert.AreEqual(luogoPrivato,
+            eventoIllimitato.getLuogo());
+        Assert.IsTrue(eventoIllimitato.getLuogo().isPrivato());
+    }
+
+    [Test]
+    public void TestAggiungiPartecipante()
+    {
+        Utente partecipante = new Utente(
+            "federico.porpora@studio.unibo.it",
+            "Password1!",
+            new ProfiloUtente(
+                "Federico", "Porpora",
+                "Ingegneria Informatica", "Studio volentieri in gruppo",
+                null
+            )
+        );
+
+        eventoLimitato.aggiungiPartecipante(partecipante);
+
+        CollectionAssert.Contains(
+            eventoLimitato.getPartecipanti(),
+            partecipante
+        );
+        Assert.AreEqual(1,
+            eventoLimitato.getPartecipanti().Count);
+    }
+
+    [Test]
+    public void TestRimozionePartecipante()
+    {
+        Utente partecipante = new Utente(
+            "federico.porpora@studio.unibo.it",
+            "Password1!",
+            new ProfiloUtente(
+                "Federico", "Porpora",
+                "Ingegneria Informatica", "Studio volentieri in gruppo",
+                null
+            )
+        );
+
+        eventoLimitato.aggiungiPartecipante(partecipante);
+        eventoLimitato.rimuoviPartecipante(partecipante);
+
+        CollectionAssert.DoesNotContain(
+            eventoLimitato.getPartecipanti(),
+            partecipante
+        );
+        Assert.AreEqual(0,
+            eventoLimitato.getPartecipanti().Count);
+    }
+
+    [Test]
+    public void TestPuoPartecipare()
+    {
+        Utente lucilla = new Utente(
+            "lucilla.lucchi@studio.unibo.it", "Password1!",
+            new ProfiloUtente(
+                "Lucilla", "Lucchi",
+                "Ingegneria Informatica", "Studio bene quando faccio tante pause",
+                null
+            )
+        );
+        Utente p2 = new Utente(
+            "anna.verdi@studio.unibo.it", "Password1!",
+            new ProfiloUtente("Anna", "Verdi", "Matematica", "", null)
+        );
+        Utente p3 = new Utente(
+            "sara.neri@studio.unibo.it", "Password1!",
+            new ProfiloUtente("Sara", "Neri", "Fisica", "", null)
+        );
+
+        // Evento a posti limitati (2 posti): si riempie
+        Assert.IsTrue(eventoLimitato.puoPartecipare(lucilla));
+        eventoLimitato.aggiungiPartecipante(lucilla);
+        eventoLimitato.aggiungiPartecipante(p2);
+        Assert.IsFalse(eventoLimitato.puoPartecipare(p3));
+
+        // Evento a posti illimitati: accetta sempre
+        eventoIllimitato.aggiungiPartecipante(lucilla);
+        eventoIllimitato.aggiungiPartecipante(p2);
+        eventoIllimitato.aggiungiPartecipante(p3);
+        Assert.IsTrue(eventoIllimitato.puoPartecipare(
+            new Utente(
+                "extra@studio.unibo.it", "Password1!",
+                new ProfiloUtente("Extra", "Utente", "Chimica", "", null)
+            )
+        ));
+    }
+
+    [Test]
+    public void TestChatGenerata()
+    {
+        Assert.IsNotNull(eventoLimitato.getChat());
+    }
+}
+\end{lstlisting}
 
 \subsection{Test di unità: Profilo}
+\begin{lstlisting}
+using NUnit.Framework;
+
+[TestFixture]
+public class TestProfilo
+{
+    private ProfiloUtente profiloCompleto, profiloMinimo;
+    private Utente utente;
+
+    [SetUp]
+    public void Setup()
+    {
+        profiloCompleto = new ProfiloUtente(
+            "Federico", "Porpora",
+            "Ingegneria Informatica",
+            "Studio volentieri in gruppo",
+            "immagine.png"
+        );
+
+        profiloMinimo = new ProfiloUtente(
+            "Luca", "Bianchi",
+            "Matematica",
+            "",
+            null
+        );
+
+        utente = new Utente(
+            "federico.porpora@studio.unibo.it",
+            "Password1!",
+            profiloCompleto
+        );
+    }
+
+    [Test]
+    public void TestCreazioneProfilo()
+    {
+        Assert.AreEqual("Federico",
+            profiloCompleto.getNome());
+        Assert.AreEqual("Porpora",
+            profiloCompleto.getCognome());
+        Assert.AreEqual("Ingegneria Informatica",
+            profiloCompleto.getCorsoDiStudi());
+        Assert.AreEqual("Studio volentieri in gruppo",
+            profiloCompleto.getBiografia());
+        Assert.AreEqual("immagine.png",
+            profiloCompleto.getImmagine());
+    }
+
+    [Test]
+    public void TestProfiloMinimo()
+    {
+        Assert.AreEqual("Luca",
+            profiloMinimo.getNome());
+        Assert.AreEqual("Bianchi",
+            profiloMinimo.getCognome());
+        Assert.AreEqual("Matematica",
+            profiloMinimo.getCorsoDiStudi());
+        Assert.AreEqual("",
+            profiloMinimo.getBiografia());
+        Assert.IsNull(profiloMinimo.getImmagine());
+    }
+
+    [Test]
+    public void TestSetterProfilo()
+    {
+        profiloCompleto.setNome("Giuseppe");
+        Assert.AreEqual("Giuseppe",
+            profiloCompleto.getNome());
+
+        profiloCompleto.setCognome("Verdi");
+        Assert.AreEqual("Verdi",
+            profiloCompleto.getCognome());
+
+        profiloCompleto.setCorsoDiStudi("Fisica");
+        Assert.AreEqual("Fisica",
+            profiloCompleto.getCorsoDiStudi());
+
+        profiloCompleto.setBiografia("Nuova biografia");
+        Assert.AreEqual("Nuova biografia",
+            profiloCompleto.getBiografia());
+
+        profiloCompleto.setImmagine("nuova_immagine.png");
+        Assert.AreEqual("nuova_immagine.png",
+            profiloCompleto.getImmagine());
+    }
+
+    [Test]
+    public void TestCreazioneUtente()
+    {
+        Assert.AreEqual("federico.porpora@studio.unibo.it",
+            utente.getEmail());
+        Assert.AreEqual(profiloCompleto,
+            utente.getProfiloUtente());
+        Assert.AreEqual(0,
+            utente.getCommentiRicevuti().Count);
+    }
+
+    [Test]
+    public void TestCommenti()
+    {
+        Utente autore = new Utente(
+            "luca.bianchi@studio.unibo.it",
+            "Password1!",
+            profiloMinimo
+        );
+
+        Commento commento = new Commento(
+            autore,
+            "Ottimo compagno di studio",
+            4,
+            new DateTime(2026, 7, 16, 18, 0, 0)
+        );
+
+        utente.aggiungiCommento(commento);
+
+        CollectionAssert.Contains(
+            utente.getCommentiRicevuti(),
+            commento
+        );
+        Assert.AreEqual(1,
+            utente.getCommentiRicevuti().Count);
+        Assert.AreEqual(4,
+            commento.getValutazione());
+        Assert.AreEqual(autore,
+            commento.getAutore());
+    }
+}
+\end{lstlisting}
+
+
+
+
+
+
+
+
+
 
 % Progettazione del deployment
 \newpage
