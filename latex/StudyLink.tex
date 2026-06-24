@@ -85,7 +85,7 @@
 
 % Impostazioni
 \keepXColumns
-\setcounter{secnumdepth}{3}
+\setcounter{secnumdepth}{4}
 \setcounter{tocdepth}{2}
 
 % Capitoli
@@ -107,6 +107,12 @@
 \titleformat{\subsubsection}
     {\normalfont\normalsize\bfseries\color{studyColor}}{\thesubsubsection.\ }{0pt}{\normalsize} 
 \titlespacing*{\subsubsection}{0pt}{6pt}{0pt}
+
+% Paragrafi (Sotto-sotto-sottosezioni)
+\titleformat{\paragraph}
+    {\normalfont\normalsize\bfseries\color{linkColor}}{\theparagraph.\ }{0pt}{\normalsize}
+\titlespacing*{\paragraph}{0pt}{6pt}{0pt}
+
 
 % Tabelle
 \renewcommand{\arraystretch}{1.5}
@@ -2119,7 +2125,9 @@ Nella figura sottostante è riportata l'architettura del Sistema, organizzata at
 
 \subsection{Struttura}
 
-\subsubsection{Diagramma di dettaglio: Account}
+\subsubsection{Diagrammi di dettaglio del modello}
+
+\paragraph{Diagramma di dettaglio: Account}
 
 Di seguito è presentato il diagramma delle classi del modello del dominio riguardante l'Account.
 
@@ -2138,7 +2146,7 @@ In questo diagramma è da notare che:
 \end{itemize}
 
 \newpage
-\subsubsection{Diagramma di dettaglio: Evento}
+\paragraph{Diagramma di dettaglio: Evento}
 
 Di seguito è presentato il diagramma delle classi del modello del dominio riguardante gli Eventi.
 
@@ -2157,7 +2165,7 @@ In questo diagramma è da notare che:
 \end{itemize}
 
 \newpage
-\subsubsection{Diagramma di dettaglio: Chat}
+\paragraph{Diagramma di dettaglio: Chat}
 
 Di seguito è presentato il diagramma delle classi del modello del dominio riguardante la Chat.
 
@@ -2175,7 +2183,7 @@ In questo diagramma è da notare che:
 \end{itemize}
 
 \newpage
-\subsubsection{Diagramma di dettaglio: Filtro}
+\paragraph{Diagramma di dettaglio: Filtro}
 
 Di seguito è presentato il diagramma delle classi del modello del dominio riguardante i Filtri.
 
@@ -2192,7 +2200,7 @@ In questo diagramma è da notare che:
 \end{itemize}
 
 \newpage
-\subsubsection{Diagramma di dettaglio: Log}
+\paragraph{Diagramma di dettaglio: Log}
 
 Di seguito è presentato il diagramma delle classi del modello del dominio riguardante i Log.
 
@@ -2208,34 +2216,9 @@ In questo diagramma è da notare che:
     \item Il metodo scriviLog() all'interno di ReportDeiLog è stato reso privato: esso è progettato per essere invocato periodicamente e in background da un Thread separato. Questo approccio permette di riversare sul file di testo le VoceDiLog generate nell'ultimo periodo senza bloccare o rallentare il flusso di esecuzione principale dell'applicazione.
 \end{itemize}
 
-\newpage
-\subsubsection{Diagramma di dettaglio: Controller}
+\subsubsection{Diagrammi di dettaglio delle interfacce}
 
-Di seguito sono presentati i diagrammi di dettaglio relativi ai Controller dell'applicazione. Come spiegato nella scelta dell'architettura e nelle scelte tecnologiche, è stato deciso di mettere a disposizione delle API REST per permettere l'interazione tra client e server. A questo fine, è da considerare che:
-\begin{itemize}[leftmargin=*]
-    \item Per migliorare l'interoperabilità e renderlo più manutenibile, si è scelto di utilizzare i DTO (Data Transfer Object) in modo da non esporre direttamente il dominio. Dato che generalmente rispettano la struttura delle classi già mostrate, in questo documento si ignoreranno.
-    \item Per rendere più efficiente e sostenibile la comunicazione, si è scelto di utilizzare la paginazione quando si richiedono liste di oggetti, in modo da non sovraccaricare il server e il client con dati inutili. Tuttavia, per semplificare la lettura dei diagrammi, non si è rappresentata la paginazione.
-    \item Per gestire l'autorizzazione e l'autenticazione, si è scelto di utilizzare i token JWT (JSON Web Token) che permettono di identificare l'utente e le sue autorizzazioni. Per semplificare la lettura dei diagrammi, la loro gestione non è stata rappresentata.
-\end{itemize}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\textwidth,height=0.5\textheight,keepaspectratio]{images/diagramma-di-dettaglio-interfacce-controller.png}
-    \caption{Diagramma di dettaglio: Interfacce dei Controller}
-\end{figure}
-%
-
-\subsection{Interazione}
-
-\subsection{Interfacce utente}
-Nelle prossime sezioni mostreremo le interfacce principali del sistema.
-Visto lo scopo dell'applicazione, prevediamo che gli utenti la useranno quasi sempre dal telefono.
-Per questo motivo, in questo documento abbiamo deciso di inserire solo le schermate della versione per smartphone.
-
-Non abbiamo messo la versione per computer perché è molto facile da immaginare: si tratta semplicemente della stessa grafica 
-allargata e riadattata per uno schermo più grande.
-
-%\subsubsection{Interfaccia: Registrazione e Autenticazione}
+%\paragraph{Interfaccia: Registrazione e Autenticazione}
 %
 %\begin{figure}[H]
 %    \centering
@@ -2245,7 +2228,7 @@ allargata e riadattata per uno schermo più grande.
 %    \caption{Registrazione (sinistra) e Autenticazione (destra)}
 %\end{figure}
 %
-%\subsubsection{Interfaccia: Profilo ed Evento}
+%\paragraph{Interfaccia: Profilo ed Evento}
 %
 %\begin{figure}[H]
 %    \centering
@@ -2255,7 +2238,7 @@ allargata e riadattata per uno schermo più grande.
 %    \caption{Profilo (sinistra) ed Evento (destra)}
 %\end{figure}
 %
-%\subsubsection{Interfaccia: Bacheca}
+%\paragraph{Interfaccia: Bacheca}
 %
 %\begin{figure}[H]
 %    \centering
@@ -2277,7 +2260,37 @@ allargata e riadattata per uno schermo più grande.
 %    \caption{Bacheca: Dettagli Evento (sinistra), Dettagli Utente (centro), Chat (destra)}
 %\end{figure}
 %
-%\subsubsection{Interfaccia: Comunicazione}
+%\paragraph{Interfaccia: Comunicazione}
+
+\newpage
+\subsubsection{Diagrammi di dettaglio dei controller}
+
+Di seguito sono presentati i diagrammi di dettaglio relativi ai Controller dell'applicazione. Come spiegato nella scelta dell'architettura e nelle scelte tecnologiche, è stato deciso di mettere a disposizione delle API REST per permettere l'interazione tra client e server. A questo fine, è da considerare che:
+\begin{itemize}[leftmargin=*]
+    \item Per migliorare l'interoperabilità e renderlo più manutenibile, si è scelto di utilizzare i DTO (Data Transfer Object) in modo da non esporre direttamente il dominio. Dato che generalmente rispettano la struttura delle classi già mostrate, in questo documento si ignoreranno.
+    \item Per rendere più efficiente e sostenibile la comunicazione, si è scelto di utilizzare la paginazione quando si richiedono liste di oggetti, in modo da non sovraccaricare il server e il client con dati inutili. Tuttavia, per semplificare la lettura dei diagrammi, non si è rappresentata la paginazione.
+    \item Per gestire l'autorizzazione e l'autenticazione, si è scelto di utilizzare i token JWT (JSON Web Token) che permettono di identificare l'utente e le sue autorizzazioni. Per semplificare la lettura dei diagrammi, la loro gestione non è stata rappresentata.
+\end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth,height=0.5\textheight,keepaspectratio]{images/diagramma-di-dettaglio-interfacce-controller.png}
+    \caption{Diagramma di dettaglio: Interfacce dei Controller}
+\end{figure}
+%
+
+
+\subsection{Interazioni}
+
+\subsection{Interfacce utente}
+Nelle prossime sezioni mostreremo le interfacce principali del sistema.
+Visto lo scopo dell'applicazione, prevediamo che gli utenti la useranno quasi sempre dal telefono.
+Per questo motivo, in questo documento abbiamo deciso di inserire solo le schermate della versione per smartphone.
+
+Non abbiamo messo la versione per computer perché è molto facile da immaginare: si tratta semplicemente della stessa grafica 
+allargata e riadattata per uno schermo più grande.
+
+
 
 
 % Progettazione della persistenza
