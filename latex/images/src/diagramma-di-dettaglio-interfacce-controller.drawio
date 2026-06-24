@@ -1,0 +1,52 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="Pagina-1" id="8A5OEsFo6NclzITH6EQ4">
+    <mxGraphModel dx="1055" dy="456" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="74dS2z_nssRzXaOdJx0y-5" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=40;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" value="&lt;div&gt;&lt;span style=&quot;font-weight: normal;&quot;&gt;&amp;lt;&amp;lt;interface&amp;gt;&amp;gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;IControllerAutenticazione&lt;/div&gt;" vertex="1">
+          <mxGeometry height="80" width="270" x="170" y="140" as="geometry" />
+        </mxCell>
+        <mxCell id="74dS2z_nssRzXaOdJx0y-8" parent="74dS2z_nssRzXaOdJx0y-5" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="&lt;div&gt;+ autentica(email: string, password: string): bool&lt;/div&gt;&lt;div&gt;+ logout(): void&lt;/div&gt;" vertex="1">
+          <mxGeometry height="40" width="270" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="74dS2z_nssRzXaOdJx0y-9" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=40;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" value="&lt;div&gt;&lt;span style=&quot;font-weight: normal;&quot;&gt;&amp;lt;&amp;lt;interface&amp;gt;&amp;gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;IControllerRegistrazione&lt;/div&gt;" vertex="1">
+          <mxGeometry height="66" width="430" x="490" y="140" as="geometry" />
+        </mxCell>
+        <mxCell id="74dS2z_nssRzXaOdJx0y-10" parent="74dS2z_nssRzXaOdJx0y-9" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="+ registra(email: string, password: string, nome: string, cognome: string): bool" vertex="1">
+          <mxGeometry height="26" width="430" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="74dS2z_nssRzXaOdJx0y-11" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=40;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" value="&lt;div&gt;&lt;span style=&quot;font-weight: normal;&quot;&gt;&amp;lt;&amp;lt;interface&amp;gt;&amp;gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;IControllerUtente&lt;/div&gt;" vertex="1">
+          <mxGeometry height="100" width="590" x="170" y="240" as="geometry" />
+        </mxCell>
+        <mxCell id="74dS2z_nssRzXaOdJx0y-12" parent="74dS2z_nssRzXaOdJx0y-11" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="&lt;div&gt;+ modificaProfilo(nome: string, cognome: string, corsoDiStudi: string, biografia: string, immagine: string): bool&lt;/div&gt;&lt;div&gt;+ caricaImmagine(immagine: file): bool&lt;/div&gt;&lt;div&gt;+ lasciaCommento(commento: Commento): bool&lt;/div&gt;" vertex="1">
+          <mxGeometry height="60" width="590" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="74dS2z_nssRzXaOdJx0y-13" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=40;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" value="&lt;div&gt;&lt;span style=&quot;font-weight: normal;&quot;&gt;&amp;lt;&amp;lt;interface&amp;gt;&amp;gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;IControllerBacheca&lt;/div&gt;" vertex="1">
+          <mxGeometry height="70" width="270" x="840" y="240" as="geometry" />
+        </mxCell>
+        <mxCell id="74dS2z_nssRzXaOdJx0y-14" parent="74dS2z_nssRzXaOdJx0y-13" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="+ getEventi(filtro: IFiltro): List&amp;lt;IEvento&amp;gt;" vertex="1">
+          <mxGeometry height="30" width="270" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="74dS2z_nssRzXaOdJx0y-15" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=40;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" value="&lt;div&gt;&lt;span style=&quot;font-weight: normal;&quot;&gt;&amp;lt;&amp;lt;interface&amp;gt;&amp;gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;IControllerEvento&lt;/div&gt;" vertex="1">
+          <mxGeometry height="170" width="590" x="170" y="365" as="geometry" />
+        </mxCell>
+        <mxCell id="74dS2z_nssRzXaOdJx0y-16" parent="74dS2z_nssRzXaOdJx0y-15" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="&lt;div&gt;+ creaEvento(titolo: string, dataEOrario: dateTime, luogo: Luogo): bool&lt;/div&gt;&lt;div&gt;+ creaEvento(titolo: string, dataEOrario: dateTime, luogo: Luogo, nPosti: integer): bool&lt;/div&gt;&lt;div&gt;+ modificaEvento(titolo: string, dataEOrario: dateTime, luogo: Luogo): bool&lt;/div&gt;&lt;div&gt;+ modificaEvento(titolo: string, dataEOrario: dateTime, luogo: Luogo, nPosti: integer): bool&lt;/div&gt;&lt;div&gt;+ eliminaEvento(): bool&lt;/div&gt;&lt;div&gt;+ iscriviti(): bool&lt;/div&gt;&lt;div&gt;+ disiscriviti(): bool&lt;/div&gt;&lt;div&gt;+ rimuoviPartecipante(partecipante: IPartecipante): bool&lt;/div&gt;" vertex="1">
+          <mxGeometry height="130" width="590" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="74dS2z_nssRzXaOdJx0y-17" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=40;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" value="&lt;div&gt;&lt;span style=&quot;font-weight: normal;&quot;&gt;&amp;lt;&amp;lt;interface&amp;gt;&amp;gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;IControllerAccount&lt;/div&gt;" vertex="1">
+          <mxGeometry height="70" width="150" x="950" y="140" as="geometry" />
+        </mxCell>
+        <mxCell id="74dS2z_nssRzXaOdJx0y-18" parent="74dS2z_nssRzXaOdJx0y-17" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="+ eliminaAccount(): bool" vertex="1">
+          <mxGeometry height="30" width="150" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="74dS2z_nssRzXaOdJx0y-19" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=40;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" value="&lt;div&gt;&lt;span style=&quot;font-weight: normal;&quot;&gt;&amp;lt;&amp;lt;interface&amp;gt;&amp;gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;IControllerChat&lt;/div&gt;" vertex="1">
+          <mxGeometry height="80" width="270" x="840" y="380" as="geometry" />
+        </mxCell>
+        <mxCell id="74dS2z_nssRzXaOdJx0y-20" parent="74dS2z_nssRzXaOdJx0y-19" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="&lt;div&gt;+ getMessaggi(): List&amp;lt;Messaggio&amp;gt;&lt;/div&gt;&lt;div&gt;+ inviaMessaggio(messaggio: Messaggio): bool&lt;/div&gt;" vertex="1">
+          <mxGeometry height="40" width="270" y="40" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

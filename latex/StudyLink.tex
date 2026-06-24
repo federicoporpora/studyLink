@@ -2132,7 +2132,7 @@ Di seguito è presentato il diagramma delle classi del modello del dominio rigua
 In questo diagramma è da notare che:
 \begin{itemize}[leftmargin=*]
     \item Il concetto generale di fruitore del sistema è stato rinominato da Utente ad Account per favorire l'espandibilità dell'applicazione.
-    \item È stata introdotta la classe astratta Account, la quale incapsula esclusivamente i dati fondamentali di autenticazione (email e passwordHash).
+    \item È stata introdotta la classe astratta Account, la quale incapsula esclusivamente i dati fondamentali di base (come l'email), mentre le informazioni sensibili di autenticazione (come l'hash della password) sono gestite direttamente dal database tramite il contesto.
     \item La sottoclasse Utente modella lo studente standard che utilizza l'app, raggruppando i dettagli del ProfiloUtente e la lista dei commentiRicevuti. Questa separazione permette l'introduzione futura di nuovi account istituzionali (come ad esempio un account gestito direttamente da UniBo per promuovere sessioni di studio) che non necessitano di campi incompatibili, come il corso di studi o il sistema di recensioni tramite commenti.
     \item Per favorire il disaccoppiamento e rispettare il principio di segregazione delle interfacce (ISP), sono state create le interfacce IOrganizzatore e IPartecipante. In questo modo, eventuali enti organizzatori futuri potranno implementare solo la logica di creazione degli eventi, senza essere forzati ad implementare la logica di partecipazione, tipica invece delle persone fisiche.
 \end{itemize}
@@ -2207,6 +2207,23 @@ In questo diagramma è da notare che:
     \item Nel rispetto del principio di singola responsabilità (SRP), l'intera gestione del tracciamento è stata isolata all'interno della classe ReportDeiLog, che si occupa di aggregare le singole entità VoceDiLog e gestire il file di output.
     \item Il metodo scriviLog() all'interno di ReportDeiLog è stato reso privato: esso è progettato per essere invocato periodicamente e in background da un Thread separato. Questo approccio permette di riversare sul file di testo le VoceDiLog generate nell'ultimo periodo senza bloccare o rallentare il flusso di esecuzione principale dell'applicazione.
 \end{itemize}
+
+\newpage
+\subsubsection{Diagramma di dettaglio: Controller}
+
+Di seguito sono presentati i diagrammi di dettaglio relativi ai Controller dell'applicazione. Come spiegato nella scelta dell'architettura e nelle scelte tecnologiche, è stato deciso di mettere a disposizione delle API REST per permettere l'interazione tra client e server. A questo fine, è da considerare che:
+\begin{itemize}[leftmargin=*]
+    \item Per migliorare l'interoperabilità e renderlo più manutenibile, si è scelto di utilizzare i DTO (Data Transfer Object) in modo da non esporre direttamente il dominio. Dato che generalmente rispettano la struttura delle classi già mostrate, in questo documento si ignoreranno.
+    \item Per rendere più efficiente e sostenibile la comunicazione, si è scelto di utilizzare la paginazione quando si richiedono liste di oggetti, in modo da non sovraccaricare il server e il client con dati inutili. Tuttavia, per semplificare la lettura dei diagrammi, non si è rappresentata la paginazione.
+    \item Per gestire l'autorizzazione e l'autenticazione, si è scelto di utilizzare i token JWT (JSON Web Token) che permettono di identificare l'utente e le sue autorizzazioni. Per semplificare la lettura dei diagrammi, la loro gestione non è stata rappresentata.
+\end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth,height=0.5\textheight,keepaspectratio]{images/diagramma-di-dettaglio-interfacce-controller.png}
+    \caption{Diagramma di dettaglio: Interfacce dei Controller}
+\end{figure}
+%
 
 \subsection{Interazione}
 
