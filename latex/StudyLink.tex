@@ -2248,7 +2248,7 @@ Di seguito è presentato il diagramma delle classi dell'interfaccia della comuni
 \end{figure}
 %
 \newpage
-\subsubsection{Diagrammi di dettaglio dei controller}
+\subsubsection{Diagramma di dettaglio: Controller}
 
 Di seguito sono presentati i diagrammi di dettaglio relativi ai Controller dell'applicazione. Come spiegato nella scelta dell'architettura e nelle scelte tecnologiche, è stato deciso di mettere a disposizione delle API REST per permettere l'interazione tra client e server. A questo fine, è da considerare che:
 \begin{itemize}[leftmargin=*]
@@ -2262,7 +2262,7 @@ Di seguito sono presentati i diagrammi di dettaglio relativi ai Controller dell'
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth,height=0.5\textheight,keepaspectratio]{images/diagramma-di-dettaglio-interfacce-controller.png}
-    \caption{Diagramma di dettaglio: Interfacce dei Controller}
+    \caption{Diagramma di dettaglio: Interfacce Controller}
 \end{figure}
 %
 
@@ -2271,11 +2271,23 @@ Di seguito sono presentati i diagrammi di dettaglio relativi ai Controller dell'
 Di seguito è presentato il diagramma di dettaglio delle implementazioni dei controller.
 Il metodo di analisi \texttt{modificaProfilo()} è stato suddiviso in \texttt{modificaDati()} e \texttt{modificaPassword()} nel \texttt{ControllerProfilo} per poter applicare controlli differenti a seconda del valore del dato modificato.
 
-% \begin{figure}[H]
-%     \centering
-%     \includegraphics[width=\textwidth,height=0.5\textheight,keepaspectratio]{images/diagramma-di-dettaglio-implementazione-controller.png}
-%     \caption{Diagramma di dettaglio: Implementazione Controller}
-% \end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth,height=0.5\textheight,keepaspectratio]{images/diagramma-di-dettaglio-implementazione-controller.png}
+    \caption{Diagramma di dettaglio: Implementazione Controller}
+\end{figure}
+%
+
+\subsubsection{Diagramma di dettaglio: Persistenza}
+
+\paragraph{Persistenza: ContestoStudyLink}
+La classe ContestoStudyLink è utilizzata dall'ORM per interfacciarsi con il DBMS.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth,height=0.5\textheight,keepaspectratio]{images/diagramma-di-dettaglio-persistenza.png}
+    \caption{Diagramma di dettaglio: Persistenza}
+\end{figure}
 %
 
 \subsection{Interazioni}
@@ -2286,7 +2298,7 @@ Di seguito è presentata la figura che mostra le interazioni tra i componenti pe
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\textwidth,height=0.5\textheight,keepaspectratio]{images/interazione2-autenticazione.png}
+    \includegraphics[width=\textwidth,height=0.5\textheight,keepaspectratio]{images/interazione-progettazione-autenticazione.png}
     \caption{Diagramma di sequenza: Autenticazione}
 \end{figure}
 %
@@ -2295,7 +2307,7 @@ Di seguito sono presentate le figure che mostrano le interazioni tra i component
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\textwidth,height=0.5\textheight,keepaspectratio]{images/interazione2-modificaDati.png}
+    \includegraphics[width=\textwidth,height=0.5\textheight,keepaspectratio]{images/interazione-progettazione-modifica-dati.png}
     \caption{Diagramma di sequenza: Gestione profilo - Modifica dati}
 \end{figure}
 %
@@ -2304,7 +2316,7 @@ Anche se non è indicato nel diagramma, per motivi di spazio, ci sarà la memori
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\textwidth,height=0.5\textheight,keepaspectratio]{images/interazione2-modificaPassword.png}
+    \includegraphics[width=\textwidth,height=0.5\textheight,keepaspectratio]{images/interazione-progettazione-modifica-password.png}
     \caption{Diagramma di sequenza: Gestione profilo - Modifica password}
 \end{figure}
 %
@@ -2313,7 +2325,7 @@ Di seguito è presentata la figura che mostra le interazioni tra i componenti pe
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\textwidth,height=0.5\textheight,keepaspectratio]{images/interazione2-eliminaAccount.png}
+    \includegraphics[width=\textwidth,height=0.5\textheight,keepaspectratio]{images/interazione-progettazione-elimina-account.png}
     \caption{Diagramma di sequenza: Elimina account}
 \end{figure}
 %
@@ -2323,13 +2335,13 @@ Anche se non è indicato nel diagramma, per motivi di spazio, ci sarà la memori
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\textwidth,height=0.5\textheight,keepaspectratio]{images/interazione2-creazioneEvento.png}
+    \includegraphics[width=\textwidth,height=0.5\textheight,keepaspectratio]{images/interazione-progettazione-creazione-evento.png}
     \caption{Diagramma di sequenza: Gestione evento - Creazione}
 \end{figure}
 %
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\textwidth,height=0.5\textheight,keepaspectratio]{images/interazione2-gestioneEvento.png}
+    \includegraphics[width=\textwidth,height=0.5\textheight,keepaspectratio]{images/interazione-progettazione-gestione-evento.png}
     \caption{Diagramma di sequenza: Gestione evento - Gestione}
 \end{figure}
 %
@@ -2338,7 +2350,7 @@ Di seguito è presentata la figura che mostra le interazioni tra i componenti pe
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\textwidth,height=0.5\textheight,keepaspectratio]{images/interazione2-filtroEventi.png}
+    \includegraphics[width=\textwidth,height=0.5\textheight,keepaspectratio]{images/interazione-progettazione-filtro-eventi.png}
     \caption{Diagramma di sequenza: Bacheca - Filtro eventi}
 \end{figure}
 %
@@ -2347,13 +2359,13 @@ Di seguito sono presentate le figure che mostrano le interazioni tra i component
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\textwidth,height=0.5\textheight,keepaspectratio]{images/interazione2-chat.png}
+    \includegraphics[width=\textwidth,height=0.5\textheight,keepaspectratio]{images/interazione-progettazione-chat.png}
     \caption{Diagramma di sequenza: Comunicazione - Chat}
 \end{figure}
 %
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\textwidth,height=0.5\textheight,keepaspectratio]{images/interazione2-commento.png}
+    \includegraphics[width=\textwidth,height=0.5\textheight,keepaspectratio]{images/interazione-progettazione-commento.png}
     \caption{Diagramma di sequenza: Comunicazione - Commento}
 \end{figure}
 %
@@ -2808,6 +2820,10 @@ Di seguito sono presentati i due possibili scenari di deploy:
     \item tra luogo e evento è 1 - 1? ci sono in teoria luoghi che possono avere più eventi e i luoghi esistono a prescindere degli eventi, ma a lato codice non ha senso dire che esistono, dato che vivono esclusivamente dentro la classe Evento
     \item da capire se fare un'interfaccia notifiche o no, in generale come gestire le notifiche, essendo un'applicazione web
     \item METTERE INTERAZIONE BACHECA/FILTRO NEL CAPITOLO 2 E 3
+    \item aggiungere funzione bloccaAccount e pensare a come fare un account bloccato
+    \item controllare dove ho messo la funzione modificaPassword, vedere se è nel controller o nel modello
+    \item passare a modificaPassword anche la password vecchia
+    \item aggiungere la funzione eliminaAccount in contesto studylink (???)
 \end{itemize}
 
 \end{document}
