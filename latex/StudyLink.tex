@@ -2216,52 +2216,37 @@ In questo diagramma è da notare che:
     \item Il metodo scriviLog() all'interno di ReportDeiLog è stato reso privato: esso è progettato per essere invocato periodicamente e in background da un Thread separato. Questo approccio permette di riversare sul file di testo le VoceDiLog generate nell'ultimo periodo senza bloccare o rallentare il flusso di esecuzione principale dell'applicazione.
 \end{itemize}
 
-\subsubsection{Diagrammi di dettaglio delle interfacce}
+\subsubsection{Diagramma di dettaglio: Client}
 
-%\paragraph{Interfaccia: Registrazione e Autenticazione}
-%
-%\begin{figure}[H]
-%    \centering
-%    \includegraphics[width=0.35\textwidth]{images/interfaccia-utente-registrazione.png}
-%    \hspace{0.05\textwidth}
-%    \includegraphics[width=0.35\textwidth]{images/interfaccia-utente-autenticazione.png}
-%    \caption{Registrazione (sinistra) e Autenticazione (destra)}
-%\end{figure}
-%
-%\paragraph{Interfaccia: Profilo ed Evento}
-%
-%\begin{figure}[H]
-%    \centering
-%    \includegraphics[width=0.35\textwidth]{images/interfaccia-utente-profilo.png}
-%    \hspace{0.05\textwidth}
-%    \includegraphics[width=0.35\textwidth]{images/interfaccia-crea-evento.png}
-%    \caption{Profilo (sinistra) ed Evento (destra)}
-%\end{figure}
-%
-%\paragraph{Interfaccia: Bacheca}
-%
-%\begin{figure}[H]
-%    \centering
-%    \includegraphics[width=0.35\textwidth]{images/interfaccia-bacheca-esplora.png}
-%    \hspace{0.05\textwidth}
-%    \includegraphics[width=0.35\textwidth]{images/interfaccia-bacheca-miei-eventi.png}
-%    \hspace{0.05\textwidth}
-%    \includegraphics[width=0.35\textwidth]{images/interfaccia-bacheca-passati.png}
-%    \caption{Bacheca: Esplora (sinistra), I miei eventi (centro), Passati (destra)}
-%\end{figure}
-%
-%\begin{figure}[H]
-%    \centering
-%    \includegraphics[width=0.35\textwidth]{images/interfaccia-dettagli-evento.png}
-%    \hspace{0.05\textwidth}
-%    \includegraphics[width=0.35\textwidth]{images/interfaccia-dettagli-utente.png}
-%    \hspace{0.05\textwidth}
-%    \includegraphics[width=0.35\textwidth]{images/interfaccia-chat.png}
-%    \caption{Bacheca: Dettagli Evento (sinistra), Dettagli Utente (centro), Chat (destra)}
-%\end{figure}
-%
-%\paragraph{Interfaccia: Comunicazione}
+\paragraph{Client: Interfaccia Profilo}
+Di seguito è presentato il diagramma delle classi dell'interfaccia del profilo.
 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth,height=0.5\textheight,keepaspectratio]{images/diagramma-di-dettaglio-interfaccia-profilo.png}
+    \caption{Diagramma di dettaglio: Interfaccia Profilo}
+\end{figure}
+%
+É da notare che rispetto all'analisi si è scelto di separare il metodo \texttt{modificaProfilo()} nei metodi \texttt{modificaDati()} e \texttt{modificaPassword()}.
+
+\paragraph{Client: Interfaccia Evento}
+Di seguito è presentato il diagramma delle classi dell'interfaccia dell'evento.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth,height=0.5\textheight,keepaspectratio]{images/diagramma-di-dettaglio-interfaccia-evento.png}
+    \caption{Diagramma di dettaglio: Interfaccia Evento}
+\end{figure}
+%
+\paragraph{Client: Interfaccia Comunicazione}
+Di seguito è presentato il diagramma delle classi dell'interfaccia della comunicazione.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth,height=0.5\textheight,keepaspectratio]{images/diagramma-di-dettaglio-interfaccia-comunicazione.png}
+    \caption{Diagramma di dettaglio: Interfaccia Comunicazione}
+\end{figure}
+%
 \newpage
 \subsubsection{Diagrammi di dettaglio dei controller}
 
@@ -2272,6 +2257,8 @@ Di seguito sono presentati i diagrammi di dettaglio relativi ai Controller dell'
     \item Per gestire l'autorizzazione e l'autenticazione, si è scelto di utilizzare i token JWT (JSON Web Token) che permettono di identificare l'utente e le sue autorizzazioni. Per semplificare la lettura dei diagrammi, la loro gestione non è stata rappresentata.
 \end{itemize}
 
+
+\paragraph{Server: Interfacce}
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth,height=0.5\textheight,keepaspectratio]{images/diagramma-di-dettaglio-interfacce-controller.png}
@@ -2279,9 +2266,97 @@ Di seguito sono presentati i diagrammi di dettaglio relativi ai Controller dell'
 \end{figure}
 %
 
+\paragraph{Server: Controller}
+
+Di seguito è presentato il diagramma di dettaglio delle implementazioni dei controller.
+Il metodo di analisi \texttt{modificaProfilo()} è stato suddiviso in \texttt{modificaDati()} e \texttt{modificaPassword()} nel \texttt{ControllerProfilo} per poter applicare controlli differenti a seconda del valore del dato modificato.
+
+% \begin{figure}[H]
+%     \centering
+%     \includegraphics[width=\textwidth,height=0.5\textheight,keepaspectratio]{images/diagramma-di-dettaglio-implementazione-controller.png}
+%     \caption{Diagramma di dettaglio: Implementazione Controller}
+% \end{figure}
+%
 
 \subsection{Interazioni}
+Di seguito sono presentate le figure che mostrano le interazioni tra i componenti per le principali funzionalità del sistema.
 
+\subsubsection{Interazione: Autenticazione}
+Di seguito è presentata la figura che mostra le interazioni tra i componenti per l'autenticazione dell'utente.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth,height=0.5\textheight,keepaspectratio]{images/interazione2-autenticazione.png}
+    \caption{Diagramma di sequenza: Autenticazione}
+\end{figure}
+%
+\subsubsection{Interazione: Gestione profilo}
+Di seguito sono presentate le figure che mostrano le interazioni tra i componenti per la gestione del profilo dell'utente.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth,height=0.5\textheight,keepaspectratio]{images/interazione2-modificaDati.png}
+    \caption{Diagramma di sequenza: Gestione profilo - Modifica dati}
+\end{figure}
+%
+Il metodo che in analisi è \texttt{modificaProfilo()} è stato diviso in \texttt{modificaDati()} e \texttt{modificaPassword()} per poter applicare controlli diversi a seconda dell'importanza dei dati.
+Anche se non è indicato nel diagramma, per motivi di spazio, ci sarà la memorizzazione dei dati sul database e la scrittura dei log.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth,height=0.5\textheight,keepaspectratio]{images/interazione2-modificaPassword.png}
+    \caption{Diagramma di sequenza: Gestione profilo - Modifica password}
+\end{figure}
+%
+\subsubsection{Interazione: Elimina account}
+Di seguito è presentata la figura che mostra le interazioni tra i componenti per l'eliminazione dell'account.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth,height=0.5\textheight,keepaspectratio]{images/interazione2-eliminaAccount.png}
+    \caption{Diagramma di sequenza: Elimina account}
+\end{figure}
+%
+\subsubsection{Interazione: Gestione evento}
+Di seguito sono presentate le figure che mostrano le interazioni tra i componenti per la gestione degli eventi. Per brevità e per mostrare le differenze con quelli mostrati in analisi, si è riportato solo il caso della creazione e della gestione dell'evento.
+Anche se non è indicato nel diagramma, per motivi di spazio, ci sarà la memorizzazione dei dati sul database.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth,height=0.5\textheight,keepaspectratio]{images/interazione2-creazioneEvento.png}
+    \caption{Diagramma di sequenza: Gestione evento - Creazione}
+\end{figure}
+%
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth,height=0.5\textheight,keepaspectratio]{images/interazione2-gestioneEvento.png}
+    \caption{Diagramma di sequenza: Gestione evento - Gestione}
+\end{figure}
+%
+\subsubsection{Interazione: Bacheca}
+Di seguito è presentata la figura che mostra le interazioni tra i componenti per il filtraggio degli eventi in bacheca.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth,height=0.5\textheight,keepaspectratio]{images/interazione2-filtroEventi.png}
+    \caption{Diagramma di sequenza: Bacheca - Filtro eventi}
+\end{figure}
+%
+\subsubsection{Interazione: Comunicazione}
+Di seguito sono presentate le figure che mostrano le interazioni tra i componenti per la comunicazione tra gli utenti tramite chat e commenti.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth,height=0.5\textheight,keepaspectratio]{images/interazione2-chat.png}
+    \caption{Diagramma di sequenza: Comunicazione - Chat}
+\end{figure}
+%
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth,height=0.5\textheight,keepaspectratio]{images/interazione2-commento.png}
+    \caption{Diagramma di sequenza: Comunicazione - Commento}
+\end{figure}
+%
 \subsection{Interfacce utente}
 Nelle prossime sezioni mostreremo le interfacce principali del sistema.
 Visto lo scopo dell'applicazione, prevediamo che gli utenti la useranno quasi sempre dal telefono.
