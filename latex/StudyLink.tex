@@ -111,7 +111,7 @@
 % Paragrafi (Sotto-sotto-sottosezioni)
 \titleformat{\paragraph}
     {\normalfont\normalsize\bfseries\color{linkColor}}{\theparagraph.\ }{0pt}{\normalsize}
-\titlespacing*{\paragraph}{0pt}{6pt}{0pt}
+\titlespacing*{\paragraph}{0pt}{10pt}{6pt}
 
 
 % Tabelle
@@ -2206,7 +2206,7 @@ Di seguito è presentato il diagramma delle classi del modello del dominio rigua
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\textwidth,height=0.5\textheight,keepaspectratio]{images/diagramma-di-dettaglio-log.png}
+    \includegraphics[width=0.5\textwidth,height=0.5\textheight,keepaspectratio]{images/diagramma-di-dettaglio-log.png}
     \caption{Diagramma di dettaglio: Log}
 \end{figure}
 %
@@ -2216,6 +2216,8 @@ In questo diagramma è da notare che:
     \item Il metodo scriviLog() all'interno di ReportDeiLog è stato reso privato: esso è progettato per essere invocato periodicamente e in background da un Thread separato. Questo approccio permette di riversare sul file di testo le VoceDiLog generate nell'ultimo periodo senza bloccare o rallentare il flusso di esecuzione principale dell'applicazione.
 \end{itemize}
 
+
+\newpage
 \subsubsection{Diagramma di dettaglio: Client}
 
 \paragraph{Client: Interfaccia Profilo}
@@ -2269,7 +2271,6 @@ Di seguito sono presentati i diagrammi di dettaglio relativi ai Controller dell'
 \paragraph{Server: Controller}
 
 Di seguito è presentato il diagramma di dettaglio delle implementazioni dei controller.
-Il metodo di analisi \texttt{modificaProfilo()} è stato suddiviso in \texttt{modificaDati()} e \texttt{modificaPassword()} nel \texttt{ControllerProfilo} per poter applicare controlli differenti a seconda del valore del dato modificato.
 
 \begin{figure}[H]
     \centering
@@ -2277,7 +2278,15 @@ Il metodo di analisi \texttt{modificaProfilo()} è stato suddiviso in \texttt{mo
     \caption{Diagramma di dettaglio: Implementazione Controller}
 \end{figure}
 %
+È da notare che:
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Ereditarietà da una classe base comune}: Tutti i controller condividono una classe base comune \texttt{Controller}, la quale detiene il riferimento protetto al contesto del database (\texttt{\# contesto: ContestoStudyLink}). In questo modo, l'accesso alle tabelle tramite ORM è centralizzato ed ereditato in modo uniforme.
+    \item \textbf{Classe astratta} \texttt{ControllerAttore}: È stata introdotta la classe astratta \texttt{ControllerAttore} (che estende la classe base \texttt{Controller}) come superclasse per \texttt{ControllerRegistrazione} e \texttt{ControllerAccount}, centralizzando le logiche di validazione legate all'anagrafica degli attori.
+    \item \textbf{Incapsulamento e sicurezza}: All'interno di \texttt{ControllerAttore} sono definiti esclusivamente come privati (\texttt{-}) i metodi di validazione sensibili: \texttt{verificaUnicitàEmail()}, \texttt{verificaSintassiEmail()} e \texttt{verificaComplessitàPassword()}. Questa soluzione assicura che tali metodi critici non siano accessibili o invocabili dall'esterno dell'architettura dei controller, garantendo una maggiore sicurezza ed evitando la duplicazione di codice.
+    \item \textbf{Disaccoppiamento tramite Interfacce}: Ogni controller concreto implementa la sua rispettiva interfaccia (come ad esempio \texttt{IControllerRegistrazione} e \texttt{IControllerAccount}), garantendo il disaccoppiamento tra la definizione delle API del server e la loro effettiva implementazione.
+\end{itemize}
 
+\newpage
 \subsubsection{Diagramma di dettaglio: Persistenza}
 
 \paragraph{Persistenza: ContestoStudyLink}
@@ -2285,7 +2294,7 @@ La classe ContestoStudyLink è utilizzata dall'ORM per interfacciarsi con il DBM
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\textwidth,height=0.5\textheight,keepaspectratio]{images/diagramma-di-dettaglio-persistenza.png}
+    \includegraphics[width=0.5\textwidth,height=0.5\textheight,keepaspectratio]{images/diagramma-di-dettaglio-persistenza.png}
     \caption{Diagramma di dettaglio: Persistenza}
 \end{figure}
 %
@@ -2369,6 +2378,8 @@ Di seguito sono presentate le figure che mostrano le interazioni tra i component
     \caption{Diagramma di sequenza: Comunicazione - Commento}
 \end{figure}
 %
+
+
 \subsection{Interfacce utente}
 Nelle prossime sezioni mostreremo le interfacce principali del sistema.
 Visto lo scopo dell'applicazione, prevediamo che gli utenti la useranno quasi sempre dal telefono.
@@ -2393,8 +2404,10 @@ Di seguito è riportato il diagramma ER della persistenza del sistema.
 %
 È da notare che:
 \begin{itemize}[leftmargin=*]
-    \item Cosa importantissima da notare.
-    \item Cosa un po' meno importante da notare.
+    \item \textbf{Separazione tra autenticazione e profilo (1:1)}: L'entità \texttt{Profilo} è separata da \texttt{Utente} tramite una relazione uno-a-uno, in cui la chiave primaria di \texttt{Profilo} funge contemporaneamente da chiave esterna riferita a \texttt{Utente.ID}. Questo evita di sovraccaricare la tabella delle credenziali con dati personali e pesanti (come l'immagine di profilo), ottimizzando le operazioni di autenticazione.
+    \item \textbf{Doppia relazione Utente-Commento}: L'entità \texttt{Commento} è legata a \texttt{Utente} attraverso due relazioni distinte: \texttt{Inviato} (lo studente autore del commento) e \texttt{Ricevuto} (lo studente che riceve la recensione). Questa struttura consente di implementare un sistema di feedback bidirezionale chiaro, tracciando univocamente mittente e destinatario.
+    \item \textbf{Prenotazione come entità associativa}: La partecipazione degli utenti agli eventi è gestita tramite la relazione molti-a-molti \texttt{Prenotazione}, arricchita dagli attributi \texttt{Data} e \texttt{Orario}. Questo consente di memorizzare non solo l'associazione tra utente ed evento, ma anche il momento esatto in cui è avvenuta la prenotazione.
+    \item \textbf{Messaggistica e vincolo di contesto}: L'entità \texttt{Messaggio} ha una chiave primaria composta che include le chiavi esterne riferite sia a \texttt{Evento} (\texttt{Evento.ID}) sia a \texttt{Utente} (\texttt{Utente.ID}). Ciò assicura l'integrità referenziale, legando indissolubilmente ogni messaggio alla specifica chat dell'evento e all'utente che lo ha inviato.
 \end{itemize}
 
 
@@ -2728,13 +2741,6 @@ public class TestProfilo
 
 
 
-
-
-
-
-
-
-
 % Progettazione del deployment
 \newpage
 \section{Progettazione del deployment}
@@ -2824,6 +2830,7 @@ Di seguito sono presentati i due possibili scenari di deploy:
     \item controllare dove ho messo la funzione modificaPassword, vedere se è nel controller o nel modello
     \item passare a modificaPassword anche la password vecchia
     \item aggiungere la funzione eliminaAccount in contesto studylink (???)
+    \item controllare le interfacce della progettazione (arancioni) e vedere se sono tutte
 \end{itemize}
 
 \end{document}
