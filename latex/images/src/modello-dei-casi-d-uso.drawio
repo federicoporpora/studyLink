@@ -100,9 +100,6 @@
             <mxPoint x="600" y="-1175" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="RuOfV3u-5tsR1tQntHl1-49" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;gradientColor=#97d077;" value="Invio Notifica" vertex="1">
-          <mxGeometry height="70" width="140" x="950" y="-2020" as="geometry" />
-        </mxCell>
         <mxCell id="RuOfV3u-5tsR1tQntHl1-51" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#1ba1e2;strokeColor=#006EAF;fontColor=#ffffff;" value="Autenticazione" vertex="1">
           <mxGeometry height="70" width="140" x="920" y="-1670" as="geometry" />
         </mxCell>
@@ -179,28 +176,6 @@
             <mxPoint x="760" y="-1940" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="tgsn7jZaAchAcq1Qd4ci-14" edge="1" parent="1" source="tgsn7jZaAchAcq1Qd4ci-10" style="endArrow=open;endSize=12;dashed=1;html=1;rounded=0;fontSize=12;curved=1;entryX=0;entryY=1;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" target="RuOfV3u-5tsR1tQntHl1-49" value="&amp;lt;&amp;lt;Include&amp;gt;&amp;gt;">
-          <mxGeometry relative="1" width="160" x="-0.0717" as="geometry">
-            <mxPoint as="offset" />
-            <Array as="points">
-              <mxPoint x="890" y="-1940" />
-              <mxPoint x="910" y="-1950" />
-            </Array>
-            <mxPoint x="850" y="-1920" as="sourcePoint" />
-            <mxPoint x="1220" y="-1860" as="targetPoint" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="tgsn7jZaAchAcq1Qd4ci-15" edge="1" parent="1" source="tgsn7jZaAchAcq1Qd4ci-8" style="endArrow=open;endSize=12;dashed=1;html=1;rounded=0;fontSize=12;curved=1;entryX=0;entryY=0;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" target="RuOfV3u-5tsR1tQntHl1-49" value="&amp;lt;&amp;lt;Include&amp;gt;&amp;gt;">
-          <mxGeometry relative="1" width="160" x="-0.0717" as="geometry">
-            <mxPoint as="offset" />
-            <Array as="points">
-              <mxPoint x="910" y="-2030" />
-              <mxPoint x="930" y="-2040" />
-            </Array>
-            <mxPoint x="850" y="-2035" as="sourcePoint" />
-            <mxPoint x="991" y="-2050" as="targetPoint" />
-          </mxGeometry>
-        </mxCell>
         <mxCell id="tgsn7jZaAchAcq1Qd4ci-18" parent="1" style="ellipse;shape=cloud;whiteSpace=wrap;html=1;fillColor=#e6d0de;gradientColor=#d5739d;strokeColor=#996185;" value="" vertex="1">
           <mxGeometry height="80" width="120" x="1100" y="-2210" as="geometry" />
         </mxCell>
@@ -245,16 +220,6 @@
           <mxGeometry relative="1" width="160" as="geometry">
             <mxPoint x="610" y="-2070" as="sourcePoint" />
             <mxPoint x="771" y="-2055" as="targetPoint" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="SmuJpTzQW29IgPTQwguD-12" edge="1" parent="1" source="RuOfV3u-5tsR1tQntHl1-34" style="endArrow=open;endSize=12;dashed=1;html=1;rounded=0;fontSize=12;curved=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" target="RuOfV3u-5tsR1tQntHl1-49" value="&amp;lt;&amp;lt;Include&amp;gt;&amp;gt;">
-          <mxGeometry relative="1" width="160" x="-0.1761" y="27" as="geometry">
-            <mxPoint as="offset" />
-            <Array as="points">
-              <mxPoint x="970" y="-1840" />
-            </Array>
-            <mxPoint x="890" y="-1835" as="sourcePoint" />
-            <mxPoint x="1030" y="-1850" as="targetPoint" />
           </mxGeometry>
         </mxCell>
         <mxCell id="R-ZBqL-snqVCJdHFAOwY-1" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#eeeeee;strokeColor=#36393d;" value="Visualizzazione Partecipante" vertex="1">

@@ -182,11 +182,11 @@ Inoltre, per facilitare l'organizzazione, tutti gli iscritti a un Evento hanno a
         \item \textbf{Numero di posti:} può essere a posti ``Limitati'' o ``Illimitati''.
     \end{itemize}
     \item Il sistema deve offrire una Bacheca globale dove l'Utente può sfogliare gli Eventi di studio creati da altri Utenti. Gli Eventi scompaiono dalla Bacheca una volta pieni.
-    \item L'Utente deve poter filtrare gli Eventi in Bacheca in base alla Materia (Specifico per Esame o Generale), Tipo di Luogo (Pubblico o Privato), numero di posti (Limitato o Illimitato), data e Indirizzo.
+    \item L'Utente deve poter filtrare gli Eventi in Bacheca in base alla Materia (Specifico per Esame o Generale), Tipo di Luogo (Pubblico o Privato), numero di posti (Limitato o Illimitato) e data. Inoltre, l'utente deve poter inserire un indirizzo personalizzato a sua scelta e un raggio massimo espresso in chilometri per limitare la ricerca.
     \item Gli utenti scelgono l'evento in base al titolo dato dall'organizzatore
     \item Un Utente può prenotarsi per un Evento esistente se sono presenti posti disponibili.
     \item Un Partecipante può annullare la propria Prenotazione fino a un'ora prima, liberando il posto per altri Utenti.
-    \item L'Organizzatore può modificare i dettagli dell'Evento o cancellarlo fino all'ora precedente. In caso di modifica o cancellazione, tutti i Partecipanti ricevono una Notifica automatica.
+    \item L'Organizzatore può modificare i dettagli dell'Evento o cancellarlo fino all'ora precedente.
     \item L'Organizzatore può rimuovere gli Utenti Partecipanti a sua discrezione.
     \item Alla pubblicazione di un Evento, il sistema deve generare automaticamente una Chat di gruppo privata, accessibile esclusivamente all'Organizzatore e ai Partecipanti di quello specifico Evento.
     \item Al termine dell'Evento i Partecipanti possono lasciare dei Commenti positivi o negativi.
@@ -214,16 +214,15 @@ Inoltre, per facilitare l'organizzazione, tutti gli iscritti a un Evento hanno a
     \reqlabel{R08F}R08F & Il numero di posti disponibili può essere limitato o illimitato & Funzionale \\ \hline
     \reqlabel{R09F}R09F & Gli Eventi hanno due fasi: programmato e concluso & Funzionale \\ \hline
     \reqlabel{R10F}R10F & Gli Utenti visualizzano una Bacheca globale di Eventi programmati con almeno un posto disponibile & Funzionale \\ \hline
-    \reqlabel{R11F}R11F & Gli Utenti possono filtrare gli Eventi dalla Bacheca per: Tipo di Luogo, Indirizzo, data, numero posti & Funzionale \\ \hline
+    \reqlabel{R11F}R11F & Gli Utenti possono filtrare gli Eventi dalla Bacheca per: Tipo di Luogo, data, numero posti, e distanza chilometrica a partire da un indirizzo specifico & Funzionale \\ \hline
     \reqlabel{R12F}R12F & Un Utente può prenotarsi a un Evento, diventandone Partecipante & Funzionale \\ \hline
     \reqlabel{R13F}R13F & Un Utente prima di prenotarsi a un Evento può visualizzare il Profilo Utente dei Partecipanti & Funzionale \\ \hline
     \reqlabel{R14F}R14F & Un Partecipante può annullare la Prenotazione all'Evento fino a un'ora prima dell'inizio & Funzionale \\ \hline
     \reqlabel{R15F}R15F & L'Organizzatore può modificare i dettagli dell'Evento o cancellarlo fino all'ora precedente & Funzionale \\ \hline
-    \reqlabel{R16F}R16F & Ogni modifica di un Evento invia una Notifica a tutti i Partecipanti & Funzionale \\ \hline
-    \reqlabel{R17F}R17F & L'Organizzatore può rimuovere i Partecipanti all'Evento a sua discrezione & Funzionale \\ \hline
-    \reqlabel{R18F}R18F & Per ogni Evento è prevista una Chat di gruppo accessibile solo ai Partecipanti & Funzionale \\ \hline
-    \reqlabel{R19F}R19F & Al termine dell'Evento, ciascun Partecipante può lasciare un Commento a ognuno degli altri presenti & Funzionale \\ \hline
-    \reqlabel{R20F}R20F & Un Utente può richiedere l'eliminazione del proprio Profilo & Funzionale \\ \hline
+    \reqlabel{R16F}R16F & L'Organizzatore può rimuovere i Partecipanti all'Evento a sua discrezione & Funzionale \\ \hline
+    \reqlabel{R17F}R17F & Per ogni Evento è prevista una Chat di gruppo accessibile solo ai Partecipanti & Funzionale \\ \hline
+    \reqlabel{R18F}R18F & Al termine dell'Evento, ciascun Partecipante può lasciare un Commento a ognuno degli altri presenti & Funzionale \\ \hline
+    \reqlabel{R19F}R19F & Un Utente può richiedere l'eliminazione del proprio Profilo & Funzionale \\ \hline
 \end{tabularx}
 
 \subsection{Requisiti non funzionali}
@@ -240,6 +239,7 @@ Inoltre, per facilitare l'organizzazione, tutti gli iscritti a un Evento hanno a
         \reqlabel{R07N}R07N & La Bacheca globale deve essere costantemente aggiornata & Non funzionale \\ \hline
         \reqlabel{R08N}R08N & La Password scelta dall'Utente deve essere di almeno 8 caratteri e contenere almeno un numero e un carattere speciale (\#@?!\_-) & Non funzionale \\ \hline
         \reqlabel{R09N}R09N & La ricezione ed invio dei Messaggi deve essere istantanea & Non funzionale \\ \hline
+        \reqlabel{R12N}R12N & L'applicazione deve poter operare in totale autonomia senza l'intervento attivo di amministratori umani, garantendo così una maggiore tutela della privacy degli utenti & Non funzionale \\ \hline
 \end{tabularx}
 
 % Analisi del dominio
@@ -273,8 +273,6 @@ Inoltre, per facilitare l'organizzazione, tutti gli iscritti a un Evento hanno a
     Commento & Valutazione espressa dai Partecipanti su un altro Partecipante & Recensione \\ \hline
     Chat & Canale di comunicazione testuale privato, creato automaticamente per ogni Evento e riservato ai suoi Partecipanti & Chat condivisa, Chat di gruppo \\ \hline
     Messaggio & Singola comunicazione testuale inviata da un Partecipante all'interno della Chat di gruppo & \\ \hline
-    Notifica & Comunicazione istantanea diretta ai Partecipanti dall'applicazione all'arrivo di un Avviso & \\ \hline
-    Avviso & Comunicazione inviata dall'applicazione a un Partecipante per informarlo di un nuovo Messaggio o modifica dei dettagli dell'Evento & \\ \hline
 \end{tabularx}
 
 % Analisi dei requisiti
@@ -337,7 +335,7 @@ Di seguito sono presentati tutti gli scenari nel loro dettaglio.
                 \item Lo studente può inserire una nuova Email
             \end{enumerate}
         \end{itemize} \\ \hline
-    \textbf{Requisiti non funzionali} & \hyperref[R03N]{R03N}, \hyperref[R07N]{R07N}, \hyperref[R09N]{R09N} \\ \hline
+    \textbf{Requisiti non funzionali} & \hyperref[R02N]{R02N}, \hyperref[R06N]{R06N}, \hyperref[R08N]{R08N} \\ \hline
     \textbf{Punti aperti} & \\ \hline
 \end{tabularx}
 
@@ -381,7 +379,7 @@ Di seguito sono presentati tutti gli scenari nel loro dettaglio.
                 \item L'Utente può reinserire le Credenziali
             \end{enumerate}
         \end{itemize} \\ \hline
-    \textbf{Requisiti non funzionali} & \hyperref[R03N]{R03N}, \hyperref[R07N]{R07N}, \hyperref[R09N]{R09N} \\ \hline
+    \textbf{Requisiti non funzionali} & \hyperref[R02N]{R02N} \\ \hline
     \textbf{Punti aperti} & \\ \hline
 \end{tabularx}
 
@@ -439,7 +437,7 @@ Di seguito sono presentati tutti gli scenari nel loro dettaglio.
                 \item L'Utente può inserire una nuova Immagine
             \end{enumerate}
         \end{itemize} \\ \hline
-    \textbf{Requisiti non funzionali} & \hyperref[R02N]{R02N}, \hyperref[R07N]{R07N}, \hyperref[R09N]{R09N} \\ \hline
+    \textbf{Requisiti non funzionali} & \hyperref[R06N]{R06N}, \hyperref[R08N]{R08N} \\ \hline
     \textbf{Punti aperti} & \\ \hline
 \end{tabularx}
 
@@ -536,7 +534,6 @@ Di seguito sono presentati tutti gli scenari nel loro dettaglio.
                 \end{itemize}
                 \item Eliminare l'Evento
             \end{enumerate}
-            \item Il sistema notifica i Partecipanti delle modifiche
             \item Il sistema apporta le modifiche effettuate
         \end{enumerate} \\ \hline
     \textbf{Scenari alternativi} & 
@@ -572,7 +569,7 @@ Di seguito sono presentati tutti gli scenari nel loro dettaglio.
                 \item L'Utente può inserire un nuovo Indirizzo
             \end{enumerate}
         \end{itemize} \\ \hline
-    \textbf{Requisiti non funzionali} & \hyperref[R03N]{R03N}, \hyperref[R07N]{R07N}, \hyperref[R09N]{R09N} \\ \hline
+    \textbf{Requisiti non funzionali} & \hyperref[R04N]{R04N}, \hyperref[R05N]{R05N}, \hyperref[R07N]{R07N} \\ \hline
     \textbf{Punti aperti} & \\ \hline
 \end{tabularx}
 
@@ -598,11 +595,10 @@ Di seguito sono presentati tutti gli scenari nel loro dettaglio.
             \item Il sistema mostra all'Organizzatore la possibilità di rimuovere un Partecipante
             \item L'Organizzatore seleziona il Partecipante da rimuovere
             \item Il sistema aggiorna l'Evento rimuovendo il Partecipante
-            \item Il sistema notifica il Partecipante della rimozione dall'Evento
             \item Il sistema apporta le modifiche effettuate
         \end{enumerate} \\ \hline
     \textbf{Scenari alternativi} & \\ \hline
-    \textbf{Requisiti non funzionali} & \hyperref[R03N]{R03N}, \hyperref[R07N]{R07N}, \hyperref[R09N]{R09N} \\ \hline
+    \textbf{Requisiti non funzionali} & \hyperref[R03N]{R03N}, \hyperref[R07N]{R07N} \\ \hline
     \textbf{Punti aperti} & \\ \hline
 \end{tabularx}
 
@@ -636,7 +632,7 @@ Di seguito sono presentati tutti gli scenari nel loro dettaglio.
                 \item Il sistema mostra gli Eventi che rispettano le condizioni applicate
         \end{enumerate} \\ \hline
     \textbf{Scenari alternativi} & \\ \hline
-    \textbf{Requisiti non funzionali} & \hyperref[R03N]{R03N}, \hyperref[R07N]{R07N}, \hyperref[R09N]{R09N} \\ \hline
+    \textbf{Requisiti non funzionali} & \hyperref[R03N]{R03N}, \hyperref[R07N]{R07N} \\ \hline
     \textbf{Punti aperti} & \\ \hline
 \end{tabularx}
 
@@ -665,7 +661,7 @@ Di seguito sono presentati tutti gli scenari nel loro dettaglio.
             \item Il sistema apporta le modifiche effettuate
         \end{enumerate} \\ \hline
     \textbf{Scenari alternativi} & \\ \hline
-    \textbf{Requisiti non funzionali} & \hyperref[R03N]{R03N}, \hyperref[R07N]{R07N}, \hyperref[R09N]{R09N} \\ \hline
+    \textbf{Requisiti non funzionali} & \hyperref[R07N]{R07N} \\ \hline
     \textbf{Punti aperti} & \\ \hline
 \end{tabularx}
 
@@ -693,7 +689,7 @@ Di seguito sono presentati tutti gli scenari nel loro dettaglio.
             \item Il sistema mostra all'Utente la possibilità di visualizzare i dettagli ed i commenti dei Partecipanti
         \end{enumerate} \\ \hline
     \textbf{Scenari alternativi} & \\ \hline
-    \textbf{Requisiti non funzionali} & \hyperref[R03N]{R03N}, \hyperref[R07N]{R07N}, \hyperref[R09N]{R09N} \\ \hline
+    \textbf{Requisiti non funzionali} & \hyperref[R03N]{R03N}, \hyperref[R06N]{R06N} \\ \hline
     \textbf{Punti aperti} & \\ \hline
 \end{tabularx}
 
@@ -718,7 +714,7 @@ Di seguito sono presentati tutti gli scenari nel loro dettaglio.
             \item Il sistema mostra all'Utente la possibilità di visualizzare i commenti che gli altri Utenti hanno lasciato su di lui
         \end{enumerate} \\ \hline
     \textbf{Scenari alternativi} & \\ \hline
-    \textbf{Requisiti non funzionali} & \hyperref[R03N]{R03N}, \hyperref[R07N]{R07N}, \hyperref[R09N]{R09N} \\ \hline
+    \textbf{Requisiti non funzionali} & \hyperref[R03N]{R03N}, \hyperref[R06N]{R06N} \\ \hline
     \textbf{Punti aperti} & \\ \hline
 \end{tabularx}
 
@@ -745,7 +741,7 @@ Di seguito sono presentati tutti gli scenari nel loro dettaglio.
             \item Il sistema apporta le modifiche effettuate
         \end{enumerate} \\ \hline
     \textbf{Scenari alternativi} & \\ \hline
-    \textbf{Requisiti non funzionali} & \hyperref[R03N]{R03N}, \hyperref[R07N]{R07N}, \hyperref[R09N]{R09N} \\ \hline
+    \textbf{Requisiti non funzionali} & \hyperref[R07N]{R07N} \\ \hline
     \textbf{Punti aperti} & \\ \hline
 \end{tabularx}
 
@@ -773,7 +769,7 @@ Di seguito sono presentati tutti gli scenari nel loro dettaglio.
             \item Avviene uno scambio di messaggi tra i Partecipanti
         \end{enumerate} \\ \hline
     \textbf{Scenari alternativi} & \\ \hline
-    \textbf{Requisiti non funzionali} & \hyperref[R03N]{R03N}, \hyperref[R07N]{R07N}, \hyperref[R09N]{R09N} \\ \hline
+    \textbf{Requisiti non funzionali} & \hyperref[R09N]{R09N} \\ \hline
     \textbf{Punti aperti} & \\ \hline
 \end{tabularx}
 
@@ -802,7 +798,7 @@ Di seguito sono presentati tutti gli scenari nel loro dettaglio.
             \item Il Partecipante aggiunge un commento per il Partecipante selezionato
         \end{enumerate} \\ \hline
     \textbf{Scenari alternativi} & \\ \hline
-    \textbf{Requisiti non funzionali} & \hyperref[R03N]{R03N}, \hyperref[R07N]{R07N}, \hyperref[R09N]{R09N} \\ \hline
+    \textbf{Requisiti non funzionali} & \hyperref[R06N]{R06N} \\ \hline
     \textbf{Punti aperti} & \\ \hline
 \end{tabularx}
 
@@ -985,8 +981,8 @@ Dall'analisi del rischio si possono evincere i seguenti ulteriori requisiti:
     \hline
     \rowcolor{studyColor} \textbf{ID} & \textbf{Requisito} & \textbf{Tipo} \\ \hline
     \endhead
-    \reqlabel{R22F}R22F & Il sistema registra le operazioni sensibili e i tentativi di accesso in un file di log. & Funzionale \\ \hline
-    \reqlabel{R23F}R23F & I log di sistema possono essere inviati a un sistema esterno per l'analisi e conservazione. & Funzionale \\ \hline
+    \reqlabel{R20F}R20F & Il sistema registra le operazioni sensibili e i tentativi di accesso in un file di log. & Funzionale \\ \hline
+    \reqlabel{R21F}R21F & I log di sistema possono essere inviati a un sistema esterno per l'analisi e conservazione. & Funzionale \\ \hline
     \reqlabel{R10N}R10N & La comunicazione tra client e server deve essere obbligatoriamente cifrata tramite protocollo HTTPS/TLS. & Non funzionale \\ \hline
     \reqlabel{R11N}R11N & Dopo 5 tentativi di Autenticazione falliti consecutivi, il sistema blocca l'accesso a quell'account per 15 minuti. & Non funzionale \\ \hline
 \end{tabularx}
@@ -1026,7 +1022,7 @@ A seguito dell'introduzione dei controlli di sicurezza, il caso d'uso \textbf{Au
             \item Viene mostrato un messaggio di errore e l'Utente può reinserire le Credenziali
             \item Se il numero di tentativi errati supera i 5 consecutivi, il sistema blocca temporaneamente l'accesso per 15 minuti e registra l'evento nel Log.
         \end{enumerate} \\ \hline
-    \textbf{Requisiti non funzionali} & \hyperref[R03N]{R03N}, \hyperref[R07N]{R07N}, \hyperref[R09N]{R09N}, \hyperref[R10N]{R10N}, \hyperref[R11N]{R11N} \\ \hline
+    \textbf{Requisiti non funzionali} & \hyperref[R02N]{R02N}, \hyperref[R10N]{R10N}, \hyperref[R11N]{R11N} \\ \hline
     \textbf{Punti aperti} & \\ \hline
 \end{tabularx}
 
@@ -1061,55 +1057,58 @@ Il file di log sarà generato da un componente interno al sistema chiamato \text
     Creazione evento & \begin{itemize}[nosep, leftmargin=*, before={\vspace{-0.5\baselineskip}}, after={\vspace{-0.8\baselineskip}}]
                         \item Memorizzazione dati;
                         \item Interazione esterno;
-                    \end{itemize} & Semplice & \hyperref[R05F]{R05F}, \hyperref[R06F]{R06F}, \hyperref[R07F]{R07F}, \hyperref[R08F]{R08F}, \hyperref[R15F]{R15F} \\ \hline
+                    \end{itemize} & Semplice & \hyperref[R05F]{R05F}, \hyperref[R06F]{R06F}, \hyperref[R07F]{R07F}, \hyperref[R08F]{R08F} \\ \hline
     Gestione evento & \begin{itemize}[nosep, leftmargin=*, before={\vspace{-0.5\baselineskip}}, after={\vspace{-0.8\baselineskip}}]
                         \item Gestione e memorizzazione dati;
                         \item Interazione esterno;
-                    \end{itemize} & Complesso & \hyperref[R05F]{R05F}, \hyperref[R06F]{R06F}, \hyperref[R07F]{R07F}, \hyperref[R08F]{R08F}, \hyperref[R09F]{R09F}, \hyperref[R16F]{R16F}, \hyperref[R17F]{R17F}, \hyperref[R18F]{R18F} \\ \hline
+                    \end{itemize} & Complesso & \hyperref[R05F]{R05F}, \hyperref[R06F]{R06F}, \hyperref[R07F]{R07F}, \hyperref[R08F]{R08F}, \hyperref[R09F]{R09F}, \hyperref[R15F]{R15F}, \hyperref[R16F]{R16F}, \hyperref[R17F]{R17F} \\ \hline
     Cancellazione evento & \begin{itemize}[nosep, leftmargin=*, before={\vspace{-0.5\baselineskip}}, after={\vspace{-0.8\baselineskip}}]
                         \item Gestione dati;
                         \item Interazione esterno;
-                    \end{itemize} & Semplice & \hyperref[R16F]{R16F}, \hyperref[R17F]{R17F} \\ \hline
+                    \end{itemize} & Semplice & \hyperref[R15F]{R15F} \\ \hline
     Modifica evento & \begin{itemize}[nosep, leftmargin=*, before={\vspace{-0.5\baselineskip}}, after={\vspace{-0.8\baselineskip}}]
                         \item Gestione dati;
                         \item Interazione esterno;
-                    \end{itemize} & Semplice & \hyperref[R05F]{R05F}, \hyperref[R06F]{R06F}, \hyperref[R08F]{R08F}, \hyperref[R16F]{R16F} \\ \hline
+                    \end{itemize} & Semplice & \hyperref[R05F]{R05F}, \hyperref[R06F]{R06F}, \hyperref[R08F]{R08F}, \hyperref[R15F]{R15F} \\ \hline
     Rimozione partecipante & \begin{itemize}[nosep, leftmargin=*, before={\vspace{-0.5\baselineskip}}, after={\vspace{-0.8\baselineskip}}]
                         \item Gestione dati;
                         \item Interazione esterno;
-                    \end{itemize} & Semplice & \hyperref[R12F]{R12F}, \hyperref[R18F]{R18F} \\ \hline
-    Invio notifica & \begin{itemize}[nosep, leftmargin=*, before={\vspace{-0.5\baselineskip}}, after={\vspace{-0.8\baselineskip}}]
-                        \item Interazione esterno;
-                    \end{itemize} & Semplice & \hyperref[R12F]{R12F}, \hyperref[R16F]{R16F}, \hyperref[R17F]{R17F}, \hyperref[R18F]{R18F} \\ \hline
+                    \end{itemize} & Semplice & \hyperref[R16F]{R16F}, \hyperref[R17F]{R17F} \\ \hline
     Gestione profilo & \begin{itemize}[nosep, leftmargin=*, before={\vspace{-0.5\baselineskip}}, after={\vspace{-0.8\baselineskip}}]
                         \item Gestione e memorizzazione dati;
                         \item Interazione esterno;
-                    \end{itemize} & Complesso & \hyperref[R04F]{R04F}, \hyperref[R13F]{R13F}, \hyperref[R20F]{R20F} \\ \hline
+                    \end{itemize} & Complesso & \hyperref[R04F]{R04F}, \hyperref[R19F]{R19F} \\ \hline
     Visualizzazione commenti & \begin{itemize}[nosep, leftmargin=*, before={\vspace{-0.5\baselineskip}}, after={\vspace{-0.8\baselineskip}}]
                         \item Interazione esterno;
-                    \end{itemize} & Semplice & \hyperref[R04F]{R04F}, \hyperref[R13F]{R13F}, \hyperref[R20F]{R20F} \\ \hline
+                    \end{itemize} & Semplice & \hyperref[R04F]{R04F}, \hyperref[R18F]{R18F} \\ \hline
     Visualizzazione bacheca & \begin{itemize}[nosep, leftmargin=*, before={\vspace{-0.5\baselineskip}}, after={\vspace{-0.8\baselineskip}}]
                         \item Interazione esterno;
-                    \end{itemize} & Semplice & \hyperref[R07F]{R07F}, \hyperref[R08F]{R08F}, \hyperref[R09F]{R09F}, \hyperref[R11F]{R11F}, \hyperref[R12F]{R12F} \\ \hline
+                    \end{itemize} & Semplice & \hyperref[R10F]{R10F}, \hyperref[R11F]{R11F} \\ \hline
     Visualizzazione partecipante & \begin{itemize}[nosep, leftmargin=*, before={\vspace{-0.5\baselineskip}}, after={\vspace{-0.8\baselineskip}}]
                         \item Interazione esterno;
-                    \end{itemize} & Semplice & \hyperref[R04F]{R04F}, \hyperref[R13F]{R13F}, \hyperref[R20F]{R20F} \\ \hline
+                    \end{itemize} & Semplice & \hyperref[R04F]{R04F}, \hyperref[R13F]{R13F} \\ \hline
     Prenotazione evento & \begin{itemize}[nosep, leftmargin=*, before={\vspace{-0.5\baselineskip}}, after={\vspace{-0.8\baselineskip}}]
                         \item Gestione dati;
                         \item Interazione esterno;
-                    \end{itemize} & Semplice & \hyperref[R12F]{R12F}, \hyperref[R14F]{R14F}, \hyperref[R15F]{R15F} \\ \hline
+                    \end{itemize} & Semplice & \hyperref[R07F]{R07F}, \hyperref[R12F]{R12F} \\ \hline
     Annullamento prenotazione & \begin{itemize}[nosep, leftmargin=*, before={\vspace{-0.5\baselineskip}}, after={\vspace{-0.8\baselineskip}}]
                         \item Gestione dati;
                         \item Interazione esterno;
-                    \end{itemize} & Semplice & \hyperref[R14F]{R14F}, \hyperref[R15F]{R15F} \\ \hline
+                    \end{itemize} & Semplice & \hyperref[R14F]{R14F} \\ \hline
     Utilizzo chat & \begin{itemize}[nosep, leftmargin=*, before={\vspace{-0.5\baselineskip}}, after={\vspace{-0.8\baselineskip}}]
                         \item Gestione e memorizzazione dati;
                         \item Interazione esterno;
-                    \end{itemize} & Complesso & \hyperref[R19F]{R19F} \\ \hline
+                    \end{itemize} & Complesso & \hyperref[R17F]{R17F} \\ \hline
     Inserimento commento & \begin{itemize}[nosep, leftmargin=*, before={\vspace{-0.5\baselineskip}}, after={\vspace{-0.8\baselineskip}}]
                         \item Memorizzazione dati;
                         \item Interazione esterno;
-                    \end{itemize} & Semplice & \hyperref[R04F]{R04F}, \hyperref[R20F]{R20F} \\ \hline
+                    \end{itemize} & Semplice & \hyperref[R04F]{R04F}, \hyperref[R18F]{R18F} \\ \hline
+    Registrazione Log & \begin{itemize}[nosep, leftmargin=*, before={\vspace{-0.5\baselineskip}}, after={\vspace{-0.8\baselineskip}}]
+                        \item Memorizzazione dati;
+                    \end{itemize} & Semplice & \hyperref[R20F]{R20F} \\ \hline
+    Esportazione Log & \begin{itemize}[nosep, leftmargin=*, before={\vspace{-0.5\baselineskip}}, after={\vspace{-0.8\baselineskip}}]
+                        \item Interazione esterno;
+                    \end{itemize} & Semplice & \hyperref[R21F]{R21F} \\ \hline
 \end{tabularx}
 
 \subsection{Tabelle informazioni/flusso}
@@ -1246,16 +1245,18 @@ L'informazione \hyperref[Messaggio]{Messaggio} è composta da:
     Orario & semplice & Protezione media & Nel formato HH:MM \\ \hline
 \end{tabularx}
 
-\subsubsection{Informazione: Notifica} \label{Notifica}
-L'informazione \hyperref[Notifica]{Notifica} è composta da:
+\subsubsection{Informazione: Log} \label{Log}
+L'informazione \hyperref[Log]{Log} è composta da:
 \begin{tabularx}{\textwidth}{|p{2.8cm}|p{1.8cm}|p{3.2cm}|X|}
     \hline
     \rowcolor{studyColor} \textbf{Informazione} & \textbf{Tipo} & \textbf{Livello protezione / Privacy} & \textbf{Vincoli} \\ \hline
     \endhead
-    Utente & composto & Protezione alta & \\ \hline
-    Titolo & semplice & Protezione media & Non più di 50 caratteri \\ \hline
-    Descrizione & semplice & Protezione media & Non più di 500 caratteri \\ \hline
+    Operazione & semplice & Protezione alta &  \\ \hline
+    Data & semplice & Protezione media & Nel formato GG/MM/AAAA \\ \hline
+    Orario & semplice & Protezione media & Nel formato HH:MM \\ \hline
+    Utente & composto & Protezione media & Opzionale \\ \hline
 \end{tabularx}
+
 
 
 \subsubsection{Tabella Informazioni / Flusso: Registrazione}
@@ -1298,7 +1299,6 @@ L'informazione \hyperref[Notifica]{Notifica} è composta da:
     \endhead
     Evento & composto & Protezione media & Input & \\ \hline
     Evento & composto & Protezione media & Output & \\ \hline
-    Notifica & composto & Protezione alta & Output & \\ \hline
 \end{tabularx}
 
 \subsubsection{Tabella Informazioni / Flusso: Cancellazione evento}
@@ -1307,7 +1307,6 @@ L'informazione \hyperref[Notifica]{Notifica} è composta da:
     \rowcolor{studyColor} \textbf{Informazione} & \textbf{Tipo} & \textbf{Livello protezione / Privacy} & \textbf{Input / Output} & \textbf{Vincoli} \\ \hline
     \endhead
     Evento & composto & Protezione media & Input & \\ \hline
-    Notifica & composto & Protezione alta & Output & \\ \hline
 \end{tabularx}
 
 \subsubsection{Tabella Informazioni / Flusso: Modifica evento}
@@ -1317,7 +1316,6 @@ L'informazione \hyperref[Notifica]{Notifica} è composta da:
     \endhead
     Evento & composto & Protezione media & Input & \\ \hline
     Evento & composto & Protezione media & Output & \\ \hline
-    Notifica & composto & Protezione alta & Output & \\ \hline
 \end{tabularx}
 
 \subsubsection{Tabella Informazioni / Flusso: Rimozione partecipante}
@@ -1327,16 +1325,6 @@ L'informazione \hyperref[Notifica]{Notifica} è composta da:
     \endhead
     Profilo & composto & Protezione alta & Input & \\ \hline
     Evento & composto & Protezione media & Input/Output & \\ \hline
-    Notifica & composto & Protezione alta & Output & \\ \hline
-\end{tabularx}
-
-\subsubsection{Tabella Informazioni / Flusso: Invio notifica}
-\begin{tabularx}{\textwidth}{|X|X|X|X|X|}
-    \hline
-    \rowcolor{studyColor} \textbf{Informazione} & \textbf{Tipo} & \textbf{Livello protezione / Privacy} & \textbf{Input / Output} & \textbf{Vincoli} \\ \hline
-    \endhead
-    Avviso & composto & Protezione alta & Input & \\ \hline
-    Notifica & composto & Protezione alta & Output & \\ \hline
 \end{tabularx}
 
 \subsubsection{Tabella Informazioni / Flusso: Gestione profilo}
@@ -1415,6 +1403,22 @@ L'informazione \hyperref[Notifica]{Notifica} è composta da:
     Commento & composto & Protezione media & Output & \\ \hline
 \end{tabularx}
 
+\subsubsection{Tabella Informazioni / Flusso: Registrazione Log}
+\begin{tabularx}{\textwidth}{|X|X|X|X|X|}
+    \hline
+    \rowcolor{studyColor} \textbf{Informazione} & \textbf{Tipo} & \textbf{Livello protezione / Privacy} & \textbf{Input / Output} & \textbf{Vincoli} \\ \hline
+    \endhead
+    Log & composto & Protezione alta & Input/Output & \\ \hline
+\end{tabularx}
+
+\subsubsection{Tabella Informazioni / Flusso: Esportazione Log}
+\begin{tabularx}{\textwidth}{|X|X|X|X|X|}
+    \hline
+    \rowcolor{studyColor} \textbf{Informazione} & \textbf{Tipo} & \textbf{Livello protezione / Privacy} & \textbf{Input / Output} & \textbf{Vincoli} \\ \hline
+    \endhead
+    Log & composto & Protezione alta & Input & \\ \hline
+\end{tabularx}
+
 % Analisi documento dei requisiti: Analisi dei vincoli
 \newpage
 \section{Analisi documento dei requisiti: Analisi dei vincoli}
@@ -1424,10 +1428,10 @@ L'informazione \hyperref[Notifica]{Notifica} è composta da:
     \hline
     \rowcolor{studyColor} \textbf{Vincolo} & \textbf{Categorie} & \textbf{Impatto} & \textbf{Funzionalità} \\ \hline
     \endhead
-    Accessibilità e facilità di utilizzo della piattaforma [R01N, R03N] & Disponibilità, Usabilità & Garantisce continuità del servizio e un'interfaccia intuitiva per l'utente & Registrazione, Autenticazione, Creazione evento, Gestione evento, Cancellazione evento, Modifica evento, Rimozione partecipante, Invio notifica, Gestione profilo, Visualizzazione commenti, Visualizzazione bacheca, Visualizzazione partecipante, Prenotazione evento, Annullamento prenotazione, Utilizzo chat, Inserimento commento, Registrazione Log, Esportazione Log \\ \hline
+    Accessibilità e facilità di utilizzo della piattaforma [R01N, R03N] & Disponibilità, Usabilità & Garantisce continuità del servizio e un'interfaccia intuitiva per l'utente & Registrazione, Autenticazione, Creazione evento, Gestione evento, Cancellazione evento, Modifica evento, Rimozione partecipante, Gestione profilo, Visualizzazione commenti, Visualizzazione bacheca, Visualizzazione partecipante, Prenotazione evento, Annullamento prenotazione, Utilizzo chat, Inserimento commento, Registrazione Log, Esportazione Log \\ \hline
     Creazione e sicurezza dell'account [R02N, R08N, R11N] & Sicurezza & Migliora l'integrità dei dati e previene accessi non autorizzati obbligando all'uso di credenziali sicure e univoche & Registrazione, Autenticazione, Gestione profilo \\ \hline
-    Standardizzazione dei formati temporali e di visualizzazione [R04N, R05N] & Usabilità & Uniformità e chiarezza nella visualizzazione delle informazioni temporali per tutti gli utenti & Registrazione, Autenticazione, Creazione evento, Gestione evento, Cancellazione evento, Modifica evento, Rimozione partecipante, Invio notifica, Gestione profilo, Visualizzazione commenti, Visualizzazione bacheca, Visualizzazione partecipante, Prenotazione evento, Annullamento prenotazione, Utilizzo chat, Inserimento commento, Registrazione Log, Esportazione Log \\ \hline
-    Privacy e sicurezza dei dati del sistema [R06N, R10N] & Sicurezza, Legale & Protegge la riservatezza delle comunicazioni e garantisce il rispetto delle normative vigenti sui dati personali (GDPR) & Registrazione, Autenticazione, Creazione evento, Gestione evento, Cancellazione evento, Modifica evento, Rimozione partecipante, Invio notifica, Gestione profilo, Visualizzazione commenti, Visualizzazione bacheca, Visualizzazione partecipante, Prenotazione evento, Annullamento prenotazione, Utilizzo chat, Inserimento commento, Registrazione Log, Esportazione Log \\ \hline
+    Standardizzazione dei formati temporali e di visualizzazione [R04N, R05N] & Usabilità & Uniformità e chiarezza nella visualizzazione delle informazioni temporali per tutti gli utenti & Registrazione, Autenticazione, Creazione evento, Gestione evento, Cancellazione evento, Modifica evento, Rimozione partecipante, Gestione profilo, Visualizzazione commenti, Visualizzazione bacheca, Visualizzazione partecipante, Prenotazione evento, Annullamento prenotazione, Utilizzo chat, Inserimento commento, Registrazione Log, Esportazione Log \\ \hline
+    Privacy e sicurezza dei dati del sistema [R06N, R10N, R12N] & Sicurezza, Legale & Protegge la riservatezza delle comunicazioni e garantisce il rispetto delle normative vigenti sui dati personali (GDPR) & Registrazione, Autenticazione, Creazione evento, Gestione evento, Cancellazione evento, Modifica evento, Rimozione partecipante, Gestione profilo, Visualizzazione commenti, Visualizzazione bacheca, Visualizzazione partecipante, Prenotazione evento, Annullamento prenotazione, Utilizzo chat, Inserimento commento, Registrazione Log, Esportazione Log \\ \hline
     Prestazioni e responsività del sistema [R07N, R09N] & Tempo di risposta & Migliora l'esperienza utente rendendo l'interazione dinamica ed aggiornata in tempo reale & Visualizzazione bacheca, Utilizzo chat \\ \hline
 \end{tabularx}
 
@@ -1511,7 +1515,6 @@ Il programma non fa utilizzo di nessun sistema esterno direttamente nel funziona
     Numero posti & Lettura/scrittura \\ \hline
     Profilo (Partecipanti) & Lettura \\ \hline
     Prenotazione & Lettura/scrittura \\ \hline
-    Notifica & Scrittura (indiretta) \\ \hline
 \end{tabularx}
 
 \subsection{Partecipante: Tabella Ruolo-Informazioni}
@@ -1524,7 +1527,6 @@ Il programma non fa utilizzo di nessun sistema esterno direttamente nel funziona
     Testo (Commento) & Scrittura \\ \hline
     Valutazione & Scrittura \\ \hline
     Profilo (Altri partecipanti) & Lettura \\ \hline
-    Notifica & Lettura \\ \hline
 \end{tabularx}
 
 % Scomposizione del problema
@@ -1814,6 +1816,7 @@ Il primo prototipo del programma non implementerà tutte le funzionalità previs
 
 \subsection{Sviluppi futuri}
 Il committente ha richiesto di aggiungere le possibilità di penalizzare gli Utenti a seguito di disiscrizioni a ridosso di Eventi a cui si è iscritti, abbiamo organizzato o comportamenti scorretti.
+Inoltre, è stata evidenziata la necessità di introdurre un sistema automatizzato di segnalazione e moderazione dei messaggi e dei commenti, capace di sanzionare o rimuovere autonomamente i contenuti inappropriati.
 Si richiede al Team Progettazione di tenere conto di questi sviluppi futuri.
 
 % Piano del collaudo
@@ -2143,6 +2146,7 @@ In questo diagramma è da notare che:
     \item È stata introdotta la classe astratta Account, la quale incapsula esclusivamente i dati fondamentali di base (come l'email), mentre le informazioni sensibili di autenticazione (come l'hash della password) sono gestite direttamente dal database tramite il contesto.
     \item La sottoclasse Utente modella lo studente standard che utilizza l'app, raggruppando i dettagli del ProfiloUtente e la lista dei commentiRicevuti. Questa separazione permette l'introduzione futura di nuovi account istituzionali (come ad esempio un account gestito direttamente da UniBo per promuovere sessioni di studio) che non necessitano di campi incompatibili, come il corso di studi o il sistema di recensioni tramite commenti.
     \item Per favorire il disaccoppiamento e rispettare il principio di segregazione delle interfacce (ISP), sono state create le interfacce IOrganizzatore e IPartecipante. In questo modo, eventuali enti organizzatori futuri potranno implementare solo la logica di creazione degli eventi, senza essere forzati ad implementare la logica di partecipazione, tipica invece delle persone fisiche.
+    \item Rispetto all'analisi, in cui erano presenti due entità separate (\texttt{CommentoInviato} e \texttt{CommentoRicevuto}), si è scelto di unificare la struttura in una singola classe \texttt{Commento}. Questa contiene gli attributi comuni (testo, valutazione, data e orario) ed esprime il mittente e il destinatario attraverso due relazioni distinte con l'entità \texttt{Utente}. Tale approccio riduce la duplicazione del codice, semplifica la logica di business e agevola la persistenza dei dati sul database, mantenendo al contempo una chiara tracciabilità bidirezionale.
 \end{itemize}
 
 \newpage
@@ -2158,8 +2162,8 @@ Di seguito è presentato il diagramma delle classi del modello del dominio rigua
 %
 In questo diagramma è da notare che:
 \begin{itemize}[leftmargin=*]
-    \item È stata definita l'interfaccia IEvento che impone i metodi contrattuali di base (aggiungiPartecipante, rimuoviPartecipante, annullaEvento, puoPartecipare). Questo garantisce un alto grado di espandibilità (Open/Closed Principle): se in futuro si volessero modellare nuove tipologie di attività, come ad esempio sessioni di studio telematiche (che necessitano di un link anziché di un Indirizzo fisico) o eventi sportivi come una corsa, queste potranno implementare l'interfaccia senza alterare la logica preesistente del sistema.
-    \item La classe astratta Evento implementa IEvento fattorizzando il codice comune, e si specializza in EventoAPostiLimitati (che introduce l'attributo posti) ed EventoAPostiIllimitati.
+    \item È stata definita l'interfaccia IEvento che impone i metodi contrattuali di base (aggiungiPartecipante, rimuoviPartecipante, annullaEvento, puoPartecipare). Questo garantisce un alto grado di espandibilità (Open/Closed Principle): se in futuro si volessero modellare nuove tipologie di attività, come ad esempio sessioni di studio telematiche (che necessitano di un link anziché di un Indirizzo fisico) o eventi come esami o conferenze, queste potranno implementare l'interfaccia senza alterare la logica preesistente del sistema.
+    \item Rispetto alla fase di analisi in cui la capienza era un semplice parametro, la classe astratta \texttt{Evento} si specializza nelle classi concrete \texttt{EventoAPostiLimitati} (che introduce l'attributo privato \texttt{posti}) ed \texttt{EventoAPostiIllimitati}. Questa scelta garantisce scalabilità ed estensibilità: le logiche di validazione delle iscrizioni e il calcolo dei posti disponibili sono delegate, evitando l'uso di complessi blocchi condizionali nel codice client e facilitando l'eventuale introduzione futura di eventi con logiche di accesso differenti.
     \item È stata introdotta la classe Bacheca per centralizzare la gestione e l'accesso agli eventi. Essa funge da punto di raccolta unico e fornisce i metodi utili alla pubblicazione e al filtraggio degli eventi per l'interfaccia utente.
     \item L'introduzione dell'enumerazione TipoDiLuogo permette di limitare e tipizzare in modo sicuro la definizione di un luogo, specificando chiaramente se esso è pubblico o privato.
 \end{itemize}
@@ -2197,6 +2201,7 @@ In questo diagramma è da notare che:
 \begin{itemize}[leftmargin=*]
     \item È stata creata l'interfaccia generica \texttt{IFiltro<T>} dotata del metodo applica(). Questa scelta architetturale applica il pattern Strategy e garantisce il pieno rispetto del principio Open/Closed (OCP), permettendo di aggiungere agilmente in futuro nuovi criteri di filtraggio senza dover modificare il codice delle classi client (come la Bacheca).
     \item La classe FiltroEventi raggruppa logicamente tutti i molteplici parametri di ricerca (come titolo, finestre temporali, indirizzo e distanzaMaxKm), evitando così lunghe liste di parametri nei metodi e migliorando la coesione dei dati di ricerca.
+    \item Il filtro basato su \texttt{distanzaMaxKm} calcola la distanza fisica (in chilometri) tra due punti geografici distinti: l'indirizzo inserito in input dall'utente (che fa da centro) e l'indirizzo dell'evento. Entrambi gli indirizzi stradali vengono geocodificati in coordinate di latitudine e longitudine; dopodiché, la distanza tra i due punti viene calcolata geometricamente sulla superficie terrestre, includendo nella bacheca del client solo gli eventi che ricadono nel raggio impostato.
 \end{itemize}
 
 \newpage
@@ -2354,6 +2359,9 @@ Anche se non è indicato nel diagramma, per motivi di spazio, ci sarà la memori
     \caption{Diagramma di sequenza: Gestione evento - Gestione}
 \end{figure}
 %
+\subsubsection{Interazione: Elimina evento}
+Si omette il diagramma relativo all'eliminazione dell'evento in quanto il suo flusso di interazione risulta essere praticamente identico a quello della modifica dell'evento, differendo unicamente nell'operazione finale di eliminazione dell'entità anziché di aggiornamento.
+%
 \subsubsection{Interazione: Bacheca}
 Di seguito è presentata la figura che mostra le interazioni tra i componenti per il filtraggio degli eventi in bacheca.
 
@@ -2433,9 +2441,11 @@ solo i test di unità delle classi ritenute centrali per il funzionamento del si
 riallineati alla struttura emersa dalla Progettazione di dettaglio (Sezione 3.2).
 
 In particolare, rispetto all'analisi, l'entità \texttt{Profilo} è stata scomposta
-nelle classi \texttt{Account}, \texttt{Utente} e \texttt{ProfiloUtente}, mentre
-l'\texttt{Evento} si specializza in \texttt{EventoAPostiLimitati} ed
-\texttt{EventoAPostiIllimitati}. Vengono presentati i test di unità di Evento e Profilo.
+nelle classi \texttt{Account}, \texttt{Utente} e \texttt{ProfiloUtente}, le entità
+\texttt{CommentoInviato} e \texttt{CommentoRicevuto} sono state unificate nella
+singola classe \texttt{Commento}, mentre l'\texttt{Evento} si specializza in
+\texttt{EventoAPostiLimitati} ed \texttt{EventoAPostiIllimitati}. Vengono presentati
+i test di unità di Evento e Profilo.
 
 \subsection{Test di unità: Evento}
 \begin{lstlisting}
@@ -2796,41 +2806,16 @@ Di seguito sono presentati i due possibili scenari di deploy:
 %
 \end{itemize}
 
-% Di cosa parlare
-\newpage
-\section{Di cosa parlare}
-\begin{itemize}[leftmargin=*]
-    \item Pensare a se serve un amministratore
-    \item per la creazione del log il prof dice di non metterlo da nessuna parte, guardare i best project. parla di 3 possibilità: 1) log viene analizzato manualmente da una persona al di fuori dell'applicazione (omino con scritto AS (l'attore) che si collega con freccia senza testa a cerchio con visualizzaLog in un'altra app) 2) uguale a quella di prima ma nell'applicazione stessa 3) algoritmo che in automatico si guarda il log e cerca cose strane. non c'è più visualizzaLog ma c'è analizzaLog (non la suggerisce, se vogliamo usare un algoritmo vuole che si faccia in un'altra applicazione)
-    \item font da scegliere
-\end{itemize}
-
-% Errori
-\section{Errori}
-\begin{itemize}[leftmargin=*]
-    \item 
-\end{itemize}
-
 % TODO
 \section{TODO}
 \begin{itemize}[leftmargin=*]
-    \item togliere subsubsection dall'indice
     \item guardare le frecce e la sintassi in generale del modello del dominio
-    \item capire se dividere anche nelle tabelle e in tutto il progetto (per esempio tabella informazioni / flusso) commento inviato/ricevuto o evento posti limitati / posti illimitati
-    \item aggiungere in tutto il documento il fatto che nel filtro calcoliamo la distanza dall'indirizzo
-    \item da capire se la notifica va nell'analisi del modello del dominio, in particolare se è una classe oppure no, dato che abbiamo fatto la tabella delle informazioni ma non abbiamo fatto nessuno schema
-    \item in modello del dominio tipodiluogo deve essere un enum e non {pubblico, privato}
-    \item in interazioni in particolare modifica evento, da aggiungere anche elimina evento, ma da non fare il grafico, dire solo che è praticamente uguale a modifica evento solo che elimina la classe invece di modificarla
-    \item pensare a se mettere l'amministratore, poi nel prototipo non si scrive
-    \item da togliere la materia all'interno dell'evento nel modello del dominio
-    \item tra luogo e evento è 1 - 1? ci sono in teoria luoghi che possono avere più eventi e i luoghi esistono a prescindere degli eventi, ma a lato codice non ha senso dire che esistono, dato che vivono esclusivamente dentro la classe Evento
-    \item da capire se fare un'interfaccia notifiche o no, in generale come gestire le notifiche, essendo un'applicazione web
     \item METTERE INTERAZIONE BACHECA/FILTRO NEL CAPITOLO 2 E 3
     \item aggiungere funzione bloccaAccount e pensare a come fare un account bloccato
-    \item controllare dove ho messo la funzione modificaPassword, vedere se è nel controller o nel modello
     \item passare a modificaPassword anche la password vecchia
     \item aggiungere la funzione eliminaAccount in contesto studylink (???)
     \item controllare le interfacce della progettazione (arancioni) e vedere se sono tutte
+    \item aggiungere parte di segnalazione dei messaggi e dopo 5 segnalazioni il messaggio viene eliminato
 \end{itemize}
 
 \end{document}
