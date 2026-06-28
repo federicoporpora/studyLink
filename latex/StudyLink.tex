@@ -2147,6 +2147,7 @@ In questo diagramma è da notare che:
     \item La sottoclasse Utente modella lo studente standard che utilizza l'app, raggruppando i dettagli del ProfiloUtente e la lista dei commentiRicevuti. Questa separazione permette l'introduzione futura di nuovi account istituzionali (come ad esempio un account gestito direttamente da UniBo per promuovere sessioni di studio) che non necessitano di campi incompatibili, come il corso di studi o il sistema di recensioni tramite commenti.
     \item Per favorire il disaccoppiamento e rispettare il principio di segregazione delle interfacce (ISP), sono state create le interfacce IOrganizzatore e IPartecipante. In questo modo, eventuali enti organizzatori futuri potranno implementare solo la logica di creazione degli eventi, senza essere forzati ad implementare la logica di partecipazione, tipica invece delle persone fisiche.
     \item Rispetto all'analisi, in cui erano presenti due entità separate (\texttt{CommentoInviato} e \texttt{CommentoRicevuto}), si è scelto di unificare la struttura in una singola classe \texttt{Commento}. Questa contiene gli attributi comuni (testo, valutazione, data e orario) ed esprime il mittente e il destinatario attraverso due relazioni distinte con l'entità \texttt{Utente}. Tale approccio riduce la duplicazione del codice, semplifica la logica di business e agevola la persistenza dei dati sul database, mantenendo al contempo una chiara tracciabilità bidirezionale.
+    \item A livello di modello logico, per l'Account sono stati previsti attributi come \texttt{tentativiFalliti} e \texttt{scadenzaBlocco} per gestire la sicurezza dell'accesso: dopo 5 errori di autenticazione consecutivi, l'account viene sospeso temporaneamente.
 \end{itemize}
 
 \newpage
@@ -2285,10 +2286,11 @@ Di seguito è presentato il diagramma di dettaglio delle implementazioni dei con
 %
 È da notare che:
 \begin{itemize}[leftmargin=*]
-    \item \textbf{Ereditarietà da una classe base comune}: Tutti i controller condividono una classe base comune \texttt{Controller}, la quale detiene il riferimento protetto al contesto del database (\texttt{\# contesto: ContestoStudyLink}). In questo modo, l'accesso alle tabelle tramite ORM è centralizzato ed ereditato in modo uniforme.
-    \item \textbf{Classe astratta} \texttt{ControllerAttore}: È stata introdotta la classe astratta \texttt{ControllerAttore} (che estende la classe base \texttt{Controller}) come superclasse per \texttt{ControllerRegistrazione} e \texttt{ControllerAccount}, centralizzando le logiche di validazione legate all'anagrafica degli attori.
-    \item \textbf{Incapsulamento e sicurezza}: All'interno di \texttt{ControllerAttore} sono definiti esclusivamente come privati (\texttt{-}) i metodi di validazione sensibili: \texttt{verificaUnicitàEmail()}, \texttt{verificaSintassiEmail()} e \texttt{verificaComplessitàPassword()}. Questa soluzione assicura che tali metodi critici non siano accessibili o invocabili dall'esterno dell'architettura dei controller, garantendo una maggiore sicurezza ed evitando la duplicazione di codice.
-    \item \textbf{Disaccoppiamento tramite Interfacce}: Ogni controller concreto implementa la sua rispettiva interfaccia (come ad esempio \texttt{IControllerRegistrazione} e \texttt{IControllerAccount}), garantendo il disaccoppiamento tra la definizione delle API del server e la loro effettiva implementazione.
+    \item Tutti i controller condividono una classe base comune \texttt{Controller}, la quale detiene il riferimento protetto al contesto del database (\texttt{\# contesto: ContestoStudyLink}). In questo modo, l'accesso alle tabelle tramite ORM è centralizzato ed ereditato in modo uniforme.
+    \item È stata introdotta la classe astratta \texttt{ControllerAttore} (che estende la classe base \texttt{Controller}) come superclasse per \texttt{ControllerRegistrazione} e \texttt{ControllerAccount}, centralizzando le logiche di validazione legate all'anagrafica degli attori.
+    \item All'interno di \texttt{ControllerAttore} sono definiti esclusivamente come privati (\texttt{-}) i metodi di validazione sensibili: \texttt{verificaUnicitàEmail()}, \texttt{verificaSintassiEmail()} e \texttt{verificaComplessitàPassword()}. Questa soluzione assicura che tali metodi critici non siano accessibili o invocabili dall'esterno dell'architettura dei controller, garantendo una maggiore sicurezza ed evitando la duplicazione di codice.
+    \item Ogni controller concreto implementa la sua rispettiva interfaccia (come ad esempio \texttt{IControllerRegistrazione} e \texttt{IControllerAccount}), garantendo il disaccoppiamento tra la definizione delle API del server e la loro effettiva implementazione.
+    \item All'interno del controller preposto all'autenticazione è implementata la logica per il blocco temporaneo dell'account in caso di molteplici errori. Durante il login, il controller verifica i \texttt{tentativiFalliti}: se raggiungono o superano quota 5, il sistema rifiuta l'accesso a prescindere dalla validità delle credenziali inserite e imposta la \texttt{scadenzaBlocco} per inibire ulteriori tentativi per 15 minuti.
 \end{itemize}
 
 \newpage
@@ -2809,13 +2811,8 @@ Di seguito sono presentati i due possibili scenari di deploy:
 % TODO
 \section{TODO}
 \begin{itemize}[leftmargin=*]
-    \item guardare le frecce e la sintassi in generale del modello del dominio
     \item METTERE INTERAZIONE BACHECA/FILTRO NEL CAPITOLO 2 E 3
-    \item aggiungere funzione bloccaAccount e pensare a come fare un account bloccato
-    \item passare a modificaPassword anche la password vecchia
-    \item aggiungere la funzione eliminaAccount in contesto studylink (???)
     \item controllare le interfacce della progettazione (arancioni) e vedere se sono tutte
-    \item aggiungere parte di segnalazione dei messaggi e dopo 5 segnalazioni il messaggio viene eliminato
 \end{itemize}
 
 \end{document}
