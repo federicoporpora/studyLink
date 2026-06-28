@@ -14,7 +14,7 @@ const UserAvatar = ({ user, size = 32, style = {} }) => {
       const split = nome.split(' ').filter(p => p && p.trim().length > 0);
       if (split.length >= 2) {
         initials = split[0].charAt(0).toUpperCase() + split[1].charAt(0).toUpperCase();
-      } else {
+      } else if (split.length === 1) {
         initials = split[0].substring(0, 2).toUpperCase();
       }
     }

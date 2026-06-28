@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { ArrowLeft, Users, MapPin, Calendar, BookOpen } from 'lucide-react';
+import { ArrowLeft, Users, MapPin, Calendar, BookOpen, PenLine } from 'lucide-react';
 import UserAvatar from '../components/UserAvatar';
 
 const DettagliEvento = () => {
@@ -11,9 +11,6 @@ const DettagliEvento = () => {
   const [evento, setEvento] = useState(null);
   const [msg, setMsg] = useState(null);
   const [myUserId, setMyUserId] = useState(null);
-  const [commentTarget, setCommentTarget] = useState(null); // { id: 1, nome: 'Mario' }
-  const [commentText, setCommentText] = useState('');
-  const [commentRating, setCommentRating] = useState(5);
 
   useEffect(() => {
     const fetchEvento = async () => {
@@ -47,33 +44,17 @@ const DettagliEvento = () => {
   const todayStr = localToday.toISOString().split('T')[0];
   const isPast = evento.data < todayStr;
 
-  const handlePostComment = async () => {
-    if (!commentText.trim()) return;
-    try {
-      const token = localStorage.getItem('token');
-      await axios.post(`${import.meta.env.VITE_API_URL || ''}/api/profilo/${commentTarget.id}/commento`, {
-        testo: commentText,
-        valutazione: commentRating
-      }, {
-        headers: { Authorization: `Bearer ${token}` }
-      });
-      setMsg({ type: 'success', text: 'Commento inviato!' });
-      setCommentTarget(null);
-      setCommentText('');
-      setCommentRating(5);
-      setTimeout(() => setMsg(null), 3000);
-    } catch (err) {
-      setMsg({ type: 'error', text: err.response?.data || 'Errore invio commento' });
-      setTimeout(() => setMsg(null), 3000);
-    }
-  };
-
   return (
     <div style={{ flex: 1, display: 'flex', flexDirection: 'column', height: '100dvh', width: '100%', backgroundColor: '#f9f9f9' }}>
       {/* Header */}
-      <div style={{ backgroundColor: 'var(--primary)', color: 'white', padding: '15px 20px', display: 'flex', alignItems: 'center', boxShadow: '0 2px 5px rgba(0,0,0,0.1)' }}>
-        <ArrowLeft size={24} onClick={() => navigate(-1)} style={{ cursor: 'pointer', marginRight: '15px' }} />
-        <h2 style={{ fontSize: '18px', margin: 0 }}>Info Evento</h2>
+      <div style={{ backgroundColor: 'var(--primary)', color: 'white', padding: '15px 20px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', boxShadow: '0 2px 5px rgba(0,0,0,0.1)' }}>
+        <div style={{ display: 'flex', alignItems: 'center' }}>
+          <ArrowLeft size={24} onClick={() => navigate(-1)} style={{ cursor: 'pointer', marginRight: '15px' }} />
+          <h2 style={{ fontSize: '18px', margin: 0 }}>Info Evento</h2>
+        </div>
+        {evento.organizzatoreId === myUserId && (
+          <PenLine size={22} onClick={() => navigate(`/edit-event/${evento.id}`)} style={{ cursor: 'pointer' }} />
+        )}
       </div>
 
       <div style={{ padding: '20px', overflowY: 'auto', flex: 1 }}>
@@ -137,7 +118,7 @@ const DettagliEvento = () => {
               </div>
               {isPast && evento.organizzatoreId !== myUserId && (
                 <button 
-                  onClick={(e) => { e.stopPropagation(); setCommentTarget({ id: evento.organizzatoreId, nome: evento.organizzatoreNome }); }}
+                  onClick={(e) => { e.stopPropagation(); navigate('/add-comment', { state: { targetId: evento.organizzatoreId, targetNome: evento.organizzatoreNome } }); }}
                   style={{ padding: '6px 12px', fontSize: '12px', borderRadius: '20px', border: '1px solid var(--primary)', backgroundColor: 'transparent', color: 'var(--primary)', cursor: 'pointer' }}
                 >
                   Lascia commento
@@ -164,7 +145,7 @@ const DettagliEvento = () => {
                 
                 {isPast && p.utenteId !== myUserId && (
                   <button 
-                    onClick={(e) => { e.stopPropagation(); setCommentTarget({ id: p.utenteId, nome: p.nome }); }}
+                    onClick={(e) => { e.stopPropagation(); navigate('/add-comment', { state: { targetId: p.utenteId, targetNome: p.nome } }); }}
                     style={{ padding: '6px 12px', fontSize: '12px', borderRadius: '20px', border: '1px solid var(--primary)', backgroundColor: 'transparent', color: 'var(--primary)', cursor: 'pointer' }}
                   >
                     Lascia commento
@@ -175,49 +156,6 @@ const DettagliEvento = () => {
           </div>
         </div>
       </div>
-
-      {/* Modal Commento */}
-      {commentTarget && (
-        <div style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, backgroundColor: 'rgba(0,0,0,0.5)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 3000, padding: '20px' }}>
-          <div style={{ backgroundColor: 'white', padding: '20px', borderRadius: '16px', width: '100%', maxWidth: '400px', boxShadow: '0 10px 25px rgba(0,0,0,0.2)' }}>
-            <h3 style={{ fontSize: '18px', marginBottom: '15px' }}>Lascia un commento per {commentTarget.nome}</h3>
-            
-            <div style={{ marginBottom: '15px' }}>
-              <label style={{ display: 'block', fontSize: '14px', marginBottom: '8px' }}>Valutazione (1-5)</label>
-              <div style={{ display: 'flex', gap: '5px' }}>
-                {[1,2,3,4,5].map(v => (
-                  <button key={v} onClick={() => setCommentRating(v)} style={{ padding: '5px 10px', borderRadius: '5px', border: 'none', backgroundColor: commentRating >= v ? '#ffb400' : '#eee', color: commentRating >= v ? 'white' : '#666' }}>★</button>
-                ))}
-              </div>
-            </div>
-
-            <div style={{ marginBottom: '20px' }}>
-              <label style={{ display: 'block', fontSize: '14px', marginBottom: '8px' }}>Commento</label>
-              <textarea 
-                value={commentText}
-                onChange={e => setCommentText(e.target.value)}
-                style={{ width: '100%', padding: '10px', borderRadius: '8px', border: '1px solid #ddd', minHeight: '80px', fontFamily: 'inherit' }}
-                placeholder="Scrivi la tua opinione..."
-              />
-            </div>
-
-            <div style={{ display: 'flex', gap: '10px', justifyContent: 'flex-end' }}>
-              <button 
-                onClick={() => { setCommentTarget(null); setCommentText(''); setCommentRating(5); }}
-                style={{ padding: '8px 15px', borderRadius: '8px', border: 'none', backgroundColor: '#eee', color: '#333', fontWeight: 'bold' }}
-              >
-                Annulla
-              </button>
-              <button 
-                onClick={handlePostComment}
-                style={{ padding: '8px 15px', borderRadius: '8px', border: 'none', backgroundColor: 'var(--primary)', color: 'white', fontWeight: 'bold' }}
-              >
-                Invia
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   );
 };

@@ -16,6 +16,7 @@ const Profile = () => {
   const [oldPassword, setOldPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');
   const [msg, setMsg] = useState(null);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
   const navigate = useNavigate();
   const fileInputRef = useRef(null);
 
@@ -103,22 +104,25 @@ const Profile = () => {
     }
   };
 
-  const handleDeleteProfile = async () => {
-    if (window.confirm('Sei sicuro di voler eliminare il tuo profilo? Questa azione non può essere annullata.')) {
-      try {
-        const token = localStorage.getItem('token');
-        await axios.delete(`${import.meta.env.VITE_API_URL}/api/auth/delete-account`, {
-          headers: { Authorization: `Bearer ${token}` }
-        });
-        setMsg({ type: 'success', text: 'Profilo eliminato con successo.' });
-        setTimeout(() => {
-          localStorage.removeItem('token');
-          navigate('/login');
-        }, 1500);
-      } catch (error) {
-        setMsg({ type: 'error', text: 'Errore durante l\'eliminazione del profilo.' });
-        setTimeout(() => setMsg(null), 3000);
-      }
+  const handleDeleteProfile = () => {
+    setShowDeleteModal(true);
+  };
+
+  const confirmDeleteProfile = async () => {
+    setShowDeleteModal(false);
+    try {
+      const token = localStorage.getItem('token');
+      await axios.delete(`${import.meta.env.VITE_API_URL}/api/auth/delete-account`, {
+        headers: { Authorization: `Bearer ${token}` }
+      });
+      setMsg({ type: 'success', text: 'Profilo eliminato con successo.' });
+      setTimeout(() => {
+        localStorage.removeItem('token');
+        navigate('/login');
+      }, 1500);
+    } catch (error) {
+      setMsg({ type: 'error', text: 'Errore durante l\'eliminazione del profilo.' });
+      setTimeout(() => setMsg(null), 3000);
     }
   };
 
@@ -240,6 +244,24 @@ const Profile = () => {
       </button>
 
       <div style={{ flex: 1 }}></div>
+
+      {showDeleteModal && (
+        <div style={{
+          position: 'fixed', top: 0, left: 0, right: 0, bottom: 0,
+          backgroundColor: 'rgba(0,0,0,0.5)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 3000
+        }}>
+          <div style={{
+            backgroundColor: 'white', padding: '20px', borderRadius: '15px', width: '90%', maxWidth: '400px', textAlign: 'center', color: '#333'
+          }}>
+            <h3 style={{ marginTop: 0 }}>Elimina Profilo</h3>
+            <p>Sei sicuro di voler eliminare il tuo profilo? Questa azione non può essere annullata.</p>
+            <div style={{ display: 'flex', gap: '10px', marginTop: '20px' }}>
+              <button onClick={() => setShowDeleteModal(false)} className="btn" style={{ flex: 1, backgroundColor: '#ccc', color: '#333' }}>Annulla</button>
+              <button onClick={confirmDeleteProfile} className="btn btn-secondary" style={{ flex: 1, backgroundColor: '#e57373', color: 'white' }}>Elimina</button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

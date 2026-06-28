@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { Eye, EyeOff } from 'lucide-react';
 import logo from '../assets/logo.png';
 
 const Register = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
   const [nome, setNome] = useState('');
   const [cognome, setCognome] = useState('');
   const [errorMsg, setErrorMsg] = useState('');
@@ -68,14 +70,21 @@ const Register = () => {
             required 
           />
         </div>
-        <div className="input-group">
+        <div className="input-group" style={{ position: 'relative' }}>
           <input 
-            type="password" 
+            type={showPassword ? "text" : "password"} 
             placeholder="Password..." 
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required 
+            style={{ width: '100%' }}
           />
+          <div 
+            onClick={() => setShowPassword(!showPassword)}
+            style={{ position: 'absolute', right: '15px', top: '50%', transform: 'translateY(-50%)', cursor: 'pointer', color: '#666', display: 'flex', alignItems: 'center' }}
+          >
+            {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+          </div>
         </div>
         
         <button type="submit" className="btn btn-secondary">

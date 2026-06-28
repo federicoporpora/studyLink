@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import axios from 'axios';
-import { Plus, Search, Filter } from 'lucide-react';
+import { Plus, Search, Filter, PenLine } from 'lucide-react';
 import logo from '../assets/logo.png';
 import UserAvatar from '../components/UserAvatar';
 
@@ -12,7 +12,6 @@ const Bacheca = () => {
   const [search, setSearch] = useState('');
   const [myProfile, setMyProfile] = useState(null);
   const [myUserId, setMyUserId] = useState(null);
-  const [showMenu, setShowMenu] = useState(false);
   const [showFilterModal, setShowFilterModal] = useState(false);
   const [msg, setMsg] = useState(null);
   const [filter, setFilter] = useState({ tipoLuogo: '', postiMinimi: '', dataInizio: '', dataFine: '' });
@@ -133,29 +132,9 @@ const Bacheca = () => {
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '20px' }}>
         <img src={logo} alt="StudyLink" style={{ height: '30px' }} />
         <div style={{ position: 'relative' }}>
-          <div onClick={() => setShowMenu(!showMenu)} style={{ cursor: 'pointer' }}>
+          <div onClick={() => navigate('/personal-profile')} style={{ cursor: 'pointer' }}>
             <UserAvatar user={myProfile} size={40} />
           </div>
-          {showMenu && (
-            <div style={{
-              position: 'absolute', top: '50px', right: '0', backgroundColor: 'white',
-              boxShadow: '0 4px 12px rgba(0,0,0,0.1)', borderRadius: '12px', padding: '10px',
-              display: 'flex', flexDirection: 'column', gap: '10px', zIndex: 1000, width: '150px'
-            }}>
-              <div 
-                style={{ padding: '8px', cursor: 'pointer', borderRadius: '8px', fontWeight: '500' }}
-                onClick={() => navigate('/profile')}
-              >
-                Modifica Profilo
-              </div>
-              <div 
-                style={{ padding: '8px', cursor: 'pointer', borderRadius: '8px', color: 'red', fontWeight: '500' }}
-                onClick={handleLogout}
-              >
-                Logout
-              </div>
-            </div>
-          )}
         </div>
       </div>
 
@@ -284,8 +263,11 @@ const Bacheca = () => {
                           : '1px solid #eee'
           }}>
             {(activeTab === 'miei' || activeTab === 'passati') && (
-              <div style={{ fontSize: '11px', fontWeight: 'bold', color: evento.organizzatoreId === myUserId ? 'var(--primary)' : '#28a745', marginBottom: '5px' }}>
-                {evento.organizzatoreId === myUserId ? 'ORGANIZZATO DA TE' : 'PARTECIPI'}
+              <div style={{ fontSize: '11px', fontWeight: 'bold', color: evento.organizzatoreId === myUserId ? 'var(--primary)' : '#28a745', marginBottom: '5px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <span>{evento.organizzatoreId === myUserId ? 'ORGANIZZATO DA TE' : 'PARTECIPI'}</span>
+                {evento.organizzatoreId === myUserId && (
+                  <PenLine size={16} onClick={(e) => { e.stopPropagation(); navigate(`/edit-event/${evento.id}`); }} style={{ cursor: 'pointer', color: 'var(--text-dark)' }} />
+                )}
               </div>
             )}
             <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: '10px' }}>

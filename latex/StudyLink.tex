@@ -106,12 +106,12 @@
 % Sottosottosezioni
 \titleformat{\subsubsection}
     {\normalfont\normalsize\bfseries\color{studyColor}}{\thesubsubsection.\ }{0pt}{\normalsize} 
-\titlespacing*{\subsubsection}{0pt}{6pt}{0pt}
+\titlespacing*{\subsubsection}{0pt}{6pt}{2pt}
 
 % Paragrafi (Sotto-sotto-sottosezioni)
 \titleformat{\paragraph}
     {\normalfont\normalsize\bfseries\color{linkColor}}{\theparagraph.\ }{0pt}{\normalsize}
-\titlespacing*{\paragraph}{0pt}{10pt}{6pt}
+\titlespacing*{\paragraph}{0pt}{10pt}{4pt}
 
 
 % Tabelle
@@ -2390,6 +2390,7 @@ Di seguito sono presentate le figure che mostrano le interazioni tra i component
 %
 
 
+\newpage
 \subsection{Interfacce utente}
 Nelle prossime sezioni mostreremo le interfacce principali del sistema.
 Visto lo scopo dell'applicazione, prevediamo che gli utenti la useranno quasi sempre dal telefono.
@@ -2398,7 +2399,106 @@ Per questo motivo, in questo documento abbiamo deciso di inserire solo le scherm
 Non abbiamo messo la versione per computer perché è molto facile da immaginare: si tratta semplicemente della stessa grafica 
 allargata e riadattata per uno schermo più grande.
 
+\begin{figure}[H]
+    \centering
+    \setlength{\fboxsep}{0pt}
+    \setlength{\fboxrule}{1.5pt}
+    \begin{minipage}{0.45\textwidth}
+        \centering
+        \fcolorbox{linkColor}{white}{\includegraphics[width=0.98\linewidth,height=0.30\textheight,keepaspectratio]{images/login.jpg}}
+        \caption{Schermata di Accesso}
+    \end{minipage}\hfill
+    \begin{minipage}{0.45\textwidth}
+        \centering
+        \fcolorbox{linkColor}{white}{\includegraphics[width=0.98\linewidth,height=0.30\textheight,keepaspectratio]{images/registrazione.jpg}}
+        \caption{Schermata di Registrazione}
+    \end{minipage}
+\end{figure}
 
+\begin{figure}[H]
+    \centering
+    \setlength{\fboxsep}{0pt}
+    \setlength{\fboxrule}{1.5pt}
+    \begin{minipage}{0.31\textwidth}
+        \centering
+        \fcolorbox{linkColor}{white}{\includegraphics[width=0.98\linewidth,height=0.30\textheight,keepaspectratio]{images/bacheca.jpg}}
+        \caption{Bacheca - Esplora}
+    \end{minipage}\hfill
+    \begin{minipage}{0.31\textwidth}
+        \centering
+        \fcolorbox{linkColor}{white}{\includegraphics[width=0.98\linewidth,height=0.30\textheight,keepaspectratio]{images/miei-eventi.jpg}}
+        \caption{Bacheca - I Miei Eventi}
+    \end{minipage}\hfill
+    \begin{minipage}{0.31\textwidth}
+        \centering
+        \fcolorbox{linkColor}{white}{\includegraphics[width=0.98\linewidth,height=0.30\textheight,keepaspectratio]{images/passati.jpg}}
+        \caption{Bacheca - Eventi Passati}
+    \end{minipage}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \setlength{\fboxsep}{0pt}
+    \setlength{\fboxrule}{1.5pt}
+    \begin{minipage}{0.45\textwidth}
+        \centering
+        \fcolorbox{linkColor}{white}{\includegraphics[width=0.98\linewidth,height=0.30\textheight,keepaspectratio]{images/crea-evento.jpg}}
+        \caption{Creazione Evento}
+    \end{minipage}\hfill
+    \begin{minipage}{0.45\textwidth}
+        \centering
+        \fcolorbox{linkColor}{white}{\includegraphics[width=0.98\linewidth,height=0.30\textheight,keepaspectratio]{images/modifica-evento.jpg}}
+        \caption{Modifica Evento}
+    \end{minipage}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \setlength{\fboxsep}{0pt}
+    \setlength{\fboxrule}{1.5pt}
+    \begin{minipage}{0.45\textwidth}
+        \centering
+        \fcolorbox{linkColor}{white}{\includegraphics[width=0.98\linewidth,height=0.30\textheight,keepaspectratio]{images/evento-passato.jpg}}
+        \caption{Dettagli Evento Passato}
+    \end{minipage}\hfill
+    \begin{minipage}{0.45\textwidth}
+        \centering
+        \fcolorbox{linkColor}{white}{\includegraphics[width=0.98\linewidth,height=0.30\textheight,keepaspectratio]{images/chat.jpg}}
+        \caption{Chat di Gruppo}
+    \end{minipage}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \setlength{\fboxsep}{0pt}
+    \setlength{\fboxrule}{1.5pt}
+    \begin{minipage}{0.45\textwidth}
+        \centering
+        \fcolorbox{linkColor}{white}{\includegraphics[width=0.98\linewidth,height=0.30\textheight,keepaspectratio]{images/mio-profilo.jpg}}
+        \caption{Profilo Personale}
+    \end{minipage}\hfill
+    \begin{minipage}{0.45\textwidth}
+        \centering
+        \fcolorbox{linkColor}{white}{\includegraphics[width=0.98\linewidth,height=0.30\textheight,keepaspectratio]{images/modifica-profilo.jpg}}
+        \caption{Modifica Profilo}
+    \end{minipage}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \setlength{\fboxsep}{0pt}
+    \setlength{\fboxrule}{1.5pt}
+    \begin{minipage}{0.45\textwidth}
+        \centering
+        \fcolorbox{linkColor}{white}{\includegraphics[width=0.98\linewidth,height=0.30\textheight,keepaspectratio]{images/profilo.jpg}}
+        \caption{Profilo Pubblico Utente}
+    \end{minipage}\hfill
+    \begin{minipage}{0.45\textwidth}
+        \centering
+        \fcolorbox{linkColor}{white}{\includegraphics[width=0.98\linewidth,height=0.30\textheight,keepaspectratio]{images/commento.jpg}}
+        \caption{Aggiunta Commento}
+    \end{minipage}
+\end{figure}
 
 
 % Progettazione della persistenza
@@ -2806,13 +2906,6 @@ Di seguito sono presentati i due possibili scenari di deploy:
         \caption{Deploy: Schema scalabile}
     \end{figure}
 %
-\end{itemize}
-
-% TODO
-\section{TODO}
-\begin{itemize}[leftmargin=*]
-    \item METTERE INTERAZIONE BACHECA/FILTRO NEL CAPITOLO 2 E 3
-    \item controllare le interfacce della progettazione (arancioni) e vedere se sono tutte
 \end{itemize}
 
 \end{document}

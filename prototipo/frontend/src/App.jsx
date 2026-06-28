@@ -8,7 +8,9 @@ import Chat from './pages/Chat';
 import UserProfile from './pages/UserProfile';
 
 import DettagliEvento from './pages/DettagliEvento';
-
+import PersonalProfile from './pages/PersonalProfile';
+import AddComment from './pages/AddComment';
+import EditEvent from './pages/EditEvent';
 function App() {
   return (
     <BrowserRouter>
@@ -22,6 +24,9 @@ function App() {
         <Route path="/chat" element={<Chat />} />
         <Route path="/dettagli-evento" element={<DettagliEvento />} />
         <Route path="/user-profile" element={<UserProfile />} />
+        <Route path="/personal-profile" element={<PersonalProfile />} />
+        <Route path="/add-comment" element={<AddComment />} />
+        <Route path="/edit-event/:id" element={<EditEvent />} />
       </Routes>
     </BrowserRouter>
   );
