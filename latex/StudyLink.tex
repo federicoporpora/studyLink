@@ -183,7 +183,7 @@ Inoltre, per facilitare l'organizzazione, tutti gli iscritti a un Evento hanno a
     \end{itemize}
     \item Il sistema deve offrire una Bacheca globale dove l'Utente può sfogliare gli Eventi di studio creati da altri Utenti. Gli Eventi scompaiono dalla Bacheca una volta pieni.
     \item L'Utente deve poter filtrare gli Eventi in Bacheca in base alla Materia (Specifico per Esame o Generale), Tipo di Luogo (Pubblico o Privato), numero di posti (Limitato o Illimitato) e data. Inoltre, l'utente deve poter inserire un indirizzo personalizzato a sua scelta e un raggio massimo espresso in chilometri per limitare la ricerca.
-    \item Gli utenti scelgono l'evento in base al titolo dato dall'organizzatore
+    \item Gli utenti scelgono l'evento in base al titolo dato dall'organizzatore.
     \item Un Utente può prenotarsi per un Evento esistente se sono presenti posti disponibili.
     \item Un Partecipante può annullare la propria Prenotazione fino a un'ora prima, liberando il posto per altri Utenti.
     \item L'Organizzatore può modificare i dettagli dell'Evento o cancellarlo fino all'ora precedente.
@@ -234,12 +234,12 @@ Inoltre, per facilitare l'organizzazione, tutti gli iscritti a un Evento hanno a
         \reqlabel{R02N}R02N & Le Credenziali di un Utente sono univoche & Non funzionale \\ \hline
         \reqlabel{R03N}R03N & L'interfaccia della Bacheca deve essere essenziale ed intuitiva & Non funzionale \\ \hline
         \reqlabel{R04N}R04N & Il fuso orario usato dall'applicazione è GMT+1 & Non funzionale \\ \hline
-        \reqlabel{R05N}R05N & Il formato di data e orario è gg/mm/aa e hh:mm 24h & Non funzionale \\ \hline
+        \reqlabel{R05N}R05N & Il formato di data e orario è GG/MM/AAAA e HH:MM 24h & Non funzionale \\ \hline
         \reqlabel{R06N}R06N & L'applicazione deve rispettare le norme definite nel \href{https://gdpr-info.eu/}{GDPR} & Non funzionale \\ \hline
         \reqlabel{R07N}R07N & La Bacheca globale deve essere costantemente aggiornata & Non funzionale \\ \hline
         \reqlabel{R08N}R08N & La Password scelta dall'Utente deve essere di almeno 8 caratteri e contenere almeno un numero e un carattere speciale (\#@?!\_-) & Non funzionale \\ \hline
         \reqlabel{R09N}R09N & La ricezione ed invio dei Messaggi deve essere istantanea & Non funzionale \\ \hline
-        \reqlabel{R12N}R12N & L'applicazione deve poter operare in totale autonomia senza l'intervento attivo di amministratori umani, garantendo così una maggiore tutela della privacy degli utenti & Non funzionale \\ \hline
+        \reqlabel{R10N}R10N & L'applicazione deve poter operare in totale autonomia senza l'intervento attivo di amministratori umani, garantendo così una maggiore tutela della privacy degli utenti & Non funzionale \\ \hline
 \end{tabularx}
 
 % Analisi del dominio
@@ -319,7 +319,7 @@ Di seguito sono presentati tutti gli scenari nel loro dettaglio.
             \item L'Email fornita è già in uso
             \begin{enumerate}[nosep, leftmargin=*]
                 \setcounter{enumi}{3}
-                \item Il sistema informa l'Utente che la Email è già registrata
+                \item Il sistema informa l'Utente che l'Email è già registrata
                 \item Viene mostrata la schermata di autenticazione
             \end{enumerate}
             \item La Password non è sicura
@@ -328,7 +328,7 @@ Di seguito sono presentati tutti gli scenari nel loro dettaglio.
                 \item Viene mostrato un messaggio di errore
                 \item Lo studente può inserire una nuova Password
             \end{enumerate}
-            \item La Email non è istituzionale
+            \item L'Email non è istituzionale
             \begin{enumerate}[nosep, leftmargin=*]
                 \setcounter{enumi}{3}
                 \item Viene mostrato un messaggio di errore
@@ -826,7 +826,7 @@ Di seguito sono presentati tutti gli scenari nel loro dettaglio.
     \hline
     \rowcolor{studyColor} \textbf{Minaccia} & \textbf{Probabilità} & \textbf{Controllo} & \textbf{Rischio} \\ \hline
     \endhead
-    Furto Credenziali Utente & \textbf{Media.} La Mail istituzionale è nota, le password devono essere indovinate & Imposizione di requisiti di sicurezza sulle Password limitazioni di tentativi di accesso
+    Furto Credenziali Utente & \textbf{Media.} La Mail istituzionale è nota, le password devono essere indovinate & Imposizione di requisiti di sicurezza sulle Password e limitazioni di tentativi di accesso
         & \textbf{Costo Medio-basso.} L'Utente è obbligato a memorizzare una password più difficile \\ \hline
     Intercettazione delle comunicazioni & \textbf{Alta.} L'app viene usata in mobilità spesso su reti wi-fi universitarie o pubbliche non sempre sicure & Cifratura delle comunicazioni
         & \textbf{Costo basso.} Le tecnologie per la cifratura del traffico web sono gratuite e facilmente integrabili \\ \hline
@@ -853,7 +853,7 @@ Di seguito sono presentati tutti gli scenari nel loro dettaglio.
     Registrazione vincolata & \begin{itemize}[nosep, leftmargin=*, before={\vspace{-0.5\baselineskip}}, after={\vspace{-0.8\baselineskip}}]
                     \item Creazione di account fake (gli indirizzi universitari sono facilmente reperibili);
                 \end{itemize} \\ \hline
-    Sitema di Chat integrato & \begin{itemize}[nosep, leftmargin=*, before={\vspace{-0.5\baselineskip}}, after={\vspace{-0.8\baselineskip}}]
+    Sistema di Chat integrato & \begin{itemize}[nosep, leftmargin=*, before={\vspace{-0.5\baselineskip}}, after={\vspace{-0.8\baselineskip}}]
                     \item Cross-Site Scripting (XSS);
                     \item Iniezione di link malevoli/Phishing
                 \end{itemize} \\ \hline
@@ -864,7 +864,7 @@ Di seguito sono presentati tutti gli scenari nel loro dettaglio.
                 \end{itemize} \\ \hline
 
     Cifratura delle Comunicazioni & 
-                La siurezza dipende dal tipo di cifratura:
+                La sicurezza dipende dal tipo di cifratura:
                 \begin{enumerate}[nosep, leftmargin=*, before={\vspace{-0.5\baselineskip}}, after={\vspace{-0.8\baselineskip}}]
                     \item Cifratura simmetrica;
                     \begin{itemize}
@@ -873,7 +873,7 @@ Di seguito sono presentati tutti gli scenari nel loro dettaglio.
                         \item memorizzazione della chiave;
                         \item Più informazioni cifrate con la stessa chiave, più materiale per l'analisi del testo di un attaccante;
                     \end{itemize}
-                    \item Punto asimmetrica;
+                    \item Cifratura asimmetrica;
                     \begin{itemize}
                         \item lunghezza della chiave;
                         \item memorizzazione della chiave privata;
@@ -882,7 +882,13 @@ Di seguito sono presentati tutti gli scenari nel loro dettaglio.
 \end{tabularx}
 
 \subsection{Security use case e misuse case}
-% Immagine da inserire, poi tabella
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth,keepaspectratio]{images/security-use-misuse.png}
+    \caption{Diagramma dei Security use case e misuse case}
+\end{figure}
+
 \begin{tabularx}{\textwidth}{|p{3.8cm}|X|}
     \hline
     \rowcolor{studyColor} \textbf{Titolo} & \textbf{Controllo accesso} \\ \hline
@@ -983,8 +989,8 @@ Dall'analisi del rischio si possono evincere i seguenti ulteriori requisiti:
     \endhead
     \reqlabel{R20F}R20F & Il sistema registra le operazioni sensibili e i tentativi di accesso in un file di log. & Funzionale \\ \hline
     \reqlabel{R21F}R21F & I log di sistema possono essere inviati a un sistema esterno per l'analisi e conservazione. & Funzionale \\ \hline
-    \reqlabel{R10N}R10N & La comunicazione tra client e server deve essere obbligatoriamente cifrata tramite protocollo HTTPS/TLS. & Non funzionale \\ \hline
-    \reqlabel{R11N}R11N & Dopo 5 tentativi di Autenticazione falliti consecutivi, il sistema blocca l'accesso a quell'account per 15 minuti. & Non funzionale \\ \hline
+    \reqlabel{R11N}R11N & La comunicazione tra client e server deve essere obbligatoriamente cifrata tramite protocollo HTTPS/TLS. & Non funzionale \\ \hline
+    \reqlabel{R12N}R12N & Dopo 5 tentativi di Autenticazione falliti consecutivi, il sistema blocca l'accesso a quell'account per 15 minuti. & Non funzionale \\ \hline
 \end{tabularx}
 
 \subsection{Aggiornamento vocabolario}
@@ -1016,18 +1022,26 @@ A seguito dell'introduzione dei controlli di sicurezza, il caso d'uso \textbf{Au
             \item L'Utente è autenticato nel sistema
         \end{enumerate} \\ \hline
     \textbf{Scenari alternativi} & 
-        Le Credenziali sono errate
-        \begin{enumerate}[nosep, leftmargin=*, before={\vspace{-0.5\baselineskip}}, after={\vspace{-0.8\baselineskip}}]
-            \setcounter{enumi}{3}
-            \item Viene mostrato un messaggio di errore e l'Utente può reinserire le Credenziali
-            \item Se il numero di tentativi errati supera i 5 consecutivi, il sistema blocca temporaneamente l'accesso per 15 minuti e registra l'evento nel Log.
-        \end{enumerate} \\ \hline
-    \textbf{Requisiti non funzionali} & \hyperref[R02N]{R02N}, \hyperref[R10N]{R10N}, \hyperref[R11N]{R11N} \\ \hline
+        \begin{itemize}[nosep, leftmargin=*, before={\vspace{-0.5\baselineskip}}, after={\vspace{-0.8\baselineskip}}]
+            \item Le Credenziali sono errate
+            \begin{enumerate}[nosep, leftmargin=*]
+                \setcounter{enumi}{3}
+                \item Viene mostrato un messaggio di errore e l'Utente può reinserire le Credenziali
+                \item Se il numero di tentativi errati supera i 5 consecutivi, il sistema blocca temporaneamente l'accesso per 15 minuti e registra l'evento nel Log.
+            \end{enumerate}
+        \end{itemize} \\ \hline
+    \textbf{Requisiti non funzionali} & \hyperref[R02N]{R02N}, \hyperref[R11N]{R11N}, \hyperref[R12N]{R12N} \\ \hline
     \textbf{Punti aperti} & \\ \hline
 \end{tabularx}
 
 \subsection{Diagramma dei casi d'uso aggiornato}
-% Immagine
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth,height=0.5\textheight,keepaspectratio]{images/modello-dei-casi-d-uso.png}
+    \caption{Modello dei casi d'uso aggiornato}
+\end{figure}
+%
 
 \subsection{Integrazione con sistemi esterni}
 Data la complessità e la presenza sul mercato di software specializzati nell'analisi dei log, si concorda con il cliente di utilizzare un sistema esterno per l'analisi dei log, il cui servizio potrà essere fornito anche da soluzioni di terzi.
@@ -1053,7 +1067,7 @@ Il file di log sarà generato da un componente interno al sistema chiamato \text
     Autenticazione & \begin{itemize}[nosep, leftmargin=*, before={\vspace{-0.5\baselineskip}}, after={\vspace{-0.8\baselineskip}}]
                         \item Gestione dati;
                         \item Interazione esterno;
-                    \end{itemize} & Semplice & \hyperref[R03F]{R03F}, \hyperref[R11N]{R11N} \\ \hline
+                    \end{itemize} & Semplice & \hyperref[R03F]{R03F}, \hyperref[R12N]{R12N} \\ \hline
     Creazione evento & \begin{itemize}[nosep, leftmargin=*, before={\vspace{-0.5\baselineskip}}, after={\vspace{-0.8\baselineskip}}]
                         \item Memorizzazione dati;
                         \item Interazione esterno;
@@ -1217,7 +1231,7 @@ L'informazione \hyperref[Commento]{Commento} è composta da:
     \rowcolor{studyColor} \textbf{Informazione} & \textbf{Tipo} & \textbf{Livello protezione / Privacy} & \textbf{Vincoli} \\ \hline
     \endhead
     Utente & composto & Protezione media & \\ \hline
-    Testo & semplice & Protezione media & Non più più di 500 caratteri \\ \hline
+    Testo & semplice & Protezione media & Non più di 500 caratteri \\ \hline
     Valutazione & semplice & Protezione media & Valore numerico da 1 a 5 \\ \hline
     Data & semplice & Protezione media & Nel formato GG/MM/AAAA \\ \hline
     Orario & semplice & Protezione media & Nel formato HH:MM \\ \hline
@@ -1429,9 +1443,9 @@ L'informazione \hyperref[Log]{Log} è composta da:
     \rowcolor{studyColor} \textbf{Vincolo} & \textbf{Categorie} & \textbf{Impatto} & \textbf{Funzionalità} \\ \hline
     \endhead
     Accessibilità e facilità di utilizzo della piattaforma [R01N, R03N] & Disponibilità, Usabilità & Garantisce continuità del servizio e un'interfaccia intuitiva per l'utente & Registrazione, Autenticazione, Creazione evento, Gestione evento, Cancellazione evento, Modifica evento, Rimozione partecipante, Gestione profilo, Visualizzazione commenti, Visualizzazione bacheca, Visualizzazione partecipante, Prenotazione evento, Annullamento prenotazione, Utilizzo chat, Inserimento commento, Registrazione Log, Esportazione Log \\ \hline
-    Creazione e sicurezza dell'account [R02N, R08N, R11N] & Sicurezza & Migliora l'integrità dei dati e previene accessi non autorizzati obbligando all'uso di credenziali sicure e univoche & Registrazione, Autenticazione, Gestione profilo \\ \hline
+    Creazione e sicurezza dell'account [R02N, R08N, R12N] & Sicurezza & Migliora l'integrità dei dati e previene accessi non autorizzati obbligando all'uso di credenziali sicure e univoche & Registrazione, Autenticazione, Gestione profilo \\ \hline
     Standardizzazione dei formati temporali e di visualizzazione [R04N, R05N] & Usabilità & Uniformità e chiarezza nella visualizzazione delle informazioni temporali per tutti gli utenti & Registrazione, Autenticazione, Creazione evento, Gestione evento, Cancellazione evento, Modifica evento, Rimozione partecipante, Gestione profilo, Visualizzazione commenti, Visualizzazione bacheca, Visualizzazione partecipante, Prenotazione evento, Annullamento prenotazione, Utilizzo chat, Inserimento commento, Registrazione Log, Esportazione Log \\ \hline
-    Privacy e sicurezza dei dati del sistema [R06N, R10N, R12N] & Sicurezza, Legale & Protegge la riservatezza delle comunicazioni e garantisce il rispetto delle normative vigenti sui dati personali (GDPR) & Registrazione, Autenticazione, Creazione evento, Gestione evento, Cancellazione evento, Modifica evento, Rimozione partecipante, Gestione profilo, Visualizzazione commenti, Visualizzazione bacheca, Visualizzazione partecipante, Prenotazione evento, Annullamento prenotazione, Utilizzo chat, Inserimento commento, Registrazione Log, Esportazione Log \\ \hline
+    Privacy e sicurezza dei dati del sistema [R06N, R10N, R11N] & Sicurezza, Legale & Protegge la riservatezza delle comunicazioni e garantisce il rispetto delle normative vigenti sui dati personali (GDPR) & Registrazione, Autenticazione, Creazione evento, Gestione evento, Cancellazione evento, Modifica evento, Rimozione partecipante, Gestione profilo, Visualizzazione commenti, Visualizzazione bacheca, Visualizzazione partecipante, Prenotazione evento, Annullamento prenotazione, Utilizzo chat, Inserimento commento, Registrazione Log, Esportazione Log \\ \hline
     Prestazioni e responsività del sistema [R07N, R09N] & Tempo di risposta & Migliora l'esperienza utente rendendo l'interazione dinamica ed aggiornata in tempo reale & Visualizzazione bacheca, Utilizzo chat \\ \hline
 \end{tabularx}
 
@@ -1449,7 +1463,7 @@ L'informazione \hyperref[Log]{Log} è composta da:
     Home Bacheca & Filtro (Data, Indirizzo, Tipo di Luogo, Numero posti), Elenco degli Eventi & Visualizzazione bacheca \\ \hline
     View Dettaglio Evento & Titolo, Materia, Data, Orario, Indirizzo, Tipo di Luogo, Numero posti, Elenco Partecipanti & Visualizzazione bacheca, Prenotazione evento, Annullamento prenotazione \\ \hline
     View Creazione Evento & Titolo, Materia, Data, Orario, Indirizzo, Tipo di Luogo, Numero posti & Creazione evento \\ \hline
-    View Gestione Evento & Dati Evento precompilati, Elenco Partecipanti (con opzione di rimozione) & Gestione evento, Rimozione partecipante, Cancellazione evento, \textcolor{red}{Modifica evento} \\ \hline
+    View Gestione Evento & Dati Evento precompilati, Elenco Partecipanti (con opzione di rimozione) & Gestione evento, Rimozione partecipante, Cancellazione evento, Modifica evento \\ \hline
     View Profilo Personale & Nome, Cognome, Corso di studi, Biografia, Immagine, Commenti ricevuti & Gestione profilo, Visualizzazione commenti \\ \hline
     View Modifica Profilo & Nome, Cognome, Corso di studi, Biografia, Immagine, Password & Gestione profilo \\ \hline
     View Profilo Partecipante & Nome, Cognome, Corso di studi, Biografia, Immagine, Commenti & Visualizzazione partecipante, Visualizzazione commenti \\ \hline
@@ -1458,7 +1472,7 @@ L'informazione \hyperref[Log]{Log} è composta da:
 \end{tabularx}
 
 \subsection{Tabella dei sistemi esterni}
-Il programma non fa utilizzo di nessun sistema esterno direttamente nel funzionamento interno di esso, l’unico sistema esterno presente è il visualizzatore di log che interagisce attraverso un file generato dall’applicazione per fornire servizi di sicurezza.
+Il programma non fa utilizzo di nessun sistema esterno nel suo funzionamento interno, l'unico sistema esterno presente è il visualizzatore di log che interagisce attraverso un file generato dall'applicazione per fornire servizi di sicurezza.
 
 \begin{tabularx}{\textwidth}{|X|X|}
     \hline
@@ -1792,8 +1806,7 @@ Dato che il modello non presenta comportamenti particolarmente elaborati, non ve
     GestioneBacheca & Team Progettazione & Team Back-end \\ \hline
     GestioneCommento & Team Progettazione & Team Back-end \\ \hline
     GestioneChat & Team Progettazione & Team Back-end \\ \hline
-    Dominio & Team Progettazione & Team Back-end, Team Datebase, Team Sicurezza \\ \hline
-
+    Dominio & Team Progettazione & Team Back-end, Team Database, Team Sicurezza \\ \hline
 \end{tabularx}
 \vspace{0.5cm}
 \begin{tabularx}{\textwidth}{|X|X|}
@@ -1815,7 +1828,7 @@ Il primo prototipo del programma non implementerà tutte le funzionalità previs
 \end{itemize}
 
 \subsection{Sviluppi futuri}
-Il committente ha richiesto di aggiungere le possibilità di penalizzare gli Utenti a seguito di disiscrizioni a ridosso di Eventi a cui si è iscritti, abbiamo organizzato o comportamenti scorretti.
+Il committente ha richiesto di aggiungere la possibilità di penalizzare gli Utenti a seguito di disiscrizioni a ridosso di Eventi a cui si è iscritti o che si sono organizzati, oppure per comportamenti scorretti.
 Inoltre, è stata evidenziata la necessità di introdurre un sistema automatizzato di segnalazione e moderazione dei messaggi e dei commenti, capace di sanzionare o rimuovere autonomamente i contenuti inappropriati.
 Si richiede al Team Progettazione di tenere conto di questi sviluppi futuri.
 
@@ -2900,12 +2913,12 @@ Di seguito sono presentati i due possibili scenari di deploy:
 %
 \begin{itemize}[leftmargin=*]
     \item Uno schema scalabile orizzontalmente, dove i target sono configurati in automatico tramite orchestratori (es. Docker) e un reverse proxy gestisce il bilanciamento del carico tra i vari nodi REST.
+\end{itemize}
     \begin{figure}[H]
         \centering
         \includegraphics[width=0.5\textwidth,height=0.5\textheight,keepaspectratio]{images/deploy-scalabile.png}
         \caption{Deploy: Schema scalabile}
     \end{figure}
 %
-\end{itemize}
 
 \end{document}
